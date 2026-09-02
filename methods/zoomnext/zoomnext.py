@@ -1,0 +1,742 @@
+import abc
+import logging
+
+import numpy as np
+import timm
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+from ..backbone.efficientnet import EfficientNet
+from ..backbone.pvt_v2_eff import pvt_v2_eff_b2, pvt_v2_eff_b3, pvt_v2_eff_b4, pvt_v2_eff_b5
+from .layers import MHSIU, RGPU, SimpleASPP,MHSIU2
+from .ops import ConvBNReLU, PixelNormalizer, resize_to
+
+LOGGER = logging.getLogger("main")
+
+
+class _ZoomNeXt_Base(nn.Module):
+    @staticmethod
+    def get_coef(iter_percentage=1, method="cos", milestones=(0, 1)):
+        min_point, max_point = min(milestones), max(milestones)
+        min_coef, max_coef = 0, 1
+
+        ual_coef = 1.0
+        if iter_percentage < min_point:
+            ual_coef = min_coef
+        elif iter_percentage > max_point:
+            ual_coef = max_coef
+        else:
+            if method == "linear":
+                ratio = (max_coef - min_coef) / (max_point - min_point)
+                ual_coef = ratio * (iter_percentage - min_point)
+            elif method == "cos":
+                perc = (iter_percentage - min_point) / (max_point - min_point)
+                normalized_coef = (1 - np.cos(perc * np.pi)) / 2
+                ual_coef = normalized_coef * (max_coef - min_coef) + min_coef
+        return ual_coef
+
+    @abc.abstractmethod
+    def body(self):
+        pass
+
+    def forward(self, data, iter_percentage=1, **kwargs):
+        logits = self.body(data=data)
+
+        if self.training:
+            mask = data["mask"]
+            prob = logits.sigmoid()
+
+            losses = []
+            loss_str = []
+
+            sod_loss = F.binary_cross_entropy_with_logits(input=logits, target=mask, reduction="mean")
+            losses.append(sod_loss)
+            loss_str.append(f"bce: {sod_loss.item():.5f}")
+
+            ual_coef = self.get_coef(iter_percentage=iter_percentage, method="cos", milestones=(0, 1))
+            ual_loss = ual_coef * (1 - (2 * prob - 1).abs().pow(2)).mean()
+            losses.append(ual_loss)
+            loss_str.append(f"powual_{ual_coef:.5f}: {ual_loss.item():.5f}")
+            return dict(vis=dict(sal=prob), loss=sum(losses), loss_str=" ".join(loss_str))
+        else:
+            return logits
+
+    def get_grouped_params(self):
+        param_groups = {"pretrained": [], "fixed": [], "retrained": []}
+        for name, param in self.named_parameters():
+            if name.startswith("encoder.patch_embed1."):
+                param.requires_grad = False
+                param_groups["fixed"].append(param)
+            elif name.startswith("encoder."):
+                param_groups["pretrained"].append(param)
+            else:
+                if "clip." in name:
+                    param.requires_grad = False
+                    param_groups["fixed"].append(param)
+                else:
+                    param_groups["retrained"].append(param)
+        LOGGER.info(
+            f"Parameter Groups:{{"
+            f"Pretrained: {len(param_groups['pretrained'])}, "
+            f"Fixed: {len(param_groups['fixed'])}, "
+            f"ReTrained: {len(param_groups['retrained'])}}}"
+        )
+        return param_groups
+
+
+
+    def __init__(
+        self, pretrained=True, num_frames=1, input_norm=True, mid_dim=64, siu_groups=4, hmu_groups=6, **kwargs
+    ):
+        super().__init__()
+        self.encoder = timm.create_model(
+            model_name="resnet50", features_only=True, out_indices=range(5), pretrained=False
+        )
+        if pretrained:
+            params = torch.hub.load_state_dict_from_url(
+                url="https://github.com/lartpang/Archieve/releases/download/pretrained-model/resnet50-timm.pth",
+                map_location="cpu",
+            )
+            self.encoder.load_state_dict(params, strict=False)
+
+        self.tra_5 = SimpleASPP(in_dim=2048, out_dim=mid_dim)
+        self.siu_5 = MHSIU(mid_dim, siu_groups)
+        self.hmu_5 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_4 = ConvBNReLU(1024, mid_dim, 3, 1, 1)
+        self.siu_4 = MHSIU(mid_dim, siu_groups)
+        self.hmu_4 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_3 = ConvBNReLU(512, mid_dim, 3, 1, 1)
+        self.siu_3 = MHSIU(mid_dim, siu_groups)
+        self.hmu_3 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_2 = ConvBNReLU(256, mid_dim, 3, 1, 1)
+        self.siu_2 = MHSIU(mid_dim, siu_groups)
+        self.hmu_2 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_1 = ConvBNReLU(64, mid_dim, 3, 1, 1)
+        self.siu_1 = MHSIU(mid_dim, siu_groups)
+        self.hmu_1 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.normalizer = PixelNormalizer() if input_norm else nn.Identity()
+        self.predictor = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),
+            ConvBNReLU(64, 32, 3, 1, 1),
+            nn.Conv2d(32, 1, 1),
+        )
+
+    def normalize_encoder(self, x):
+        x = self.normalizer(x)
+        c1, c2, c3, c4, c5 = self.encoder(x)
+        return c1, c2, c3, c4, c5
+
+    def body(self, data):
+        l_trans_feats = self.normalize_encoder(data["image_l"])
+        m_trans_feats = self.normalize_encoder(data["image_m"])
+        s_trans_feats = self.normalize_encoder(data["image_s"])
+
+        l, m, s = (
+            self.tra_5(l_trans_feats[4]),
+            self.tra_5(m_trans_feats[4]),
+            self.tra_5(s_trans_feats[4]),
+        )
+        lms = self.siu_5(l=l, m=m, s=s)
+        x = self.hmu_5(lms)
+
+        l, m, s = (
+            self.tra_4(l_trans_feats[3]),
+            self.tra_4(m_trans_feats[3]),
+            self.tra_4(s_trans_feats[3]),
+        )
+        lms = self.siu_4(l=l, m=m, s=s)
+        x = self.hmu_4(lms + resize_to(x, tgt_hw=lms.shape[-2:]))
+
+        l, m, s = (
+            self.tra_3(l_trans_feats[2]),
+            self.tra_3(m_trans_feats[2]),
+            self.tra_3(s_trans_feats[2]),
+        )
+        lms = self.siu_3(l=l, m=m, s=s)
+        x = self.hmu_3(lms + resize_to(x, tgt_hw=lms.shape[-2:]))
+
+        l, m, s = (
+            self.tra_2(l_trans_feats[1]),
+            self.tra_2(m_trans_feats[1]),
+            self.tra_2(s_trans_feats[1]),
+        )
+        lms = self.siu_2(l=l, m=m, s=s)
+        x = self.hmu_2(lms + resize_to(x, tgt_hw=lms.shape[-2:]))
+
+        l, m, s = (
+            self.tra_1(l_trans_feats[0]),
+            self.tra_1(m_trans_feats[0]),
+            self.tra_1(s_trans_feats[0]),
+        )
+        lms = self.siu_1(l=l, m=m, s=s)
+        x = self.hmu_1(lms + resize_to(x, tgt_hw=lms.shape[-2:]))
+
+        return self.predictor(x)
+class PvtV2B2_ZoomNeXt(_ZoomNeXt_Base):
+    def __init__(
+        self,
+        pretrained=True,
+        num_frames=1,
+        input_norm=True,
+        mid_dim=64,
+        siu_groups=4,
+        hmu_groups=6,
+        use_checkpoint=False,
+    ):
+        super().__init__()
+        self.set_backbone(pretrained=pretrained, use_checkpoint=use_checkpoint)
+
+        self.embed_dims = self.encoder.embed_dims
+        self.tra_5 = SimpleASPP(self.embed_dims[3], out_dim=mid_dim)
+        self.siu_5 = MHSIU2(mid_dim, siu_groups)
+        self.hmu_5 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_4 = ConvBNReLU(self.embed_dims[2], mid_dim, 3, 1, 1)
+        self.siu_4 = MHSIU2(mid_dim, siu_groups)
+        self.hmu_4 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_3 = ConvBNReLU(self.embed_dims[1], mid_dim, 3, 1, 1)
+        self.siu_3 = MHSIU2(mid_dim, siu_groups)
+        self.hmu_3 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_2 = ConvBNReLU(self.embed_dims[0], mid_dim, 3, 1, 1)
+        self.siu_2 = MHSIU2(mid_dim, siu_groups)
+        self.hmu_2 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_1 = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False), ConvBNReLU(64, mid_dim, 3, 1, 1)
+        )
+
+        self.normalizer = PixelNormalizer() if input_norm else nn.Identity()
+        self.predictor = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),
+            ConvBNReLU(64, 32, 3, 1, 1),
+            nn.Conv2d(32, 1, 1),
+        )
+
+    def set_backbone(self, pretrained: bool, use_checkpoint: bool):
+        self.encoder = pvt_v2_eff_b2(pretrained=pretrained, use_checkpoint=use_checkpoint)
+
+    def normalize_encoder(self, x):
+        x = self.normalizer(x)
+        features = self.encoder(x)
+        c2 = features["reduction_2"]
+        c3 = features["reduction_3"]
+        c4 = features["reduction_4"]
+        c5 = features["reduction_5"]
+        return c2, c3, c4, c5
+
+    def body(self, data):
+        l_trans_feats = self.normalize_encoder(data["image_l"])
+        m_trans_feats = self.normalize_encoder(data["image_m"])
+
+
+        l, m,= self.tra_5(l_trans_feats[3]), self.tra_5(m_trans_feats[3])
+        lms = self.siu_5(l=l, m=m)
+        x = self.hmu_5(lms)
+
+        l, m= self.tra_4(l_trans_feats[2]), self.tra_4(m_trans_feats[2])
+        lms = self.siu_4(l=l, m=m)
+        x = self.hmu_4(lms + resize_to(x, tgt_hw=lms.shape[-2:]))
+
+        l, m= self.tra_3(l_trans_feats[1]), self.tra_3(m_trans_feats[1])
+        lms = self.siu_3(l=l, m=m)
+        x = self.hmu_3(lms + resize_to(x, tgt_hw=lms.shape[-2:]))
+
+        l, m,= self.tra_2(l_trans_feats[0]), self.tra_2(m_trans_feats[0])
+        lms = self.siu_2(l=l, m=m)
+        x = self.hmu_2(lms + resize_to(x, tgt_hw=lms.shape[-2:]))
+
+        x = self.tra_1(x)
+        return self.predictor(x)  
+
+
+
+
+
+
+
+
+class PvtV2B3_ZoomNeXt(PvtV2B2_ZoomNeXt):
+    def set_backbone(self, pretrained: bool, use_checkpoint: bool):
+        self.encoder = pvt_v2_eff_b3(pretrained=pretrained, use_checkpoint=use_checkpoint)
+
+
+class PvtV2B4_ZoomNeXt(PvtV2B2_ZoomNeXt):
+    def set_backbone(self, pretrained: bool, use_checkpoint: bool):
+        self.encoder = pvt_v2_eff_b4(pretrained=pretrained, use_checkpoint=use_checkpoint)
+
+
+class PvtV2B5_ZoomNeXt(PvtV2B2_ZoomNeXt):
+    def set_backbone(self, pretrained: bool, use_checkpoint: bool):
+        self.encoder = pvt_v2_eff_b5(pretrained=pretrained, use_checkpoint=use_checkpoint)
+ 
+class ConvNeXtB_ZoomNeXt(PvtV2B2_ZoomNeXt):
+    def set_backbone(self, pretrained: bool, use_checkpoint: bool):
+        self.encoder = timm.create_model(
+            model_name="convnext_base",
+            features_only=True,
+            out_indices=(0, 1, 2, 3),
+            pretrained=pretrained,
+        )
+
+    def __init__(
+        self,
+        pretrained=True,
+        num_frames=1,
+        input_norm=True,
+        mid_dim=64,
+        siu_groups=4,
+        hmu_groups=6,
+        use_checkpoint=False,
+    ):
+        _ZoomNeXt_Base.__init__(self)
+
+        self.set_backbone(pretrained=pretrained, use_checkpoint=use_checkpoint)
+
+        # ConvNeXt-B 四个stage通道一般是 [128, 256, 512, 1024]
+        self.embed_dims = self.encoder.feature_info.channels()
+
+        self.tra_5 = SimpleASPP(self.embed_dims[3], out_dim=mid_dim)
+        self.siu_5 = MHSIU(mid_dim, siu_groups)
+        self.hmu_5 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_4 = ConvBNReLU(self.embed_dims[2], mid_dim, 3, 1, 1)
+        self.siu_4 = MHSIU(mid_dim, siu_groups)
+        self.hmu_4 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_3 = ConvBNReLU(self.embed_dims[1], mid_dim, 3, 1, 1)
+        self.siu_3 = MHSIU(mid_dim, siu_groups)
+        self.hmu_3 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_2 = ConvBNReLU(self.embed_dims[0], mid_dim, 3, 1, 1)
+        self.siu_2 = MHSIU(mid_dim, siu_groups)
+        self.hmu_2 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_1 = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),
+            ConvBNReLU(mid_dim, mid_dim, 3, 1, 1),
+        )
+
+        self.normalizer = PixelNormalizer() if input_norm else nn.Identity()
+        self.predictor = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),
+            ConvBNReLU(mid_dim, 32, 3, 1, 1),
+            nn.Conv2d(32, 1, 1),
+        )
+
+    def normalize_encoder(self, x):
+        x = self.normalizer(x)
+        c2, c3, c4, c5 = self.encoder(x)
+        return c2, c3, c4, c5
+
+    def get_grouped_params(self):
+        param_groups = {"pretrained": [], "fixed": [], "retrained": []}
+
+        for name, param in self.named_parameters():
+            if name.startswith("encoder.stem."):
+                param.requires_grad = False
+                param_groups["fixed"].append(param)
+            elif name.startswith("encoder."):
+                param_groups["pretrained"].append(param)
+            else:
+                param_groups["retrained"].append(param)
+
+        LOGGER.info(
+            f"Parameter Groups:{{"
+            f"Pretrained: {len(param_groups['pretrained'])}, "
+            f"Fixed: {len(param_groups['fixed'])}, "
+            f"ReTrained: {len(param_groups['retrained'])}}}"
+        )
+        return param_groups
+
+# -*- coding: utf-8 -*-
+"""
+ZoomNeXt + Three-Scale MHSIU + Deep NCLoss
+===========================================
+
+Recommended path in PASAM:
+    methods/zoomnext/zoomnext_deepnc.py
+
+Ablation purpose
+----------------
+Keep the original ZoomNeXt three-scale fusion mechanism (MHSIU) unchanged,
+and modify ONLY the supervision:
+
+    image_s = 0.5x
+    image_m = 1.0x
+    image_l = 1.5x
+          |
+     shared PVTv2-B4
+          |
+   stage-wise MHSIU
+          |
+   RGPU5 -> P5
+     |
+   RGPU4 -> P4
+     |
+   RGPU3 -> P3
+     |
+   RGPU2 -> P2
+     |
+    tra_1
+     |
+   predictor -> P1 (final)
+
+Deep NCLoss:
+    L_deep_nc =
+        1/16 * NC(P5, Y)
+      + 1/8  * NC(P4, Y)
+      + 1/4  * NC(P3, Y)
+      + 1/2  * NC(P2, Y)
+      + 1     * NC(P1, Y)
+
+Final-only UAL:
+    L = L_deep_nc + lambda_ual(t) * UAL(P1)
+
+Notes
+-----
+1. This file intentionally does NOT add DWT / PNet decoder / edge branch.
+   It is designed as a clean ablation of Deep NCLoss on three-scale ZoomNeXt.
+2. During evaluation, ONLY final P1 logits are returned, so it stays compatible
+   with PASAM's current evaluator.
+3. q_value defaults to 2, matching the current PNet ablation implementation.
+"""
+
+
+
+import logging
+import math
+from typing import Dict, List, Sequence
+
+
+
+
+
+class NCLoss(nn.Module):
+    """Noise Correction Loss adapted from PASAM's current Noisy-COD PNet."""
+
+    @staticmethod
+    def wbce_loss(preds: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
+        weit = 1.0 + 5.0 * torch.abs(
+            F.avg_pool2d(targets, kernel_size=31, stride=1, padding=15) - targets
+        )
+        wbce = F.binary_cross_entropy_with_logits(preds, targets, reduction="none")
+        wbce = (weit * wbce).sum(dim=(2, 3)) / weit.sum(dim=(2, 3)).clamp_min(1e-6)
+        return wbce.mean()
+
+    def forward(self, preds: torch.Tensor, targets: torch.Tensor, q: int = 2) -> torch.Tensor:
+        if preds.shape[-2:] != targets.shape[-2:]:
+            preds = F.interpolate(
+                preds,
+                size=targets.shape[-2:],
+                mode="bilinear",
+                align_corners=False,
+            )
+
+        targets = targets.float().clamp(0.0, 1.0)
+        wbce = self.wbce_loss(preds, targets)
+
+        probs = torch.sigmoid(preds).flatten(1)
+        targets_flat = targets.flatten(1)
+        q = int(q)
+
+        numerator = torch.sum(
+            torch.abs(probs - targets_flat).pow(float(q)),
+            dim=1,
+        )
+        intersection = torch.sum(probs * targets_flat, dim=1)
+        denominator = (
+            torch.sum(probs, dim=1)
+            + torch.sum(targets_flat, dim=1)
+            - intersection
+            + 1e-6
+        )
+        nc_region = numerator / denominator
+
+        if q == 2:
+            return nc_region.mean() + wbce
+        return nc_region.mean() * 2.0
+
+
+class Zoom_DeepNC(nn.Module):
+    """
+    PVTv2-B4 ZoomNeXt with original three-scale MHSIU fusion,
+    five-level deep NCLoss supervision, and final-only UAL.
+    """
+
+    def __init__(
+        self,
+        pretrained: bool = True,
+        input_norm: bool = True,
+        mid_dim: int = 64,
+        siu_groups: int = 4,
+        hmu_groups: int = 6,
+        num_frames: int = 1,
+        use_checkpoint: bool = False,
+        deep_weights: Sequence[float] = (0.0625, 0.125, 0.25, 0.5, 1.0),
+        q_value: int = 2,
+        use_ual: bool = True,
+        ual_weight: float = 1.0,
+        **kwargs,
+    ):
+        super().__init__()
+        del kwargs
+
+        if len(deep_weights) != 5:
+            raise ValueError(
+                f"deep_weights must contain 5 values for P5..P1, got {deep_weights}"
+            )
+
+        self.deep_weights = tuple(float(v) for v in deep_weights)
+        self.default_q_value = int(q_value)
+        self.use_ual = bool(use_ual)
+        self.ual_weight = float(ual_weight)
+
+        # Shared PVTv2-B4 backbone.
+        self.encoder = pvt_v2_eff_b4(
+            pretrained=pretrained,
+            use_checkpoint=use_checkpoint,
+        )
+        self.embed_dims = self.encoder.embed_dims
+        self.normalizer = PixelNormalizer() if input_norm else nn.Identity()
+
+        # Lateral projections.
+        self.tra_5 = SimpleASPP(self.embed_dims[3], out_dim=mid_dim)
+        self.tra_4 = ConvBNReLU(self.embed_dims[2], mid_dim, 3, 1, 1)
+        self.tra_3 = ConvBNReLU(self.embed_dims[1], mid_dim, 3, 1, 1)
+        self.tra_2 = ConvBNReLU(self.embed_dims[0], mid_dim, 3, 1, 1)
+
+        # Original ZoomNeXt three-scale fusion.
+        self.siu_5 = MHSIU(mid_dim, siu_groups)
+        self.siu_4 = MHSIU(mid_dim, siu_groups)
+        self.siu_3 = MHSIU(mid_dim, siu_groups)
+        self.siu_2 = MHSIU(mid_dim, siu_groups)
+
+        # Original ZoomNeXt progressive RGPU decoder.
+        self.hmu_5 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+        self.hmu_4 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+        self.hmu_3 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+        self.hmu_2 = RGPU(mid_dim, hmu_groups, num_frames=num_frames)
+
+        self.tra_1 = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),
+            ConvBNReLU(mid_dim, mid_dim, 3, 1, 1),
+        )
+
+        self.predictor = nn.Sequential(
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),
+            ConvBNReLU(mid_dim, 32, 3, 1, 1),
+            nn.Conv2d(32, 1, 1),
+        )
+
+        # Deep-supervision heads after RGPU5/4/3/2.
+        self.aux_head_5 = nn.Conv2d(mid_dim, 1, 1)
+        self.aux_head_4 = nn.Conv2d(mid_dim, 1, 1)
+        self.aux_head_3 = nn.Conv2d(mid_dim, 1, 1)
+        self.aux_head_2 = nn.Conv2d(mid_dim, 1, 1)
+
+        self.nc_loss = NCLoss()
+
+    def normalize_encoder(self, x: torch.Tensor):
+        x = self.normalizer(x)
+        features = self.encoder(x)
+        c2 = features["reduction_2"]
+        c3 = features["reduction_3"]
+        c4 = features["reduction_4"]
+        c5 = features["reduction_5"]
+        return c2, c3, c4, c5
+
+    @staticmethod
+    def cosine_coef(iter_percentage: float) -> float:
+        p = min(max(float(iter_percentage), 0.0), 1.0)
+        return float((1.0 - math.cos(math.pi * p)) * 0.5)
+
+    @staticmethod
+    def uncertainty_loss_from_logits(logits: torch.Tensor) -> torch.Tensor:
+        prob = torch.sigmoid(logits)
+        return (1.0 - (2.0 * prob - 1.0).abs().pow(2)).mean()
+
+    def _extract_three_scale_features(self, data: Dict[str, torch.Tensor]):
+        required = ("image_l", "image_m", "image_s")
+        missing = [k for k in required if k not in data]
+        if missing:
+            raise KeyError(
+                f"Three-scale DeepNC ZoomNeXt requires {required}, missing={missing}"
+            )
+
+        # One shared backbone, three resolutions.
+        l_feats = self.normalize_encoder(data["image_l"])
+        m_feats = self.normalize_encoder(data["image_m"])
+        s_feats = self.normalize_encoder(data["image_s"])
+        return l_feats, m_feats, s_feats
+
+    def body(self, data: Dict[str, torch.Tensor]) -> List[torch.Tensor]:
+        l_feats, m_feats, s_feats = self._extract_three_scale_features(data)
+
+        # Stage 5: deepest.
+        l5 = self.tra_5(l_feats[3])
+        m5 = self.tra_5(m_feats[3])
+        s5 = self.tra_5(s_feats[3])
+        z5 = self.siu_5(l=l5, m=m5, s=s5)
+        x5 = self.hmu_5(z5)
+        p5 = self.aux_head_5(x5)
+
+        # Stage 4.
+        l4 = self.tra_4(l_feats[2])
+        m4 = self.tra_4(m_feats[2])
+        s4 = self.tra_4(s_feats[2])
+        z4 = self.siu_4(l=l4, m=m4, s=s4)
+        x4 = self.hmu_4(z4 + resize_to(x5, tgt_hw=z4.shape[-2:]))
+        p4 = self.aux_head_4(x4)
+
+        # Stage 3.
+        l3 = self.tra_3(l_feats[1])
+        m3 = self.tra_3(m_feats[1])
+        s3 = self.tra_3(s_feats[1])
+        z3 = self.siu_3(l=l3, m=m3, s=s3)
+        x3 = self.hmu_3(z3 + resize_to(x4, tgt_hw=z3.shape[-2:]))
+        p3 = self.aux_head_3(x3)
+
+        # Stage 2: shallowest PVT feature.
+        l2 = self.tra_2(l_feats[0])
+        m2 = self.tra_2(m_feats[0])
+        s2 = self.tra_2(s_feats[0])
+        z2 = self.siu_2(l=l2, m=m2, s=s2)
+        x2 = self.hmu_2(z2 + resize_to(x3, tgt_hw=z2.shape[-2:]))
+        p2 = self.aux_head_2(x2)
+
+        # Final prediction.
+        x1 = self.tra_1(x2)
+        p1 = self.predictor(x1)
+
+        return [p5, p4, p3, p2, p1]
+
+    def _deep_nc_loss(
+        self,
+        preds: Sequence[torch.Tensor],
+        mask: torch.Tensor,
+        q_value: int,
+    ):
+        if len(preds) != 5:
+            raise ValueError(f"Expected 5 predictions, got {len(preds)}")
+
+        level_losses = []
+        weighted_losses = []
+
+        for pred, weight in zip(preds, self.deep_weights):
+            level_loss = self.nc_loss(pred, mask, q=q_value)
+            level_losses.append(level_loss)
+            weighted_losses.append(weight * level_loss)
+
+        return sum(weighted_losses), level_losses
+
+    def forward(
+        self,
+        data: Dict[str, torch.Tensor],
+        iter_percentage: float = 1.0,
+        q_value: int | None = None,
+        **kwargs,
+    ):
+        del kwargs
+
+        preds = self.body(data)
+        p5, p4, p3, p2, p1 = preds
+
+        # Keep current PASAM evaluator compatibility.
+        if not self.training:
+            return p1
+
+        if "mask" not in data:
+            raise KeyError("Training requires data['mask'].")
+
+        mask = data["mask"].float()
+        if mask.ndim == 3:
+            mask = mask.unsqueeze(1)
+        mask = mask.clamp(0.0, 1.0)
+
+        q = self.default_q_value if q_value is None else int(q_value)
+
+        loss_deep_nc, nc_levels = self._deep_nc_loss(
+            preds=preds,
+            mask=mask,
+            q_value=q,
+        )
+
+        # UAL on final P1 ONLY.
+        if self.use_ual:
+            ual_raw = self.uncertainty_loss_from_logits(p1)
+            ual_coef = self.cosine_coef(iter_percentage)
+            loss_ual = self.ual_weight * float(ual_coef) * ual_raw
+        else:
+            ual_raw = p1.new_zeros(())
+            ual_coef = 0.0
+            loss_ual = p1.new_zeros(())
+
+        total_loss = loss_deep_nc + loss_ual
+
+        loss_items = {
+            "total": total_loss.detach(),
+            "deep_nc": loss_deep_nc.detach(),
+            "nc_p5": nc_levels[0].detach(),
+            "nc_p4": nc_levels[1].detach(),
+            "nc_p3": nc_levels[2].detach(),
+            "nc_p2": nc_levels[3].detach(),
+            "nc_p1": nc_levels[4].detach(),
+            "ual": loss_ual.detach(),
+            "ual_raw": ual_raw.detach(),
+            "ual_coef": float(ual_coef),
+            "q": float(q),
+        }
+
+        loss_str = (
+            f"L:{total_loss.detach().item():.4f} "
+            f"DeepNC:{loss_deep_nc.detach().item():.4f} "
+            f"P5:{nc_levels[0].detach().item():.4f} "
+            f"P4:{nc_levels[1].detach().item():.4f} "
+            f"P3:{nc_levels[2].detach().item():.4f} "
+            f"P2:{nc_levels[3].detach().item():.4f} "
+            f"P1:{nc_levels[4].detach().item():.4f} "
+            f"UAL:{loss_ual.detach().item():.4f} "
+            f"Q:{q}"
+        )
+
+        return {
+            "logits": p1,
+            "preds": preds,
+            "loss": total_loss,
+            "loss_items": loss_items,
+            "loss_str": loss_str,
+            "vis": {"sal": torch.sigmoid(p1)},
+        }
+
+    def get_grouped_params(self):
+        param_groups = {
+            "pretrained": [],
+            "fixed": [],
+            "retrained": [],
+        }
+
+        for name, param in self.named_parameters():
+            if name.startswith("encoder.patch_embed1."):
+                param.requires_grad = False
+                param_groups["fixed"].append(param)
+            elif name.startswith("encoder."):
+                param_groups["pretrained"].append(param)
+            else:
+                param_groups["retrained"].append(param)
+
+        LOGGER.info(
+            "ZoomNeXt-DeepNC Parameter Groups:{"
+            f"Pretrained:{len(param_groups['pretrained'])}, "
+            f"Fixed:{len(param_groups['fixed'])}, "
+            f"ReTrained:{len(param_groups['retrained'])}"
+            "}"
+        )
+        return param_groups
