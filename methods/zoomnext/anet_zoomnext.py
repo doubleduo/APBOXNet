@@ -265,7 +265,10 @@ class ConvNeXtB_ZoomNeXt_ANet(nn.Module):
                     align_corners=False,
                 )
         else:
-            box_image = image * box_mask
+            mean = image.new_tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1)
+            box_image = image * box_mask + mean * (1.0 - box_mask)
+            
+            
 
         return box_image, box_mask
 

@@ -40,13 +40,13 @@ train = dict(
     # For clean-pseudo ANet, usually keep all samples in clean_list and let
     # clean_list control the subset. Set <1 only if you intentionally want
     # another random subsample.
-    sample_ratio=1.0,
+    sample_ratio=0.6,
 
     # Supervision target. Add `pseudo_mask` to dataset.yaml.
     target_key="pseudo_mask",
 
     # Only these pseudo labels are treated as ANet supervision.
-    clean_list="data/pseudo_pool/6all.txt",
+    
 
     # False for binary/hard pseudo masks; True for 0..255 soft probability maps.
     soft_target=False,

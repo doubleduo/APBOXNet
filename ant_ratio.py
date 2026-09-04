@@ -398,7 +398,26 @@ class ANetPromptDataset(data.Dataset):
         super().__init__()
         self.shape = shape
         self.box_format = str(box_format)
+        self.target_key = str(target_key)
+        self.soft_target = bool(soft_target)
         self.total_data_paths = []
+
+        clean_names = None
+        if clean_list:
+            clean_path = Path(clean_list)
+            if not clean_path.is_absolute():
+                clean_path = Path.cwd() / clean_path
+            if not clean_path.exists():
+                raise FileNotFoundError(f"clean_list not found: {clean_path}")
+            clean_names = set()
+            with open(clean_path, "r", encoding="utf-8-sig") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    token = line.split()[0].split(",")[0]
+                    clean_names.add(Path(token).stem)
+            LOGGER.info("Loaded clean pseudo list: %s (%d)", clean_path, len(clean_names))
 
         for dataset_name, info in dataset_infos.items():
             image_path, image_suffix = _resolve_component(info, "image")
@@ -596,7 +615,7 @@ def _append_val_csv(csv_path: str, epoch: int, dataset_name: str, metrics: dict)
         str(dataset_name),
         pick("S", "sm"),
         pick("Fw", "wfm", "wFmeasure"),
-        pick("maxem", "E", "em"),
+        pick("E", "em"),
         pick("MAE", "mae"),
     ]
 
@@ -803,10 +822,6 @@ def train(model, cfg):
         seed=int(cfg.base_seed),
         augment=bool(cfg.train.get("augment", True)),
         box_format=str(cfg.train.get("box_format", "xyxy")),
-        # F0-1: make config supervision settings effective.
-        target_key=str(cfg.train.get("target_key", "mask")),
-        clean_list=cfg.train.get("clean_list", None),
-        soft_target=bool(cfg.train.get("soft_target", False)),
     )
 
     loader = data.DataLoader(
