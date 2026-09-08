@@ -24,6 +24,7 @@ Thumbs.db
 *.pt
 *.ckpt
 *.bin
+*.png
 
 # Experiment outputs
 runs/

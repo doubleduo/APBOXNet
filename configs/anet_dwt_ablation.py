@@ -54,6 +54,16 @@ cfg = dict(
     model=dict(
         channels=64,
         backbone_name="convnext_base.fb_in22k_ft_in1k_384",
+
+        # ----------------------------------------------------------
+        # DWT ablation
+        # A0: original Noisy-COD: HH->F1/F2, LL->F3/F4
+        # A1: mean(LL,LH,HL,HH) for all stages
+        # A2: adaptive spatial softmax router over LL/LH/HL/HH
+        # ----------------------------------------------------------
+        ablation="A0",
+        router_hidden=32,
+        router_temperature=1.0,
     ),
 
     train=dict(
@@ -61,6 +71,16 @@ cfg = dict(
         epochs=100,
         batch_size=16,
         num_workers=6,
+
+        # --------------------------------------------------------------
+        # Clean pseudo-label training mode.
+        # Leave sample_list=None to use the original ratio/GT split.
+        # Set these two paths to train only on samples listed in a TXT.
+        # TXT may contain stems (CAMO_xxx), image filenames, or full paths.
+        # --------------------------------------------------------------
+        sample_list=None,
+        target_mask_dir=None,
+        target_mask_suffix=".png",
 
         optimizer="adam",
         init_lr=1e-7,
@@ -88,8 +108,7 @@ cfg = dict(
     output=dict(
         # This is the default final output directory.
         # It can be completely overridden by --output-root.
-        root="" \
-        "",
+        root="./ANet_outputs/NoisyCOD_ANet_F20",
         split_dir="splits",
         checkpoint_dir="checkpoints",
         pseudo_mask_dir="pseudo_mask",

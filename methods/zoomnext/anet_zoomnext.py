@@ -149,13 +149,13 @@ class ConvNeXtB_ZoomNeXt_ANet(nn.Module):
 
         # Load ImageNet weights once, then clone to the BoxPrompt encoder.
         self.encoder_rgb = timm.create_model(
-            model_name="convnext_base",
+            model_name="convnext_base.fb_in22k_ft_in1k_384",
             features_only=True,
             out_indices=(0, 1, 2, 3),
             pretrained=pretrained,
         )
         self.encoder_box = timm.create_model(
-            model_name="convnext_base",
+            model_name="convnext_base.fb_in22k_ft_in1k_384",
             features_only=True,
             out_indices=(0, 1, 2, 3),
             pretrained=False,

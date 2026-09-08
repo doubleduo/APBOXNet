@@ -68,8 +68,8 @@ cfg = dict(
         # Set these two paths to train only on samples listed in a TXT.
         # TXT may contain stems (CAMO_xxx), image filenames, or full paths.
         # --------------------------------------------------------------
-        sample_list="data/pseudo_pool/Top400.txt",
-        target_mask_dir="data/train/S1_GT",
+        sample_list=None,
+        target_mask_dir=None,
         target_mask_suffix=".png",
 
         optimizer="adam",
@@ -81,7 +81,7 @@ cfg = dict(
         edge_loss_weight=4.0,
         ual_loss_weight=2.0,
 
-        amp=False,
+        amp=True,
         augment=True,
         strict_albumentations_v1=False,
 
