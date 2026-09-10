@@ -4,8 +4,8 @@ use_custom_worker_init = True
 log_interval = 20
 base_seed = 112358
 
-__BATCHSIZE = 16
-__NUM_EPOCHS = 150
+__BATCHSIZE = 8
+__NUM_EPOCHS = 100
 __NUM_TR_SAMPLES = 3040 + 1000
 __ITER_PER_EPOCH = __NUM_TR_SAMPLES // __BATCHSIZE  # drop_last is True
 __NUM_ITERS = __NUM_EPOCHS * __ITER_PER_EPOCH
@@ -56,15 +56,15 @@ train = dict(
     dict(
            name="stage1",
            start_epoch=1,
-           end_epoch=100,
-            weights=dict(clean=1.0, noisy=0.4, camo=0.00, unvalue=0.0),
+           end_epoch=50,
+            weights=dict(clean=0.0, noisy=0.4, camo=0.1, unvalue=0.1,)
             #weights=dict(clean=1.0, noisy=0.4, camo=0.05, unvalue=0.0),
        ),
     dict(
         name="stage2_expand_noisy",
-        start_epoch=101,
-        end_epoch=150,
-        weights=dict(clean=1.0, noisy=0.6, camo=0.0, unvalue=0.05),
+        start_epoch=51,
+        end_epoch=100,
+        weights=dict(clean=1.0, noisy=0.6, camo=0.0, unvalue=0.00),
     ),]
 
     ),

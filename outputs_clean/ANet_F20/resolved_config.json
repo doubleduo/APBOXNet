@@ -1,0 +1,59 @@
+{
+  "experiment": {
+    "name": "ANet_F20_clean",
+    "seed": 2024,
+    "output_dir": "./outputs_clean/ANet_F20"
+  },
+  "data": {
+    "image_dir": "./data/Train/Imgs",
+    "image_suffix": ".jpg",
+    "mask_dir": "./data/Train/GT",
+    "mask_suffix": ".png",
+    "box_dir": "./data/Train/box_label",
+    "box_suffix": ".json",
+    "box_format": "labelme_json"
+  },
+  "split": {
+    "mode": "txt",
+    "labeled_txt": "./data/pseudo_pool/shape/clean.txt",
+    "unlabeled_txt": null,
+    "val_txt": null,
+    "labeled_count": 800,
+    "random_ratio": 0.2,
+    "expected_total": 4040,
+    "strict_total": true,
+    "seed": 2024,
+    "val_fraction": 0.1,
+    "reuse_saved": true
+  },
+  "model": {
+    "backbone_name": "convnext_base.fb_in22k_ft_in1k_384",
+    "pretrained": true,
+    "channels": 64,
+    "gradient_checkpointing": false
+  },
+  "train": {
+    "image_size": 384,
+    "epochs": 100,
+    "batch_size": 8,
+    "num_workers": 4,
+    "augment": true,
+    "amp": true,
+    "optimizer": "adam",
+    "init_lr": 1e-07,
+    "peak_lr": 0.0005,
+    "min_lr": 1e-07,
+    "warmup_epochs": 10,
+    "weight_decay": 0.0,
+    "grad_clip": 0.5,
+    "edge_loss_weight": 4.0,
+    "ual_loss_weight": 2.0,
+    "validate_every": 1
+  },
+  "generate": {
+    "image_size": 384,
+    "batch_size": 8,
+    "num_workers": 4,
+    "save_edge": true
+  }
+}

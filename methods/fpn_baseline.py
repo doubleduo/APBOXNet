@@ -11,7 +11,7 @@ from .backbone.pvt_v2_eff import pvt_v2_eff_b4
 from .zoomnext.ops import ConvBNReLU, PixelNormalizer
 
 LOGGER = logging.getLogger("main")
-
+import timm
 
 class PvtV2B4_FPN_Baseline(nn.Module):
     """Single-scale PVTv2-B4 encoder with a conventional top-down FPN."""
@@ -1323,3 +1323,353 @@ class PvtV2B4_FPN_A8_FrequencyHardContrast(
             )
 
         return final_score
+
+
+class ConvNeXtB384_FPN_Baseline(nn.Module):
+    """
+    ConvNeXt-Base (ImageNet-22K -> ImageNet-1K, 384)
+    + plain top-down FPN.
+
+    Backbone:
+        convnext_base.fb_in22k_ft_in1k_384
+
+    Feature channels:
+        C2 = 128
+        C3 = 256
+        C4 = 512
+        C5 = 1024
+    """
+
+    def __init__(
+        self,
+        pretrained=True,
+        input_norm=True,
+        fpn_dim=64,
+        use_checkpoint=False,
+        **kwargs,
+    ):
+        super().__init__()
+        del kwargs
+
+        # ---------------------------------------------------------
+        # 1. ConvNeXt-Base backbone
+        # ---------------------------------------------------------
+        self.encoder = timm.create_model(
+            model_name="convnext_base.fb_in22k_ft_in1k_384",
+            pretrained=pretrained,
+            features_only=True,
+            out_indices=(0, 1, 2, 3),
+        )
+
+        # ConvNeXt-B:
+        # [128, 256, 512, 1024]
+        self.embed_dims = list(
+            self.encoder.feature_info.channels()
+        )
+
+        LOGGER.info(
+            f"ConvNeXt-B feature channels: {self.embed_dims}"
+        )
+
+        # optional gradient checkpoint
+        if use_checkpoint:
+            if hasattr(
+                self.encoder,
+                "set_grad_checkpointing",
+            ):
+                self.encoder.set_grad_checkpointing(
+                    enable=True
+                )
+                LOGGER.info(
+                    "ConvNeXt gradient checkpointing enabled."
+                )
+            else:
+                LOGGER.warning(
+                    "Current timm ConvNeXt does not expose "
+                    "set_grad_checkpointing()."
+                )
+
+        # ---------------------------------------------------------
+        # 2. ImageNet normalization
+        # ---------------------------------------------------------
+        self.normalizer = (
+            PixelNormalizer()
+            if input_norm
+            else nn.Identity()
+        )
+
+        # ---------------------------------------------------------
+        # 3. FPN lateral projections
+        # ---------------------------------------------------------
+        self.lateral_2 = nn.Conv2d(
+            self.embed_dims[0],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+
+        self.lateral_3 = nn.Conv2d(
+            self.embed_dims[1],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+
+        self.lateral_4 = nn.Conv2d(
+            self.embed_dims[2],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+
+        self.lateral_5 = nn.Conv2d(
+            self.embed_dims[3],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+
+        # ---------------------------------------------------------
+        # 4. FPN smoothing
+        # ---------------------------------------------------------
+        self.smooth_5 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+
+        self.smooth_4 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+
+        self.smooth_3 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+
+        self.smooth_2 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+
+        # ---------------------------------------------------------
+        # 5. Segmentation head
+        # ---------------------------------------------------------
+        self.predictor = nn.Sequential(
+            ConvBNReLU(
+                fpn_dim,
+                32,
+                3,
+                1,
+                1,
+            ),
+            nn.Conv2d(
+                32,
+                1,
+                kernel_size=1,
+            ),
+        )
+
+    # =============================================================
+    # Encoder
+    # =============================================================
+    def normalize_encoder(self, image):
+
+        image = self.normalizer(image)
+
+        features = self.encoder(image)
+
+        # timm features_only:
+        #
+        # features[0]: 1/4  [128]
+        # features[1]: 1/8  [256]
+        # features[2]: 1/16 [512]
+        # features[3]: 1/32 [1024]
+
+        c2, c3, c4, c5 = features
+
+        return c2, c3, c4, c5
+
+    @staticmethod
+    def _resize_like(source, target):
+        return F.interpolate(
+            source,
+            size=target.shape[-2:],
+            mode="bilinear",
+            align_corners=False,
+        )
+
+    # =============================================================
+    # FPN
+    # =============================================================
+    def body(self, data):
+
+        # 保持与你现在 PVT-FPN 一样：
+        # 只使用 image_m
+        image = data["image_m"]
+
+        c2, c3, c4, c5 = self.normalize_encoder(
+            image
+        )
+
+        # C5 -> P5
+        p5 = self.smooth_5(
+            self.lateral_5(c5)
+        )
+
+        # C4 + P5
+        p4 = self.smooth_4(
+            self.lateral_4(c4)
+            + self._resize_like(
+                p5,
+                c4,
+            )
+        )
+
+        # C3 + P4
+        p3 = self.smooth_3(
+            self.lateral_3(c3)
+            + self._resize_like(
+                p4,
+                c3,
+            )
+        )
+
+        # C2 + P3
+        p2 = self.smooth_2(
+            self.lateral_2(c2)
+            + self._resize_like(
+                p3,
+                c2,
+            )
+        )
+
+        logits = self.predictor(p2)
+
+        logits = F.interpolate(
+            logits,
+            size=image.shape[-2:],
+            mode="bilinear",
+            align_corners=False,
+        )
+
+        return logits
+
+    # =============================================================
+    # Forward
+    # =============================================================
+    def forward(
+        self,
+        data,
+        iter_percentage=1,
+        **kwargs,
+    ):
+
+        del iter_percentage, kwargs
+
+        logits = self.body(
+            data=data
+        )
+
+        if not self.training:
+            return logits
+
+        mask = data["mask"].float()
+
+        if mask.shape[-2:] != logits.shape[-2:]:
+            mask = F.interpolate(
+                mask,
+                size=logits.shape[-2:],
+                mode="nearest",
+            )
+
+        bce_loss = (
+            F.binary_cross_entropy_with_logits(
+                logits,
+                mask,
+                reduction="mean",
+            )
+        )
+
+        return {
+            "logits": logits,
+
+            "vis": {
+                "sal": logits.sigmoid(),
+            },
+
+            "loss": bce_loss,
+
+            "loss_items": {
+                "bce": bce_loss.detach(),
+                "total": bce_loss.detach(),
+            },
+
+            "loss_str": (
+                f"L:{bce_loss.detach().item():.4f} "
+                f"BCE:{bce_loss.detach().item():.4f}"
+            ),
+        }
+
+    # =============================================================
+    # Optimizer parameter groups
+    # =============================================================
+    def get_grouped_params(self):
+
+        param_groups = {
+            "pretrained": [],
+            "fixed": [],
+            "retrained": [],
+        }
+
+        for name, param in self.named_parameters():
+
+            # -----------------------------------------------------
+            # 注意：
+            # PVT 原来是 encoder.patch_embed1
+            # ConvNeXt 要对应 encoder.stem
+            # -----------------------------------------------------
+            if name.startswith("encoder.stem."):
+
+                param.requires_grad = False
+
+                param_groups[
+                    "fixed"
+                ].append(param)
+
+            elif name.startswith("encoder."):
+
+                param_groups[
+                    "pretrained"
+                ].append(param)
+
+            else:
+
+                param_groups[
+                    "retrained"
+                ].append(param)
+
+        LOGGER.info(
+            "ConvNeXt-FPN Parameter Groups:{"
+            f"Pretrained:"
+            f"{len(param_groups['pretrained'])}, "
+            f"Fixed:"
+            f"{len(param_groups['fixed'])}, "
+            f"ReTrained:"
+            f"{len(param_groups['retrained'])}"
+            "}"
+        )
+
+        return param_groups

@@ -1,0 +1,63 @@
+"""ANet: train all names in labeled_txt, validate remaining set every 5 epochs."""
+
+cfg = dict(
+    experiment=dict(
+        name="ANet_F20_clean_valrest",
+        seed=2024,
+        output_dir="./outputs_clean/ANet_F20_valrest",
+    ),
+    data=dict(
+        image_dir="./data/Train/Imgs",
+        image_suffix=".jpg",
+        mask_dir="./data/Train/GT",
+        mask_suffix=".png",
+        box_dir="./data/Train/box_label",
+        box_suffix=".json",
+        box_format="labelme_json",
+    ),
+    split=dict(
+        mode="txt",
+        labeled_txt="./data/pseudo_pool/shape/clean.txt",
+        unlabeled_txt=None,
+        val_txt=None,
+        labeled_count=800,
+        random_ratio=0.20,
+        expected_total=4040,
+        strict_total=True,
+        seed=2024,
+        # Kept only for config compatibility; this modified main no longer uses it.
+        val_fraction=0.0,
+        reuse_saved=True,
+    ),
+    model=dict(
+        backbone_name="convnext_base.fb_in22k_ft_in1k_384",
+        pretrained=True,
+        channels=64,
+        gradient_checkpointing=False,
+    ),
+    train=dict(
+        image_size=384,
+        epochs=50,
+        batch_size=16,
+        num_workers=4,
+        augment=True,
+        amp=True,
+        optimizer="adam",
+        init_lr=1e-7,
+        peak_lr=5e-4,
+        min_lr=1e-7,
+        warmup_epochs=10,
+        weight_decay=0.0,
+        grad_clip=0.5,
+        edge_loss_weight=4.0,
+        ual_loss_weight=2.0,
+        # Only validate at epochs 5, 10, 15, ..., 50.
+        validate_every=10,
+    ),
+    generate=dict(
+        image_size=384,
+        batch_size=8,
+        num_workers=4,
+        save_edge=True,
+    ),
+)

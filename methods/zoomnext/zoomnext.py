@@ -740,3 +740,115 @@ class Zoom_DeepNC(nn.Module):
             "}"
         )
         return param_groups
+
+
+class ConvNeXtB384_ZoomNeXt(PvtV2B2_ZoomNeXt):
+    """
+    ConvNeXt-Base 22K -> 1K 384
+    + SAME ZoomNeXt decoder as PvtV2B4_ZoomNeXt
+
+    Only replace backbone:
+        PVTv2-B4
+            ->
+        convnext_base.fb_in22k_ft_in1k_384
+    """
+
+    def set_backbone(
+        self,
+        pretrained: bool,
+        use_checkpoint: bool,
+    ):
+        self.encoder = timm.create_model(
+            model_name="convnext_base.fb_in22k_ft_in1k_384",
+            pretrained=pretrained,
+            features_only=True,
+            out_indices=(0, 1, 2, 3),
+        )
+
+        # 让父类 PvtV2B2_ZoomNeXt.__init__()
+        # 可以像 PVT 一样读取 encoder.embed_dims
+        self.encoder.embed_dims = list(
+            self.encoder.feature_info.channels()
+        )
+
+        # should be:
+        # [128, 256, 512, 1024]
+        LOGGER.info(
+            f"ConvNeXt-B384 feature channels: "
+            f"{self.encoder.embed_dims}"
+        )
+
+        if use_checkpoint:
+            if hasattr(
+                self.encoder,
+                "set_grad_checkpointing",
+            ):
+                self.encoder.set_grad_checkpointing(
+                    enable=True
+                )
+                LOGGER.info(
+                    "ConvNeXt-B384 gradient checkpointing enabled."
+                )
+            else:
+                LOGGER.warning(
+                    "ConvNeXt backbone does not support "
+                    "set_grad_checkpointing()."
+                )
+
+    def normalize_encoder(self, x):
+        """
+        timm features_only output:
+
+        c2: 1/4   128 channels
+        c3: 1/8   256 channels
+        c4: 1/16  512 channels
+        c5: 1/32 1024 channels
+        """
+
+        x = self.normalizer(x)
+
+        c2, c3, c4, c5 = self.encoder(x)
+
+        return c2, c3, c4, c5
+
+    def get_grouped_params(self):
+        """
+        Keep optimizer grouping consistent with PVT version.
+
+        PVT:
+            patch_embed1 -> fixed
+
+        ConvNeXt:
+            stem -> fixed
+        """
+
+        param_groups = {
+            "pretrained": [],
+            "fixed": [],
+            "retrained": [],
+        }
+
+        for name, param in self.named_parameters():
+
+            if name.startswith("encoder.stem."):
+                param.requires_grad = False
+                param_groups["fixed"].append(param)
+
+            elif name.startswith("encoder."):
+                param_groups["pretrained"].append(param)
+
+            else:
+                param_groups["retrained"].append(param)
+
+        LOGGER.info(
+            "ConvNeXtB384-ZoomNeXt Parameter Groups:{"
+            f"Pretrained: "
+            f"{len(param_groups['pretrained'])}, "
+            f"Fixed: "
+            f"{len(param_groups['fixed'])}, "
+            f"ReTrained: "
+            f"{len(param_groups['retrained'])}"
+            "}"
+        )
+
+        return param_groups

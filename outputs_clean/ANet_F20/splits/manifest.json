@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "mode": "txt",
+  "seed": 2024,
+  "dataset_size": 4040,
+  "dataset_digest": "16a53457b71b6946782e3d145a9aaa4117ccb597fdc0af309aa89773ae48db22",
+  "labeled_count": 808,
+  "train_count": 727,
+  "val_count": 81,
+  "unlabeled_count": 3232,
+  "split_digest": "7ebb11e524e38ac17c247e139a25b70a94e63fa821f8c1eb37fe7d52b9cc3e89"
+}

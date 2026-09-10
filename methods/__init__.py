@@ -5,11 +5,14 @@ from .zoomnext.zoomnext import (
     PvtV2B4_ZoomNeXt,
     PvtV2B5_ZoomNeXt,
     Zoom_DeepNC,
-    ConvNeXtB_ZoomNeXt
+    ConvNeXtB_ZoomNeXt,
+    ConvNeXtB384_ZoomNeXt,
 )
 from  .pnet_baseline import (
     PvtV2B4_PNet)
 
 
-from .fpn_baseline import PvtV2B4_FPN_Baseline
-
+from .fpn_baseline import (
+    PvtV2B4_FPN_Baseline,
+    ConvNeXtB384_FPN_Baseline,
+)

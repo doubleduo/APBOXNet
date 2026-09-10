@@ -1,0 +1,2 @@
+epoch,stage,clean_weight,noisy_weight,clean_prob,noisy_prob,difficulty_base,difficulty_gate,gaussian_delta,clean_allowed,noisy_allowed
+1,stage1_broad,1.0,1.0,0.5,0.5,1.0,1.0,0.0,808,1616
