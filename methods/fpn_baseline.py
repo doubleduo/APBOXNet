@@ -213,6 +213,199 @@ class PvtV2B4_FPN_Baseline(nn.Module):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -*- coding: utf-8 -*-
+"""
+Loss-only curriculum ablation for APBOXNet FPN.
+
+V1 keeps the encoder/decoder identical to PvtV2B4_FPN_Baseline and only
+replaces BCE with the Noisy-COD-style Noise Correction Loss curriculum:
+
+    first 40% of training: q = 2
+    remaining training:    q = 1
+
+For the current 150-epoch setup:
+    epoch 1-60   -> q=2
+    epoch 61-150 -> q=1
+
+No box input, no MHSIU, no EMA, no extra decoder branch.
+"""
+
+
+
+
+class NoisyCODCurriculumLoss(nn.Module):
+    """Faithful loss-only adaptation of the official Noisy-COD PNet NCLoss."""
+
+    def __init__(
+        self,
+        q_switch_ratio: float = 0.40,
+        boundary_kernel: int = 31,
+        boundary_gain: float = 5.0,
+        eps: float = 1e-6,
+    ):
+        super().__init__()
+        if not 0.0 <= q_switch_ratio <= 1.0:
+            raise ValueError("q_switch_ratio must be in [0, 1].")
+        if boundary_kernel % 2 != 1:
+            raise ValueError("boundary_kernel must be odd.")
+
+        self.q_switch_ratio = float(q_switch_ratio)
+        self.boundary_kernel = int(boundary_kernel)
+        self.boundary_gain = float(boundary_gain)
+        self.eps = float(eps)
+
+    def _weighted_bce(self, logits, target):
+        pad = self.boundary_kernel // 2
+        local_mean = F.avg_pool2d(
+            target,
+            kernel_size=self.boundary_kernel,
+            stride=1,
+            padding=pad,
+        )
+        weight = 1.0 + self.boundary_gain * torch.abs(local_mean - target)
+
+        bce_map = F.binary_cross_entropy_with_logits(
+            logits,
+            target,
+            reduction="none",
+        )
+        wbce = (
+            (weight * bce_map).sum(dim=(2, 3))
+            / weight.sum(dim=(2, 3)).clamp_min(self.eps)
+        )
+        return wbce.mean()
+
+    def _nc_term(self, logits, target, q):
+        prob = torch.sigmoid(logits)
+
+        prob_flat = prob.flatten(1)
+        target_flat = target.flatten(1)
+
+        numerator = torch.sum(
+            torch.abs(prob_flat - target_flat).pow(q),
+            dim=1,
+        )
+        intersection = torch.sum(
+            prob_flat * target_flat,
+            dim=1,
+        )
+        denominator = (
+            torch.sum(prob_flat, dim=1)
+            + torch.sum(target_flat, dim=1)
+            - intersection
+        ).clamp_min(self.eps)
+
+        return (numerator / denominator).mean()
+
+    def forward(self, logits, target, iter_percentage):
+        progress = float(iter_percentage)
+        q = 2.0 if progress <= self.q_switch_ratio else 1.0
+
+        wbce = self._weighted_bce(logits, target)
+        nc = self._nc_term(logits, target, q=q)
+
+        # Match the official Noisy-COD PNet implementation:
+        # q=2 -> L_NC + weighted BCE
+        # q=1 -> 2 * L_NC
+        if q == 2.0:
+            total = nc + wbce
+        else:
+            total = 2.0 * nc
+
+        return total, {
+            "q": q,
+            "nc": nc.detach(),
+            "wbce": wbce.detach(),
+        }
+
+
+class PvtV2B4_FPN_NC_Curriculum(PvtV2B4_FPN_Baseline):
+    """Exact FPN baseline + Noisy-COD-style loss curriculum."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        input_norm=True,
+        fpn_dim=64,
+        use_checkpoint=False,
+        q_switch_ratio=0.40,
+        **kwargs,
+    ):
+        super().__init__(
+            pretrained=pretrained,
+            input_norm=input_norm,
+            fpn_dim=fpn_dim,
+            use_checkpoint=use_checkpoint,
+            **kwargs,
+        )
+        self.curriculum_loss = NoisyCODCurriculumLoss(
+            q_switch_ratio=q_switch_ratio,
+        )
+
+    def forward(self, data, iter_percentage=1, **kwargs):
+        del kwargs
+        logits = self.body(data=data)
+
+        if not self.training:
+            return logits
+
+        target = data["mask"].float()
+        if target.shape[-2:] != logits.shape[-2:]:
+            target = F.interpolate(
+                target,
+                size=logits.shape[-2:],
+                mode="nearest",
+            )
+
+        total_loss, items = self.curriculum_loss(
+            logits=logits,
+            target=target,
+            iter_percentage=iter_percentage,
+        )
+
+        q = float(items["q"])
+        nc = items["nc"]
+        wbce = items["wbce"]
+
+        return {
+            "logits": logits,
+            "vis": {"sal": logits.sigmoid()},
+            "loss": total_loss,
+            "loss_items": {
+                # Keep bce for compatibility with basemain_continuous.py logging.
+                "bce": wbce,
+                "nc": nc,
+                "q": torch.as_tensor(
+                    q,
+                    device=logits.device,
+                    dtype=logits.dtype,
+                ),
+                "total": total_loss.detach(),
+            },
+            "loss_str": (
+                f"L:{total_loss.detach().item():.4f} "
+                f"NC:{nc.item():.4f} "
+                f"WBCE:{wbce.item():.4f} "
+                f"Q:{q:.1f}"
+            ),
+        }
+
 # -*- coding: utf-8 -*-
 """Reliability-Gated FPN for PVTv2-B4 binary segmentation.
 

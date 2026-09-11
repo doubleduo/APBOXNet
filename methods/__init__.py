@@ -14,5 +14,11 @@ from  .pnet_baseline import (
 
 from .fpn_baseline import (
     PvtV2B4_FPN_Baseline,
+    PvtV2B4_FPN_NC_Curriculum,
     ConvNeXtB384_FPN_Baseline,
+)
+
+from .fpn_csr_curriculum import (
+    PvtV2B4_FPN_CSR_BCE,
+    PvtV2B4_FPN_CSR_NC_Curriculum,
 )
