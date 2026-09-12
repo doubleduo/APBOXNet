@@ -14,12 +14,13 @@ Design
        P_i = P_i_base + alpha(t) * ZeroConv(CSR_i)
 5. alpha(t), for a 150-epoch run:
        epoch 1-60   : 0.15 -> 0.30
-       epoch 61-100 : 0.30 -> 1.00
-       epoch 101-150: 1.00
+       epoch 61-100 : 0.30 -> alpha_max
+       epoch 101-150: alpha_max
    The model uses iter_percentage, so basemain_continuous.py needs no change.
-6. Two exported ablation models:
+6. Exported ablation models include:
        PvtV2B4_FPN_CSR_BCE
        PvtV2B4_FPN_CSR_NC_Curriculum
+       PvtV2B4_FPN_CSR_NC_A05 / A06 / A07
 
 No box is consumed in this B2 implementation. The returned scale attention is
 kept for logging and for the next B3 experiment (box-supervised scale routing).
@@ -45,12 +46,23 @@ def _cosine_lerp(start: float, end: float, x: float) -> float:
     return float(start + (end - start) * coef)
 
 
-def csr_alpha_from_progress(progress: float) -> float:
+def csr_alpha_from_progress(
+    progress: float,
+    alpha_max: float = 1.0,
+) -> float:
     """150-epoch schedule expressed through normalized training progress.
 
     60 / 150 = 0.4
     100 / 150 = 2/3
+    alpha_max changes only the second-stage endpoint and final plateau.
     """
+    alpha_max = float(alpha_max)
+    if not 0.30 <= alpha_max <= 1.00:
+        raise ValueError(
+            "csr_alpha_max must be in [0.30, 1.00], "
+            f"but got {alpha_max}."
+        )
+
     p = min(max(float(progress), 0.0), 1.0)
     stage1_end = 60.0 / 150.0
     stage2_end = 100.0 / 150.0
@@ -61,9 +73,9 @@ def csr_alpha_from_progress(progress: float) -> float:
 
     if p <= stage2_end:
         local_p = (p - stage1_end) / (stage2_end - stage1_end)
-        return _cosine_lerp(0.30, 1.00, local_p)
+        return _cosine_lerp(0.30, alpha_max, local_p)
 
-    return 1.0
+    return alpha_max
 
 
 class ZeroResidualProjection(nn.Conv2d):
@@ -341,11 +353,19 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
         input_norm=True,
         fpn_dim=64,
         csr_groups=4,
+        csr_alpha_max=1.0,
         use_checkpoint=False,
         **kwargs,
     ):
         super().__init__()
         del kwargs
+
+        self.csr_alpha_max = float(csr_alpha_max)
+        if not 0.30 <= self.csr_alpha_max <= 1.00:
+            raise ValueError(
+                "csr_alpha_max must be in [0.30, 1.00], "
+                f"but got {self.csr_alpha_max}."
+            )
 
         self.encoder = pvt_v2_eff_b4(
             pretrained=pretrained,
@@ -455,7 +475,8 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
         )
 
         alpha = csr_alpha_from_progress(
-            float(iter_percentage)
+            float(iter_percentage),
+            alpha_max=self.csr_alpha_max,
         )
         p4 = p4_base + alpha * self.zero_4(z4)
 
@@ -589,6 +610,7 @@ class PvtV2B4_FPN_CSR_NC_Curriculum(
         input_norm=True,
         fpn_dim=64,
         csr_groups=4,
+        csr_alpha_max=1.0,
         use_checkpoint=False,
         q_switch_ratio=0.40,
         **kwargs,
@@ -598,6 +620,7 @@ class PvtV2B4_FPN_CSR_NC_Curriculum(
             input_norm=input_norm,
             fpn_dim=fpn_dim,
             csr_groups=csr_groups,
+            csr_alpha_max=csr_alpha_max,
             use_checkpoint=use_checkpoint,
             **kwargs,
         )
@@ -671,3 +694,33 @@ class PvtV2B4_FPN_CSR_NC_Curriculum(
                 f"A:{aux['alpha']:.3f}"
             ),
         }
+
+
+class PvtV2B4_FPN_CSR_NC_A05(
+    PvtV2B4_FPN_CSR_NC_Curriculum
+):
+    """CSR+NC ablation with alpha capped at 0.50."""
+
+    def __init__(self, **kwargs):
+        kwargs["csr_alpha_max"] = 0.50
+        super().__init__(**kwargs)
+
+
+class PvtV2B4_FPN_CSR_NC_A06(
+    PvtV2B4_FPN_CSR_NC_Curriculum
+):
+    """CSR+NC ablation with alpha capped at 0.60."""
+
+    def __init__(self, **kwargs):
+        kwargs["csr_alpha_max"] = 0.60
+        super().__init__(**kwargs)
+
+
+class PvtV2B4_FPN_CSR_NC_A07(
+    PvtV2B4_FPN_CSR_NC_Curriculum
+):
+    """CSR+NC ablation with alpha capped at 0.70."""
+
+    def __init__(self, **kwargs):
+        kwargs["csr_alpha_max"] = 0.70
+        super().__init__(**kwargs)

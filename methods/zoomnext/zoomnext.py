@@ -356,6 +356,537 @@ class ConvNeXtB_ZoomNeXt(PvtV2B2_ZoomNeXt):
         )
         return param_groups
 
+
+
+
+
+
+
+# -*- coding: utf-8 -*-
+"""Loss-only NC curriculum for the repository's current PVT-B4 ZoomNeXt.
+
+This module intentionally keeps ``PvtV2B4_ZoomNeXt`` unchanged and replaces
+only its training objective:
+
+    first 40% of training: q = 2, L = L_NC(q=2) + L_WBCE
+    remaining training:    q = 1, L = 2 * L_NC(q=1)
+
+The current APBOXNet commit uses the 1.5x/1.0x two-scale MHSIU2 path inside
+``PvtV2B4_ZoomNeXt``.  Inheriting from that exact class makes the comparison
+against ``PvtV2B4_ZoomNeXt`` a strict loss-only ablation: encoder, MHSIU2,
+RGPU, predictor and inference path all remain identical.
+
+No CSR, box supervision, deep supervision, UAL, EMA or extra decoder branch
+is introduced here.
+"""
+
+import torch
+import torch.nn.functional as F
+
+
+
+from ..fpn_baseline import NoisyCODCurriculumLoss
+
+class PvtV2B4_ZoomNeXt_NC_Curriculum(PvtV2B4_ZoomNeXt):
+    """Current PVTv2-B4 ZoomNeXt with the Noisy-COD loss curriculum."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        num_frames=1,
+        input_norm=True,
+        mid_dim=64,
+        siu_groups=4,
+        hmu_groups=6,
+        use_checkpoint=False,
+        q_switch_ratio=0.40,
+        **kwargs,
+    ):
+        # Absorb framework-level optional arguments without changing the
+        # constructor of the original ZoomNeXt implementation.
+        del kwargs
+        super().__init__(
+            pretrained=pretrained,
+            num_frames=num_frames,
+            input_norm=input_norm,
+            mid_dim=mid_dim,
+            siu_groups=siu_groups,
+            hmu_groups=hmu_groups,
+            use_checkpoint=use_checkpoint,
+        )
+        self.curriculum_loss = NoisyCODCurriculumLoss(
+            q_switch_ratio=q_switch_ratio,
+        )
+
+    def forward(self, data, iter_percentage=1.0, **kwargs):
+        del kwargs
+        logits = self.body(data=data)
+
+        # Keep the evaluator contract identical to PvtV2B4_ZoomNeXt.
+        if not self.training:
+            return logits
+
+        if "mask" not in data:
+            raise KeyError("Training requires data['mask'].")
+
+        target = data["mask"].float()
+        if target.ndim == 3:
+            target = target.unsqueeze(1)
+        if target.shape[-2:] != logits.shape[-2:]:
+            target = F.interpolate(
+                target,
+                size=logits.shape[-2:],
+                mode="nearest",
+            )
+        target = target.clamp(0.0, 1.0)
+
+        total_loss, items = self.curriculum_loss(
+            logits=logits,
+            target=target,
+            iter_percentage=iter_percentage,
+        )
+
+        q = float(items["q"])
+        nc = items["nc"]
+        wbce = items["wbce"]
+
+        return {
+            "logits": logits,
+            "vis": {"sal": logits.sigmoid()},
+            "loss": total_loss,
+            "loss_items": {
+                # basemain_continuous.py expects the compatibility key "bce".
+                "bce": wbce,
+                "wbce": wbce,
+                "nc": nc,
+                "q": torch.as_tensor(
+                    q,
+                    device=logits.device,
+                    dtype=logits.dtype,
+                ),
+                "total": total_loss.detach(),
+            },
+            "loss_str": (
+                f"L:{total_loss.detach().item():.4f} "
+                f"NC:{nc.item():.4f} "
+                f"WBCE:{wbce.item():.4f} "
+                f"Q:{q:.1f}"
+            ),
+        }
+
+
+
+
+
+# -*- coding: utf-8 -*-
+"""Z3: dual-scale PVTv2-B4 ZoomNeXt + NC + box-guided training losses.
+
+The RGB inference graph remains the repository's current dual-scale ZoomNeXt:
+
+    image_l (1.5x) + image_m (1.0x)
+        -> shared PVTv2-B4 -> MHSIU2 -> RGPU -> mask
+
+Box masks are consumed only during training for:
+
+1. soft supervision of the two-way MHSIU2 routing attention;
+2. a box-out background-prototype separation loss.
+
+No box feature is concatenated to the RGB path. Evaluation therefore needs no
+box and has no train-only branch left in the inference graph.
+"""
+
+import math
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from einops import rearrange
+
+
+
+
+def _cosine_lerp(start, end, progress):
+    progress = min(max(float(progress), 0.0), 1.0)
+    ratio = 0.5 * (1.0 - math.cos(math.pi * progress))
+    return float(start + (end - start) * ratio)
+
+
+class MHSIU2WithAttention(MHSIU2):
+    """Exact MHSIU2 computation with its two-scale attention also returned."""
+
+    def forward(self, l, m):
+        batch_size = m.shape[0]
+        target_size = m.shape[2:]
+
+        l = self.conv_l_pre(l)
+        l = (
+            F.adaptive_max_pool2d(l, target_size)
+            + F.adaptive_avg_pool2d(l, target_size)
+        )
+        l = self.conv_l(l)
+        m = self.conv_m(m)
+
+        lm = torch.cat([l, m], dim=1)
+        attn_features = self.conv_lm(lm)
+        attn_features = rearrange(
+            attn_features,
+            "bt (nb ng d) h w -> (bt ng) (nb d) h w",
+            nb=2,
+            ng=self.num_groups,
+        )
+        attention = self.trans(attn_features)
+
+        values = self.initial_merge(lm)
+        values = rearrange(
+            values,
+            "bt (nb ng d) h w -> (bt ng) nb d h w",
+            nb=2,
+            ng=self.num_groups,
+        )
+        fused = (attention.unsqueeze(dim=2) * values).sum(dim=1)
+        fused = rearrange(
+            fused,
+            "(bt ng) d h w -> bt (ng d) h w",
+            bt=batch_size,
+            ng=self.num_groups,
+        )
+        attention = rearrange(
+            attention,
+            "(bt ng) nb h w -> bt ng nb h w",
+            bt=batch_size,
+            ng=self.num_groups,
+        )
+        return fused, attention
+
+
+class PvtV2B4_ZoomNeXt_Z3(PvtV2B4_ZoomNeXt_NC_Curriculum):
+    """Z3 model with training-only box routing/background constraints."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        num_frames=1,
+        input_norm=True,
+        mid_dim=64,
+        siu_groups=4,
+        hmu_groups=6,
+        use_checkpoint=False,
+        q_switch_ratio=0.40,
+        scale_weight_start=0.20,
+        scale_weight_end=0.05,
+        background_weight=0.10,
+        background_start_ratio=0.10,
+        background_full_ratio=0.40,
+        small_box_ratio=0.10,
+        large_box_ratio=0.50,
+        large_branch_prior_min=0.20,
+        large_branch_prior_max=0.80,
+        uncertain_box_weight=0.25,
+        background_margin=0.10,
+        background_temperature=0.20,
+        **kwargs,
+    ):
+        super().__init__(
+            pretrained=pretrained,
+            num_frames=num_frames,
+            input_norm=input_norm,
+            mid_dim=mid_dim,
+            siu_groups=siu_groups,
+            hmu_groups=hmu_groups,
+            use_checkpoint=use_checkpoint,
+            q_switch_ratio=q_switch_ratio,
+            **kwargs,
+        )
+
+        # Same parameterization as MHSIU2; only the attention return changes.
+        self.siu_5 = MHSIU2WithAttention(mid_dim, siu_groups)
+        self.siu_4 = MHSIU2WithAttention(mid_dim, siu_groups)
+        self.siu_3 = MHSIU2WithAttention(mid_dim, siu_groups)
+        self.siu_2 = MHSIU2WithAttention(mid_dim, siu_groups)
+
+        if not 0.0 <= small_box_ratio < large_box_ratio <= 1.0:
+            raise ValueError("Require 0 <= small_box_ratio < large_box_ratio <= 1.")
+        if not (
+            0.0 <= large_branch_prior_min
+            <= large_branch_prior_max <= 1.0
+        ):
+            raise ValueError(
+                "Require 0 <= large_branch_prior_min <= "
+                "large_branch_prior_max <= 1."
+            )
+        if not 0.0 <= uncertain_box_weight <= 1.0:
+            raise ValueError("uncertain_box_weight must be in [0, 1].")
+        if not 0.0 < background_temperature:
+            raise ValueError("background_temperature must be positive.")
+
+        self.scale_weight_start = float(scale_weight_start)
+        self.scale_weight_end = float(scale_weight_end)
+        self.background_weight = float(background_weight)
+        self.background_start_ratio = float(background_start_ratio)
+        self.background_full_ratio = float(background_full_ratio)
+        self.small_box_ratio = float(small_box_ratio)
+        self.large_box_ratio = float(large_box_ratio)
+        self.large_branch_prior_min = float(large_branch_prior_min)
+        self.large_branch_prior_max = float(large_branch_prior_max)
+        self.uncertain_box_weight = float(uncertain_box_weight)
+        self.background_margin = float(background_margin)
+        self.background_temperature = float(background_temperature)
+
+    def body_with_aux(self, data):
+        large_features = self.normalize_encoder(data["image_l"])
+        medium_features = self.normalize_encoder(data["image_m"])
+
+        l5 = self.tra_5(large_features[3])
+        m5 = self.tra_5(medium_features[3])
+        z5, a5 = self.siu_5(l=l5, m=m5)
+        x5 = self.hmu_5(z5)
+
+        l4 = self.tra_4(large_features[2])
+        m4 = self.tra_4(medium_features[2])
+        z4, a4 = self.siu_4(l=l4, m=m4)
+        x4 = self.hmu_4(z4 + resize_to(x5, tgt_hw=z4.shape[-2:]))
+
+        l3 = self.tra_3(large_features[1])
+        m3 = self.tra_3(medium_features[1])
+        z3, a3 = self.siu_3(l=l3, m=m3)
+        x3 = self.hmu_3(z3 + resize_to(x4, tgt_hw=z3.shape[-2:]))
+
+        l2 = self.tra_2(large_features[0])
+        m2 = self.tra_2(medium_features[0])
+        z2, a2 = self.siu_2(l=l2, m=m2)
+        x2 = self.hmu_2(z2 + resize_to(x3, tgt_hw=z2.shape[-2:]))
+
+        logits = self.predictor(self.tra_1(x2))
+        return logits, {
+            "attention": (a5, a4, a3, a2),
+            "decoder_feature": x2,
+        }
+
+    @staticmethod
+    def _prepare_box_mask(data, target_size):
+        if "box_mask" not in data:
+            raise KeyError(
+                "Z3 training requires data['box_mask']. Set "
+                "train.data.use_box=True in the config."
+            )
+        box_mask = data["box_mask"].float()
+        if box_mask.ndim == 3:
+            box_mask = box_mask.unsqueeze(1)
+        if box_mask.shape[-2:] != tuple(target_size):
+            box_mask = F.interpolate(
+                box_mask,
+                size=target_size,
+                mode="nearest",
+            )
+        box_mask = box_mask.clamp(0.0, 1.0)
+        if bool((box_mask.flatten(1).sum(dim=1) <= 0).any()):
+            raise ValueError("Every Z3 training sample must contain a non-empty box.")
+        return box_mask
+
+    def _box_scale_prior(self, box_mask):
+        area_ratio = box_mask.mean(dim=(1, 2, 3))
+        normalized = (
+            (area_ratio - self.small_box_ratio)
+            / (self.large_box_ratio - self.small_box_ratio)
+        ).clamp(0.0, 1.0)
+
+        # Branch order follows MHSIU2: [large-input 1.5x, medium-input 1.0x].
+        large_prior = self.large_branch_prior_max + normalized * (
+            self.large_branch_prior_min - self.large_branch_prior_max
+        )
+        prior = torch.stack([large_prior, 1.0 - large_prior], dim=1)
+
+        # BO and boundary-touching boxes have less reliable size semantics.
+        touches_border = (
+            (box_mask[:, :, 0, :].amax(dim=(1, 2)) > 0.5)
+            | (box_mask[:, :, -1, :].amax(dim=(1, 2)) > 0.5)
+            | (box_mask[:, :, :, 0].amax(dim=(1, 2)) > 0.5)
+            | (box_mask[:, :, :, -1].amax(dim=(1, 2)) > 0.5)
+        )
+        uncertain = (area_ratio >= self.large_box_ratio) | touches_border
+        reliability = torch.where(
+            uncertain,
+            torch.full_like(area_ratio, self.uncertain_box_weight),
+            torch.ones_like(area_ratio),
+        )
+        return prior, reliability, area_ratio
+
+    def _scale_routing_loss(self, attentions, box_mask):
+        prior, reliability, area_ratio = self._box_scale_prior(box_mask)
+        stage_losses = []
+        route_means = []
+
+        for attention in attentions:
+            stage_box = F.interpolate(
+                box_mask,
+                size=attention.shape[-2:],
+                mode="nearest",
+            ).unsqueeze(1)
+            denominator = (
+                stage_box.sum(dim=(1, 3, 4))
+                * attention.shape[1]
+            ).clamp_min(1.0)
+            route = (attention * stage_box).sum(dim=(1, 3, 4)) / denominator
+            route = route.clamp_min(1e-6)
+            route = route / route.sum(dim=1, keepdim=True)
+
+            sample_kl = (
+                prior * (prior.clamp_min(1e-6).log() - route.log())
+            ).sum(dim=1)
+            stage_losses.append(
+                (sample_kl * reliability).sum()
+                / reliability.sum().clamp_min(1e-6)
+            )
+            route_means.append(route.detach().mean(dim=0))
+
+        return torch.stack(stage_losses).mean(), route_means, area_ratio
+
+    def _background_prototype_loss(self, feature, box_mask, target):
+        feature_box = F.interpolate(
+            box_mask,
+            size=feature.shape[-2:],
+            mode="nearest",
+        )
+        target_small = F.interpolate(
+            target,
+            size=feature.shape[-2:],
+            mode="nearest",
+        )
+        outside = (1.0 - feature_box).clamp(0.0, 1.0)
+        foreground = (target_small * feature_box).clamp(0.0, 1.0)
+
+        outside_count = outside.sum(dim=(2, 3), keepdim=True)
+        foreground_count = foreground.sum(dim=(2, 3), keepdim=True)
+        valid = (
+            (outside_count.flatten(1).squeeze(1) > 0)
+            & (foreground_count.flatten(1).squeeze(1) > 0)
+        )
+        if not bool(valid.any()):
+            return feature.sum() * 0.0
+
+        normalized_feature = F.normalize(feature, dim=1, eps=1e-6)
+        prototype = (
+            normalized_feature * outside
+        ).sum(dim=(2, 3), keepdim=True) / outside_count.clamp_min(1.0)
+        prototype = F.normalize(prototype, dim=1, eps=1e-6).detach()
+        similarity = (normalized_feature * prototype).sum(dim=1, keepdim=True)
+
+        background_reference = (
+            (similarity * outside).sum(dim=(2, 3), keepdim=True)
+            / outside_count.clamp_min(1.0)
+        ).detach()
+        ranking = F.softplus(
+            (
+                similarity
+                - background_reference
+                + self.background_margin
+            )
+            / self.background_temperature
+        )
+        per_sample = (
+            (ranking * foreground).sum(dim=(1, 2, 3))
+            / foreground.sum(dim=(1, 2, 3)).clamp_min(1.0)
+        )
+        return per_sample[valid].mean()
+
+    def _loss_weights(self, iter_percentage):
+        progress = min(max(float(iter_percentage), 0.0), 1.0)
+        scale_weight = _cosine_lerp(
+            self.scale_weight_start,
+            self.scale_weight_end,
+            progress,
+        )
+        if progress <= self.background_start_ratio:
+            background_weight = 0.0
+        elif progress >= self.background_full_ratio:
+            background_weight = self.background_weight
+        else:
+            local = (
+                (progress - self.background_start_ratio)
+                / max(
+                    self.background_full_ratio - self.background_start_ratio,
+                    1e-6,
+                )
+            )
+            background_weight = _cosine_lerp(0.0, self.background_weight, local)
+        return scale_weight, background_weight
+
+    def forward(self, data, iter_percentage=1.0, **kwargs):
+        del kwargs
+        logits, aux = self.body_with_aux(data)
+
+        if not self.training:
+            return logits
+
+        if "mask" not in data:
+            raise KeyError("Z3 training requires data['mask'].")
+        target = data["mask"].float()
+        if target.ndim == 3:
+            target = target.unsqueeze(1)
+        if target.shape[-2:] != logits.shape[-2:]:
+            target = F.interpolate(target, size=logits.shape[-2:], mode="nearest")
+        target = target.clamp(0.0, 1.0)
+        box_mask = self._prepare_box_mask(data, target.shape[-2:])
+
+        nc_loss, nc_items = self.curriculum_loss(
+            logits=logits,
+            target=target,
+            iter_percentage=iter_percentage,
+        )
+        scale_raw, route_means, area_ratio = self._scale_routing_loss(
+            aux["attention"],
+            box_mask,
+        )
+        background_raw = self._background_prototype_loss(
+            aux["decoder_feature"],
+            box_mask,
+            target,
+        )
+        scale_weight, background_weight = self._loss_weights(iter_percentage)
+        scale_loss = float(scale_weight) * scale_raw
+        background_loss = float(background_weight) * background_raw
+        total_loss = nc_loss + scale_loss + background_loss
+
+        q = float(nc_items["q"])
+        nc = nc_items["nc"]
+        wbce = nc_items["wbce"]
+        loss_items = {
+            "bce": wbce,
+            "wbce": wbce,
+            "nc": nc,
+            "scale": scale_loss.detach(),
+            "scale_raw": scale_raw.detach(),
+            "background": background_loss.detach(),
+            "background_raw": background_raw.detach(),
+            "q": logits.new_tensor(q),
+            "scale_weight": logits.new_tensor(scale_weight),
+            "background_weight": logits.new_tensor(background_weight),
+            "box_area": area_ratio.detach().mean(),
+            "total": total_loss.detach(),
+        }
+        for level, route in zip((5, 4, 3, 2), route_means):
+            loss_items[f"m{level}_large"] = route[0]
+            loss_items[f"m{level}_medium"] = route[1]
+
+        return {
+            "logits": logits,
+            "loss": total_loss,
+            "loss_items": loss_items,
+            "loss_str": (
+                f"L:{total_loss.detach().item():.4f} "
+                f"NC:{nc.item():.4f} WBCE:{wbce.item():.4f} Q:{q:.1f} "
+                f"SC:{scale_loss.detach().item():.4f} "
+                f"BG:{background_loss.detach().item():.4f} "
+                f"Wsc:{scale_weight:.3f} Wbg:{background_weight:.3f}"
+            ),
+            "vis": {
+                "sal": logits.sigmoid(),
+                "box": box_mask,
+            },
+        }
+
+
+
 # -*- coding: utf-8 -*-
 """
 ZoomNeXt + Three-Scale MHSIU + Deep NCLoss

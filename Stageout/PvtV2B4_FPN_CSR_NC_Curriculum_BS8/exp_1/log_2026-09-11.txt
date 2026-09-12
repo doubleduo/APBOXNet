@@ -4310,3 +4310,866 @@ Parameter Group 1
 [basemain_continuous.py] ETA: 0:31:11(12.4G) | 62559:75750 444/505 123/150 | C3_anneal C:0.982/N:0.018 | LR:1.000e-06,1.000e-05 | L:0.0553 BCE:0.0104
 [basemain_continuous.py] ETA: 0:31:05(12.4G) | 62579:75750 464/505 123/150 | C3_anneal C:0.982/N:0.018 | LR:1.000e-06,1.000e-05 | L:0.0505 BCE:0.0194
 [basemain_continuous.py] ETA: 0:31:01(12.4G) | 62599:75750 484/505 123/150 | C3_anneal C:0.982/N:0.018 | LR:1.000e-06,1.000e-05 | L:0.0529 BCE:0.0214
+[basemain_continuous.py] ETA: 0:30:50(12.4G) | 62619:75750 504/505 123/150 | C3_anneal C:0.982/N:0.018 | LR:1.000e-06,1.000e-05 | L:0.0599 BCE:0.0249
+[basemain_continuous.py] Epoch 124 | C3_anneal | C:0.982/N:0.018 | L:0.0569 BCE:0.0227 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_anneal]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=0.013; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 125 Continuous C3 ==================
+[basemain_continuous.py] C3_anneal | weights C:N=1.0000:0.0129 | expected probs C=98.73%, N=1.27%
+[basemain_continuous.py] ETA: 0:30:48(12.4G) | 62620:75750 0/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0431 BCE:0.0098
+[basemain_continuous.py] ETA: 0:31:27(12.4G) | 62639:75750 19/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0287 BCE:0.0254
+[basemain_continuous.py] ETA: 0:31:00(12.4G) | 62659:75750 39/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0657 BCE:0.0113
+[basemain_continuous.py] ETA: 0:30:50(12.4G) | 62679:75750 59/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0885 BCE:0.0229
+[basemain_continuous.py] ETA: 0:31:59(12.4G) | 62699:75750 79/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0604 BCE:0.0243
+[basemain_continuous.py] ETA: 0:30:48(12.4G) | 62719:75750 99/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0833 BCE:0.0148
+[basemain_continuous.py] ETA: 0:30:44(12.4G) | 62739:75750 119/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0721 BCE:0.0147
+[basemain_continuous.py] ETA: 0:30:41(12.4G) | 62759:75750 139/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0786 BCE:0.0231
+[basemain_continuous.py] ETA: 0:30:37(12.4G) | 62779:75750 159/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0317 BCE:0.0294
+[basemain_continuous.py] ETA: 0:30:35(12.4G) | 62799:75750 179/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0293 BCE:0.0187
+[basemain_continuous.py] ETA: 0:30:31(12.4G) | 62819:75750 199/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0572 BCE:0.0357
+[basemain_continuous.py] ETA: 0:30:28(12.4G) | 62839:75750 219/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0449 BCE:0.0113
+[basemain_continuous.py] ETA: 0:30:26(12.4G) | 62859:75750 239/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0426 BCE:0.0158
+[basemain_continuous.py] ETA: 0:30:23(12.4G) | 62879:75750 259/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0682 BCE:0.0188
+[basemain_continuous.py] ETA: 0:30:23(12.4G) | 62899:75750 279/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0576 BCE:0.0185
+[basemain_continuous.py] ETA: 0:30:19(12.4G) | 62919:75750 299/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0516 BCE:0.0231
+[basemain_continuous.py] ETA: 0:30:13(12.4G) | 62939:75750 319/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0573 BCE:0.0304
+[basemain_continuous.py] ETA: 0:30:11(12.4G) | 62959:75750 339/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0752 BCE:0.0319
+[basemain_continuous.py] ETA: 0:30:12(12.4G) | 62979:75750 359/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0363 BCE:0.0174
+[basemain_continuous.py] ETA: 0:30:09(12.4G) | 62999:75750 379/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.1254 BCE:0.2119
+[basemain_continuous.py] ETA: 0:30:03(12.4G) | 63019:75750 399/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0404 BCE:0.0117
+[basemain_continuous.py] ETA: 0:29:59(12.4G) | 63039:75750 419/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0540 BCE:0.0099
+[basemain_continuous.py] ETA: 0:29:58(12.4G) | 63059:75750 439/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0348 BCE:0.0198
+[basemain_continuous.py] ETA: 0:29:53(12.4G) | 63079:75750 459/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0588 BCE:0.0127
+[basemain_continuous.py] ETA: 0:29:53(12.4G) | 63099:75750 479/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0517 BCE:0.0354
+[basemain_continuous.py] ETA: 0:29:48(12.4G) | 63119:75750 499/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0701 BCE:0.0305
+[basemain_continuous.py] ETA: 0:29:39(12.4G) | 63124:75750 504/505 124/150 | C3_anneal C:0.987/N:0.013 | LR:1.000e-06,1.000e-05 | L:0.0461 BCE:0.0226
+[basemain_continuous.py] Epoch 125 | C3_anneal | C:0.987/N:0.013 | L:0.0581 BCE:0.0227 | EMA-KD:OFF
+[basemain_continuous.py] ========================= Validation Epoch 125 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.837 |  0.799 |  0.902 |  0.062
+[basemain.py] cod10k_te    |  0.874 |  0.816 |  0.939 |  0.024
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_anneal]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=0.008; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 126 Continuous C3 ==================
+[basemain_continuous.py] C3_anneal | weights C:N=1.0000:0.0083 | expected probs C=99.18%, N=0.82%
+[basemain_continuous.py] ETA: 0:29:38(12.4G) | 63125:75750 0/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0420 BCE:0.0179
+[basemain_continuous.py] ETA: 0:29:53(12.4G) | 63139:75750 14/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0385 BCE:0.0122
+[basemain_continuous.py] ETA: 0:29:37(12.4G) | 63159:75750 34/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0902 BCE:0.0210
+[basemain_continuous.py] ETA: 0:29:38(12.4G) | 63179:75750 54/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0375 BCE:0.0121
+[basemain_continuous.py] ETA: 0:29:35(12.4G) | 63199:75750 74/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0422 BCE:0.0386
+[basemain_continuous.py] ETA: 0:29:33(12.4G) | 63219:75750 94/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0708 BCE:0.0127
+[basemain_continuous.py] ETA: 0:29:28(12.4G) | 63239:75750 114/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0478 BCE:0.0090
+[basemain_continuous.py] ETA: 0:29:27(12.4G) | 63259:75750 134/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0664 BCE:0.0242
+[basemain_continuous.py] ETA: 0:29:26(12.4G) | 63279:75750 154/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0361 BCE:0.0145
+[basemain_continuous.py] ETA: 0:29:19(12.4G) | 63299:75750 174/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0469 BCE:0.0137
+[basemain_continuous.py] ETA: 0:29:17(12.4G) | 63319:75750 194/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0730 BCE:0.0294
+[basemain_continuous.py] ETA: 0:29:14(12.4G) | 63339:75750 214/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0599 BCE:0.0166
+[basemain_continuous.py] ETA: 0:29:17(12.4G) | 63359:75750 234/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0402 BCE:0.0130
+[basemain_continuous.py] ETA: 0:29:15(12.4G) | 63379:75750 254/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0826 BCE:0.0399
+[basemain_continuous.py] ETA: 0:29:14(12.4G) | 63399:75750 274/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0545 BCE:0.0145
+[basemain_continuous.py] ETA: 0:29:08(12.4G) | 63419:75750 294/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0546 BCE:0.0153
+[basemain_continuous.py] ETA: 0:29:04(12.4G) | 63439:75750 314/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0546 BCE:0.0241
+[basemain_continuous.py] ETA: 0:29:03(12.4G) | 63459:75750 334/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0357 BCE:0.0215
+[basemain_continuous.py] ETA: 0:28:58(12.4G) | 63479:75750 354/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0653 BCE:0.0241
+[basemain_continuous.py] ETA: 0:29:03(12.4G) | 63499:75750 374/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0486 BCE:0.0122
+[basemain_continuous.py] ETA: 0:28:55(12.4G) | 63519:75750 394/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0305 BCE:0.0086
+[basemain_continuous.py] ETA: 0:28:52(12.4G) | 63539:75750 414/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0455 BCE:0.0223
+[basemain_continuous.py] ETA: 0:28:49(12.4G) | 63559:75750 434/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0700 BCE:0.0140
+[basemain_continuous.py] ETA: 0:28:45(12.4G) | 63579:75750 454/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0717 BCE:0.0160
+[basemain_continuous.py] ETA: 0:28:42(12.4G) | 63599:75750 474/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0752 BCE:0.0261
+[basemain_continuous.py] ETA: 0:28:40(12.4G) | 63619:75750 494/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0375 BCE:0.0161
+[basemain_continuous.py] ETA: 0:28:28(12.4G) | 63629:75750 504/505 125/150 | C3_anneal C:0.992/N:0.008 | LR:1.000e-06,1.000e-05 | L:0.0659 BCE:0.0327
+[basemain_continuous.py] Epoch 126 | C3_anneal | C:0.992/N:0.008 | L:0.0581 BCE:0.0214 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_anneal]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=0.005; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 127 Continuous C3 ==================
+[basemain_continuous.py] C3_anneal | weights C:N=1.0000:0.0047 | expected probs C=99.54%, N=0.46%
+[basemain_continuous.py] ETA: 0:28:27(12.4G) | 63630:75750 0/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0819 BCE:0.0329
+[basemain_continuous.py] ETA: 0:28:45(12.4G) | 63639:75750 9/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0393 BCE:0.0346
+[basemain_continuous.py] ETA: 0:28:30(12.4G) | 63659:75750 29/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0469 BCE:0.0164
+[basemain_continuous.py] ETA: 0:28:30(12.4G) | 63679:75750 49/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0483 BCE:0.0107
+[basemain_continuous.py] ETA: 0:28:29(12.4G) | 63699:75750 69/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0727 BCE:0.0414
+[basemain_continuous.py] ETA: 0:28:24(12.4G) | 63719:75750 89/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0454 BCE:0.0097
+[basemain_continuous.py] ETA: 0:28:26(12.4G) | 63739:75750 109/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0465 BCE:0.0366
+[basemain_continuous.py] ETA: 0:28:22(12.4G) | 63759:75750 129/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0443 BCE:0.0170
+[basemain_continuous.py] ETA: 0:28:15(12.4G) | 63779:75750 149/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0462 BCE:0.0136
+[basemain_continuous.py] ETA: 0:28:17(12.4G) | 63799:75750 169/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0777 BCE:0.0107
+[basemain_continuous.py] ETA: 0:28:11(12.4G) | 63819:75750 189/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0669 BCE:0.0238
+[basemain_continuous.py] ETA: 0:28:08(12.4G) | 63839:75750 209/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0626 BCE:0.0277
+[basemain_continuous.py] ETA: 0:28:05(12.4G) | 63859:75750 229/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0714 BCE:0.0200
+[basemain_continuous.py] ETA: 0:29:05(12.4G) | 63879:75750 249/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0717 BCE:0.0109
+[basemain_continuous.py] ETA: 0:27:59(12.4G) | 63899:75750 269/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0582 BCE:0.0089
+[basemain_continuous.py] ETA: 0:27:58(12.4G) | 63919:75750 289/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0655 BCE:0.0091
+[basemain_continuous.py] ETA: 0:27:52(12.4G) | 63939:75750 309/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0382 BCE:0.0149
+[basemain_continuous.py] ETA: 0:27:50(12.4G) | 63959:75750 329/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0341 BCE:0.0198
+[basemain_continuous.py] ETA: 0:27:48(12.4G) | 63979:75750 349/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0371 BCE:0.0146
+[basemain_continuous.py] ETA: 0:27:44(12.4G) | 63999:75750 369/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0398 BCE:0.0400
+[basemain_continuous.py] ETA: 0:27:43(12.4G) | 64019:75750 389/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0583 BCE:0.0122
+[basemain_continuous.py] ETA: 0:27:39(12.4G) | 64039:75750 409/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0530 BCE:0.0269
+[basemain_continuous.py] ETA: 0:27:39(12.4G) | 64059:75750 429/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0433 BCE:0.0147
+[basemain_continuous.py] ETA: 0:27:41(12.4G) | 64079:75750 449/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0764 BCE:0.0146
+[basemain_continuous.py] ETA: 0:27:35(12.4G) | 64099:75750 469/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0536 BCE:0.0124
+[basemain_continuous.py] ETA: 0:27:27(12.4G) | 64119:75750 489/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0351 BCE:0.0134
+[basemain_continuous.py] ETA: 0:27:17(12.4G) | 64134:75750 504/505 126/150 | C3_anneal C:0.995/N:0.005 | LR:1.000e-06,1.000e-05 | L:0.0272 BCE:0.0160
+[basemain_continuous.py] Epoch 127 | C3_anneal | C:0.995/N:0.005 | L:0.0566 BCE:0.0209 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_anneal]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=0.002; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 128 Continuous C3 ==================
+[basemain_continuous.py] C3_anneal | weights C:N=1.0000:0.0021 | expected probs C=99.79%, N=0.21%
+[basemain_continuous.py] ETA: 0:27:16(12.4G) | 64135:75750 0/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0443 BCE:0.0114
+[basemain_continuous.py] ETA: 0:27:31(12.4G) | 64139:75750 4/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0330 BCE:0.0131
+[basemain_continuous.py] ETA: 0:27:24(12.4G) | 64159:75750 24/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0752 BCE:0.0249
+[basemain_continuous.py] ETA: 0:27:17(12.4G) | 64179:75750 44/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0366 BCE:0.0183
+[basemain_continuous.py] ETA: 0:27:17(12.4G) | 64199:75750 64/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0504 BCE:0.0265
+[basemain_continuous.py] ETA: 0:27:11(12.4G) | 64219:75750 84/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0620 BCE:0.0179
+[basemain_continuous.py] ETA: 0:27:09(12.4G) | 64239:75750 104/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0450 BCE:0.0224
+[basemain_continuous.py] ETA: 0:27:11(12.4G) | 64259:75750 124/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0483 BCE:0.0235
+[basemain_continuous.py] ETA: 0:27:06(12.4G) | 64279:75750 144/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0734 BCE:0.0391
+[basemain_continuous.py] ETA: 0:27:01(12.4G) | 64299:75750 164/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0581 BCE:0.0270
+[basemain_continuous.py] ETA: 0:26:57(12.4G) | 64319:75750 184/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0547 BCE:0.0101
+[basemain_continuous.py] ETA: 0:26:57(12.4G) | 64339:75750 204/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0635 BCE:0.0176
+[basemain_continuous.py] ETA: 0:27:02(12.4G) | 64359:75750 224/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0702 BCE:0.0242
+[basemain_continuous.py] ETA: 0:26:52(12.4G) | 64379:75750 244/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0396 BCE:0.0176
+[basemain_continuous.py] ETA: 0:26:46(12.4G) | 64399:75750 264/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0380 BCE:0.0160
+[basemain_continuous.py] ETA: 0:26:47(12.4G) | 64419:75750 284/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0352 BCE:0.0214
+[basemain_continuous.py] ETA: 0:26:44(12.4G) | 64439:75750 304/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0447 BCE:0.0166
+[basemain_continuous.py] ETA: 0:26:40(12.4G) | 64459:75750 324/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0767 BCE:0.0186
+[basemain_continuous.py] ETA: 0:26:34(12.4G) | 64479:75750 344/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0488 BCE:0.0217
+[basemain_continuous.py] ETA: 0:26:37(12.4G) | 64499:75750 364/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0874 BCE:0.0203
+[basemain_continuous.py] ETA: 0:26:31(12.4G) | 64519:75750 384/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0394 BCE:0.0256
+[basemain_continuous.py] ETA: 0:26:28(12.4G) | 64539:75750 404/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0546 BCE:0.0436
+[basemain_continuous.py] ETA: 0:26:24(12.4G) | 64559:75750 424/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0604 BCE:0.0194
+[basemain_continuous.py] ETA: 0:26:24(12.4G) | 64579:75750 444/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0561 BCE:0.0297
+[basemain_continuous.py] ETA: 0:26:19(12.4G) | 64599:75750 464/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0533 BCE:0.0136
+[basemain_continuous.py] ETA: 0:26:19(12.4G) | 64619:75750 484/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0312 BCE:0.0104
+[basemain_continuous.py] ETA: 0:26:06(12.4G) | 64639:75750 504/505 127/150 | C3_anneal C:0.998/N:0.002 | LR:1.000e-06,1.000e-05 | L:0.0425 BCE:0.0176
+[basemain_continuous.py] Epoch 128 | C3_anneal | C:0.998/N:0.002 | L:0.0573 BCE:0.0216 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_anneal]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=0.001; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 129 Continuous C3 ==================
+[basemain_continuous.py] C3_anneal | weights C:N=1.0000:0.0005 | expected probs C=99.95%, N=0.05%
+[basemain_continuous.py] ETA: 0:26:05(12.4G) | 64640:75750 0/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0375 BCE:0.0242
+[basemain_continuous.py] ETA: 0:26:26(12.4G) | 64659:75750 19/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0378 BCE:0.0105
+[basemain_continuous.py] ETA: 0:26:04(12.4G) | 64679:75750 39/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0788 BCE:0.0236
+[basemain_continuous.py] ETA: 0:26:03(12.4G) | 64699:75750 59/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0454 BCE:0.0170
+[basemain_continuous.py] ETA: 0:26:03(12.4G) | 64719:75750 79/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0542 BCE:0.0108
+[basemain_continuous.py] ETA: 0:25:59(12.4G) | 64739:75750 99/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0422 BCE:0.0150
+[basemain_continuous.py] ETA: 0:26:06(12.4G) | 64759:75750 119/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0621 BCE:0.0122
+[basemain_continuous.py] ETA: 0:26:09(12.4G) | 64779:75750 139/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0594 BCE:0.0097
+[basemain_continuous.py] ETA: 0:25:53(12.4G) | 64799:75750 159/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0522 BCE:0.0272
+[basemain_continuous.py] ETA: 0:25:48(12.4G) | 64819:75750 179/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0320 BCE:0.0152
+[basemain_continuous.py] ETA: 0:25:44(12.4G) | 64839:75750 199/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0418 BCE:0.0184
+[basemain_continuous.py] ETA: 0:25:42(12.4G) | 64859:75750 219/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0707 BCE:0.0100
+[basemain_continuous.py] ETA: 0:25:40(12.4G) | 64879:75750 239/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0838 BCE:0.0417
+[basemain_continuous.py] ETA: 0:25:36(12.4G) | 64899:75750 259/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0420 BCE:0.0189
+[basemain_continuous.py] ETA: 0:25:33(12.4G) | 64919:75750 279/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0662 BCE:0.0221
+[basemain_continuous.py] ETA: 0:25:32(12.4G) | 64939:75750 299/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0344 BCE:0.0154
+[basemain_continuous.py] ETA: 0:25:31(12.4G) | 64959:75750 319/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0671 BCE:0.0133
+[basemain_continuous.py] ETA: 0:25:24(12.4G) | 64979:75750 339/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0442 BCE:0.0274
+[basemain_continuous.py] ETA: 0:25:22(12.4G) | 64999:75750 359/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0347 BCE:0.0129
+[basemain_continuous.py] ETA: 0:26:14(12.4G) | 65019:75750 379/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0605 BCE:0.0143
+[basemain_continuous.py] ETA: 0:25:17(12.4G) | 65039:75750 399/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0464 BCE:0.0142
+[basemain_continuous.py] ETA: 0:25:13(12.4G) | 65059:75750 419/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0777 BCE:0.0159
+[basemain_continuous.py] ETA: 0:25:10(12.4G) | 65079:75750 439/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0438 BCE:0.0155
+[basemain_continuous.py] ETA: 0:25:07(12.4G) | 65099:75750 459/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0762 BCE:0.0291
+[basemain_continuous.py] ETA: 0:25:05(12.4G) | 65119:75750 479/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0440 BCE:0.0219
+[basemain_continuous.py] ETA: 0:25:06(12.4G) | 65139:75750 499/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0683 BCE:0.0215
+[basemain_continuous.py] ETA: 0:24:59(12.4G) | 65144:75750 504/505 128/150 | C3_anneal C:0.999/N:0.001 | LR:1.000e-06,1.000e-05 | L:0.0507 BCE:0.0266
+[basemain_continuous.py] Epoch 129 | C3_anneal | C:0.999/N:0.001 | L:0.0561 BCE:0.0205 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_anneal]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 130 Continuous C3 ==================
+[basemain_continuous.py] C3_anneal | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:24:58(12.4G) | 65145:75750 0/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0338 BCE:0.0207
+[basemain_continuous.py] ETA: 0:25:12(12.4G) | 65159:75750 14/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0548 BCE:0.0204
+[basemain_continuous.py] ETA: 0:24:56(12.4G) | 65179:75750 34/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0658 BCE:0.0225
+[basemain_continuous.py] ETA: 0:24:54(12.4G) | 65199:75750 54/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0533 BCE:0.0161
+[basemain_continuous.py] ETA: 0:24:51(12.4G) | 65219:75750 74/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0389 BCE:0.0181
+[basemain_continuous.py] ETA: 0:24:48(12.4G) | 65239:75750 94/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0420 BCE:0.0097
+[basemain_continuous.py] ETA: 0:24:46(12.4G) | 65259:75750 114/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0361 BCE:0.0095
+[basemain_continuous.py] ETA: 0:24:43(12.4G) | 65279:75750 134/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0655 BCE:0.0212
+[basemain_continuous.py] ETA: 0:24:38(12.4G) | 65299:75750 154/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0356 BCE:0.0265
+[basemain_continuous.py] ETA: 0:24:35(12.4G) | 65319:75750 174/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0538 BCE:0.0171
+[basemain_continuous.py] ETA: 0:24:33(12.4G) | 65339:75750 194/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0671 BCE:0.0254
+[basemain_continuous.py] ETA: 0:24:32(12.4G) | 65359:75750 214/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0607 BCE:0.0088
+[basemain_continuous.py] ETA: 0:24:28(12.4G) | 65379:75750 234/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0793 BCE:0.0225
+[basemain_continuous.py] ETA: 0:24:26(12.4G) | 65399:75750 254/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0281 BCE:0.0166
+[basemain_continuous.py] ETA: 0:24:22(12.4G) | 65419:75750 274/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0480 BCE:0.0173
+[basemain_continuous.py] ETA: 0:24:20(12.4G) | 65439:75750 294/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0453 BCE:0.0101
+[basemain_continuous.py] ETA: 0:24:15(12.4G) | 65459:75750 314/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.1312 BCE:0.0555
+[basemain_continuous.py] ETA: 0:24:13(12.4G) | 65479:75750 334/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0682 BCE:0.0355
+[basemain_continuous.py] ETA: 0:24:13(12.4G) | 65499:75750 354/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0355 BCE:0.0281
+[basemain_continuous.py] ETA: 0:24:07(12.4G) | 65519:75750 374/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0532 BCE:0.0202
+[basemain_continuous.py] ETA: 0:24:05(12.4G) | 65539:75750 394/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0704 BCE:0.0230
+[basemain_continuous.py] ETA: 0:24:02(12.4G) | 65559:75750 414/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0838 BCE:0.0265
+[basemain_continuous.py] ETA: 0:24:00(12.4G) | 65579:75750 434/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0538 BCE:0.0331
+[basemain_continuous.py] ETA: 0:23:57(12.4G) | 65599:75750 454/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0462 BCE:0.0130
+[basemain_continuous.py] ETA: 0:23:54(12.4G) | 65619:75750 474/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0635 BCE:0.0208
+[basemain_continuous.py] ETA: 0:23:54(12.4G) | 65639:75750 494/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0643 BCE:0.0266
+[basemain_continuous.py] ETA: 0:23:43(12.4G) | 65649:75750 504/505 129/150 | C3_anneal C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0610 BCE:0.0248
+[basemain_continuous.py] Epoch 130 | C3_anneal | C:1.000/N:0.000 | L:0.0565 BCE:0.0232 | EMA-KD:OFF
+[basemain_continuous.py] ========================= Validation Epoch 130 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.836 |  0.798 |  0.901 |  0.062
+[basemain.py] cod10k_te    |  0.873 |  0.815 |  0.939 |  0.024
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 131 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:23:43(12.4G) | 65650:75750 0/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0781 BCE:0.0457
+[basemain_continuous.py] ETA: 0:23:53(12.4G) | 65659:75750 9/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0403 BCE:0.0121
+[basemain_continuous.py] ETA: 0:23:41(12.4G) | 65679:75750 29/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0464 BCE:0.0310
+[basemain_continuous.py] ETA: 0:23:41(12.4G) | 65699:75750 49/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0386 BCE:0.0244
+[basemain_continuous.py] ETA: 0:23:40(12.4G) | 65719:75750 69/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0949 BCE:0.0146
+[basemain_continuous.py] ETA: 0:23:38(12.4G) | 65739:75750 89/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0355 BCE:0.0218
+[basemain_continuous.py] ETA: 0:23:34(12.4G) | 65759:75750 109/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0231 BCE:0.0139
+[basemain_continuous.py] ETA: 0:23:30(12.4G) | 65779:75750 129/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0222 BCE:0.0150
+[basemain_continuous.py] ETA: 0:23:26(12.4G) | 65799:75750 149/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0461 BCE:0.0281
+[basemain_continuous.py] ETA: 0:23:25(12.4G) | 65819:75750 169/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0515 BCE:0.0199
+[basemain_continuous.py] ETA: 0:23:21(12.4G) | 65839:75750 189/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0685 BCE:0.0247
+[basemain_continuous.py] ETA: 0:23:20(12.4G) | 65859:75750 209/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0458 BCE:0.0174
+[basemain_continuous.py] ETA: 0:23:17(12.4G) | 65879:75750 229/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0781 BCE:0.0152
+[basemain_continuous.py] ETA: 0:23:13(12.4G) | 65899:75750 249/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0552 BCE:0.0224
+[basemain_continuous.py] ETA: 0:23:10(12.4G) | 65919:75750 269/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0489 BCE:0.0271
+[basemain_continuous.py] ETA: 0:23:11(12.4G) | 65939:75750 289/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0689 BCE:0.0157
+[basemain_continuous.py] ETA: 0:23:04(12.4G) | 65959:75750 309/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0364 BCE:0.0165
+[basemain_continuous.py] ETA: 0:23:02(12.4G) | 65979:75750 329/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0596 BCE:0.0175
+[basemain_continuous.py] ETA: 0:23:00(12.4G) | 65999:75750 349/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0631 BCE:0.0393
+[basemain_continuous.py] ETA: 0:22:56(12.4G) | 66019:75750 369/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0391 BCE:0.0290
+[basemain_continuous.py] ETA: 0:22:53(12.4G) | 66039:75750 389/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0641 BCE:0.0145
+[basemain_continuous.py] ETA: 0:22:51(12.4G) | 66059:75750 409/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0592 BCE:0.0136
+[basemain_continuous.py] ETA: 0:22:49(12.4G) | 66079:75750 429/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0279 BCE:0.0096
+[basemain_continuous.py] ETA: 0:22:44(12.4G) | 66099:75750 449/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0445 BCE:0.0220
+[basemain_continuous.py] ETA: 0:22:43(12.4G) | 66119:75750 469/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0398 BCE:0.0099
+[basemain_continuous.py] ETA: 0:22:40(12.4G) | 66139:75750 489/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0423 BCE:0.0177
+[basemain_continuous.py] ETA: 0:22:29(12.4G) | 66154:75750 504/505 130/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0563 BCE:0.0208
+[basemain_continuous.py] Epoch 131 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0556 BCE:0.0209 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 132 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:22:28(12.4G) | 66155:75750 0/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0579 BCE:0.0155
+[basemain_continuous.py] ETA: 0:22:48(12.4G) | 66159:75750 4/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0505 BCE:0.0124
+[basemain_continuous.py] ETA: 0:23:01(12.4G) | 66179:75750 24/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0608 BCE:0.0177
+[basemain_continuous.py] ETA: 0:23:27(12.4G) | 66199:75750 44/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0418 BCE:0.0120
+[basemain_continuous.py] ETA: 0:22:33(12.4G) | 66219:75750 64/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0692 BCE:0.0245
+[basemain_continuous.py] ETA: 0:22:29(12.4G) | 66239:75750 84/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0802 BCE:0.0182
+[basemain_continuous.py] ETA: 0:22:25(12.4G) | 66259:75750 104/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0611 BCE:0.0152
+[basemain_continuous.py] ETA: 0:22:19(12.4G) | 66279:75750 124/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0403 BCE:0.0079
+[basemain_continuous.py] ETA: 0:22:22(12.4G) | 66299:75750 144/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0663 BCE:0.0234
+[basemain_continuous.py] ETA: 0:22:15(12.4G) | 66319:75750 164/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0535 BCE:0.0205
+[basemain_continuous.py] ETA: 0:22:12(12.4G) | 66339:75750 184/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0420 BCE:0.0246
+[basemain_continuous.py] ETA: 0:22:10(12.4G) | 66359:75750 204/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0726 BCE:0.0222
+[basemain_continuous.py] ETA: 0:22:06(12.4G) | 66379:75750 224/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0553 BCE:0.0248
+[basemain_continuous.py] ETA: 0:22:01(12.4G) | 66399:75750 244/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0418 BCE:0.0205
+[basemain_continuous.py] ETA: 0:22:02(12.4G) | 66419:75750 264/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0428 BCE:0.0183
+[basemain_continuous.py] ETA: 0:21:59(12.4G) | 66439:75750 284/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0670 BCE:0.0191
+[basemain_continuous.py] ETA: 0:21:55(12.4G) | 66459:75750 304/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0415 BCE:0.0255
+[basemain_continuous.py] ETA: 0:21:51(12.4G) | 66479:75750 324/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0536 BCE:0.0301
+[basemain_continuous.py] ETA: 0:21:48(12.4G) | 66499:75750 344/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0552 BCE:0.0090
+[basemain_continuous.py] ETA: 0:21:45(12.4G) | 66519:75750 364/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0592 BCE:0.0277
+[basemain_continuous.py] ETA: 0:21:46(12.4G) | 66539:75750 384/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0478 BCE:0.0217
+[basemain_continuous.py] ETA: 0:21:49(12.4G) | 66559:75750 404/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0425 BCE:0.0248
+[basemain_continuous.py] ETA: 0:21:42(12.4G) | 66579:75750 424/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0728 BCE:0.0303
+[basemain_continuous.py] ETA: 0:21:35(12.4G) | 66599:75750 444/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0706 BCE:0.0172
+[basemain_continuous.py] ETA: 0:21:32(12.4G) | 66619:75750 464/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0598 BCE:0.0136
+[basemain_continuous.py] ETA: 0:21:29(12.4G) | 66639:75750 484/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0454 BCE:0.0237
+[basemain_continuous.py] ETA: 0:21:18(12.4G) | 66659:75750 504/505 131/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0655 BCE:0.0212
+[basemain_continuous.py] Epoch 132 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0553 BCE:0.0219 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 133 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:21:17(12.4G) | 66660:75750 0/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0378 BCE:0.0231
+[basemain_continuous.py] ETA: 0:21:43(12.4G) | 66679:75750 19/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0614 BCE:0.0372
+[basemain_continuous.py] ETA: 0:21:20(12.4G) | 66699:75750 39/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0490 BCE:0.0299
+[basemain_continuous.py] ETA: 0:21:18(12.4G) | 66719:75750 59/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0532 BCE:0.0123
+[basemain_continuous.py] ETA: 0:21:16(12.4G) | 66739:75750 79/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0859 BCE:0.0172
+[basemain_continuous.py] ETA: 0:21:14(12.4G) | 66759:75750 99/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0597 BCE:0.0334
+[basemain_continuous.py] ETA: 0:21:10(12.4G) | 66779:75750 119/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.1047 BCE:0.0205
+[basemain_continuous.py] ETA: 0:21:08(12.4G) | 66799:75750 139/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0441 BCE:0.0125
+[basemain_continuous.py] ETA: 0:21:02(12.4G) | 66819:75750 159/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0540 BCE:0.0190
+[basemain_continuous.py] ETA: 0:21:05(12.4G) | 66839:75750 179/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0726 BCE:0.0084
+[basemain_continuous.py] ETA: 0:21:09(12.4G) | 66859:75750 199/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0412 BCE:0.0192
+[basemain_continuous.py] ETA: 0:20:55(12.4G) | 66879:75750 219/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0874 BCE:0.0139
+[basemain_continuous.py] ETA: 0:20:55(12.4G) | 66899:75750 239/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0541 BCE:0.0213
+[basemain_continuous.py] ETA: 0:20:51(12.4G) | 66919:75750 259/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0531 BCE:0.0300
+[basemain_continuous.py] ETA: 0:20:46(12.4G) | 66939:75750 279/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0767 BCE:0.0190
+[basemain_continuous.py] ETA: 0:20:43(12.4G) | 66959:75750 299/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0422 BCE:0.0156
+[basemain_continuous.py] ETA: 0:20:41(12.4G) | 66979:75750 319/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0645 BCE:0.0143
+[basemain_continuous.py] ETA: 0:20:38(12.4G) | 66999:75750 339/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0482 BCE:0.0185
+[basemain_continuous.py] ETA: 0:20:37(12.4G) | 67019:75750 359/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0478 BCE:0.0200
+[basemain_continuous.py] ETA: 0:20:32(12.4G) | 67039:75750 379/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0557 BCE:0.0102
+[basemain_continuous.py] ETA: 0:20:31(12.4G) | 67059:75750 399/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0534 BCE:0.0173
+[basemain_continuous.py] ETA: 0:20:29(12.4G) | 67079:75750 419/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0432 BCE:0.0097
+[basemain_continuous.py] ETA: 0:20:28(12.4G) | 67099:75750 439/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0636 BCE:0.0213
+[basemain_continuous.py] ETA: 0:20:26(12.4G) | 67119:75750 459/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0370 BCE:0.0249
+[basemain_continuous.py] ETA: 0:20:21(12.4G) | 67139:75750 479/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0976 BCE:0.0274
+[basemain_continuous.py] ETA: 0:20:15(12.4G) | 67159:75750 499/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0868 BCE:0.0128
+[basemain_continuous.py] ETA: 0:20:09(12.4G) | 67164:75750 504/505 132/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0407 BCE:0.0207
+[basemain_continuous.py] Epoch 133 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0548 BCE:0.0205 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 134 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:20:08(12.4G) | 67165:75750 0/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0570 BCE:0.0258
+[basemain_continuous.py] ETA: 0:20:24(12.4G) | 67179:75750 14/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0382 BCE:0.0201
+[basemain_continuous.py] ETA: 0:20:10(12.4G) | 67199:75750 34/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0550 BCE:0.0218
+[basemain_continuous.py] ETA: 0:20:06(12.4G) | 67219:75750 54/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0570 BCE:0.0162
+[basemain_continuous.py] ETA: 0:20:04(12.4G) | 67239:75750 74/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0472 BCE:0.0209
+[basemain_continuous.py] ETA: 0:20:01(12.4G) | 67259:75750 94/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0624 BCE:0.0118
+[basemain_continuous.py] ETA: 0:19:59(12.4G) | 67279:75750 114/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0530 BCE:0.0217
+[basemain_continuous.py] ETA: 0:19:57(12.4G) | 67299:75750 134/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0428 BCE:0.0191
+[basemain_continuous.py] ETA: 0:19:53(12.4G) | 67319:75750 154/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0548 BCE:0.0159
+[basemain_continuous.py] ETA: 0:20:41(12.4G) | 67339:75750 174/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0452 BCE:0.0192
+[basemain_continuous.py] ETA: 0:19:48(12.4G) | 67359:75750 194/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0660 BCE:0.0300
+[basemain_continuous.py] ETA: 0:19:45(12.4G) | 67379:75750 214/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0373 BCE:0.0173
+[basemain_continuous.py] ETA: 0:19:46(12.4G) | 67399:75750 234/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0585 BCE:0.0233
+[basemain_continuous.py] ETA: 0:19:40(12.4G) | 67419:75750 254/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0878 BCE:0.0236
+[basemain_continuous.py] ETA: 0:19:36(12.4G) | 67439:75750 274/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0382 BCE:0.0119
+[basemain_continuous.py] ETA: 0:19:38(12.4G) | 67459:75750 294/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0738 BCE:0.0158
+[basemain_continuous.py] ETA: 0:19:32(12.4G) | 67479:75750 314/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0547 BCE:0.0231
+[basemain_continuous.py] ETA: 0:19:27(12.4G) | 67499:75750 334/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0630 BCE:0.0295
+[basemain_continuous.py] ETA: 0:19:26(12.4G) | 67519:75750 354/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0440 BCE:0.0206
+[basemain_continuous.py] ETA: 0:19:22(12.4G) | 67539:75750 374/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0416 BCE:0.0164
+[basemain_continuous.py] ETA: 0:19:19(12.4G) | 67559:75750 394/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0732 BCE:0.0355
+[basemain_continuous.py] ETA: 0:19:17(12.4G) | 67579:75750 414/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0887 BCE:0.0360
+[basemain_continuous.py] ETA: 0:19:14(12.4G) | 67599:75750 434/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0342 BCE:0.0100
+[basemain_continuous.py] ETA: 0:19:10(12.4G) | 67619:75750 454/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0360 BCE:0.0193
+[basemain_continuous.py] ETA: 0:19:07(12.4G) | 67639:75750 474/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0491 BCE:0.0204
+[basemain_continuous.py] ETA: 0:19:05(12.4G) | 67659:75750 494/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0622 BCE:0.0295
+[basemain_continuous.py] ETA: 0:18:57(12.4G) | 67669:75750 504/505 133/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0389 BCE:0.0230
+[basemain_continuous.py] Epoch 134 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0556 BCE:0.0210 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 135 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:18:56(12.4G) | 67670:75750 0/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0555 BCE:0.0097
+[basemain_continuous.py] ETA: 0:19:11(12.4G) | 67679:75750 9/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0747 BCE:0.0109
+[basemain_continuous.py] ETA: 0:19:00(12.4G) | 67699:75750 29/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0645 BCE:0.0221
+[basemain_continuous.py] ETA: 0:18:56(12.4G) | 67719:75750 49/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0326 BCE:0.0137
+[basemain_continuous.py] ETA: 0:18:56(12.4G) | 67739:75750 69/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0322 BCE:0.0135
+[basemain_continuous.py] ETA: 0:18:50(12.4G) | 67759:75750 89/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0481 BCE:0.0233
+[basemain_continuous.py] ETA: 0:18:47(12.4G) | 67779:75750 109/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0482 BCE:0.0101
+[basemain_continuous.py] ETA: 0:18:45(12.4G) | 67799:75750 129/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0332 BCE:0.0112
+[basemain_continuous.py] ETA: 0:18:41(12.4G) | 67819:75750 149/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0435 BCE:0.0168
+[basemain_continuous.py] ETA: 0:18:39(12.4G) | 67839:75750 169/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0714 BCE:0.0192
+[basemain_continuous.py] ETA: 0:18:36(12.4G) | 67859:75750 189/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0727 BCE:0.0264
+[basemain_continuous.py] ETA: 0:18:33(12.4G) | 67879:75750 209/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0649 BCE:0.0161
+[basemain_continuous.py] ETA: 0:18:30(12.4G) | 67899:75750 229/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0534 BCE:0.0102
+[basemain_continuous.py] ETA: 0:18:28(12.4G) | 67919:75750 249/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0707 BCE:0.0272
+[basemain_continuous.py] ETA: 0:18:27(12.4G) | 67939:75750 269/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0398 BCE:0.0261
+[basemain_continuous.py] ETA: 0:18:32(12.4G) | 67959:75750 289/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0587 BCE:0.0133
+[basemain_continuous.py] ETA: 0:18:20(12.4G) | 67979:75750 309/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0700 BCE:0.0162
+[basemain_continuous.py] ETA: 0:18:17(12.4G) | 67999:75750 329/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0406 BCE:0.0321
+[basemain_continuous.py] ETA: 0:18:14(12.4G) | 68019:75750 349/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0430 BCE:0.0170
+[basemain_continuous.py] ETA: 0:18:13(12.4G) | 68039:75750 369/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0534 BCE:0.0377
+[basemain_continuous.py] ETA: 0:18:08(12.4G) | 68059:75750 389/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0391 BCE:0.0127
+[basemain_continuous.py] ETA: 0:18:05(12.4G) | 68079:75750 409/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0544 BCE:0.0223
+[basemain_continuous.py] ETA: 0:18:04(12.4G) | 68099:75750 429/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0528 BCE:0.0192
+[basemain_continuous.py] ETA: 0:18:00(12.4G) | 68119:75750 449/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0474 BCE:0.0161
+[basemain_continuous.py] ETA: 0:17:57(12.4G) | 68139:75750 469/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0544 BCE:0.0131
+[basemain_continuous.py] ETA: 0:17:55(12.4G) | 68159:75750 489/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0595 BCE:0.0097
+[basemain_continuous.py] ETA: 0:17:46(12.4G) | 68174:75750 504/505 134/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0982 BCE:0.0108
+[basemain_continuous.py] Epoch 135 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0559 BCE:0.0201 | EMA-KD:OFF
+[basemain_continuous.py] ========================= Validation Epoch 135 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.837 |  0.798 |  0.901 |  0.062
+[basemain.py] cod10k_te    |  0.874 |  0.816 |  0.939 |  0.024
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 136 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:17:45(12.4G) | 68175:75750 0/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0550 BCE:0.0227
+[basemain_continuous.py] ETA: 0:17:55(12.4G) | 68179:75750 4/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0473 BCE:0.0238
+[basemain_continuous.py] ETA: 0:17:50(12.4G) | 68199:75750 24/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0415 BCE:0.0133
+[basemain_continuous.py] ETA: 0:17:44(12.4G) | 68219:75750 44/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0746 BCE:0.0418
+[basemain_continuous.py] ETA: 0:17:43(12.4G) | 68239:75750 64/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0564 BCE:0.0155
+[basemain_continuous.py] ETA: 0:17:44(12.4G) | 68259:75750 84/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0607 BCE:0.0305
+[basemain_continuous.py] ETA: 0:17:35(12.4G) | 68279:75750 104/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0538 BCE:0.0107
+[basemain_continuous.py] ETA: 0:17:33(12.4G) | 68299:75750 124/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0452 BCE:0.0160
+[basemain_continuous.py] ETA: 0:17:30(12.4G) | 68319:75750 144/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0496 BCE:0.0158
+[basemain_continuous.py] ETA: 0:17:28(12.4G) | 68339:75750 164/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0891 BCE:0.0261
+[basemain_continuous.py] ETA: 0:17:25(12.4G) | 68359:75750 184/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0524 BCE:0.0250
+[basemain_continuous.py] ETA: 0:17:23(12.4G) | 68379:75750 204/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0415 BCE:0.0163
+[basemain_continuous.py] ETA: 0:17:19(12.4G) | 68399:75750 224/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0605 BCE:0.0435
+[basemain_continuous.py] ETA: 0:17:16(12.4G) | 68419:75750 244/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0352 BCE:0.0134
+[basemain_continuous.py] ETA: 0:17:15(12.4G) | 68439:75750 264/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0519 BCE:0.0304
+[basemain_continuous.py] ETA: 0:17:11(12.4G) | 68459:75750 284/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0506 BCE:0.0168
+[basemain_continuous.py] ETA: 0:17:08(12.4G) | 68479:75750 304/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0327 BCE:0.0154
+[basemain_continuous.py] ETA: 0:17:06(12.4G) | 68499:75750 324/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0472 BCE:0.0204
+[basemain_continuous.py] ETA: 0:17:43(12.4G) | 68519:75750 344/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0615 BCE:0.0228
+[basemain_continuous.py] ETA: 0:17:00(12.4G) | 68539:75750 364/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0455 BCE:0.0160
+[basemain_continuous.py] ETA: 0:16:59(12.4G) | 68559:75750 384/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0507 BCE:0.0183
+[basemain_continuous.py] ETA: 0:16:55(12.4G) | 68579:75750 404/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0728 BCE:0.0374
+[basemain_continuous.py] ETA: 0:16:53(12.4G) | 68599:75750 424/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0310 BCE:0.0126
+[basemain_continuous.py] ETA: 0:16:49(12.4G) | 68619:75750 444/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0541 BCE:0.0191
+[basemain_continuous.py] ETA: 0:16:46(12.4G) | 68639:75750 464/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0525 BCE:0.0180
+[basemain_continuous.py] ETA: 0:16:43(12.4G) | 68659:75750 484/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0277 BCE:0.0112
+[basemain_continuous.py] ETA: 0:16:35(12.4G) | 68679:75750 504/505 135/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.1092 BCE:0.0141
+[basemain_continuous.py] Epoch 136 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0543 BCE:0.0206 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 137 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:16:34(12.4G) | 68680:75750 0/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0427 BCE:0.0178
+[basemain_continuous.py] ETA: 0:16:49(12.4G) | 68699:75750 19/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0568 BCE:0.0166
+[basemain_continuous.py] ETA: 0:16:34(12.4G) | 68719:75750 39/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0851 BCE:0.0215
+[basemain_continuous.py] ETA: 0:16:32(12.4G) | 68739:75750 59/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0413 BCE:0.0143
+[basemain_continuous.py] ETA: 0:16:28(12.4G) | 68759:75750 79/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0695 BCE:0.0140
+[basemain_continuous.py] ETA: 0:16:26(12.4G) | 68779:75750 99/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0538 BCE:0.0190
+[basemain_continuous.py] ETA: 0:16:24(12.4G) | 68799:75750 119/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0437 BCE:0.0363
+[basemain_continuous.py] ETA: 0:16:22(12.4G) | 68819:75750 139/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0401 BCE:0.0117
+[basemain_continuous.py] ETA: 0:16:17(12.4G) | 68839:75750 159/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0492 BCE:0.0216
+[basemain_continuous.py] ETA: 0:16:16(12.4G) | 68859:75750 179/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0612 BCE:0.0206
+[basemain_continuous.py] ETA: 0:16:15(12.4G) | 68879:75750 199/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0614 BCE:0.0233
+[basemain_continuous.py] ETA: 0:16:09(12.4G) | 68899:75750 219/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0636 BCE:0.0581
+[basemain_continuous.py] ETA: 0:16:07(12.4G) | 68919:75750 239/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0486 BCE:0.0159
+[basemain_continuous.py] ETA: 0:16:03(12.4G) | 68939:75750 259/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.1063 BCE:0.0182
+[basemain_continuous.py] ETA: 0:16:04(12.4G) | 68959:75750 279/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0527 BCE:0.0164
+[basemain_continuous.py] ETA: 0:16:03(12.4G) | 68979:75750 299/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0938 BCE:0.0602
+[basemain_continuous.py] ETA: 0:15:59(12.4G) | 68999:75750 319/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0514 BCE:0.0210
+[basemain_continuous.py] ETA: 0:15:53(12.4G) | 69019:75750 339/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0562 BCE:0.0315
+[basemain_continuous.py] ETA: 0:15:51(12.4G) | 69039:75750 359/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0626 BCE:0.0245
+[basemain_continuous.py] ETA: 0:15:47(12.4G) | 69059:75750 379/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0441 BCE:0.0144
+[basemain_continuous.py] ETA: 0:15:44(12.4G) | 69079:75750 399/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0496 BCE:0.0174
+[basemain_continuous.py] ETA: 0:15:42(12.4G) | 69099:75750 419/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0622 BCE:0.0127
+[basemain_continuous.py] ETA: 0:15:38(12.4G) | 69119:75750 439/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0955 BCE:0.0110
+[basemain_continuous.py] ETA: 0:15:35(12.4G) | 69139:75750 459/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0415 BCE:0.0147
+[basemain_continuous.py] ETA: 0:15:35(12.4G) | 69159:75750 479/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0664 BCE:0.0391
+[basemain_continuous.py] ETA: 0:15:29(12.4G) | 69179:75750 499/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0528 BCE:0.0176
+[basemain_continuous.py] ETA: 0:15:25(12.4G) | 69184:75750 504/505 136/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0525 BCE:0.0219
+[basemain_continuous.py] Epoch 137 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0558 BCE:0.0209 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 138 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:15:23(12.4G) | 69185:75750 0/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0496 BCE:0.0145
+[basemain_continuous.py] ETA: 0:15:33(12.4G) | 69199:75750 14/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0477 BCE:0.0134
+[basemain_continuous.py] ETA: 0:15:26(12.4G) | 69219:75750 34/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0454 BCE:0.0306
+[basemain_continuous.py] ETA: 0:15:21(12.4G) | 69239:75750 54/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0388 BCE:0.0141
+[basemain_continuous.py] ETA: 0:15:18(12.4G) | 69259:75750 74/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0500 BCE:0.0153
+[basemain_continuous.py] ETA: 0:15:16(12.4G) | 69279:75750 94/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0567 BCE:0.0235
+[basemain_continuous.py] ETA: 0:15:13(12.4G) | 69299:75750 114/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0498 BCE:0.0155
+[basemain_continuous.py] ETA: 0:15:09(12.4G) | 69319:75750 134/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0515 BCE:0.0197
+[basemain_continuous.py] ETA: 0:15:06(12.4G) | 69339:75750 154/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0479 BCE:0.0188
+[basemain_continuous.py] ETA: 0:15:05(12.4G) | 69359:75750 174/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0301 BCE:0.0138
+[basemain_continuous.py] ETA: 0:15:03(12.4G) | 69379:75750 194/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0572 BCE:0.0158
+[basemain_continuous.py] ETA: 0:14:58(12.4G) | 69399:75750 214/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0506 BCE:0.0144
+[basemain_continuous.py] ETA: 0:14:57(12.4G) | 69419:75750 234/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0624 BCE:0.0204
+[basemain_continuous.py] ETA: 0:14:55(12.4G) | 69439:75750 254/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0453 BCE:0.0181
+[basemain_continuous.py] ETA: 0:14:50(12.4G) | 69459:75750 274/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0314 BCE:0.0133
+[basemain_continuous.py] ETA: 0:14:49(12.4G) | 69479:75750 294/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0614 BCE:0.0154
+[basemain_continuous.py] ETA: 0:14:45(12.4G) | 69499:75750 314/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0482 BCE:0.0231
+[basemain_continuous.py] ETA: 0:14:42(12.4G) | 69519:75750 334/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0682 BCE:0.0232
+[basemain_continuous.py] ETA: 0:14:46(12.4G) | 69539:75750 354/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0467 BCE:0.0282
+[basemain_continuous.py] ETA: 0:14:41(12.4G) | 69559:75750 374/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.1253 BCE:0.0041
+[basemain_continuous.py] ETA: 0:14:34(12.4G) | 69579:75750 394/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0483 BCE:0.0177
+[basemain_continuous.py] ETA: 0:14:39(12.4G) | 69599:75750 414/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0456 BCE:0.0204
+[basemain_continuous.py] ETA: 0:14:30(12.4G) | 69619:75750 434/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0530 BCE:0.0069
+[basemain_continuous.py] ETA: 0:14:26(12.4G) | 69639:75750 454/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0328 BCE:0.0129
+[basemain_continuous.py] ETA: 0:14:52(12.4G) | 69659:75750 474/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0420 BCE:0.0157
+[basemain_continuous.py] ETA: 0:14:22(12.4G) | 69679:75750 494/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0537 BCE:0.0268
+[basemain_continuous.py] ETA: 0:14:13(12.4G) | 69689:75750 504/505 137/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0550 BCE:0.0237
+[basemain_continuous.py] Epoch 138 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0542 BCE:0.0206 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 139 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:14:13(12.4G) | 69690:75750 0/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0449 BCE:0.0178
+[basemain_continuous.py] ETA: 0:14:23(12.4G) | 69699:75750 9/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0478 BCE:0.0150
+[basemain_continuous.py] ETA: 0:14:14(12.4G) | 69719:75750 29/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0449 BCE:0.0239
+[basemain_continuous.py] ETA: 0:14:12(12.4G) | 69739:75750 49/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0608 BCE:0.0360
+[basemain_continuous.py] ETA: 0:14:08(12.4G) | 69759:75750 69/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0536 BCE:0.0100
+[basemain_continuous.py] ETA: 0:14:05(12.4G) | 69779:75750 89/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0529 BCE:0.0183
+[basemain_continuous.py] ETA: 0:14:01(12.4G) | 69799:75750 109/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0261 BCE:0.0169
+[basemain_continuous.py] ETA: 0:13:58(12.4G) | 69819:75750 129/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0309 BCE:0.0163
+[basemain_continuous.py] ETA: 0:13:56(12.4G) | 69839:75750 149/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0580 BCE:0.0161
+[basemain_continuous.py] ETA: 0:13:54(12.4G) | 69859:75750 169/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0685 BCE:0.0109
+[basemain_continuous.py] ETA: 0:13:50(12.4G) | 69879:75750 189/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0553 BCE:0.0141
+[basemain_continuous.py] ETA: 0:13:48(12.4G) | 69899:75750 209/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0474 BCE:0.0150
+[basemain_continuous.py] ETA: 0:13:45(12.4G) | 69919:75750 229/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0826 BCE:0.0229
+[basemain_continuous.py] ETA: 0:13:42(12.4G) | 69939:75750 249/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0309 BCE:0.0237
+[basemain_continuous.py] ETA: 0:13:39(12.4G) | 69959:75750 269/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0530 BCE:0.0133
+[basemain_continuous.py] ETA: 0:13:40(12.4G) | 69979:75750 289/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0646 BCE:0.0115
+[basemain_continuous.py] ETA: 0:13:34(12.4G) | 69999:75750 309/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0726 BCE:0.0264
+[basemain_continuous.py] ETA: 0:13:40(12.4G) | 70019:75750 329/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0552 BCE:0.0131
+[basemain_continuous.py] ETA: 0:13:27(12.4G) | 70039:75750 349/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0526 BCE:0.0118
+[basemain_continuous.py] ETA: 0:13:24(12.4G) | 70059:75750 369/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0720 BCE:0.0336
+[basemain_continuous.py] ETA: 0:13:24(12.4G) | 70079:75750 389/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0309 BCE:0.0158
+[basemain_continuous.py] ETA: 0:13:21(12.4G) | 70099:75750 409/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0398 BCE:0.0104
+[basemain_continuous.py] ETA: 0:13:24(12.4G) | 70119:75750 429/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0285 BCE:0.0124
+[basemain_continuous.py] ETA: 0:13:17(12.4G) | 70139:75750 449/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0407 BCE:0.0068
+[basemain_continuous.py] ETA: 0:13:11(12.4G) | 70159:75750 469/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0569 BCE:0.0226
+[basemain_continuous.py] ETA: 0:13:10(12.4G) | 70179:75750 489/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0439 BCE:0.0191
+[basemain_continuous.py] ETA: 0:13:03(12.4G) | 70194:75750 504/505 138/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0575 BCE:0.0111
+[basemain_continuous.py] Epoch 139 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0551 BCE:0.0194 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 140 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:13:02(12.4G) | 70195:75750 0/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0378 BCE:0.0176
+[basemain_continuous.py] ETA: 0:13:12(12.4G) | 70199:75750 4/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0483 BCE:0.0176
+[basemain_continuous.py] ETA: 0:13:12(12.4G) | 70219:75750 24/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0576 BCE:0.0209
+[basemain_continuous.py] ETA: 0:12:59(12.4G) | 70239:75750 44/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0533 BCE:0.0146
+[basemain_continuous.py] ETA: 0:12:56(12.4G) | 70259:75750 64/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0558 BCE:0.0211
+[basemain_continuous.py] ETA: 0:12:54(12.4G) | 70279:75750 84/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0399 BCE:0.0163
+[basemain_continuous.py] ETA: 0:12:51(12.4G) | 70299:75750 104/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0541 BCE:0.0124
+[basemain_continuous.py] ETA: 0:12:49(12.4G) | 70319:75750 124/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0448 BCE:0.0173
+[basemain_continuous.py] ETA: 0:12:45(12.4G) | 70339:75750 144/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0538 BCE:0.0086
+[basemain_continuous.py] ETA: 0:12:42(12.4G) | 70359:75750 164/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0516 BCE:0.0144
+[basemain_continuous.py] ETA: 0:12:40(12.4G) | 70379:75750 184/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0624 BCE:0.0475
+[basemain_continuous.py] ETA: 0:12:37(12.4G) | 70399:75750 204/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0450 BCE:0.0084
+[basemain_continuous.py] ETA: 0:12:35(12.4G) | 70419:75750 224/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0602 BCE:0.0294
+[basemain_continuous.py] ETA: 0:12:31(12.4G) | 70439:75750 244/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0702 BCE:0.0197
+[basemain_continuous.py] ETA: 0:12:28(12.4G) | 70459:75750 264/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0589 BCE:0.0182
+[basemain_continuous.py] ETA: 0:12:26(12.4G) | 70479:75750 284/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0686 BCE:0.0098
+[basemain_continuous.py] ETA: 0:12:22(12.4G) | 70499:75750 304/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0517 BCE:0.0152
+[basemain_continuous.py] ETA: 0:12:20(12.4G) | 70519:75750 324/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0558 BCE:0.0225
+[basemain_continuous.py] ETA: 0:12:17(12.4G) | 70539:75750 344/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0730 BCE:0.0195
+[basemain_continuous.py] ETA: 0:12:15(12.4G) | 70559:75750 364/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0445 BCE:0.0165
+[basemain_continuous.py] ETA: 0:12:14(12.4G) | 70579:75750 384/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0506 BCE:0.0298
+[basemain_continuous.py] ETA: 0:12:11(12.4G) | 70599:75750 404/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0448 BCE:0.0154
+[basemain_continuous.py] ETA: 0:12:07(12.4G) | 70619:75750 424/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0479 BCE:0.0231
+[basemain_continuous.py] ETA: 0:12:02(12.4G) | 70639:75750 444/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0558 BCE:0.0205
+[basemain_continuous.py] ETA: 0:12:00(12.4G) | 70659:75750 464/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0495 BCE:0.0119
+[basemain_continuous.py] ETA: 0:11:58(12.4G) | 70679:75750 484/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0472 BCE:0.0169
+[basemain_continuous.py] ETA: 0:11:50(12.4G) | 70699:75750 504/505 139/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0372 BCE:0.0139
+[basemain_continuous.py] Epoch 140 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0562 BCE:0.0196 | EMA-KD:OFF
+[basemain_continuous.py] ========================= Validation Epoch 140 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.835 |  0.797 |  0.901 |  0.062
+[basemain.py] cod10k_te    |  0.874 |  0.816 |  0.939 |  0.024
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 141 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:11:49(12.4G) | 70700:75750 0/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0503 BCE:0.0135
+[basemain_continuous.py] ETA: 0:12:15(12.4G) | 70719:75750 19/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0479 BCE:0.0174
+[basemain_continuous.py] ETA: 0:11:49(12.4G) | 70739:75750 39/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0408 BCE:0.0225
+[basemain_continuous.py] ETA: 0:11:46(12.4G) | 70759:75750 59/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0597 BCE:0.0223
+[basemain_continuous.py] ETA: 0:11:42(12.4G) | 70779:75750 79/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0636 BCE:0.0203
+[basemain_continuous.py] ETA: 0:11:42(12.4G) | 70799:75750 99/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0346 BCE:0.0126
+[basemain_continuous.py] ETA: 0:11:39(12.4G) | 70819:75750 119/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0412 BCE:0.0121
+[basemain_continuous.py] ETA: 0:12:02(12.4G) | 70839:75750 139/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0403 BCE:0.0082
+[basemain_continuous.py] ETA: 0:11:33(12.4G) | 70859:75750 159/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0335 BCE:0.0215
+[basemain_continuous.py] ETA: 0:11:29(12.4G) | 70879:75750 179/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0669 BCE:0.0146
+[basemain_continuous.py] ETA: 0:11:27(12.4G) | 70899:75750 199/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0400 BCE:0.0222
+[basemain_continuous.py] ETA: 0:11:24(12.4G) | 70919:75750 219/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0561 BCE:0.0162
+[basemain_continuous.py] ETA: 0:11:21(12.4G) | 70939:75750 239/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0521 BCE:0.0202
+[basemain_continuous.py] ETA: 0:11:18(12.4G) | 70959:75750 259/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0703 BCE:0.0239
+[basemain_continuous.py] ETA: 0:11:16(12.4G) | 70979:75750 279/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0421 BCE:0.0244
+[basemain_continuous.py] ETA: 0:11:12(12.4G) | 70999:75750 299/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0792 BCE:0.0287
+[basemain_continuous.py] ETA: 0:11:09(12.4G) | 71019:75750 319/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0467 BCE:0.0181
+[basemain_continuous.py] ETA: 0:11:09(12.4G) | 71039:75750 339/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0626 BCE:0.0185
+[basemain_continuous.py] ETA: 0:11:07(12.4G) | 71059:75750 359/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0765 BCE:0.0093
+[basemain_continuous.py] ETA: 0:11:07(12.4G) | 71079:75750 379/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0505 BCE:0.0241
+[basemain_continuous.py] ETA: 0:11:08(12.4G) | 71099:75750 399/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0460 BCE:0.0131
+[basemain_continuous.py] ETA: 0:10:56(12.4G) | 71119:75750 419/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0483 BCE:0.0144
+[basemain_continuous.py] ETA: 0:10:54(12.4G) | 71139:75750 439/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0633 BCE:0.0285
+[basemain_continuous.py] ETA: 0:11:00(12.4G) | 71159:75750 459/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0740 BCE:0.0273
+[basemain_continuous.py] ETA: 0:10:47(12.4G) | 71179:75750 479/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0563 BCE:0.0438
+[basemain_continuous.py] ETA: 0:10:49(12.4G) | 71199:75750 499/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0638 BCE:0.0192
+[basemain_continuous.py] ETA: 0:10:43(12.4G) | 71204:75750 504/505 140/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0496 BCE:0.0324
+[basemain_continuous.py] Epoch 141 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0541 BCE:0.0207 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 142 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:10:42(12.4G) | 71205:75750 0/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0349 BCE:0.0248
+[basemain_continuous.py] ETA: 0:10:46(12.4G) | 71219:75750 14/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0513 BCE:0.0116
+[basemain_continuous.py] ETA: 0:10:38(12.4G) | 71239:75750 34/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0923 BCE:0.0086
+[basemain_continuous.py] ETA: 0:10:35(12.4G) | 71259:75750 54/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0643 BCE:0.0140
+[basemain_continuous.py] ETA: 0:10:32(12.4G) | 71279:75750 74/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0759 BCE:0.0571
+[basemain_continuous.py] ETA: 0:10:30(12.4G) | 71299:75750 94/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0418 BCE:0.0226
+[basemain_continuous.py] ETA: 0:10:28(12.4G) | 71319:75750 114/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0389 BCE:0.0182
+[basemain_continuous.py] ETA: 0:10:24(12.4G) | 71339:75750 134/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0622 BCE:0.0148
+[basemain_continuous.py] ETA: 0:10:21(12.4G) | 71359:75750 154/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0527 BCE:0.0170
+[basemain_continuous.py] ETA: 0:10:19(12.4G) | 71379:75750 174/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0526 BCE:0.0167
+[basemain_continuous.py] ETA: 0:10:15(12.4G) | 71399:75750 194/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0852 BCE:0.0165
+[basemain_continuous.py] ETA: 0:10:13(12.4G) | 71419:75750 214/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0445 BCE:0.0093
+[basemain_continuous.py] ETA: 0:10:10(12.4G) | 71439:75750 234/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0422 BCE:0.0148
+[basemain_continuous.py] ETA: 0:10:07(12.4G) | 71459:75750 254/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0547 BCE:0.0195
+[basemain_continuous.py] ETA: 0:10:05(12.4G) | 71479:75750 274/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0595 BCE:0.0116
+[basemain_continuous.py] ETA: 0:10:03(12.4G) | 71499:75750 294/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0269 BCE:0.0122
+[basemain_continuous.py] ETA: 0:10:00(12.4G) | 71519:75750 314/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0452 BCE:0.0500
+[basemain_continuous.py] ETA: 0:09:56(12.4G) | 71539:75750 334/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0908 BCE:0.0234
+[basemain_continuous.py] ETA: 0:09:53(12.4G) | 71559:75750 354/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0743 BCE:0.0213
+[basemain_continuous.py] ETA: 0:09:50(12.4G) | 71579:75750 374/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0519 BCE:0.0156
+[basemain_continuous.py] ETA: 0:09:47(12.4G) | 71599:75750 394/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0889 BCE:0.0243
+[basemain_continuous.py] ETA: 0:09:44(12.4G) | 71619:75750 414/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0540 BCE:0.0242
+[basemain_continuous.py] ETA: 0:09:41(12.4G) | 71639:75750 434/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0636 BCE:0.0147
+[basemain_continuous.py] ETA: 0:09:39(12.4G) | 71659:75750 454/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0408 BCE:0.0102
+[basemain_continuous.py] ETA: 0:09:37(12.4G) | 71679:75750 474/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0593 BCE:0.0226
+[basemain_continuous.py] ETA: 0:09:34(12.4G) | 71699:75750 494/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0527 BCE:0.0188
+[basemain_continuous.py] ETA: 0:09:29(12.4G) | 71709:75750 504/505 141/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0536 BCE:0.0218
+[basemain_continuous.py] Epoch 142 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0542 BCE:0.0211 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 143 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:09:28(12.4G) | 71710:75750 0/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0550 BCE:0.0316
+[basemain_continuous.py] ETA: 0:09:34(12.4G) | 71719:75750 9/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0369 BCE:0.0243
+[basemain_continuous.py] ETA: 0:09:28(12.4G) | 71739:75750 29/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0361 BCE:0.0152
+[basemain_continuous.py] ETA: 0:09:24(12.4G) | 71759:75750 49/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0542 BCE:0.0185
+[basemain_continuous.py] ETA: 0:09:22(12.4G) | 71779:75750 69/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0331 BCE:0.0110
+[basemain_continuous.py] ETA: 0:09:20(12.4G) | 71799:75750 89/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0333 BCE:0.0113
+[basemain_continuous.py] ETA: 0:09:17(12.4G) | 71819:75750 109/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0349 BCE:0.0140
+[basemain_continuous.py] ETA: 0:09:13(12.4G) | 71839:75750 129/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0268 BCE:0.0151
+[basemain_continuous.py] ETA: 0:09:10(12.4G) | 71859:75750 149/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0651 BCE:0.0103
+[basemain_continuous.py] ETA: 0:09:07(12.4G) | 71879:75750 169/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0671 BCE:0.0251
+[basemain_continuous.py] ETA: 0:09:04(12.4G) | 71899:75750 189/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0526 BCE:0.0201
+[basemain_continuous.py] ETA: 0:09:03(12.4G) | 71919:75750 209/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0521 BCE:0.0206
+[basemain_continuous.py] ETA: 0:09:00(12.4G) | 71939:75750 229/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0520 BCE:0.0324
+[basemain_continuous.py] ETA: 0:08:56(12.4G) | 71959:75750 249/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0583 BCE:0.0377
+[basemain_continuous.py] ETA: 0:08:53(12.4G) | 71979:75750 269/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0371 BCE:0.0230
+[basemain_continuous.py] ETA: 0:09:12(12.4G) | 71999:75750 289/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0351 BCE:0.0111
+[basemain_continuous.py] ETA: 0:08:48(12.4G) | 72019:75750 309/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0652 BCE:0.0261
+[basemain_continuous.py] ETA: 0:08:45(12.4G) | 72039:75750 329/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0516 BCE:0.0236
+[basemain_continuous.py] ETA: 0:08:43(12.4G) | 72059:75750 349/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0693 BCE:0.0138
+[basemain_continuous.py] ETA: 0:08:40(12.4G) | 72079:75750 369/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0456 BCE:0.0152
+[basemain_continuous.py] ETA: 0:08:38(12.4G) | 72099:75750 389/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0314 BCE:0.0140
+[basemain_continuous.py] ETA: 0:08:34(12.4G) | 72119:75750 409/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0503 BCE:0.0158
+[basemain_continuous.py] ETA: 0:08:35(12.4G) | 72139:75750 429/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0715 BCE:0.0082
+[basemain_continuous.py] ETA: 0:08:28(12.4G) | 72159:75750 449/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0587 BCE:0.0162
+[basemain_continuous.py] ETA: 0:08:25(12.4G) | 72179:75750 469/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0422 BCE:0.0257
+[basemain_continuous.py] ETA: 0:08:23(12.4G) | 72199:75750 489/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0446 BCE:0.0186
+[basemain_continuous.py] ETA: 0:08:18(12.4G) | 72214:75750 504/505 142/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0719 BCE:0.0189
+[basemain_continuous.py] Epoch 143 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0530 BCE:0.0197 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 144 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:08:17(12.4G) | 72215:75750 0/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0608 BCE:0.0144
+[basemain_continuous.py] ETA: 0:08:22(12.4G) | 72219:75750 4/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0526 BCE:0.0098
+[basemain_continuous.py] ETA: 0:08:18(12.4G) | 72239:75750 24/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0369 BCE:0.0248
+[basemain_continuous.py] ETA: 0:08:15(12.4G) | 72259:75750 44/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0498 BCE:0.0259
+[basemain_continuous.py] ETA: 0:08:13(12.4G) | 72279:75750 64/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0437 BCE:0.0244
+[basemain_continuous.py] ETA: 0:08:08(12.4G) | 72299:75750 84/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0459 BCE:0.0226
+[basemain_continuous.py] ETA: 0:08:06(12.4G) | 72319:75750 104/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0579 BCE:0.0116
+[basemain_continuous.py] ETA: 0:08:02(12.4G) | 72339:75750 124/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0539 BCE:0.0099
+[basemain_continuous.py] ETA: 0:07:59(12.4G) | 72359:75750 144/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0916 BCE:0.0153
+[basemain_continuous.py] ETA: 0:07:56(12.4G) | 72379:75750 164/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0399 BCE:0.0229
+[basemain_continuous.py] ETA: 0:07:54(12.4G) | 72399:75750 184/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0440 BCE:0.0203
+[basemain_continuous.py] ETA: 0:07:51(12.4G) | 72419:75750 204/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0486 BCE:0.0108
+[basemain_continuous.py] ETA: 0:07:48(12.4G) | 72439:75750 224/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0482 BCE:0.0212
+[basemain_continuous.py] ETA: 0:07:45(12.4G) | 72459:75750 244/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0621 BCE:0.0244
+[basemain_continuous.py] ETA: 0:07:46(12.4G) | 72479:75750 264/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0517 BCE:0.0194
+[basemain_continuous.py] ETA: 0:07:40(12.4G) | 72499:75750 284/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0663 BCE:0.0196
+[basemain_continuous.py] ETA: 0:07:40(12.4G) | 72519:75750 304/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0367 BCE:0.0125
+[basemain_continuous.py] ETA: 0:07:35(12.4G) | 72539:75750 324/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0430 BCE:0.0158
+[basemain_continuous.py] ETA: 0:07:31(12.4G) | 72559:75750 344/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0567 BCE:0.0262
+[basemain_continuous.py] ETA: 0:07:29(12.4G) | 72579:75750 364/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0470 BCE:0.0142
+[basemain_continuous.py] ETA: 0:07:27(12.4G) | 72599:75750 384/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0581 BCE:0.0158
+[basemain_continuous.py] ETA: 0:07:23(12.4G) | 72619:75750 404/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0489 BCE:0.0247
+[basemain_continuous.py] ETA: 0:07:20(12.4G) | 72639:75750 424/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0511 BCE:0.0205
+[basemain_continuous.py] ETA: 0:07:17(12.4G) | 72659:75750 444/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0357 BCE:0.0218
+[basemain_continuous.py] ETA: 0:07:15(12.4G) | 72679:75750 464/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0395 BCE:0.0253
+[basemain_continuous.py] ETA: 0:07:11(12.4G) | 72699:75750 484/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0360 BCE:0.0185
+[basemain_continuous.py] ETA: 0:07:07(12.4G) | 72719:75750 504/505 143/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0476 BCE:0.0220
+[basemain_continuous.py] Epoch 144 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0541 BCE:0.0199 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 145 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:07:07(12.4G) | 72720:75750 0/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0586 BCE:0.0130
+[basemain_continuous.py] ETA: 0:07:10(12.4G) | 72739:75750 19/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0477 BCE:0.0186
+[basemain_continuous.py] ETA: 0:07:03(12.4G) | 72759:75750 39/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.2832 BCE:0.0254
+[basemain_continuous.py] ETA: 0:07:00(12.4G) | 72779:75750 59/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0476 BCE:0.0115
+[basemain_continuous.py] ETA: 0:06:58(12.4G) | 72799:75750 79/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0596 BCE:0.0270
+[basemain_continuous.py] ETA: 0:06:55(12.4G) | 72819:75750 99/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0727 BCE:0.0141
+[basemain_continuous.py] ETA: 0:06:52(12.4G) | 72839:75750 119/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0437 BCE:0.0157
+[basemain_continuous.py] ETA: 0:06:49(12.4G) | 72859:75750 139/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0325 BCE:0.0117
+[basemain_continuous.py] ETA: 0:06:46(12.4G) | 72879:75750 159/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0670 BCE:0.0170
+[basemain_continuous.py] ETA: 0:06:43(12.4G) | 72899:75750 179/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0404 BCE:0.0245
+[basemain_continuous.py] ETA: 0:06:43(12.4G) | 72919:75750 199/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0463 BCE:0.0164
+[basemain_continuous.py] ETA: 0:06:37(12.4G) | 72939:75750 219/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0384 BCE:0.0190
+[basemain_continuous.py] ETA: 0:06:35(12.4G) | 72959:75750 239/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0684 BCE:0.0313
+[basemain_continuous.py] ETA: 0:06:31(12.4G) | 72979:75750 259/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0655 BCE:0.0219
+[basemain_continuous.py] ETA: 0:06:29(12.4G) | 72999:75750 279/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0406 BCE:0.0106
+[basemain_continuous.py] ETA: 0:06:26(12.4G) | 73019:75750 299/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0544 BCE:0.0277
+[basemain_continuous.py] ETA: 0:06:24(12.4G) | 73039:75750 319/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0586 BCE:0.0316
+[basemain_continuous.py] ETA: 0:06:21(12.4G) | 73059:75750 339/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0309 BCE:0.0184
+[basemain_continuous.py] ETA: 0:06:19(12.4G) | 73079:75750 359/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0731 BCE:0.0148
+[basemain_continuous.py] ETA: 0:06:16(12.4G) | 73099:75750 379/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0416 BCE:0.0183
+[basemain_continuous.py] ETA: 0:06:13(12.4G) | 73119:75750 399/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0352 BCE:0.0299
+[basemain_continuous.py] ETA: 0:06:10(12.4G) | 73139:75750 419/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0364 BCE:0.0185
+[basemain_continuous.py] ETA: 0:06:20(12.4G) | 73159:75750 439/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0481 BCE:0.0127
+[basemain_continuous.py] ETA: 0:06:04(12.4G) | 73179:75750 459/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0531 BCE:0.0365
+[basemain_continuous.py] ETA: 0:06:01(12.4G) | 73199:75750 479/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0665 BCE:0.0347
+[basemain_continuous.py] ETA: 0:05:57(12.4G) | 73219:75750 499/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0532 BCE:0.0277
+[basemain_continuous.py] ETA: 0:05:55(12.4G) | 73224:75750 504/505 144/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0400 BCE:0.0174
+[basemain_continuous.py] Epoch 145 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0551 BCE:0.0210 | EMA-KD:OFF
+[basemain_continuous.py] ========================= Validation Epoch 145 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.835 |  0.797 |  0.900 |  0.063
+[basemain.py] cod10k_te    |  0.874 |  0.816 |  0.939 |  0.024
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 146 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:05:54(12.4G) | 73225:75750 0/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0459 BCE:0.0295
+[basemain_continuous.py] ETA: 0:05:58(12.4G) | 73239:75750 14/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0661 BCE:0.0248
+[basemain_continuous.py] ETA: 0:05:51(12.4G) | 73259:75750 34/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0396 BCE:0.0170
+[basemain_continuous.py] ETA: 0:05:48(12.4G) | 73279:75750 54/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0467 BCE:0.0244
+[basemain_continuous.py] ETA: 0:05:46(12.4G) | 73299:75750 74/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0412 BCE:0.0079
+[basemain_continuous.py] ETA: 0:05:43(12.4G) | 73319:75750 94/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0491 BCE:0.0150
+[basemain_continuous.py] ETA: 0:05:40(12.4G) | 73339:75750 114/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0477 BCE:0.0171
+[basemain_continuous.py] ETA: 0:05:38(12.4G) | 73359:75750 134/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0679 BCE:0.0209
+[basemain_continuous.py] ETA: 0:05:34(12.4G) | 73379:75750 154/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0623 BCE:0.0151
+[basemain_continuous.py] ETA: 0:05:33(12.4G) | 73399:75750 174/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0544 BCE:0.0105
+[basemain_continuous.py] ETA: 0:05:30(12.4G) | 73419:75750 194/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0393 BCE:0.0218
+[basemain_continuous.py] ETA: 0:05:27(12.4G) | 73439:75750 214/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0476 BCE:0.0172
+[basemain_continuous.py] ETA: 0:05:24(12.4G) | 73459:75750 234/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0329 BCE:0.0117
+[basemain_continuous.py] ETA: 0:05:23(12.4G) | 73479:75750 254/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0676 BCE:0.0131
+[basemain_continuous.py] ETA: 0:05:21(12.4G) | 73499:75750 274/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0337 BCE:0.0154
+[basemain_continuous.py] ETA: 0:05:15(12.4G) | 73519:75750 294/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0449 BCE:0.0179
+[basemain_continuous.py] ETA: 0:05:15(12.4G) | 73539:75750 314/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0913 BCE:0.0287
+[basemain_continuous.py] ETA: 0:05:10(12.4G) | 73559:75750 334/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.1267 BCE:0.0182
+[basemain_continuous.py] ETA: 0:05:07(12.4G) | 73579:75750 354/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0422 BCE:0.0275
+[basemain_continuous.py] ETA: 0:05:04(12.4G) | 73599:75750 374/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0400 BCE:0.0166
+[basemain_continuous.py] ETA: 0:05:01(12.4G) | 73619:75750 394/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0917 BCE:0.0183
+[basemain_continuous.py] ETA: 0:04:58(12.4G) | 73639:75750 414/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0455 BCE:0.0284
+[basemain_continuous.py] ETA: 0:04:55(12.4G) | 73659:75750 434/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0261 BCE:0.0095
+[basemain_continuous.py] ETA: 0:04:53(12.4G) | 73679:75750 454/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0376 BCE:0.0125
+[basemain_continuous.py] ETA: 0:04:50(12.4G) | 73699:75750 474/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0705 BCE:0.0463
+[basemain_continuous.py] ETA: 0:04:47(12.4G) | 73719:75750 494/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0458 BCE:0.0338
+[basemain_continuous.py] ETA: 0:04:44(12.4G) | 73729:75750 504/505 145/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0507 BCE:0.0175
+[basemain_continuous.py] Epoch 146 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0535 BCE:0.0194 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 147 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:04:43(12.4G) | 73730:75750 0/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0533 BCE:0.0198
+[basemain_continuous.py] ETA: 0:04:47(12.4G) | 73739:75750 9/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0546 BCE:0.0275
+[basemain_continuous.py] ETA: 0:04:42(12.4G) | 73759:75750 29/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0669 BCE:0.0166
+[basemain_continuous.py] ETA: 0:04:40(12.4G) | 73779:75750 49/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0450 BCE:0.0330
+[basemain_continuous.py] ETA: 0:04:35(12.4G) | 73799:75750 69/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0403 BCE:0.0263
+[basemain_continuous.py] ETA: 0:04:33(12.4G) | 73819:75750 89/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0450 BCE:0.0092
+[basemain_continuous.py] ETA: 0:04:31(12.4G) | 73839:75750 109/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0597 BCE:0.0136
+[basemain_continuous.py] ETA: 0:04:27(12.4G) | 73859:75750 129/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0503 BCE:0.0246
+[basemain_continuous.py] ETA: 0:04:24(12.4G) | 73879:75750 149/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0477 BCE:0.0162
+[basemain_continuous.py] ETA: 0:04:22(12.4G) | 73899:75750 169/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0581 BCE:0.0243
+[basemain_continuous.py] ETA: 0:04:18(12.4G) | 73919:75750 189/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0288 BCE:0.0350
+[basemain_continuous.py] ETA: 0:04:16(12.4G) | 73939:75750 209/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0433 BCE:0.0258
+[basemain_continuous.py] ETA: 0:04:13(12.4G) | 73959:75750 229/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0425 BCE:0.0183
+[basemain_continuous.py] ETA: 0:04:10(12.4G) | 73979:75750 249/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0514 BCE:0.0114
+[basemain_continuous.py] ETA: 0:04:07(12.4G) | 73999:75750 269/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0533 BCE:0.0125
+[basemain_continuous.py] ETA: 0:04:04(12.4G) | 74019:75750 289/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0382 BCE:0.0154
+[basemain_continuous.py] ETA: 0:04:02(12.4G) | 74039:75750 309/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0659 BCE:0.0181
+[basemain_continuous.py] ETA: 0:03:59(12.4G) | 74059:75750 329/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0358 BCE:0.0189
+[basemain_continuous.py] ETA: 0:03:56(12.4G) | 74079:75750 349/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0388 BCE:0.0179
+[basemain_continuous.py] ETA: 0:03:53(12.4G) | 74099:75750 369/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0703 BCE:0.0171
+[basemain_continuous.py] ETA: 0:03:51(12.4G) | 74119:75750 389/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0638 BCE:0.0115
+[basemain_continuous.py] ETA: 0:03:49(12.4G) | 74139:75750 409/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0342 BCE:0.0157
+[basemain_continuous.py] ETA: 0:03:45(12.4G) | 74159:75750 429/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0357 BCE:0.0189
+[basemain_continuous.py] ETA: 0:03:42(12.4G) | 74179:75750 449/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0823 BCE:0.0236
+[basemain_continuous.py] ETA: 0:03:39(12.4G) | 74199:75750 469/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0524 BCE:0.0156
+[basemain_continuous.py] ETA: 0:03:36(12.4G) | 74219:75750 489/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0524 BCE:0.0234
+[basemain_continuous.py] ETA: 0:03:40(12.4G) | 74234:75750 504/505 146/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0443 BCE:0.0206
+[basemain_continuous.py] Epoch 147 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0530 BCE:0.0201 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 148 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:03:40(12.4G) | 74235:75750 0/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0477 BCE:0.0189
+[basemain_continuous.py] ETA: 0:03:42(12.4G) | 74239:75750 4/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0520 BCE:0.0125
+[basemain_continuous.py] ETA: 0:03:31(12.4G) | 74259:75750 24/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0435 BCE:0.0136
+[basemain_continuous.py] ETA: 0:03:28(12.4G) | 74279:75750 44/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0441 BCE:0.0225
+[basemain_continuous.py] ETA: 0:03:25(12.4G) | 74299:75750 64/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0480 BCE:0.0341
+[basemain_continuous.py] ETA: 0:03:22(12.4G) | 74319:75750 84/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0623 BCE:0.0226
+[basemain_continuous.py] ETA: 0:03:19(12.4G) | 74339:75750 104/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0456 BCE:0.0402
+[basemain_continuous.py] ETA: 0:03:17(12.4G) | 74359:75750 124/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0438 BCE:0.0226
+[basemain_continuous.py] ETA: 0:03:14(12.4G) | 74379:75750 144/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0624 BCE:0.0206
+[basemain_continuous.py] ETA: 0:03:11(12.4G) | 74399:75750 164/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0473 BCE:0.0225
+[basemain_continuous.py] ETA: 0:03:08(12.4G) | 74419:75750 184/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0535 BCE:0.0193
+[basemain_continuous.py] ETA: 0:03:05(12.4G) | 74439:75750 204/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0515 BCE:0.0121
+[basemain_continuous.py] ETA: 0:03:02(12.4G) | 74459:75750 224/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0438 BCE:0.0146
+[basemain_continuous.py] ETA: 0:02:59(12.4G) | 74479:75750 244/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.1205 BCE:0.0194
+[basemain_continuous.py] ETA: 0:02:57(12.4G) | 74499:75750 264/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0700 BCE:0.0168
+[basemain_continuous.py] ETA: 0:02:54(12.4G) | 74519:75750 284/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0618 BCE:0.0178
+[basemain_continuous.py] ETA: 0:02:51(12.4G) | 74539:75750 304/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0461 BCE:0.0127
+[basemain_continuous.py] ETA: 0:02:48(12.4G) | 74559:75750 324/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0487 BCE:0.0289
+[basemain_continuous.py] ETA: 0:02:46(12.4G) | 74579:75750 344/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0598 BCE:0.0192
+[basemain_continuous.py] ETA: 0:02:42(12.4G) | 74599:75750 364/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0444 BCE:0.0119
+[basemain_continuous.py] ETA: 0:02:39(12.4G) | 74619:75750 384/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0437 BCE:0.0203
+[basemain_continuous.py] ETA: 0:02:36(12.4G) | 74639:75750 404/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0613 BCE:0.0429
+[basemain_continuous.py] ETA: 0:02:35(12.4G) | 74659:75750 424/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0459 BCE:0.0193
+[basemain_continuous.py] ETA: 0:02:32(12.4G) | 74679:75750 444/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0846 BCE:0.0425
+[basemain_continuous.py] ETA: 0:02:32(12.4G) | 74699:75750 464/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0489 BCE:0.0180
+[basemain_continuous.py] ETA: 0:03:36(12.4G) | 74719:75750 484/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0412 BCE:0.0180
+[basemain_continuous.py] ETA: 0:05:01(12.4G) | 74739:75750 504/505 147/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0680 BCE:0.0175
+[basemain_continuous.py] Epoch 148 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0537 BCE:0.0195 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 149 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:05:00(12.4G) | 74740:75750 0/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0430 BCE:0.0169
+[basemain_continuous.py] ETA: 0:04:36(12.4G) | 74759:75750 19/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0415 BCE:0.0198
+[basemain_continuous.py] ETA: 0:04:34(12.4G) | 74779:75750 39/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0795 BCE:0.0293
+[basemain_continuous.py] ETA: 0:04:29(12.4G) | 74799:75750 59/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0651 BCE:0.0188
+[basemain_continuous.py] ETA: 0:04:23(12.4G) | 74819:75750 79/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0503 BCE:0.0219
+[basemain_continuous.py] ETA: 0:04:17(12.4G) | 74839:75750 99/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0449 BCE:0.0128
+[basemain_continuous.py] ETA: 0:04:12(12.4G) | 74859:75750 119/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0751 BCE:0.0265
+[basemain_continuous.py] ETA: 0:04:06(12.4G) | 74879:75750 139/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0348 BCE:0.0089
+[basemain_continuous.py] ETA: 0:04:01(12.4G) | 74899:75750 159/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0421 BCE:0.0183
+[basemain_continuous.py] ETA: 0:03:55(12.4G) | 74919:75750 179/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0365 BCE:0.0140
+[basemain_continuous.py] ETA: 0:03:49(12.4G) | 74939:75750 199/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0812 BCE:0.0123
+[basemain_continuous.py] ETA: 0:03:43(12.4G) | 74959:75750 219/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0309 BCE:0.0201
+[basemain_continuous.py] ETA: 0:03:38(12.4G) | 74979:75750 239/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0577 BCE:0.0229
+[basemain_continuous.py] ETA: 0:03:32(12.4G) | 74999:75750 259/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0815 BCE:0.0221
+[basemain_continuous.py] ETA: 0:03:26(12.4G) | 75019:75750 279/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0456 BCE:0.0111
+[basemain_continuous.py] ETA: 0:03:21(12.4G) | 75039:75750 299/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0386 BCE:0.0126
+[basemain_continuous.py] ETA: 0:03:15(12.4G) | 75059:75750 319/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0298 BCE:0.0194
+[basemain_continuous.py] ETA: 0:02:42(12.4G) | 75079:75750 339/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0580 BCE:0.0076
+[basemain_continuous.py] ETA: 0:03:01(12.4G) | 75099:75750 359/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0464 BCE:0.0318
+[basemain_continuous.py] ETA: 0:02:56(12.4G) | 75119:75750 379/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0603 BCE:0.0129
+[basemain_continuous.py] ETA: 0:02:52(12.4G) | 75139:75750 399/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0453 BCE:0.0295
+[basemain_continuous.py] ETA: 0:02:47(12.4G) | 75159:75750 419/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0508 BCE:0.0122
+[basemain_continuous.py] ETA: 0:02:41(12.4G) | 75179:75750 439/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0459 BCE:0.0148
+[basemain_continuous.py] ETA: 0:02:36(12.4G) | 75199:75750 459/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0390 BCE:0.0278
+[basemain_continuous.py] ETA: 0:02:15(12.4G) | 75219:75750 479/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0676 BCE:0.0201
+[basemain_continuous.py] ETA: 0:02:24(12.4G) | 75239:75750 499/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0467 BCE:0.0375
+[basemain_continuous.py] ETA: 0:02:25(12.4G) | 75244:75750 504/505 148/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0585 BCE:0.0188
+[basemain_continuous.py] Epoch 149 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0537 BCE:0.0194 | EMA-KD:OFF
+[basemain_continuous.py] Exp_Name: PvtV2B4_FPN_CSR_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_reliable_0p3]: clean:N=808,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 150 Continuous C3 ==================
+[basemain_continuous.py] C3_reliable_0p3 | weights C:N=1.0000:0.0000 | expected probs C=100.00%, N=0.00%
+[basemain_continuous.py] ETA: 0:02:25(12.4G) | 75245:75750 0/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0500 BCE:0.0120
+[basemain_continuous.py] ETA: 0:02:21(12.4G) | 75259:75750 14/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0581 BCE:0.0149
+[basemain_continuous.py] ETA: 0:02:13(12.4G) | 75279:75750 34/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0351 BCE:0.0154
+[basemain_continuous.py] ETA: 0:02:07(12.4G) | 75299:75750 54/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0474 BCE:0.0117
+[basemain_continuous.py] ETA: 0:02:02(12.4G) | 75319:75750 74/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0488 BCE:0.0171
+[basemain_continuous.py] ETA: 0:01:56(12.4G) | 75339:75750 94/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0242 BCE:0.0191
+[basemain_continuous.py] ETA: 0:01:50(12.4G) | 75359:75750 114/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0328 BCE:0.0114
+[basemain_continuous.py] ETA: 0:01:47(12.4G) | 75379:75750 134/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0484 BCE:0.0195
+[basemain_continuous.py] ETA: 0:01:44(12.4G) | 75399:75750 154/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0533 BCE:0.0164
+[basemain_continuous.py] ETA: 0:01:38(12.4G) | 75419:75750 174/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0417 BCE:0.0154
+[basemain_continuous.py] ETA: 0:01:32(12.4G) | 75439:75750 194/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0553 BCE:0.0240
+[basemain_continuous.py] ETA: 0:01:26(12.4G) | 75459:75750 214/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0327 BCE:0.0117
+[basemain_continuous.py] ETA: 0:01:20(12.4G) | 75479:75750 234/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.2755 BCE:0.0182
+[basemain_continuous.py] ETA: 0:01:14(12.4G) | 75499:75750 254/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0544 BCE:0.0132
+[basemain_continuous.py] ETA: 0:01:08(12.4G) | 75519:75750 274/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0372 BCE:0.0175
+[basemain_continuous.py] ETA: 0:01:02(12.4G) | 75539:75750 294/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0518 BCE:0.0209
+[basemain_continuous.py] ETA: 0:00:56(12.4G) | 75559:75750 314/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0837 BCE:0.0117
+[basemain_continuous.py] ETA: 0:00:50(12.4G) | 75579:75750 334/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0364 BCE:0.0271
+[basemain_continuous.py] ETA: 0:00:44(12.4G) | 75599:75750 354/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0554 BCE:0.0170
+[basemain_continuous.py] ETA: 0:00:38(12.4G) | 75619:75750 374/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0422 BCE:0.0089
+[basemain_continuous.py] ETA: 0:00:32(12.4G) | 75639:75750 394/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0702 BCE:0.0228
+[basemain_continuous.py] ETA: 0:00:26(12.4G) | 75659:75750 414/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0727 BCE:0.0161
+[basemain_continuous.py] ETA: 0:00:20(12.4G) | 75679:75750 434/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0322 BCE:0.0287
+[basemain_continuous.py] ETA: 0:00:14(12.4G) | 75699:75750 454/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0368 BCE:0.0158
+[basemain_continuous.py] ETA: 0:00:08(12.4G) | 75719:75750 474/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0787 BCE:0.0125
+[basemain_continuous.py] ETA: 0:00:02(12.4G) | 75739:75750 494/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0459 BCE:0.0260
+[basemain_continuous.py] ETA: 0:00:00(12.4G) | 75749:75750 504/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0334 BCE:0.0219
+[basemain_continuous.py] Epoch 150 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0536 BCE:0.0201 | EMA-KD:OFF
+[basemain_continuous.py] ========================= Validation Epoch 150 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.835 |  0.797 |  0.900 |  0.063
+[basemain.py] cod10k_te    |  0.874 |  0.816 |  0.939 |  0.024
+[basemain_continuous.py] Total Training Time: 4:08:54 (1:07:23 on others)
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.835 |  0.797 |  0.900 |  0.063
+[basemain.py] cod10k_te    |  0.874 |  0.816 |  0.939 |  0.024
+[basemain_continuous.py] End training...

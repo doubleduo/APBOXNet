@@ -1,23 +1,20 @@
 # -*- coding: utf-8 -*-
-"""
-B2: PvtV2B4 FPN + Noisy-COD loss curriculum + CSR/MHSIU residual.
+"""Strict loss-only ablation: current PVT-B4 ZoomNeXt + continuous NC.
 
-Recommended command:
+Run from the APBOXNet repository root:
+
     python basemain_continuous.py \
-        --config configs/curablation/csr_mhsiu_nc_continuous.py \
-        --model-name PvtV2B4_FPN_CSR_NC_Curriculum
+        --config configs/curablation/zoomnext_nc_continuous.py \
+        --model-name PvtV2B4_ZoomNeXt_NC_Curriculum
 
-Sampling schedule is kept the same as the current continuous baseline so the
-only new architectural variable is CSR/MHSIU residual.
+Comparison target:
 
-Model-internal schedules (driven by iter_percentage):
-    epoch 1-60   : q=2, CSR alpha 0.15 -> 0.30
-    epoch 61-100 : q=1, CSR alpha 0.30 -> 1.00
-    epoch 101-150: q=1, CSR alpha = 1.00
+    python basemain_continuous.py \
+        --config configs/curablation/zoomnext_nc_continuous.py \
+        --model-name PvtV2B4_ZoomNeXt
 
-This config intentionally excludes unvalue for the first CSR ablation.
-After B2 is stable, use the same model with the previously prepared
-Clean/Noisy/Unvalue continuous trainer/config.
+Both commands use the same 384x384 data, optimizer, seed and Clean/Noisy
+sampling schedule.  Only the training loss differs.
 """
 
 has_test = True
@@ -30,9 +27,7 @@ base_seed = 112358
 __BATCHSIZE = 8
 __NUM_EPOCHS = 150
 __SAMPLES_PER_EPOCH = 4040
-
 __ITER_PER_EPOCH = __SAMPLES_PER_EPOCH // __BATCHSIZE  # 505
-__NUM_ITERS = __NUM_EPOCHS * __ITER_PER_EPOCH          # 75750
 
 train = dict(
     batch_size=__BATCHSIZE,
@@ -50,6 +45,7 @@ train = dict(
     val_interval=5,
     save_val_ckpt=True,
 
+    # Deliberately disabled for this clean loss-only experiment.
     ema_kd=dict(
         enable=False,
         lambda_kd=0.0,
@@ -57,30 +53,27 @@ train = dict(
 
     curriculum=dict(
         enable=True,
-
         pools=dict(
             clean="./data/pseudo_pool/shape/clean.txt",
             noisy="./data/pseudo_pool/shape/noisy.txt",
         ),
-
         num_samples_per_epoch=__SAMPLES_PER_EPOCH,
 
+        # Match the current Stageout Clean/Noisy trajectory exactly.
         continuous_schedule=dict(
             enable=True,
             clean_weight=1.0,
-
             noisy=dict(
-                # Keep broad exposure during the early-learning stage.
+                # Epoch 1-60: clean:noisy = 1:1.
                 hold_end_epoch=60,
                 start_weight=1.0,
 
-                # Reliability annealing.
+                # Epoch 61-130: noisy mass cosine-anneals to zero.
                 anneal_start_epoch=61,
                 anneal_end_epoch=130,
                 end_weight=0.0,
                 mode="cosine",
             ),
-
             final_start_epoch=131,
         ),
     ),
@@ -91,7 +84,7 @@ train = dict(
         group_mode="finetune",
         cfg=dict(
             weight_decay=0,
-            # PVT backbone 1e-5; FPN/CSR/ZeroConv/head 1e-4.
+            # Backbone LR = 1e-5; MHSIU2/RGPU/head LR = 1e-4.
             diff_factor=0.1,
         ),
     ),
@@ -105,7 +98,6 @@ train = dict(
         ),
         mode="step",
         cfg=dict(
-            # Do not drop LR at the 60/100 curriculum transitions.
             milestones=__ITER_PER_EPOCH * 120,
             gamma=0.1,
         ),

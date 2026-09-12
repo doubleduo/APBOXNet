@@ -3,6 +3,7 @@ import copy
 import csv
 import datetime
 import inspect
+import json
 import logging
 import os
 import shutil
@@ -30,6 +31,34 @@ stream_handler = logging.StreamHandler()
 stream_handler.setLevel(logging.DEBUG)
 stream_handler.setFormatter(colorlog.ColoredFormatter("%(log_color)s[%(filename)s] %(reset)s%(message)s"))
 LOGGER.addHandler(stream_handler)
+
+
+def _read_labelme_box_mask(path, height, width):
+    """Read all LabelMe rectangles/polygons as one filled binary box mask."""
+    with open(path, mode="r", encoding="utf-8") as file:
+        payload = json.load(file)
+
+    box_mask = np.zeros((height, width), dtype=np.float32)
+    for shape in payload.get("shapes", []):
+        points = np.asarray(shape.get("points", []), dtype=np.float32)
+        if points.size == 0:
+            continue
+        points = points.reshape(-1, 2)
+        x1 = int(np.floor(points[:, 0].min()))
+        y1 = int(np.floor(points[:, 1].min()))
+        x2 = int(np.ceil(points[:, 0].max()))
+        y2 = int(np.ceil(points[:, 1].max()))
+
+        x1 = int(np.clip(x1, 0, width))
+        y1 = int(np.clip(y1, 0, height))
+        x2 = int(np.clip(x2, 0, width))
+        y2 = int(np.clip(y2, 0, height))
+        if x2 > x1 and y2 > y1:
+            box_mask[y1:y2, x1:x2] = 1.0
+
+    if not np.any(box_mask):
+        raise ValueError(f"No valid box found in {path}")
+    return box_mask
 
 
 
@@ -133,12 +162,21 @@ def _load_name_set(list_path, cfg=None):
 
 
 class ImageTrainDataset(data.Dataset):
-    def __init__(self, dataset_infos: dict, shape: dict, allowed_names=None, pool_name="all", augment=True):
+    def __init__(
+        self,
+        dataset_infos: dict,
+        shape: dict,
+        allowed_names=None,
+        pool_name="all",
+        augment=True,
+        use_box=False,
+    ):
         super().__init__()
         self.shape = shape
         self.pool_name = pool_name
         self.allowed_names = allowed_names
         self.augment = bool(augment)
+        self.use_box = bool(use_box)
 
         self.total_data_paths = []
         for dataset_name, dataset_info in dataset_infos.items():
@@ -147,39 +185,98 @@ class ImageTrainDataset(data.Dataset):
             mask_path = os.path.join(dataset_info["root"], dataset_info["mask"]["path"])
             mask_suffix = dataset_info["mask"]["suffix"]
 
+            box_path = None
+            box_suffix = None
+            if self.use_box:
+                if "box_json" not in dataset_info:
+                    raise KeyError(
+                        f"Dataset '{dataset_name}' requires box_json when "
+                        "train.data.use_box=True."
+                    )
+                box_path = os.path.join(
+                    dataset_info["root"],
+                    dataset_info["box_json"]["path"],
+                )
+                box_suffix = dataset_info["box_json"]["suffix"]
+
             image_names = [p[: -len(image_suffix)] for p in sorted(os.listdir(image_path)) if p.endswith(image_suffix)]
             mask_names = [p[: -len(mask_suffix)] for p in sorted(os.listdir(mask_path)) if p.endswith(mask_suffix)]
             valid_names = sorted(set(image_names).intersection(mask_names))
+            if self.use_box:
+                box_names = [
+                    p[: -len(box_suffix)]
+                    for p in sorted(os.listdir(box_path))
+                    if p.endswith(box_suffix)
+                ]
+                missing_boxes = sorted(set(valid_names).difference(box_names))
+                if missing_boxes:
+                    preview = ", ".join(missing_boxes[:5])
+                    raise FileNotFoundError(
+                        f"Dataset '{dataset_name}' is missing box JSON for "
+                        f"{len(missing_boxes)} image/mask pairs. First: {preview}"
+                    )
             if self.allowed_names is not None:
                 valid_names = [n for n in valid_names if _normalize_sample_name(n) in self.allowed_names]
             data_paths = [
-                (os.path.join(image_path, n) + image_suffix, os.path.join(mask_path, n) + mask_suffix)
+                (
+                    os.path.join(image_path, n) + image_suffix,
+                    os.path.join(mask_path, n) + mask_suffix,
+                    (
+                        os.path.join(box_path, n) + box_suffix
+                        if self.use_box
+                        else None
+                    ),
+                )
                 for n in valid_names
             ]
             LOGGER.info(f"Length of {dataset_name} [{self.pool_name}]: {len(data_paths)}")
             self.total_data_paths.extend(data_paths)
 
-        self.trains = A.Compose(
-            [
+        transforms = [
                 A.HorizontalFlip(p=0.5),
                 A.Rotate(limit=90, p=0.5, interpolation=cv2.INTER_LINEAR, border_mode=cv2.BORDER_REPLICATE),
                 A.RandomBrightnessContrast(brightness_limit=0.1, contrast_limit=0.1, p=0.5),
                 A.HueSaturationValue(hue_shift_limit=5, sat_shift_limit=10, val_shift_limit=10, p=0.5),
             ]
+        self.trains = A.Compose(
+            transforms,
+            additional_targets=(
+                {"box_mask": "mask"}
+                if self.use_box
+                else {}
+            ),
         )
 
     def __getitem__(self, index):
-        image_path, mask_path = self.total_data_paths[index]
+        image_path, mask_path, box_path = self.total_data_paths[index]
         image = io.read_color_array(image_path)
         mask = io.read_gray_array(mask_path, thr=0)
+        box_mask = None
+        if self.use_box:
+            box_mask = _read_labelme_box_mask(
+                box_path,
+                height=image.shape[0],
+                width=image.shape[1],
+            )
         if image.shape[:2] != mask.shape:
             h, w = mask.shape
             image = ops.resize(image, height=h, width=w)
+            if box_mask is not None:
+                box_mask = cv2.resize(
+                    box_mask,
+                    (w, h),
+                    interpolation=cv2.INTER_NEAREST,
+                )
 
         if self.augment:
-            transformed = self.trains(image=image, mask=mask)
+            transform_inputs = {"image": image, "mask": mask}
+            if box_mask is not None:
+                transform_inputs["box_mask"] = box_mask
+            transformed = self.trains(**transform_inputs)
             image = transformed["image"]
             mask = transformed["mask"]
+            if box_mask is not None:
+                box_mask = transformed["box_mask"]
 
         base_h = self.shape["h"]
         base_w = self.shape["w"]
@@ -193,14 +290,23 @@ class ImageTrainDataset(data.Dataset):
         mask = ops.resize(mask, height=base_h, width=base_w)
         mask = torch.from_numpy(mask).unsqueeze(0)
 
-        return dict(
-            data={
+        sample_data = {
                 "image_s": image_s,
                 "image_m": image_m,
                 "image_l": image_l,
                 "mask": mask,
             }
-        )
+        if box_mask is not None:
+            box_mask = cv2.resize(
+                box_mask,
+                (base_w, base_h),
+                interpolation=cv2.INTER_NEAREST,
+            )
+            sample_data["box_mask"] = torch.from_numpy(
+                (box_mask > 0).astype(np.float32)
+            ).unsqueeze(0)
+
+        return dict(data=sample_data)
 
     def __len__(self):
         return len(self.total_data_paths)
@@ -439,6 +545,7 @@ def _build_train_subset(
         allowed_names=allowed_names,
         pool_name=pool_name,
         augment=augment,
+        use_box=bool(cfg.train.data.get("use_box", False)),
     )
     if max_samples is not None and len(dataset) > int(max_samples):
         dataset.total_data_paths = dataset.total_data_paths[: int(max_samples)]

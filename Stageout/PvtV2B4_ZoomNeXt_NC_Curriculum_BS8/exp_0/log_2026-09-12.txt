@@ -1,0 +1,276 @@
+=== log 2026-09-12 03:15:36.468130 ===
+[basemain.py] base_seed = 112358
+config = 'configs/curablation/zoomnext_nc_continuous.py'
+data_cfg = './dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+evaluate = False
+exp_name = 'PvtV2B4_ZoomNeXt_NC_Curriculum_BS8'
+has_test = True
+info = None
+load_from = None
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model_name = 'PvtV2B4_ZoomNeXt_NC_Curriculum'
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/log_2026-09-12.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_NC_Curriculum_BS8/exp_0/trainer.txt'
+)
+pretrained = True
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+save_results = False
+test = dict(
+    batch_size=8,
+    clip_range=None,
+    data=dict(names=[
+        'camo_te',
+        'cod10k_te',
+    ], shape=dict(h=384, w=384)),
+    num_workers=8)
+train = dict(
+    batch_size=8,
+    bn=dict(freeze_affine=True, freeze_encoder=False, freeze_status=True),
+    curriculum=dict(
+        continuous_schedule=dict(
+            clean_weight=1.0,
+            enable=True,
+            final_start_epoch=131,
+            noisy=dict(
+                anneal_end_epoch=130,
+                anneal_start_epoch=61,
+                end_weight=0.0,
+                hold_end_epoch=60,
+                mode='cosine',
+                start_weight=1.0)),
+        enable=True,
+        num_samples_per_epoch=4040,
+        pools=dict(
+            clean='./data/pseudo_pool/shape/clean.txt',
+            noisy='./data/pseudo_pool/shape/noisy.txt')),
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384)),
+    ema_kd=dict(enable=False, lambda_kd=0.0),
+    epoch_based=True,
+    grad_acc_step=1,
+    lr=0.0001,
+    num_epochs=150,
+    num_iters=None,
+    num_workers=4,
+    optimizer=dict(
+        cfg=dict(diff_factor=0.1, weight_decay=0),
+        group_mode='finetune',
+        mode='adam',
+        set_to_none=False),
+    save_val_ckpt=True,
+    sche_usebatch=True,
+    scheduler=dict(
+        cfg=dict(gamma=0.1, milestones=60600),
+        mode='step',
+        warmup=dict(initial_coef=0.01, mode='linear', num_iters=0)),
+    use_amp=True,
+    val_interval=5,
+    val_start_epoch=30)
+use_checkpoint = False
+use_custom_worker_init = True
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[basemain_continuous.py] class PvtV2B4_ZoomNeXt_NC_Curriculum(PvtV2B4_ZoomNeXt):
+    """Current PVTv2-B4 ZoomNeXt with the Noisy-COD loss curriculum."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        num_frames=1,
+        input_norm=True,
+        mid_dim=64,
+        siu_groups=4,
+        hmu_groups=6,
+        use_checkpoint=False,
+        q_switch_ratio=0.40,
+        **kwargs,
+    ):
+        # Absorb framework-level optional arguments without changing the
+        # constructor of the original ZoomNeXt implementation.
+        del kwargs
+        super().__init__(
+            pretrained=pretrained,
+            num_frames=num_frames,
+            input_norm=input_norm,
+            mid_dim=mid_dim,
+            siu_groups=siu_groups,
+            hmu_groups=hmu_groups,
+            use_checkpoint=use_checkpoint,
+        )
+        self.curriculum_loss = NoisyCODCurriculumLoss(
+            q_switch_ratio=q_switch_ratio,
+        )
+
+    def forward(self, data, iter_percentage=1.0, **kwargs):
+        del kwargs
+        logits = self.body(data=data)
+
+        # Keep the evaluator contract identical to PvtV2B4_ZoomNeXt.
+        if not self.training:
+            return logits
+
+        if "mask" not in data:
+            raise KeyError("Training requires data['mask'].")
+
+        target = data["mask"].float()
+        if target.ndim == 3:
+            target = target.unsqueeze(1)
+        if target.shape[-2:] != logits.shape[-2:]:
+            target = F.interpolate(
+                target,
+                size=logits.shape[-2:],
+                mode="nearest",
+            )
+        target = target.clamp(0.0, 1.0)
+
+        total_loss, items = self.curriculum_loss(
+            logits=logits,
+            target=target,
+            iter_percentage=iter_percentage,
+        )
+
+        q = float(items["q"])
+        nc = items["nc"]
+        wbce = items["wbce"]
+
+        return {
+            "logits": logits,
+            "vis": {"sal": logits.sigmoid()},
+            "loss": total_loss,
+            "loss_items": {
+                # basemain_continuous.py expects the compatibility key "bce".
+                "bce": wbce,
+                "wbce": wbce,
+                "nc": nc,
+                "q": torch.as_tensor(
+                    q,
+                    device=logits.device,
+                    dtype=logits.dtype,
+                ),
+                "total": total_loss.detach(),
+            },
+            "loss_str": (
+                f"L:{total_loss.detach().item():.4f} "
+                f"NC:{nc.item():.4f} "
+                f"WBCE:{wbce.item():.4f} "
+                f"Q:{q:.1f}"
+            ),
+        }
+
+[basemain_continuous.py] Number of Parameters: 65597344
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/clean.txt, samples=808
+[basemain.py] Length of combined_tr [clean]: 808
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/noisy.txt, samples=1616
+[basemain.py] Length of combined_tr [noisy]: 1616
+[basemain_continuous.py] Continuous C3 pools: clean=808, noisy=1616
+[basemain.py] Curriculum stage [C3_broad_1to1]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 001 Continuous C3 ==================
+[basemain_continuous.py] C3_broad_1to1 | weights C:N=1.0000:1.0000 | expected probs C=50.00%, N=50.00%
+[zoomnext.py] Parameter Groups:{Pretrained: 828, Fixed: 4, ReTrained: 314}
+[basemain_continuous.py] Continuous C3 mode: ENABLED. Saturation detector: OFF. EMA teacher: OFF. EMA-KD: OFF.
+[basemain_continuous.py] Scheduler:
+Scheduler: (
+    num_iters: 75750
+    epoch_length: 505
+    warmup_iter: [0, 0)
+    scheduler_iter: [0, 75749]
+    mode: step
+    scheduler_cfg: {'warmup': {'num_iters': 0, 'initial_coef': 0.01, 'mode': 'linear'}, 'mode': 'step', 'cfg': {'milestones': 60600, 'gamma': 0.1}}
+    initial_lrs: [1e-05, 0.0001]
+    step_by_batch: True
+)
+Optimizer:
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0
+)
+[basemain_continuous.py] Image Mean: tensor([0.4850, 0.4560, 0.4060], device='cuda:0'), Image Std: tensor([0.2290, 0.2240, 0.2250], device='cuda:0')
+[basemain_continuous.py] Exp_Name: PvtV2B4_ZoomNeXt_NC_Curriculum_BS8
+[basemain.py] Curriculum stage [C3_broad_1to1]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 001 Continuous C3 ==================
+[basemain_continuous.py] C3_broad_1to1 | weights C:N=1.0000:1.0000 | expected probs C=50.00%, N=50.00%
+[basemain_continuous.py] ETA: 0:00:00(16.5G) | 0:75750 0/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:1.0292 BCE:0.6091
+[basemain_continuous.py] ETA: 9:41:04(17.3G) | 19:75750 19/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.8509 BCE:0.5070
+[basemain_continuous.py] ETA: 7:47:48(17.3G) | 39:75750 39/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.8670 BCE:0.5278
+[basemain_continuous.py] ETA: 8:42:41(17.3G) | 59:75750 59/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.6811 BCE:0.4212
+[basemain_continuous.py] ETA: 8:48:45(17.3G) | 79:75750 79/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.6340 BCE:0.3802
+[basemain_continuous.py] ETA: 8:42:23(17.3G) | 99:75750 99/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.6859 BCE:0.4082
+[basemain_continuous.py] ETA: 8:42:08(17.3G) | 119:75750 119/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.6000 BCE:0.3575
+[basemain_continuous.py] ETA: 8:42:46(17.3G) | 139:75750 139/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.6453 BCE:0.3793
+[basemain_continuous.py] ETA: 8:42:30(17.3G) | 159:75750 159/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.5633 BCE:0.3445

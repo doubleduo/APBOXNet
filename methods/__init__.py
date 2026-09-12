@@ -4,6 +4,8 @@ from .zoomnext.zoomnext import (
     PvtV2B3_ZoomNeXt,
     PvtV2B4_ZoomNeXt,
     PvtV2B5_ZoomNeXt,
+    PvtV2B4_ZoomNeXt_NC_Curriculum,
+    PvtV2B4_ZoomNeXt_Z3,
     Zoom_DeepNC,
     ConvNeXtB_ZoomNeXt,
     ConvNeXtB384_ZoomNeXt,
@@ -21,4 +23,7 @@ from .fpn_baseline import (
 from .fpn_csr_curriculum import (
     PvtV2B4_FPN_CSR_BCE,
     PvtV2B4_FPN_CSR_NC_Curriculum,
+    PvtV2B4_FPN_CSR_NC_A05,
+    PvtV2B4_FPN_CSR_NC_A06,
+    PvtV2B4_FPN_CSR_NC_A07,
 )

@@ -15,8 +15,8 @@ sampling trajectory:
 
 Run:
     python basemain_continuous.py \
-        --config configs/curablation/zoomnext_nc_continuous.py \
-        --model-name PvtV2B4_ZoomNeXt_NC_Curriculum
+        --config configs/icod_c3_continuous_clean_noisy.py \
+        --model-name PvtV2B4_FPN_Baseline
 
 or:
     python basemain_continuous.py \
@@ -134,48 +134,6 @@ def _append_schedule_csv(
                 f"{noisy_prob:.6f}",
             ]
         )
-
-
-def _append_dynamic_epoch_losses(
-    csv_path,
-    epoch,
-    stage_name,
-    loss_sums,
-    num_batches,
-):
-    """Write every model-provided scalar, including Z3 router diagnostics."""
-    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
-    exists = os.path.isfile(csv_path)
-    denominator = max(int(num_batches), 1)
-    averages = {
-        name: float(value) / denominator
-        for name, value in loss_sums.items()
-    }
-
-    preferred = ["total", "bce", "wbce", "nc", "q"]
-    metric_names = [name for name in preferred if name in averages]
-    metric_names.extend(
-        sorted(name for name in averages if name not in metric_names)
-    )
-    fieldnames = ["epoch", "stage", *metric_names]
-
-    if exists:
-        with open(csv_path, mode="r", encoding="utf-8", newline="") as file:
-            existing_fields = next(csv.reader(file), [])
-        if existing_fields != fieldnames:
-            raise RuntimeError(
-                "loss_metrics.csv columns changed during one experiment. "
-                f"Existing={existing_fields}, current={fieldnames}"
-            )
-
-    row = {"epoch": int(epoch), "stage": str(stage_name)}
-    row.update({name: f"{averages[name]:.6f}" for name in metric_names})
-    with open(csv_path, mode="a", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        if not exists:
-            writer.writeheader()
-        writer.writerow(row)
-    return averages
 
 
 def _prepare_pool_datasets(cfg):
@@ -420,9 +378,10 @@ def train(model, cfg):
                 float(total_loss.detach().item()),
             )
 
-            loss_values = dict(base_loss_values)
-            loss_values["bce"] = float(bce_value)
-            loss_values["total"] = float(total_loss.detach().item())
+            loss_values = {
+                "bce": float(bce_value),
+                "total": float(total_loss.detach().item()),
+            }
 
             loss = total_loss / cfg.train.grad_acc_step
             scaler.calculate_grad(loss=loss)
@@ -484,24 +443,14 @@ def train(model, cfg):
                     f"{counter.curr_epoch}/{counter.num_epochs}"
                 )
 
-                # Prefer the model's own loss breakdown.  NC models report
-                # NC/WBCE/q here, while existing BCE models keep their
-                # original readable string.
-                loss_text = outputs.get(
-                    "loss_str",
-                    (
-                        f"L:{loss_values['total']:.4f} "
-                        f"BCE:{loss_values['bce']:.4f}"
-                    ),
-                )
-
                 LOGGER.info(
                     f"{eta_string}({gpu_mem}) | "
                     f"{progress} | "
                     f"{stage_name} "
                     f"C:{clean_prob:.3f}/N:{noisy_prob:.3f} | "
                     f"LR:{optimizer.lr_string()} | "
-                    f"{loss_text}"
+                    f"L:{loss_values['total']:.4f} "
+                    f"BCE:{loss_values['bce']:.4f}"
                 )
 
                 cfg.tb_logger.write_to_tb(
@@ -519,12 +468,6 @@ def train(model, cfg):
                     loss_recorder.global_avg,
                     counter.curr_iter,
                 )
-                for loss_name, loss_value in base_loss_values.items():
-                    cfg.tb_logger.write_to_tb(
-                        f"loss_item/{loss_name}",
-                        loss_value,
-                        counter.curr_iter,
-                    )
 
             if counter.curr_iter < 3:
                 core.recorder.plot_results(
@@ -570,7 +513,7 @@ def train(model, cfg):
 
         current_epoch = counter.curr_epoch + 1
 
-        epoch_loss_avg = _append_dynamic_epoch_losses(
+        epoch_loss_avg = core._append_epoch_losses(
             csv_path=loss_csv_path,
             epoch=current_epoch,
             stage_name=stage_name,
@@ -583,27 +526,12 @@ def train(model, cfg):
             noisy_weight,
         )
 
-        epoch_details = " ".join(
-            f"{name.upper()}:{epoch_loss_avg[name]:.4f}"
-            for name in (
-                "nc",
-                "scale",
-                "background",
-                "q",
-                "m5_large",
-                "m5_medium",
-                "m2_large",
-                "m2_medium",
-            )
-            if name in epoch_loss_avg
-        )
         LOGGER.info(
             f"Epoch {current_epoch:03d} | "
             f"{stage_name} | "
             f"C:{clean_prob:.3f}/N:{noisy_prob:.3f} | "
             f"L:{epoch_loss_avg['total']:.4f} "
             f"BCE:{epoch_loss_avg['bce']:.4f} | "
-            f"{epoch_details} | "
             "EMA-KD:OFF"
         )
 
@@ -720,12 +648,10 @@ def main():
 
     model_code = inspect.getsource(model_class)
 
-    model_kwargs = dict(cfg.get("model", {}))
     model = model_class(
         num_frames=1,
         pretrained=cfg.pretrained,
         use_checkpoint=cfg.use_checkpoint,
-        **model_kwargs,
     )
 
     LOGGER.info(model_code)
