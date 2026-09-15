@@ -16,6 +16,7 @@ from  .pnet_baseline import (
 
 from .fpn_baseline import (
     PvtV2B4_FPN_Baseline,
+    PvtV2B4_FPN_LFP,
     PvtV2B4_FPN_NC_Curriculum,
     ConvNeXtB384_FPN_Baseline,
 )

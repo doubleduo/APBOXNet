@@ -27,7 +27,7 @@ dataset_infos = dict(
 deterministic = True
 device = 'cuda:0'
 evaluate = False
-exp_name = 'PvtV2B4_FPN_CSR_NC_Curriculum_BS8'
+exp_name = 'PvtV2B4_FPN_LFP_BS8'
 has_test = True
 info = None
 load_from = None
@@ -38,31 +38,31 @@ metric_names = [
     'mae',
     'em',
 ]
-model_name = 'PvtV2B4_FPN_CSR_NC_Curriculum'
+model_name = 'PvtV2B4_FPN_LFP'
 output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout'
 path = dict(
     cfg_copy=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/config.py',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/config.py',
     excel=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/results.xlsx',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/results.xlsx',
     final_full_net=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/pth/checkpoint_final.pth',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/pth/checkpoint_final.pth',
     final_state_net=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/pth/state_final.pth',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/pth/state_final.pth',
     log=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/log_2026-09-13.txt',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/log_2026-09-15.txt',
     output_dir=
     '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout',
     pth=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/pth',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/pth',
     pth_log=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0',
     save=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/pre',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/pre',
     tb=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/tb',
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/tb',
     trainer_copy=
-    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_4/trainer.txt'
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_FPN_LFP_BS8/exp_0/trainer.txt'
 )
 pretrained = True
 proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
@@ -97,7 +97,7 @@ train = dict(
             noisy='./data/pseudo_pool/shape/noisy.txt')),
     data=dict(names=[
         'combined_tr',
-    ], shape=dict(h=576, w=576)),
+    ], shape=dict(h=384, w=384)),
     ema_kd=dict(enable=False, lambda_kd=0.0),
     epoch_based=True,
     grad_acc_step=1,

@@ -226,6 +226,248 @@ class PvtV2B4_FPN_Baseline(nn.Module):
 
 
 
+# -*- coding: utf-8 -*-
+"""
+PVTv2-B4 + plain FPN + LFP ablation for APBOXNet.
+
+Drop this file into:
+    APBOXNet/methods/fpn_lfp.py
+
+This keeps PvtV2B4_FPN_Baseline unchanged except for inserting LFP after
+all four lateral 1x1 projections and before the original top-down FPN.
+
+LFP follows the official NS-FPN logic/hyperparameters:
+- 1-level Haar DWT
+- LL-guided spatial attention for LH/HL/HH
+- gated 3x3 Gaussian filtering of weak HF responses
+- learnable sigma initialized to 1.0
+- gauss_gate = 0.5
+- inverse DWT reconstruction
+
+For easier APBOXNet ablation this port implements Haar DWT/IDWT directly
+in PyTorch, so no extra pytorch_wavelets dependency is required.
+"""
+
+
+
+
+class HaarDWT(nn.Module):
+    """Orthonormal one-level 2D Haar DWT."""
+
+    def forward(self, x):
+        # Guard odd shapes. PVTv2-B4 @ 384 normally gives even 96/48/24/12.
+        h, w = x.shape[-2:]
+        pad_h = h % 2
+        pad_w = w % 2
+        if pad_h or pad_w:
+            x = F.pad(x, (0, pad_w, 0, pad_h), mode="replicate")
+
+        a = x[..., 0::2, 0::2]
+        b = x[..., 0::2, 1::2]
+        c = x[..., 1::2, 0::2]
+        d = x[..., 1::2, 1::2]
+
+        # Orthonormal Haar. Sign/order conventions of HF bands do not affect
+        # LFP because all three bands share the same spatial gate and Gaussian.
+        ll = (a + b + c + d) * 0.5
+        lh = (-a - b + c + d) * 0.5
+        hl = (-a + b - c + d) * 0.5
+        hh = (a - b - c + d) * 0.5
+        yh = torch.cat([lh, hl, hh], dim=1)
+        return ll, yh
+
+
+class HaarIDWT(nn.Module):
+    """Inverse of HaarDWT."""
+
+    def forward(self, ll, yh):
+        lh, hl, hh = torch.chunk(yh, 3, dim=1)
+
+        a = (ll - lh - hl + hh) * 0.5
+        b = (ll - lh + hl - hh) * 0.5
+        c = (ll + lh - hl - hh) * 0.5
+        d = (ll + lh + hl + hh) * 0.5
+
+        bsz, ch, h, w = ll.shape
+        out = ll.new_empty(bsz, ch, h * 2, w * 2)
+        out[..., 0::2, 0::2] = a
+        out[..., 0::2, 1::2] = b
+        out[..., 1::2, 0::2] = c
+        out[..., 1::2, 1::2] = d
+        return out
+
+
+class SpatialAttention(nn.Module):
+    """Low-frequency spatial attention used by LFP."""
+
+    def __init__(self, kernel_size=7):
+        super().__init__()
+        if kernel_size not in (3, 7):
+            raise ValueError("kernel_size must be 3 or 7")
+        padding = 3 if kernel_size == 7 else 1
+        self.conv = nn.Conv2d(
+            2, 1, kernel_size=kernel_size, padding=padding, bias=False
+        )
+
+    def forward(self, x):
+        avg_out = torch.mean(x, dim=1, keepdim=True)
+        max_out = torch.max(x, dim=1, keepdim=True).values
+        return torch.sigmoid(self.conv(torch.cat([avg_out, max_out], dim=1)))
+
+
+class LearnableGaussianFilter(nn.Module):
+    """Depthwise Gaussian filter with learnable sigma, initialized to 1.0."""
+
+    def __init__(self, channels, kernel_size=3, sigma_init=1.0):
+        super().__init__()
+        self.channels = int(channels)
+        self.kernel_size = int(kernel_size)
+        self.padding = self.kernel_size // 2
+        self.sigma = nn.Parameter(torch.tensor(float(sigma_init)))
+
+    def _kernel(self, x):
+        radius = self.kernel_size // 2
+        coords = torch.arange(
+            -radius,
+            radius + 1,
+            device=x.device,
+            dtype=torch.float32,
+        )
+        yy, xx = torch.meshgrid(coords, coords, indexing="ij")
+        sigma = self.sigma.float().clamp_min(1e-4)
+        kernel = torch.exp(
+            -(xx.square() + yy.square()) / (2.0 * sigma.square())
+        )
+        kernel = kernel / kernel.sum().clamp_min(1e-12)
+        return kernel.view(1, 1, self.kernel_size, self.kernel_size)
+
+    def forward(self, x):
+        kernel = self._kernel(x)
+        weight = kernel.repeat(self.channels, 1, 1, 1)
+        x_pad = F.pad(
+            x.float(),
+            (self.padding, self.padding, self.padding, self.padding),
+            mode="replicate",
+        )
+        y = F.conv2d(x_pad, weight, groups=self.channels)
+        return y.to(dtype=x.dtype)
+
+
+class LFP(nn.Module):
+    """Low-frequency Guided Feature Purification."""
+
+    def __init__(
+        self,
+        in_channels,
+        with_gauss=True,
+        gauss_gate=0.5,
+    ):
+        super().__init__()
+        self.in_channels = int(in_channels)
+        self.with_gauss = bool(with_gauss)
+        self.gauss_gate = float(gauss_gate)
+
+        self.dwt = HaarDWT()
+        self.idwt = HaarIDWT()
+        self.attention = SpatialAttention(kernel_size=7)
+
+        if self.with_gauss:
+            self.gaussian_filter = LearnableGaussianFilter(
+                channels=3 * self.in_channels,
+                kernel_size=3,
+                sigma_init=1.0,
+            )
+
+    def forward(self, x):
+        _, c, h, w = x.shape
+        if c != self.in_channels:
+            raise RuntimeError(
+                f"LFP expected {self.in_channels} channels, got {c}"
+            )
+
+        # Official implementation performs wavelet operations in fp32.
+        input_dtype = x.dtype
+        x_work = x.float()
+
+        ll, yh = self.dwt(x_work)
+
+        # Stage 1: LL predicts potential target locations and gates HF bands.
+        att = self.attention(ll)
+        yh = yh * att
+
+        # Stage 2: only weak HF responses are Gaussian-smoothed.
+        if self.with_gauss:
+            yh_blurred = self.gaussian_filter(yh)
+            weak_mask = (yh.abs() < self.gauss_gate).to(yh.dtype)
+            yh = yh * (1.0 - weak_mask) + yh_blurred * weak_mask
+
+        x_rec = self.idwt(ll, yh)
+        x_rec = x_rec[..., :h, :w]
+        return x_rec.to(dtype=input_dtype)
+
+
+class PvtV2B4_FPN_LFP(PvtV2B4_FPN_Baseline):
+    """
+    Clean LFP-only ablation for APBOXNet's PvtV2B4_FPN_Baseline.
+
+    Unchanged:
+      encoder / fpn_dim / bilinear top-down / smooth convs / predictor /
+      BCE loss / optimizer parameter grouping.
+
+    Changed:
+      lateral_2..5 output -> LFP -> original top-down FPN.
+    """
+
+    def __init__(
+        self,
+        pretrained=True,
+        input_norm=True,
+        fpn_dim=64,
+        use_checkpoint=False,
+        lfp_with_gauss=True,
+        lfp_gauss_gate=0.5,
+        **kwargs,
+    ):
+        super().__init__(
+            pretrained=pretrained,
+            input_norm=input_norm,
+            fpn_dim=fpn_dim,
+            use_checkpoint=use_checkpoint,
+            **kwargs,
+        )
+
+        lfp_kwargs = dict(
+            in_channels=fpn_dim,
+            with_gauss=lfp_with_gauss,
+            gauss_gate=lfp_gauss_gate,
+        )
+        self.lfp_2 = LFP(**lfp_kwargs)
+        self.lfp_3 = LFP(**lfp_kwargs)
+        self.lfp_4 = LFP(**lfp_kwargs)
+        self.lfp_5 = LFP(**lfp_kwargs)
+
+    def body(self, data):
+        image = data["image_m"]
+        c2, c3, c4, c5 = self.normalize_encoder(image)
+
+        # Only change vs baseline: LFP after each lateral projection.
+        l2 = self.lfp_2(self.lateral_2(c2))
+        l3 = self.lfp_3(self.lateral_3(c3))
+        l4 = self.lfp_4(self.lateral_4(c4))
+        l5 = self.lfp_5(self.lateral_5(c5))
+
+        p5 = self.smooth_5(l5)
+        p4 = self.smooth_4(l4 + self._resize_like(p5, c4))
+        p3 = self.smooth_3(l3 + self._resize_like(p4, c3))
+        p2 = self.smooth_2(l2 + self._resize_like(p3, c2))
+
+        logits = self.predictor(p2)
+        return F.interpolate(
+            logits,
+            size=image.shape[-2:],
+            mode="bilinear",
+            align_corners=False,
+        )
 
 
 

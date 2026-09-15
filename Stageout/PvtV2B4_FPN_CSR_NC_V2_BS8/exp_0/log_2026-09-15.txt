@@ -5089,3 +5089,5 @@ Parameter Group 1
 [basemain_continuous.py] Total Training Time: 4:10:31 (1:06:28 on others)
 [basemain.py] dataset      |      S |     Fw |      E |    MAE
 [basemain.py] camo_te      |  0.841 |  0.797 |  0.907 |  0.063
+[basemain.py] cod10k_te    |  0.876 |  0.811 |  0.940 |  0.024
+[basemain_continuous.py] End training...
