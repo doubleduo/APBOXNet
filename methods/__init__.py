@@ -23,7 +23,13 @@ from .fpn_baseline import (
 from .fpn_csr_curriculum import (
     PvtV2B4_FPN_CSR_BCE,
     PvtV2B4_FPN_CSR_NC_Curriculum,
+    PvtV2B4_FPN_CSR_RGPU_NC_Curriculum,
     PvtV2B4_FPN_CSR_NC_A05,
     PvtV2B4_FPN_CSR_NC_A06,
     PvtV2B4_FPN_CSR_NC_A07,
+)
+from .fpn_csr_nc import (
+    PvtV2B4_FPN_NC_V2,
+    PvtV2B4_FPN_CSR_V2_BCE,
+    PvtV2B4_FPN_CSR_NC_V2,
 )

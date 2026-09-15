@@ -5149,3 +5149,20 @@ Parameter Group 1
 [basemain_continuous.py] ETA: 0:01:10(17.9G) | 75579:75750 334/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0666 NC:0.0333 WBCE:0.0165 Q:1.0
 [basemain_continuous.py] ETA: 0:01:02(17.9G) | 75599:75750 354/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0664 NC:0.0332 WBCE:0.0140 Q:1.0
 [basemain_continuous.py] ETA: 0:00:53(17.9G) | 75619:75750 374/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0532 NC:0.0266 WBCE:0.0239 Q:1.0
+[basemain_continuous.py] ETA: 0:00:45(17.9G) | 75639:75750 394/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0370 NC:0.0185 WBCE:0.0256 Q:1.0
+[basemain_continuous.py] ETA: 0:00:37(17.9G) | 75659:75750 414/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0449 NC:0.0224 WBCE:0.0233 Q:1.0
+[basemain_continuous.py] ETA: 0:00:28(17.9G) | 75679:75750 434/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0559 NC:0.0280 WBCE:0.0131 Q:1.0
+[basemain_continuous.py] ETA: 0:00:20(17.9G) | 75699:75750 454/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0792 NC:0.0396 WBCE:0.0131 Q:1.0
+[basemain_continuous.py] ETA: 0:00:12(17.9G) | 75719:75750 474/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0643 NC:0.0321 WBCE:0.0208 Q:1.0
+[basemain_continuous.py] ETA: 0:00:02(17.9G) | 75739:75750 494/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0917 NC:0.0459 WBCE:0.0444 Q:1.0
+[basemain_continuous.py] ETA: 0:00:00(17.9G) | 75749:75750 504/505 149/150 | C3_reliable_0p3 C:1.000/N:0.000 | LR:1.000e-06,1.000e-05 | L:0.0969 NC:0.0484 WBCE:0.0361 Q:1.0
+[basemain_continuous.py] Epoch 150 | C3_reliable_0p3 | C:1.000/N:0.000 | L:0.0582 BCE:0.0226 | NC:0.0291 Q:1.0000 | EMA-KD:OFF
+[basemain_continuous.py] ========================= Validation Epoch 150 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.847 |  0.808 |  0.909 |  0.055
+[basemain.py] cod10k_te    |  0.870 |  0.806 |  0.936 |  0.023
+[basemain_continuous.py] Total Training Time: 8:33:54 (1:24:24 on others)
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.847 |  0.808 |  0.909 |  0.055
+[basemain.py] cod10k_te    |  0.870 |  0.806 |  0.936 |  0.023
+[basemain_continuous.py] End training...

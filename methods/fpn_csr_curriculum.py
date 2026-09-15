@@ -21,6 +21,7 @@ Design
        PvtV2B4_FPN_CSR_BCE
        PvtV2B4_FPN_CSR_NC_Curriculum
        PvtV2B4_FPN_CSR_NC_A05 / A06 / A07
+       PvtV2B4_FPN_CSR_RGPU_NC_Curriculum
 
 No box is consumed in this B2 implementation. The returned scale attention is
 kept for logging and for the next B3 experiment (box-supervised scale routing).
@@ -34,6 +35,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from .backbone.pvt_v2_eff import pvt_v2_eff_b4
+from .zoomnext.layers import RGPU
 from .zoomnext.ops import ConvBNReLU, PixelNormalizer
 
 LOGGER = logging.getLogger("main")
@@ -354,6 +356,11 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
         fpn_dim=64,
         csr_groups=4,
         csr_alpha_max=1.0,
+        use_rgpu=False,
+        rgpu_groups=6,
+        rgpu_levels=(5, 4, 3, 2),
+        rgpu_residual_max=1.0,
+        num_frames=1,
         use_checkpoint=False,
         **kwargs,
     ):
@@ -417,6 +424,51 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
         self.zero_4 = ZeroResidualProjection(fpn_dim)
         self.zero_3 = ZeroResidualProjection(fpn_dim)
 
+        # Optional original ZoomNeXt RGPU refinement.  Keeping this behind a
+        # switch guarantees that the existing CSR and CSR+NC models remain
+        # exact architectural baselines for the RGPU ablation.
+        allowed_rgpu_levels = {2, 3, 4, 5}
+        requested_rgpu_levels = tuple(
+            dict.fromkeys(int(level) for level in rgpu_levels)
+        )
+        unknown_levels = (
+            set(requested_rgpu_levels) - allowed_rgpu_levels
+        )
+        if unknown_levels:
+            raise ValueError(
+                "rgpu_levels can only contain 2, 3, 4, 5, "
+                f"but got {sorted(unknown_levels)}."
+            )
+
+        self.rgpu_levels = (
+            requested_rgpu_levels if use_rgpu else tuple()
+        )
+        self.rgpu_residual_max = float(rgpu_residual_max)
+        if self.rgpu_residual_max <= 0:
+            raise ValueError(
+                "rgpu_residual_max must be positive, "
+                f"but got {self.rgpu_residual_max}."
+            )
+        self.rgpu = nn.ModuleDict(
+            {
+                str(level): RGPU(
+                    in_c=fpn_dim,
+                    num_groups=rgpu_groups,
+                    num_frames=num_frames,
+                )
+                for level in self.rgpu_levels
+            }
+        )
+        # ReZero-style per-level mixing keeps the new model exactly equal to
+        # its no-RGPU control at initialization.  tanh bounds every learned
+        # correction while still giving the mixing scalar a gradient at zero.
+        self.rgpu_mix = nn.ParameterDict(
+            {
+                str(level): nn.Parameter(torch.zeros(()))
+                for level in self.rgpu_levels
+            }
+        )
+
         self.predictor = nn.Sequential(
             ConvBNReLU(fpn_dim, 32, 3, 1, 1),
             nn.Conv2d(32, 1, kernel_size=1),
@@ -446,6 +498,28 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
         # [B,G,3,H,W] -> [3]
         return attn.detach().mean(dim=(0, 1, 3, 4))
 
+    def _apply_rgpu(self, level, feature, diagnostics):
+        """Refine one FPN level and record its relative correction size."""
+        key = str(level)
+        if key not in self.rgpu:
+            return feature
+
+        candidate = self.rgpu[key](feature)
+        mix = self.rgpu_residual_max * torch.tanh(
+            self.rgpu_mix[key]
+        )
+        refined = feature + mix.to(feature.dtype) * (
+            candidate - feature
+        )
+        with torch.no_grad():
+            delta_magnitude = (refined - feature).float().abs().mean()
+            base_magnitude = feature.float().abs().mean().clamp_min(1e-6)
+            diagnostics[f"rgpu_p{level}_ratio"] = (
+                delta_magnitude / base_magnitude
+            )
+            diagnostics[f"rgpu_p{level}_mix"] = mix.detach()
+        return refined
+
     def body(
         self,
         data,
@@ -459,8 +533,11 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
         l4 = self.lateral_4(c4)
         l5 = self.lateral_5(c5)
 
+        rgpu_diagnostics = {}
+
         # Permanent original FPN path at P5.
         p5 = self.smooth_5(l5)
+        p5 = self._apply_rgpu(5, p5, rgpu_diagnostics)
 
         # ---------------------------
         # P4: original FPN + CSR residual
@@ -479,6 +556,7 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
             alpha_max=self.csr_alpha_max,
         )
         p4 = p4_base + alpha * self.zero_4(z4)
+        p4 = self._apply_rgpu(4, p4, rgpu_diagnostics)
 
         # ---------------------------
         # P3: original FPN + CSR residual
@@ -492,11 +570,13 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
             context=p4,
         )
         p3 = p3_base + alpha * self.zero_3(z3)
+        p3 = self._apply_rgpu(3, p3, rgpu_diagnostics)
 
-        # P2 stays unchanged to avoid directly amplifying pseudo-boundary noise.
+        # P2 has no CSR branch; the RGPU variant may still refine it.
         p2 = self.smooth_2(
             l2 + self._resize_like(p3, l2)
         )
+        p2 = self._apply_rgpu(2, p2, rgpu_diagnostics)
 
         logits = self.predictor(p2)
         logits = F.interpolate(
@@ -510,6 +590,7 @@ class _PvtV2B4_FPN_CSR_Base(nn.Module):
             "alpha": float(alpha),
             "a4": a4,
             "a3": a3,
+            "rgpu_diagnostics": rgpu_diagnostics,
         }
         return logits, aux
 
@@ -660,32 +741,35 @@ class PvtV2B4_FPN_CSR_NC_Curriculum(
         a3_mean = self._mean_route(aux["a3"])
         a4_mean = self._mean_route(aux["a4"])
 
+        loss_items = {
+            # Preserve trainer compatibility.
+            "bce": wbce,
+            "nc": nc,
+            "q": torch.tensor(
+                q,
+                device=logits.device,
+                dtype=logits.dtype,
+            ),
+            "csr_alpha": torch.tensor(
+                aux["alpha"],
+                device=logits.device,
+                dtype=logits.dtype,
+            ),
+            "p3_fine": a3_mean[0],
+            "p3_current": a3_mean[1],
+            "p3_context": a3_mean[2],
+            "p4_fine": a4_mean[0],
+            "p4_current": a4_mean[1],
+            "p4_context": a4_mean[2],
+            "total": total.detach(),
+        }
+        loss_items.update(aux["rgpu_diagnostics"])
+
         return {
             "logits": logits,
             "vis": {"sal": logits.sigmoid()},
             "loss": total,
-            "loss_items": {
-                # Preserve trainer compatibility.
-                "bce": wbce,
-                "nc": nc,
-                "q": torch.tensor(
-                    q,
-                    device=logits.device,
-                    dtype=logits.dtype,
-                ),
-                "csr_alpha": torch.tensor(
-                    aux["alpha"],
-                    device=logits.device,
-                    dtype=logits.dtype,
-                ),
-                "p3_fine": a3_mean[0],
-                "p3_current": a3_mean[1],
-                "p3_context": a3_mean[2],
-                "p4_fine": a4_mean[0],
-                "p4_current": a4_mean[1],
-                "p4_context": a4_mean[2],
-                "total": total.detach(),
-            },
+            "loss_items": loss_items,
             "loss_str": (
                 f"L:{total.detach().item():.4f} "
                 f"NC:{nc.item():.4f} "
@@ -694,6 +778,25 @@ class PvtV2B4_FPN_CSR_NC_Curriculum(
                 f"A:{aux['alpha']:.3f}"
             ),
         }
+
+
+class PvtV2B4_FPN_CSR_RGPU_NC_Curriculum(
+    PvtV2B4_FPN_CSR_NC_Curriculum
+):
+    """CSR+NC with zero-gated ZoomNeXt RGPU at P5/P4/P3/P2."""
+
+    def __init__(
+        self,
+        rgpu_groups=6,
+        rgpu_levels=(5, 4, 3, 2),
+        rgpu_residual_max=1.0,
+        **kwargs,
+    ):
+        kwargs["use_rgpu"] = True
+        kwargs["rgpu_groups"] = rgpu_groups
+        kwargs["rgpu_levels"] = rgpu_levels
+        kwargs["rgpu_residual_max"] = rgpu_residual_max
+        super().__init__(**kwargs)
 
 
 class PvtV2B4_FPN_CSR_NC_A05(

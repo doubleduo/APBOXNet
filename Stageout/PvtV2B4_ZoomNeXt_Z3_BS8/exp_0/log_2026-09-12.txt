@@ -1,0 +1,523 @@
+=== log 2026-09-12 11:57:22.954987 ===
+[basemain.py] base_seed = 112358
+config = 'configs/curablation/zoomnext_z3_continuous.py'
+data_cfg = './dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+evaluate = False
+exp_name = 'PvtV2B4_ZoomNeXt_Z3_BS8'
+has_test = True
+info = None
+load_from = None
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model = dict(
+    background_full_ratio=0.4,
+    background_margin=0.1,
+    background_start_ratio=0.1,
+    background_temperature=0.2,
+    background_weight=0.1,
+    large_box_ratio=0.5,
+    large_branch_prior_max=0.8,
+    large_branch_prior_min=0.2,
+    q_switch_ratio=0.4,
+    scale_weight_end=0.05,
+    scale_weight_start=0.2,
+    small_box_ratio=0.1,
+    uncertain_box_weight=0.25)
+model_name = 'PvtV2B4_ZoomNeXt_Z3'
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/log_2026-09-12.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Z3_BS8/exp_0/trainer.txt'
+)
+pretrained = True
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+save_results = False
+test = dict(
+    batch_size=8,
+    clip_range=None,
+    data=dict(names=[
+        'camo_te',
+        'cod10k_te',
+    ], shape=dict(h=384, w=384)),
+    num_workers=8)
+train = dict(
+    batch_size=8,
+    bn=dict(freeze_affine=True, freeze_encoder=False, freeze_status=True),
+    curriculum=dict(
+        continuous_schedule=dict(
+            clean_weight=1.0,
+            enable=True,
+            final_start_epoch=131,
+            noisy=dict(
+                anneal_end_epoch=130,
+                anneal_start_epoch=61,
+                end_weight=0.0,
+                hold_end_epoch=60,
+                mode='cosine',
+                start_weight=1.0)),
+        enable=True,
+        num_samples_per_epoch=4040,
+        pools=dict(
+            clean='./data/pseudo_pool/shape/clean.txt',
+            noisy='./data/pseudo_pool/shape/noisy.txt')),
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384), use_box=True),
+    ema_kd=dict(enable=False, lambda_kd=0.0),
+    epoch_based=True,
+    grad_acc_step=1,
+    lr=0.0001,
+    num_epochs=150,
+    num_iters=None,
+    num_workers=4,
+    optimizer=dict(
+        cfg=dict(diff_factor=0.1, weight_decay=0),
+        group_mode='finetune',
+        mode='adam',
+        set_to_none=False),
+    save_val_ckpt=True,
+    sche_usebatch=True,
+    scheduler=dict(
+        cfg=dict(gamma=0.1, milestones=60600),
+        mode='step',
+        warmup=dict(initial_coef=0.01, mode='linear', num_iters=0)),
+    use_amp=True,
+    val_interval=5,
+    val_start_epoch=30)
+use_checkpoint = False
+use_custom_worker_init = True
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[basemain_continuous.py] class PvtV2B4_ZoomNeXt_Z3(PvtV2B4_ZoomNeXt_NC_Curriculum):
+    """Z3 model with training-only box routing/background constraints."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        num_frames=1,
+        input_norm=True,
+        mid_dim=64,
+        siu_groups=4,
+        hmu_groups=6,
+        use_checkpoint=False,
+        q_switch_ratio=0.40,
+        scale_weight_start=0.20,
+        scale_weight_end=0.05,
+        background_weight=0.10,
+        background_start_ratio=0.10,
+        background_full_ratio=0.40,
+        small_box_ratio=0.10,
+        large_box_ratio=0.50,
+        large_branch_prior_min=0.20,
+        large_branch_prior_max=0.80,
+        uncertain_box_weight=0.25,
+        background_margin=0.10,
+        background_temperature=0.20,
+        **kwargs,
+    ):
+        super().__init__(
+            pretrained=pretrained,
+            num_frames=num_frames,
+            input_norm=input_norm,
+            mid_dim=mid_dim,
+            siu_groups=siu_groups,
+            hmu_groups=hmu_groups,
+            use_checkpoint=use_checkpoint,
+            q_switch_ratio=q_switch_ratio,
+            **kwargs,
+        )
+
+        # Same parameterization as MHSIU2; only the attention return changes.
+        self.siu_5 = MHSIU2WithAttention(mid_dim, siu_groups)
+        self.siu_4 = MHSIU2WithAttention(mid_dim, siu_groups)
+        self.siu_3 = MHSIU2WithAttention(mid_dim, siu_groups)
+        self.siu_2 = MHSIU2WithAttention(mid_dim, siu_groups)
+
+        if not 0.0 <= small_box_ratio < large_box_ratio <= 1.0:
+            raise ValueError("Require 0 <= small_box_ratio < large_box_ratio <= 1.")
+        if not (
+            0.0 <= large_branch_prior_min
+            <= large_branch_prior_max <= 1.0
+        ):
+            raise ValueError(
+                "Require 0 <= large_branch_prior_min <= "
+                "large_branch_prior_max <= 1."
+            )
+        if not 0.0 <= uncertain_box_weight <= 1.0:
+            raise ValueError("uncertain_box_weight must be in [0, 1].")
+        if not 0.0 < background_temperature:
+            raise ValueError("background_temperature must be positive.")
+
+        self.scale_weight_start = float(scale_weight_start)
+        self.scale_weight_end = float(scale_weight_end)
+        self.background_weight = float(background_weight)
+        self.background_start_ratio = float(background_start_ratio)
+        self.background_full_ratio = float(background_full_ratio)
+        self.small_box_ratio = float(small_box_ratio)
+        self.large_box_ratio = float(large_box_ratio)
+        self.large_branch_prior_min = float(large_branch_prior_min)
+        self.large_branch_prior_max = float(large_branch_prior_max)
+        self.uncertain_box_weight = float(uncertain_box_weight)
+        self.background_margin = float(background_margin)
+        self.background_temperature = float(background_temperature)
+
+    def body_with_aux(self, data):
+        large_features = self.normalize_encoder(data["image_l"])
+        medium_features = self.normalize_encoder(data["image_m"])
+
+        l5 = self.tra_5(large_features[3])
+        m5 = self.tra_5(medium_features[3])
+        z5, a5 = self.siu_5(l=l5, m=m5)
+        x5 = self.hmu_5(z5)
+
+        l4 = self.tra_4(large_features[2])
+        m4 = self.tra_4(medium_features[2])
+        z4, a4 = self.siu_4(l=l4, m=m4)
+        x4 = self.hmu_4(z4 + resize_to(x5, tgt_hw=z4.shape[-2:]))
+
+        l3 = self.tra_3(large_features[1])
+        m3 = self.tra_3(medium_features[1])
+        z3, a3 = self.siu_3(l=l3, m=m3)
+        x3 = self.hmu_3(z3 + resize_to(x4, tgt_hw=z3.shape[-2:]))
+
+        l2 = self.tra_2(large_features[0])
+        m2 = self.tra_2(medium_features[0])
+        z2, a2 = self.siu_2(l=l2, m=m2)
+        x2 = self.hmu_2(z2 + resize_to(x3, tgt_hw=z2.shape[-2:]))
+
+        logits = self.predictor(self.tra_1(x2))
+        return logits, {
+            "attention": (a5, a4, a3, a2),
+            "decoder_feature": x2,
+        }
+
+    @staticmethod
+    def _prepare_box_mask(data, target_size):
+        if "box_mask" not in data:
+            raise KeyError(
+                "Z3 training requires data['box_mask']. Set "
+                "train.data.use_box=True in the config."
+            )
+        box_mask = data["box_mask"].float()
+        if box_mask.ndim == 3:
+            box_mask = box_mask.unsqueeze(1)
+        if box_mask.shape[-2:] != tuple(target_size):
+            box_mask = F.interpolate(
+                box_mask,
+                size=target_size,
+                mode="nearest",
+            )
+        box_mask = box_mask.clamp(0.0, 1.0)
+        if bool((box_mask.flatten(1).sum(dim=1) <= 0).any()):
+            raise ValueError("Every Z3 training sample must contain a non-empty box.")
+        return box_mask
+
+    def _box_scale_prior(self, box_mask):
+        area_ratio = box_mask.mean(dim=(1, 2, 3))
+        normalized = (
+            (area_ratio - self.small_box_ratio)
+            / (self.large_box_ratio - self.small_box_ratio)
+        ).clamp(0.0, 1.0)
+
+        # Branch order follows MHSIU2: [large-input 1.5x, medium-input 1.0x].
+        large_prior = self.large_branch_prior_max + normalized * (
+            self.large_branch_prior_min - self.large_branch_prior_max
+        )
+        prior = torch.stack([large_prior, 1.0 - large_prior], dim=1)
+
+        # BO and boundary-touching boxes have less reliable size semantics.
+        touches_border = (
+            (box_mask[:, :, 0, :].amax(dim=(1, 2)) > 0.5)
+            | (box_mask[:, :, -1, :].amax(dim=(1, 2)) > 0.5)
+            | (box_mask[:, :, :, 0].amax(dim=(1, 2)) > 0.5)
+            | (box_mask[:, :, :, -1].amax(dim=(1, 2)) > 0.5)
+        )
+        uncertain = (area_ratio >= self.large_box_ratio) | touches_border
+        reliability = torch.where(
+            uncertain,
+            torch.full_like(area_ratio, self.uncertain_box_weight),
+            torch.ones_like(area_ratio),
+        )
+        return prior, reliability, area_ratio
+
+    def _scale_routing_loss(self, attentions, box_mask):
+        prior, reliability, area_ratio = self._box_scale_prior(box_mask)
+        stage_losses = []
+        route_means = []
+
+        for attention in attentions:
+            stage_box = F.interpolate(
+                box_mask,
+                size=attention.shape[-2:],
+                mode="nearest",
+            ).unsqueeze(1)
+            denominator = (
+                stage_box.sum(dim=(1, 3, 4))
+                * attention.shape[1]
+            ).clamp_min(1.0)
+            route = (attention * stage_box).sum(dim=(1, 3, 4)) / denominator
+            route = route.clamp_min(1e-6)
+            route = route / route.sum(dim=1, keepdim=True)
+
+            sample_kl = (
+                prior * (prior.clamp_min(1e-6).log() - route.log())
+            ).sum(dim=1)
+            stage_losses.append(
+                (sample_kl * reliability).sum()
+                / reliability.sum().clamp_min(1e-6)
+            )
+            route_means.append(route.detach().mean(dim=0))
+
+        return torch.stack(stage_losses).mean(), route_means, area_ratio
+
+    def _background_prototype_loss(self, feature, box_mask, target):
+        feature_box = F.interpolate(
+            box_mask,
+            size=feature.shape[-2:],
+            mode="nearest",
+        )
+        target_small = F.interpolate(
+            target,
+            size=feature.shape[-2:],
+            mode="nearest",
+        )
+        outside = (1.0 - feature_box).clamp(0.0, 1.0)
+        foreground = (target_small * feature_box).clamp(0.0, 1.0)
+
+        outside_count = outside.sum(dim=(2, 3), keepdim=True)
+        foreground_count = foreground.sum(dim=(2, 3), keepdim=True)
+        valid = (
+            (outside_count.flatten(1).squeeze(1) > 0)
+            & (foreground_count.flatten(1).squeeze(1) > 0)
+        )
+        if not bool(valid.any()):
+            return feature.sum() * 0.0
+
+        normalized_feature = F.normalize(feature, dim=1, eps=1e-6)
+        prototype = (
+            normalized_feature * outside
+        ).sum(dim=(2, 3), keepdim=True) / outside_count.clamp_min(1.0)
+        prototype = F.normalize(prototype, dim=1, eps=1e-6).detach()
+        similarity = (normalized_feature * prototype).sum(dim=1, keepdim=True)
+
+        background_reference = (
+            (similarity * outside).sum(dim=(2, 3), keepdim=True)
+            / outside_count.clamp_min(1.0)
+        ).detach()
+        ranking = F.softplus(
+            (
+                similarity
+                - background_reference
+                + self.background_margin
+            )
+            / self.background_temperature
+        )
+        per_sample = (
+            (ranking * foreground).sum(dim=(1, 2, 3))
+            / foreground.sum(dim=(1, 2, 3)).clamp_min(1.0)
+        )
+        return per_sample[valid].mean()
+
+    def _loss_weights(self, iter_percentage):
+        progress = min(max(float(iter_percentage), 0.0), 1.0)
+        scale_weight = _cosine_lerp(
+            self.scale_weight_start,
+            self.scale_weight_end,
+            progress,
+        )
+        if progress <= self.background_start_ratio:
+            background_weight = 0.0
+        elif progress >= self.background_full_ratio:
+            background_weight = self.background_weight
+        else:
+            local = (
+                (progress - self.background_start_ratio)
+                / max(
+                    self.background_full_ratio - self.background_start_ratio,
+                    1e-6,
+                )
+            )
+            background_weight = _cosine_lerp(0.0, self.background_weight, local)
+        return scale_weight, background_weight
+
+    def forward(self, data, iter_percentage=1.0, **kwargs):
+        del kwargs
+        logits, aux = self.body_with_aux(data)
+
+        if not self.training:
+            return logits
+
+        if "mask" not in data:
+            raise KeyError("Z3 training requires data['mask'].")
+        target = data["mask"].float()
+        if target.ndim == 3:
+            target = target.unsqueeze(1)
+        if target.shape[-2:] != logits.shape[-2:]:
+            target = F.interpolate(target, size=logits.shape[-2:], mode="nearest")
+        target = target.clamp(0.0, 1.0)
+        box_mask = self._prepare_box_mask(data, target.shape[-2:])
+
+        nc_loss, nc_items = self.curriculum_loss(
+            logits=logits,
+            target=target,
+            iter_percentage=iter_percentage,
+        )
+        scale_raw, route_means, area_ratio = self._scale_routing_loss(
+            aux["attention"],
+            box_mask,
+        )
+        background_raw = self._background_prototype_loss(
+            aux["decoder_feature"],
+            box_mask,
+            target,
+        )
+        scale_weight, background_weight = self._loss_weights(iter_percentage)
+        scale_loss = float(scale_weight) * scale_raw
+        background_loss = float(background_weight) * background_raw
+        total_loss = nc_loss + scale_loss + background_loss
+
+        q = float(nc_items["q"])
+        nc = nc_items["nc"]
+        wbce = nc_items["wbce"]
+        loss_items = {
+            "bce": wbce,
+            "wbce": wbce,
+            "nc": nc,
+            "scale": scale_loss.detach(),
+            "scale_raw": scale_raw.detach(),
+            "background": background_loss.detach(),
+            "background_raw": background_raw.detach(),
+            "q": logits.new_tensor(q),
+            "scale_weight": logits.new_tensor(scale_weight),
+            "background_weight": logits.new_tensor(background_weight),
+            "box_area": area_ratio.detach().mean(),
+            "total": total_loss.detach(),
+        }
+        for level, route in zip((5, 4, 3, 2), route_means):
+            loss_items[f"m{level}_large"] = route[0]
+            loss_items[f"m{level}_medium"] = route[1]
+
+        return {
+            "logits": logits,
+            "loss": total_loss,
+            "loss_items": loss_items,
+            "loss_str": (
+                f"L:{total_loss.detach().item():.4f} "
+                f"NC:{nc.item():.4f} WBCE:{wbce.item():.4f} Q:{q:.1f} "
+                f"SC:{scale_loss.detach().item():.4f} "
+                f"BG:{background_loss.detach().item():.4f} "
+                f"Wsc:{scale_weight:.3f} Wbg:{background_weight:.3f}"
+            ),
+            "vis": {
+                "sal": logits.sigmoid(),
+                "box": box_mask,
+            },
+        }
+
+[basemain_continuous.py] Number of Parameters: 65597344
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/clean.txt, samples=808
+[basemain.py] Length of combined_tr [clean]: 808
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/noisy.txt, samples=1616
+[basemain.py] Length of combined_tr [noisy]: 1616
+[basemain_continuous.py] Continuous C3 pools: clean=808, noisy=1616
+[basemain.py] Curriculum stage [C3_broad_1to1]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 001 Continuous C3 ==================
+[basemain_continuous.py] C3_broad_1to1 | weights C:N=1.0000:1.0000 | expected probs C=50.00%, N=50.00%
+[zoomnext.py] Parameter Groups:{Pretrained: 828, Fixed: 4, ReTrained: 314}
+[basemain_continuous.py] Continuous C3 mode: ENABLED. Saturation detector: OFF. EMA teacher: OFF. EMA-KD: OFF.
+[basemain_continuous.py] Scheduler:
+Scheduler: (
+    num_iters: 75750
+    epoch_length: 505
+    warmup_iter: [0, 0)
+    scheduler_iter: [0, 75749]
+    mode: step
+    scheduler_cfg: {'warmup': {'num_iters': 0, 'initial_coef': 0.01, 'mode': 'linear'}, 'mode': 'step', 'cfg': {'milestones': 60600, 'gamma': 0.1}}
+    initial_lrs: [1e-05, 0.0001]
+    step_by_batch: True
+)
+Optimizer:
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0
+)
+[basemain_continuous.py] Image Mean: tensor([0.4850, 0.4560, 0.4060], device='cuda:0'), Image Std: tensor([0.2290, 0.2240, 0.2250], device='cuda:0')
+[basemain_continuous.py] Exp_Name: PvtV2B4_ZoomNeXt_Z3_BS8
+[basemain.py] Curriculum stage [C3_broad_1to1]: clean:N=808,pool_p=1.000; noisy:N=1616,pool_p=1.000; sampled_per_epoch=4040
+[basemain_continuous.py] ================== Epoch 001 Continuous C3 ==================
+[basemain_continuous.py] C3_broad_1to1 | weights C:N=1.0000:1.0000 | expected probs C=50.00%, N=50.00%
+[basemain_continuous.py] ETA: 0:00:00(16.5G) | 0:75750 0/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:1.0618 NC:0.4157 WBCE:0.6148 Q:2.0 SC:0.0313 BG:0.0000 Wsc:0.200 Wbg:0.000
+[basemain_continuous.py] ETA: 5:50:43(17.5G) | 19:75750 19/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.8803 NC:0.3499 WBCE:0.5144 Q:2.0 SC:0.0160 BG:0.0000 Wsc:0.200 Wbg:0.000
+[basemain_continuous.py] ETA: 4:53:34(17.5G) | 39:75750 39/505 0/150 | C3_broad_1to1 C:0.500/N:0.500 | LR:1.000e-05,1.000e-04 | L:0.7544 NC:0.2888 WBCE:0.4465 Q:2.0 SC:0.0191 BG:0.0000 Wsc:0.200 Wbg:0.000
