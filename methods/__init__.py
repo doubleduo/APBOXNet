@@ -34,3 +34,13 @@ from .fpn_csr_nc import (
     PvtV2B4_FPN_CSR_V2_BCE,
     PvtV2B4_FPN_CSR_NC_V2,
 )
+
+
+from .fpn_freqguided import (
+    PvtV2B4_FPN_A0,
+    PvtV2B4_FPN_A1_FreqSelect,
+    PvtV2B4_FPN_A2_FreqSampling,
+    PvtV2B4_FPN_A3_FreqSelectSampling,
+)
+
+from .zoomnext_unvalue import PvtV2B4_ZoomNeXt_Unvalue
