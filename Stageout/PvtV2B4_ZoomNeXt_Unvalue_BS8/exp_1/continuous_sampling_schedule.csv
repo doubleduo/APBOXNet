@@ -61,3 +61,8 @@ epoch,stage,clean_count,noisy_count,unvalue_count,clean_prob,noisy_prob,unvalue_
 60,box_introduction,4,3,1,0.500000,0.375000,0.125000
 61,teacher_recovery,3,3,2,0.375000,0.375000,0.250000
 62,teacher_recovery,3,3,2,0.375000,0.375000,0.250000
+63,teacher_recovery,3,3,2,0.375000,0.375000,0.250000
+64,teacher_recovery,3,3,2,0.375000,0.375000,0.250000
+65,teacher_recovery,3,3,2,0.375000,0.375000,0.250000
+66,teacher_recovery,3,3,2,0.375000,0.375000,0.250000
+67,teacher_recovery,3,3,2,0.375000,0.375000,0.250000

@@ -2227,3 +2227,157 @@ Parameter Group 1
 [basemain_unvalue.py] ETA: 3:27:42(18.2G) | 30979:75750 174/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0186 NC:0.0000 Q:0.0 OUT:0.0047 DYN:0.0203 ACC:1.00
 [basemain_unvalue.py] ETA: 3:27:39(18.2G) | 30999:75750 194/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0059 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.1074 ACC:1.00
 [basemain_unvalue.py] ETA: 3:27:33(18.2G) | 31019:75750 214/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0134 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.5092 ACC:1.00
+[basemain_unvalue.py] ETA: 3:26:57(18.2G) | 31039:75750 234/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0079 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0379 ACC:1.00
+[basemain_unvalue.py] ETA: 3:27:13(18.2G) | 31059:75750 254/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0195 NC:0.0000 Q:0.0 OUT:0.0023 DYN:0.0143 ACC:0.50
+[basemain_unvalue.py] ETA: 3:27:05(18.2G) | 31079:75750 274/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0070 NC:0.0000 Q:0.0 OUT:0.0018 DYN:0.9667 ACC:0.50
+[basemain_unvalue.py] ETA: 3:27:00(18.2G) | 31099:75750 294/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0065 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.1912 ACC:0.50
+[basemain_unvalue.py] ETA: 3:27:43(18.2G) | 31119:75750 314/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0126 NC:0.0000 Q:0.0 OUT:0.0089 DYN:0.4079 ACC:1.00
+[basemain_unvalue.py] ETA: 3:27:32(18.2G) | 31139:75750 334/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0059 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0567 ACC:1.00
+[basemain_unvalue.py] ETA: 3:26:44(18.2G) | 31159:75750 354/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0073 NC:0.0000 Q:0.0 OUT:0.0041 DYN:0.3078 ACC:1.00
+[basemain_unvalue.py] ETA: 3:26:22(18.2G) | 31179:75750 374/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0099 NC:0.0000 Q:0.0 OUT:0.0005 DYN:0.0411 ACC:1.00
+[basemain_unvalue.py] ETA: 3:26:33(18.2G) | 31199:75750 394/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0120 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.8176 ACC:1.00
+[basemain_unvalue.py] ETA: 3:27:00(18.2G) | 31219:75750 414/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0124 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0137 ACC:1.00
+[basemain_unvalue.py] ETA: 3:26:08(18.2G) | 31239:75750 434/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0122 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.0829 ACC:1.00
+[basemain_unvalue.py] ETA: 3:26:05(18.2G) | 31259:75750 454/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0099 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1126 ACC:1.00
+[basemain_unvalue.py] ETA: 3:26:14(18.2G) | 31279:75750 474/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0058 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.1620 ACC:0.50
+[basemain_unvalue.py] ETA: 3:26:34(18.2G) | 31299:75750 494/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0077 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.0934 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:31(18.2G) | 31309:75750 504/505 61/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0073 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.4622 ACC:1.00
+[basemain_unvalue.py] Epoch 062 | teacher_recovery | C:0.375/N:0.375/U:0.250 | L:0.0124 BCE:0.0118 | NC:0.0000 Q:0.0000 | EMA-KD:OFF
+[basemain_unvalue.py] Exp_Name: PvtV2B4_ZoomNeXt_Unvalue_BS8
+[basemain_unvalue.py] ================== Epoch 063 Mask/Box Curriculum ==================
+[basemain_unvalue.py] teacher_recovery | batch C:N:U=3:3:2 | probs C=37.50%, N=37.50%, U=25.00%
+[basemain_unvalue.py] ETA: 3:25:25(18.2G) | 31310:75750 0/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0138 NC:0.0000 Q:0.0 OUT:0.0012 DYN:0.0664 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:47(18.2G) | 31319:75750 9/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0104 NC:0.0000 Q:0.0 OUT:0.0020 DYN:0.3325 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:45(18.2G) | 31339:75750 29/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0313 NC:0.0000 Q:0.0 OUT:0.0003 DYN:0.0030 ACC:0.50
+[basemain_unvalue.py] ETA: 3:25:35(18.2G) | 31359:75750 49/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0077 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.5641 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:14(18.2G) | 31379:75750 69/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0210 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.3600 ACC:1.00
+[basemain_unvalue.py] ETA: 3:28:26(18.2G) | 31399:75750 89/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0076 NC:0.0000 Q:0.0 OUT:0.0004 DYN:0.0807 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:25(18.2G) | 31419:75750 109/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0075 NC:0.0000 Q:0.0 OUT:0.0023 DYN:0.0672 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:03(18.2G) | 31439:75750 129/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0125 NC:0.0000 Q:0.0 OUT:0.0019 DYN:0.0849 ACC:1.00
+[basemain_unvalue.py] ETA: 3:24:54(18.2G) | 31459:75750 149/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0093 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.0264 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:07(18.2G) | 31479:75750 169/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0089 NC:0.0000 Q:0.0 OUT:0.0007 DYN:0.7722 ACC:0.50
+[basemain_unvalue.py] ETA: 3:24:53(18.2G) | 31499:75750 189/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0142 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1520 ACC:1.00
+[basemain_unvalue.py] ETA: 3:24:34(18.2G) | 31519:75750 209/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0087 NC:0.0000 Q:0.0 OUT:0.0017 DYN:0.0642 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:06(18.2G) | 31539:75750 229/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0095 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0258 ACC:0.50
+[basemain_unvalue.py] ETA: 3:25:17(18.2G) | 31559:75750 249/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0090 NC:0.0000 Q:0.0 OUT:0.0004 DYN:0.0384 ACC:1.00
+[basemain_unvalue.py] ETA: 3:24:40(18.2G) | 31579:75750 269/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0119 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0974 ACC:1.00
+[basemain_unvalue.py] ETA: 3:24:35(18.2G) | 31599:75750 289/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0100 NC:0.0000 Q:0.0 OUT:0.0260 DYN:0.0085 ACC:0.50
+[basemain_unvalue.py] ETA: 3:24:04(18.2G) | 31619:75750 309/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0097 NC:0.0000 Q:0.0 OUT:0.0004 DYN:0.2708 ACC:0.50
+[basemain_unvalue.py] ETA: 3:24:28(18.2G) | 31639:75750 329/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0115 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1990 ACC:1.00
+[basemain_unvalue.py] ETA: 3:24:29(18.2G) | 31659:75750 349/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0178 NC:0.0000 Q:0.0 OUT:0.0005 DYN:0.0395 ACC:0.50
+[basemain_unvalue.py] ETA: 3:23:45(18.2G) | 31679:75750 369/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0123 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.0113 ACC:1.00
+[basemain_unvalue.py] ETA: 3:23:50(18.2G) | 31699:75750 389/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0107 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0446 ACC:1.00
+[basemain_unvalue.py] ETA: 3:24:29(18.2G) | 31719:75750 409/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0096 NC:0.0000 Q:0.0 OUT:0.0041 DYN:0.0315 ACC:1.00
+[basemain_unvalue.py] ETA: 3:23:32(18.2G) | 31739:75750 429/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0214 NC:0.0000 Q:0.0 OUT:0.0456 DYN:0.0211 ACC:1.00
+[basemain_unvalue.py] ETA: 3:23:39(18.2G) | 31759:75750 449/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0119 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.8671 ACC:1.00
+[basemain_unvalue.py] ETA: 3:23:08(18.2G) | 31779:75750 469/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0278 NC:0.0000 Q:0.0 OUT:0.0134 DYN:0.4632 ACC:1.00
+[basemain_unvalue.py] ETA: 3:23:22(18.2G) | 31799:75750 489/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0177 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.1012 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:11(18.2G) | 31814:75750 504/505 62/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0087 NC:0.0000 Q:0.0 OUT:0.0004 DYN:0.2438 ACC:1.00
+[basemain_unvalue.py] Epoch 063 | teacher_recovery | C:0.375/N:0.375/U:0.250 | L:0.0141 BCE:0.0127 | NC:0.0000 Q:0.0000 | EMA-KD:OFF
+[basemain_unvalue.py] Exp_Name: PvtV2B4_ZoomNeXt_Unvalue_BS8
+[basemain_unvalue.py] ================== Epoch 064 Mask/Box Curriculum ==================
+[basemain_unvalue.py] teacher_recovery | batch C:N:U=3:3:2 | probs C=37.50%, N=37.50%, U=25.00%
+[basemain_unvalue.py] ETA: 3:21:59(18.2G) | 31815:75750 0/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0066 NC:0.0000 Q:0.0 OUT:0.0014 DYN:0.0537 ACC:1.00
+[basemain_unvalue.py] ETA: 3:23:02(18.2G) | 31819:75750 4/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0112 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0118 ACC:0.50
+[basemain_unvalue.py] ETA: 3:23:21(18.2G) | 31839:75750 24/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0619 NC:0.0000 Q:0.0 OUT:0.0025 DYN:0.0952 ACC:1.00
+[basemain_unvalue.py] ETA: 3:23:31(18.2G) | 31859:75750 44/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0142 NC:0.0000 Q:0.0 OUT:0.0028 DYN:0.1561 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:50(18.2G) | 31879:75750 64/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0104 NC:0.0000 Q:0.0 OUT:0.0038 DYN:0.2262 ACC:1.00
+[basemain_unvalue.py] ETA: 3:24:07(18.2G) | 31899:75750 84/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0164 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0706 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:42(18.2G) | 31919:75750 104/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0130 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.3732 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:53(18.2G) | 31939:75750 124/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0119 NC:0.0000 Q:0.0 OUT:0.0013 DYN:0.4872 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:37(18.2G) | 31959:75750 144/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0076 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0338 ACC:0.50
+[basemain_unvalue.py] ETA: 3:22:10(18.2G) | 31979:75750 164/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0250 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0107 ACC:0.50
+[basemain_unvalue.py] ETA: 3:22:25(18.2G) | 31999:75750 184/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0233 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0208 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:05(18.2G) | 32019:75750 204/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0098 NC:0.0000 Q:0.0 OUT:0.0003 DYN:0.2935 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:07(18.2G) | 32039:75750 224/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0086 NC:0.0000 Q:0.0 OUT:0.0004 DYN:0.1616 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:25(18.2G) | 32059:75750 244/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0144 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0686 ACC:1.00
+[basemain_unvalue.py] ETA: 3:25:39(18.2G) | 32079:75750 264/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0117 NC:0.0000 Q:0.0 OUT:0.0003 DYN:0.0158 ACC:0.50
+[basemain_unvalue.py] ETA: 3:21:51(18.2G) | 32099:75750 284/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0133 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1033 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:45(18.2G) | 32119:75750 304/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0192 NC:0.0000 Q:0.0 OUT:0.0286 DYN:0.4715 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:40(18.2G) | 32139:75750 324/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0231 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.5189 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:39(18.2G) | 32159:75750 344/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0183 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.1108 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:35(18.2G) | 32179:75750 364/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0419 NC:0.0000 Q:0.0 OUT:0.0003 DYN:0.2267 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:23(18.2G) | 32199:75750 384/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0123 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.0661 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:24(18.2G) | 32219:75750 404/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0110 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.1703 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:38(18.2G) | 32239:75750 424/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0096 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0241 ACC:1.00
+[basemain_unvalue.py] ETA: 3:22:20(18.2G) | 32259:75750 444/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0056 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0914 ACC:1.00
+[basemain_unvalue.py] ETA: 3:20:59(18.2G) | 32279:75750 464/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0088 NC:0.0000 Q:0.0 OUT:0.0006 DYN:0.1000 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:11(18.2G) | 32299:75750 484/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0062 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0191 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:05(18.2G) | 32319:75750 504/505 63/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0122 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.4943 ACC:1.00
+[basemain_unvalue.py] Epoch 064 | teacher_recovery | C:0.375/N:0.375/U:0.250 | L:0.0141 BCE:0.0120 | NC:0.0000 Q:0.0000 | EMA-KD:OFF
+[basemain_unvalue.py] Exp_Name: PvtV2B4_ZoomNeXt_Unvalue_BS8
+[basemain_unvalue.py] ================== Epoch 065 Mask/Box Curriculum ==================
+[basemain_unvalue.py] teacher_recovery | batch C:N:U=3:3:2 | probs C=37.50%, N=37.50%, U=25.00%
+[basemain_unvalue.py] ETA: 3:19:34(18.2G) | 32320:75750 0/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0194 NC:0.0000 Q:0.0 OUT:0.0003 DYN:0.6535 ACC:1.00
+[basemain_unvalue.py] ETA: 3:21:25(18.2G) | 32339:75750 19/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0084 NC:0.0000 Q:0.0 OUT:0.0032 DYN:0.2257 ACC:1.00
+[basemain_unvalue.py] ETA: 3:20:36(18.2G) | 32359:75750 39/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0130 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.2953 ACC:0.50
+[basemain_unvalue.py] ETA: 3:20:39(18.2G) | 32379:75750 59/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0084 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.0194 ACC:0.50
+[basemain_unvalue.py] ETA: 3:20:26(18.2G) | 32399:75750 79/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0173 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.9365 ACC:0.50
+[basemain_unvalue.py] ETA: 3:20:34(18.2G) | 32419:75750 99/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0091 NC:0.0000 Q:0.0 OUT:0.0005 DYN:0.3699 ACC:1.00
+[basemain_unvalue.py] ETA: 3:20:28(18.2G) | 32439:75750 119/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0234 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.6279 ACC:1.00
+[basemain_unvalue.py] ETA: 3:20:26(18.2G) | 32459:75750 139/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0093 NC:0.0000 Q:0.0 OUT:0.0020 DYN:0.0427 ACC:0.50
+[basemain_unvalue.py] ETA: 3:20:24(18.2G) | 32479:75750 159/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0111 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1937 ACC:1.00
+[basemain_unvalue.py] ETA: 3:20:27(18.2G) | 32499:75750 179/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0192 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.4558 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:56(18.2G) | 32519:75750 199/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0176 NC:0.0000 Q:0.0 OUT:0.0292 DYN:0.1689 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:45(18.2G) | 32539:75750 219/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0119 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0504 ACC:1.00
+[basemain_unvalue.py] ETA: 3:20:43(18.2G) | 32559:75750 239/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0155 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.1422 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:50(18.2G) | 32579:75750 259/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0176 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.4290 ACC:1.00
+[basemain_unvalue.py] ETA: 3:20:03(18.2G) | 32599:75750 279/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0404 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.9169 ACC:0.50
+[basemain_unvalue.py] ETA: 3:19:36(18.2G) | 32619:75750 299/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0118 NC:0.0000 Q:0.0 OUT:0.0008 DYN:0.0538 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:28(18.2G) | 32639:75750 319/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0191 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0392 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:43(18.2G) | 32659:75750 339/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0257 NC:0.0000 Q:0.0 OUT:0.0074 DYN:0.7988 ACC:0.50
+[basemain_unvalue.py] ETA: 3:22:38(18.2G) | 32679:75750 359/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0099 NC:0.0000 Q:0.0 OUT:0.0007 DYN:0.3313 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:08(18.2G) | 32699:75750 379/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0147 NC:0.0000 Q:0.0 OUT:0.0003 DYN:0.1783 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:38(18.2G) | 32719:75750 399/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0162 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.2922 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:32(18.2G) | 32739:75750 419/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0090 NC:0.0000 Q:0.0 OUT:0.0014 DYN:0.0421 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:33(18.2G) | 32759:75750 439/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0152 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0826 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:10(18.2G) | 32779:75750 459/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0513 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0659 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:44(18.2G) | 32799:75750 479/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0132 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.1403 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:20(18.2G) | 32819:75750 499/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0208 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.5968 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:25(18.2G) | 32824:75750 504/505 64/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0099 NC:0.0000 Q:0.0 OUT:0.0008 DYN:0.0086 ACC:1.00
+[basemain_unvalue.py] Epoch 065 | teacher_recovery | C:0.375/N:0.375/U:0.250 | L:0.0156 BCE:0.0118 | NC:0.0000 Q:0.0000 | EMA-KD:OFF
+[basemain_unvalue.py] ========================= Validation Epoch 65 =========================
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.845 |  0.783 |  0.917 |  0.060
+[basemain.py] cod10k_te    |  0.869 |  0.779 |  0.938 |  0.024
+[basemain_unvalue.py] Exp_Name: PvtV2B4_ZoomNeXt_Unvalue_BS8
+[basemain_unvalue.py] ================== Epoch 066 Mask/Box Curriculum ==================
+[basemain_unvalue.py] teacher_recovery | batch C:N:U=3:3:2 | probs C=37.50%, N=37.50%, U=25.00%
+[basemain_unvalue.py] ETA: 3:17:16(18.2G) | 32825:75750 0/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0105 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1734 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:04(18.2G) | 32839:75750 14/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0172 NC:0.0000 Q:0.0 OUT:0.0021 DYN:0.2812 ACC:0.50
+[basemain_unvalue.py] ETA: 3:18:29(18.2G) | 32859:75750 34/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0158 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.5156 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:46(18.2G) | 32879:75750 54/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0075 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0260 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:15(18.2G) | 32899:75750 74/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0113 NC:0.0000 Q:0.0 OUT:0.0027 DYN:0.0064 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:15(18.2G) | 32919:75750 94/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0191 NC:0.0000 Q:0.0 OUT:0.0027 DYN:0.3114 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:00(18.2G) | 32939:75750 114/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0105 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0222 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:13(18.2G) | 32959:75750 134/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0266 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0163 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:51(18.2G) | 32979:75750 154/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0104 NC:0.0000 Q:0.0 OUT:0.0004 DYN:0.2223 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:09(18.2G) | 32999:75750 174/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0135 NC:0.0000 Q:0.0 OUT:0.0006 DYN:0.2801 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:43(18.2G) | 33019:75750 194/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0118 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.1790 ACC:1.00
+[basemain_unvalue.py] ETA: 3:18:22(18.2G) | 33039:75750 214/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0201 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.4467 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:43(18.2G) | 33059:75750 234/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0142 NC:0.0000 Q:0.0 OUT:0.0081 DYN:0.0692 ACC:0.50
+[basemain_unvalue.py] ETA: 3:18:19(18.2G) | 33079:75750 254/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0356 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0202 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:36(18.2G) | 33099:75750 274/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0110 NC:0.0000 Q:0.0 OUT:0.0002 DYN:0.0256 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:31(18.2G) | 33119:75750 294/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0095 NC:0.0000 Q:0.0 OUT:0.0024 DYN:0.0982 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:22(18.2G) | 33139:75750 314/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0063 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0252 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:04(18.2G) | 33159:75750 334/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0182 NC:0.0000 Q:0.0 OUT:0.0005 DYN:0.4804 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:55(18.2G) | 33179:75750 354/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0275 NC:0.0000 Q:0.0 OUT:0.0037 DYN:0.0894 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:01(18.2G) | 33199:75750 374/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0099 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0661 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:49(18.2G) | 33219:75750 394/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0163 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1745 ACC:1.00
+[basemain_unvalue.py] ETA: 3:17:56(18.2G) | 33239:75750 414/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0137 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0208 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:42(18.2G) | 33259:75750 434/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0334 NC:0.0000 Q:0.0 OUT:0.0004 DYN:0.0293 ACC:0.50
+[basemain_unvalue.py] ETA: 3:16:35(18.2G) | 33279:75750 454/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0078 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.0781 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:12(18.2G) | 33299:75750 474/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0125 NC:0.0000 Q:0.0 OUT:0.0014 DYN:0.0238 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:02(18.2G) | 33319:75750 494/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0095 NC:0.0000 Q:0.0 OUT:0.0031 DYN:0.1013 ACC:0.50
+[basemain_unvalue.py] ETA: 3:14:59(18.2G) | 33329:75750 504/505 65/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0188 NC:0.0000 Q:0.0 OUT:0.0010 DYN:0.3547 ACC:1.00
+[basemain_unvalue.py] Epoch 066 | teacher_recovery | C:0.375/N:0.375/U:0.250 | L:0.0168 BCE:0.0115 | NC:0.0000 Q:0.0000 | EMA-KD:OFF
+[basemain_unvalue.py] Exp_Name: PvtV2B4_ZoomNeXt_Unvalue_BS8
+[basemain_unvalue.py] ================== Epoch 067 Mask/Box Curriculum ==================
+[basemain_unvalue.py] teacher_recovery | batch C:N:U=3:3:2 | probs C=37.50%, N=37.50%, U=25.00%
+[basemain_unvalue.py] ETA: 3:14:47(18.2G) | 33330:75750 0/505 66/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0304 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.4507 ACC:1.00
+[basemain_unvalue.py] ETA: 3:15:53(18.2G) | 33339:75750 9/505 66/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0132 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.1760 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:11(18.2G) | 33359:75750 29/505 66/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0272 NC:0.0000 Q:0.0 OUT:0.0001 DYN:0.4958 ACC:1.00
+[basemain_unvalue.py] ETA: 3:19:38(18.2G) | 33379:75750 49/505 66/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0113 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.0864 ACC:0.50
+[basemain_unvalue.py] ETA: 3:15:53(18.2G) | 33399:75750 69/505 66/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0188 NC:0.0000 Q:0.0 OUT:0.0092 DYN:0.4043 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:08(18.2G) | 33419:75750 89/505 66/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0127 NC:0.0000 Q:0.0 OUT:0.0003 DYN:0.0777 ACC:1.00
+[basemain_unvalue.py] ETA: 3:16:36(18.2G) | 33439:75750 109/505 66/150 | teacher_recovery C:0.375/N:0.375/U:0.250 | LR:1.000e-05,1.000e-04 | L:0.0275 NC:0.0000 Q:0.0 OUT:0.0000 DYN:0.6389 ACC:1.00
