@@ -1,2 +1,0 @@
-epoch,stage,clean_count,noisy_count,unvalue_count,clean_prob,noisy_prob,unvalue_prob
-1,mask_warmup,4,4,0,0.500000,0.500000,0.000000
