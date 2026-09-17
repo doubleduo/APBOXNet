@@ -59,9 +59,9 @@ train = dict(
     curriculum=dict(
         enable=True,
         pools=dict(
-            clean="./data/pseudo_pool/shape/clean.txt",
-            noisy="./data/pseudo_pool/shape/noisy.txt",
-            unvalue="./data/pseudo_pool/shape/unvalue.txt",
+            clean="./data/pseudo_pool/best/clean.txt",
+            noisy="./data/pseudo_pool/best/noisy.txt",
+            unvalue="./data/pseudo_pool/best/unvalue.txt",
         ),
         num_samples_per_epoch=__SAMPLES_PER_EPOCH,
 
