@@ -1,0 +1,176 @@
+=== log 2026-09-02 17:11:15.804850 ===
+[anet_main.py] base_seed = 112358
+config = 'configs/anet_zoomnext_subtractive.py'
+data_cfg = 'dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+do_generate = False
+exp_name = 'ConvNeXtB_ZoomNeXt_ANet_BS4'
+experiment = 'Z0'
+generate = dict(
+    batch_size=8,
+    box_format='xyxy',
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384)),
+    num_workers=4)
+load_from = None
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model = dict(
+    ablation='Z0',
+    edge_loss_weight=4.0,
+    hmu_groups=6,
+    mid_dim=64,
+    ual_full=1.0,
+    ual_loss_weight=2.0,
+    ual_start=0.0)
+model_name = 'ConvNeXtB_ZoomNeXt_ANet'
+notes = dict(
+    Z0='Full original ANetZoomNeXt',
+    Z1=
+    'w/o Box prompt information; second encoder receives RGB instead of RGB*Box',
+    Z2=
+    'w/o Box branch contribution; box feature is zero and box encoder forward is skipped',
+    Z3='w/o top-down cross-scale propagation between RGPU stages',
+    Z4='w/o deep mask supervision; only final prediction gets structure loss',
+    Z5='w/o edge supervision',
+    Z6='w/o UAL',
+    Z7='w/o deepest SimpleASPP; use plain 3x3 ConvBNReLU',
+    Z8='w/o RGPU; replace each RGPU with plain 3x3 ConvBNReLU')
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/log_2026-09-02.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ANet/Z0/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/trainer.txt'
+)
+pretrained = True
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+train = dict(
+    augment=True,
+    backbone_lr_factor=0.1,
+    batch_size=4,
+    box_format='xyxy',
+    clean_list='data/pseudo_pool/Top400.txt',
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384)),
+    grad_acc_step=1,
+    lr=0.0001,
+    min_lr_ratio=0.01,
+    num_epochs=40,
+    num_workers=8,
+    optimizer='adamw',
+    sample_ratio=1.0,
+    save_interval=5,
+    soft_target=False,
+    target_key='pseudo_mask',
+    use_amp=True,
+    warmup_steps=500,
+    weight_decay=0.0001)
+use_checkpoint = False
+use_custom_worker_init = True
+val = dict(
+    batch_size=8,
+    data=dict(names=[
+        'camo_te',
+        'cod10k_te',
+    ], shape=dict(h=384, w=384)),
+    enable=True,
+    interval=5,
+    min_component_area=4,
+    num_workers=4,
+    save_vis_n=12,
+    start_epoch=5)
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[anet_main.py] Number of Parameters: 178.550M
+[anet_main.py] Loaded clean pseudo list: /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/data/pseudo_pool/Top400.txt (400)
+[anet_main.py] ANet dataset combined_tr: 400 image/mask/box triplets
+[anet_zoomnext.py] ANet Parameter Groups:{Pretrained: 680, Fixed: 0, ReTrained: 220}
+[anet_main.py] ANet train: samples=400, batches/epoch=100, epochs=40, total_steps=4000
+[anet_main.py] ANet validation enabled: start=5, interval=5, datasets=['camo_te', 'cod10k_te']
+[anet_main.py] ANet | ETA:0:47:00 | E001/040 B0001/0100 | LR:2.00e-08,2.00e-07 | Z0 L:6.5647 STR:3.2745 EDGE:3.2902 UAL:0.0000
+[anet_main.py] ANet | ETA:0:07:50 | E001/040 B0020/0100 | LR:4.00e-07,4.00e-06 | Z0 L:6.1846 STR:2.9818 EDGE:3.2027 UAL:0.0001
+[anet_main.py] ANet | ETA:0:06:33 | E001/040 B0040/0100 | LR:8.00e-07,8.00e-06 | Z0 L:6.4545 STR:3.1772 EDGE:3.2768 UAL:0.0005
+[anet_main.py] ANet | ETA:0:06:07 | E001/040 B0060/0100 | LR:1.20e-06,1.20e-05 | Z0 L:6.2839 STR:3.1080 EDGE:3.1749 UAL:0.0010
+[anet_main.py] ANet | ETA:0:05:53 | E001/040 B0080/0100 | LR:1.60e-06,1.60e-05 | Z0 L:5.8656 STR:2.7715 EDGE:3.0924 UAL:0.0018
+[anet_main.py] ANet | ETA:0:05:43 | E001/040 B0100/0100 | LR:2.00e-06,2.00e-05 | Z0 L:6.0311 STR:2.8825 EDGE:3.1458 UAL:0.0027
+[anet_main.py] ANet Epoch 001 | 8.8s | L:6.1928 STR:3.0042 EDGE:3.1877 UAL:0.0009
+[anet_main.py] ANet | ETA:0:06:05 | E002/040 B0001/0100 | LR:2.02e-06,2.02e-05 | Z0 L:5.7838 STR:2.7546 EDGE:3.0265 UAL:0.0027
+[anet_main.py] ANet | ETA:0:05:56 | E002/040 B0020/0100 | LR:2.40e-06,2.40e-05 | Z0 L:5.6901 STR:2.5969 EDGE:3.0894 UAL:0.0038
+[anet_main.py] ANet | ETA:0:05:48 | E002/040 B0040/0100 | LR:2.80e-06,2.80e-05 | Z0 L:5.5722 STR:2.4962 EDGE:3.0708 UAL:0.0052
+[anet_main.py] ANet | ETA:0:05:41 | E002/040 B0060/0100 | LR:3.20e-06,3.20e-05 | Z0 L:5.3233 STR:2.3195 EDGE:2.9970 UAL:0.0067
+[anet_main.py] ANet | ETA:0:05:35 | E002/040 B0080/0100 | LR:3.60e-06,3.60e-05 | Z0 L:5.2427 STR:2.2783 EDGE:2.9557 UAL:0.0086
+[anet_main.py] ANet | ETA:0:05:30 | E002/040 B0100/0100 | LR:4.00e-06,4.00e-05 | Z0 L:5.0643 STR:2.2248 EDGE:2.8292 UAL:0.0103
+[anet_main.py] ANet Epoch 002 | 8.3s | L:5.3660 STR:2.3694 EDGE:2.9904 UAL:0.0062
+[anet_main.py] ANet | ETA:0:05:44 | E003/040 B0001/0100 | LR:4.02e-06,4.02e-05 | Z0 L:4.8364 STR:1.9737 EDGE:2.8524 UAL:0.0103
+[anet_main.py] ANet | ETA:0:05:39 | E003/040 B0020/0100 | LR:4.40e-06,4.40e-05 | Z0 L:4.8928 STR:2.1019 EDGE:2.7785 UAL:0.0125
+[anet_main.py] ANet | ETA:0:05:35 | E003/040 B0040/0100 | LR:4.80e-06,4.80e-05 | Z0 L:5.6441 STR:2.5417 EDGE:3.0867 UAL:0.0157
+[anet_main.py] ANet | ETA:0:05:30 | E003/040 B0060/0100 | LR:5.20e-06,5.20e-05 | Z0 L:4.9393 STR:2.0959 EDGE:2.8259 UAL:0.0175
+[anet_main.py] ANet | ETA:0:05:26 | E003/040 B0080/0100 | LR:5.60e-06,5.60e-05 | Z0 L:4.3553 STR:1.6764 EDGE:2.6602 UAL:0.0188
+[anet_main.py] ANet | ETA:0:05:22 | E003/040 B0100/0100 | LR:6.00e-06,6.00e-05 | Z0 L:4.0356 STR:1.7332 EDGE:2.2809 UAL:0.0215
+[anet_main.py] ANet Epoch 003 | 8.3s | L:4.6993 STR:1.9806 EDGE:2.7027 UAL:0.0161
+[anet_main.py] ANet | ETA:0:05:30 | E004/040 B0001/0100 | LR:6.02e-06,6.02e-05 | Z0 L:4.0062 STR:1.6884 EDGE:2.2957 UAL:0.0220
+[anet_main.py] ANet | ETA:0:05:28 | E004/040 B0020/0100 | LR:6.40e-06,6.40e-05 | Z0 L:3.7843 STR:1.5727 EDGE:2.1872 UAL:0.0245
+[anet_main.py] ANet | ETA:0:05:24 | E004/040 B0040/0100 | LR:6.80e-06,6.80e-05 | Z0 L:4.1056 STR:1.8488 EDGE:2.2279 UAL:0.0289
+[anet_main.py] ANet | ETA:0:05:20 | E004/040 B0060/0100 | LR:7.20e-06,7.20e-05 | Z0 L:3.6576 STR:1.5172 EDGE:2.1101 UAL:0.0303
+[anet_main.py] ANet | ETA:0:05:17 | E004/040 B0080/0100 | LR:7.60e-06,7.60e-05 | Z0 L:4.2377 STR:2.0983 EDGE:2.1036 UAL:0.0357
+[anet_main.py] ANet | ETA:0:05:14 | E004/040 B0100/0100 | LR:8.00e-06,8.00e-05 | Z0 L:3.3021 STR:1.4992 EDGE:1.7671 UAL:0.0358
+[anet_main.py] ANet Epoch 004 | 8.3s | L:3.9146 STR:1.7253 EDGE:2.1596 UAL:0.0297
+[anet_main.py] ANet | ETA:0:05:20 | E005/040 B0001/0100 | LR:8.02e-06,8.02e-05 | Z0 L:3.5795 STR:1.6562 EDGE:1.8859 UAL:0.0374
+[anet_main.py] ANet | ETA:0:05:17 | E005/040 B0020/0100 | LR:8.40e-06,8.40e-05 | Z0 L:3.3454 STR:1.5795 EDGE:1.7252 UAL:0.0407
+[anet_main.py] ANet | ETA:0:05:14 | E005/040 B0040/0100 | LR:8.80e-06,8.80e-05 | Z0 L:3.2852 STR:1.4970 EDGE:1.7456 UAL:0.0426
+[anet_main.py] ANet | ETA:0:05:11 | E005/040 B0060/0100 | LR:9.20e-06,9.20e-05 | Z0 L:3.4944 STR:1.6196 EDGE:1.8270 UAL:0.0477
+[anet_main.py] ANet | ETA:0:05:08 | E005/040 B0080/0100 | LR:9.60e-06,9.60e-05 | Z0 L:3.2200 STR:1.5768 EDGE:1.5912 UAL:0.0519
+[anet_main.py] ANet | ETA:0:05:05 | E005/040 B0100/0100 | LR:1.00e-05,1.00e-04 | Z0 L:3.2099 STR:1.4825 EDGE:1.6729 UAL:0.0545
+[anet_main.py] ANet Epoch 005 | 8.3s | L:3.3353 STR:1.5147 EDGE:1.7749 UAL:0.0457
+[anet_main.py] ANet VAL | Epoch 005 | camo_te | sm:0.7302, wfm:0.4031, mae:0.2044, avgem:0.7320, adpem:0.8833, maxem:0.9295

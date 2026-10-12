@@ -1,0 +1,231 @@
+=== log 2026-09-18 10:25:19.093709 ===
+[basemain.py] base_seed = 112358
+config = 'configs/curablation/csr_mhsiu_nc_continuoussam2.py'
+data_cfg = './dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/S2_GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/S2_GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+evaluate = True
+exp_name = 'PvtV2B4_FPN_CSR_NC_Curriculum_BS8'
+has_test = True
+info = None
+load_from = 'outputs/sam2/CSR_NC/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/pth/state_epoch_140.pth'
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model_name = 'PvtV2B4_FPN_CSR_NC_Curriculum'
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/log_2026-09-18.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/sam2/base_eval/PvtV2B4_FPN_CSR_NC_Curriculum_BS8/exp_1/trainer.txt'
+)
+pretrained = False
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+save_results = False
+test = dict(
+    batch_size=8,
+    clip_range=None,
+    data=dict(names=[
+        'nc4k',
+        'chameleon',
+    ], shape=dict(h=384, w=384)),
+    num_workers=8)
+train = dict(
+    batch_size=8,
+    bn=dict(freeze_affine=True, freeze_encoder=False, freeze_status=True),
+    curriculum=dict(
+        continuous_schedule=dict(
+            clean_weight=1.0,
+            enable=True,
+            final_start_epoch=141,
+            noisy=dict(
+                anneal_end_epoch=140,
+                anneal_start_epoch=91,
+                end_weight=0.4,
+                hold_end_epoch=60,
+                mode='cosine',
+                start_weight=1.0)),
+        enable=True,
+        num_samples_per_epoch=4040,
+        pools=dict(
+            clean='./data/pseudo_pool/sam2/sam2_clean.txt',
+            noisy='./data/pseudo_pool/sam2/sam2_noisy.txt')),
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384)),
+    ema_kd=dict(enable=False, lambda_kd=0.0),
+    epoch_based=True,
+    grad_acc_step=1,
+    lr=0.0001,
+    num_epochs=150,
+    num_iters=None,
+    num_workers=4,
+    optimizer=dict(
+        cfg=dict(diff_factor=0.1, weight_decay=0),
+        group_mode='finetune',
+        mode='adam',
+        set_to_none=False),
+    save_val_ckpt=True,
+    sche_usebatch=True,
+    scheduler=dict(
+        cfg=dict(gamma=0.1, milestones=60600),
+        mode='step',
+        warmup=dict(initial_coef=0.01, mode='linear', num_iters=0)),
+    use_amp=True,
+    val_interval=5,
+    val_start_epoch=30)
+use_checkpoint = False
+use_custom_worker_init = True
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[basemain_continuous.py] class PvtV2B4_FPN_CSR_NC_Curriculum(
+    _PvtV2B4_FPN_CSR_Base
+):
+    """B2b: Noisy-COD q curriculum + CSR residual."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        input_norm=True,
+        fpn_dim=64,
+        csr_groups=4,
+        csr_alpha_max=1.0,
+        use_checkpoint=False,
+        q_switch_ratio=0.40,
+        **kwargs,
+    ):
+        super().__init__(
+            pretrained=pretrained,
+            input_norm=input_norm,
+            fpn_dim=fpn_dim,
+            csr_groups=csr_groups,
+            csr_alpha_max=csr_alpha_max,
+            use_checkpoint=use_checkpoint,
+            **kwargs,
+        )
+        self.nc_loss = NoisyCODCurriculumLoss(
+            q_switch_ratio=q_switch_ratio
+        )
+
+    def forward(
+        self,
+        data,
+        iter_percentage=1,
+        **kwargs,
+    ):
+        del kwargs
+        logits, aux = self.body(
+            data=data,
+            iter_percentage=iter_percentage,
+        )
+
+        if not self.training:
+            return logits
+
+        target = data["mask"].float()
+        if target.shape[-2:] != logits.shape[-2:]:
+            target = F.interpolate(
+                target,
+                size=logits.shape[-2:],
+                mode="nearest",
+            )
+
+        total, q, nc, wbce = self.nc_loss(
+            logits=logits,
+            target=target,
+            iter_percentage=iter_percentage,
+        )
+
+        a3_mean = self._mean_route(aux["a3"])
+        a4_mean = self._mean_route(aux["a4"])
+
+        loss_items = {
+            # Preserve trainer compatibility.
+            "bce": wbce,
+            "nc": nc,
+            "q": torch.tensor(
+                q,
+                device=logits.device,
+                dtype=logits.dtype,
+            ),
+            "csr_alpha": torch.tensor(
+                aux["alpha"],
+                device=logits.device,
+                dtype=logits.dtype,
+            ),
+            "p3_fine": a3_mean[0],
+            "p3_current": a3_mean[1],
+            "p3_context": a3_mean[2],
+            "p4_fine": a4_mean[0],
+            "p4_current": a4_mean[1],
+            "p4_context": a4_mean[2],
+            "total": total.detach(),
+        }
+        loss_items.update(aux["rgpu_diagnostics"])
+
+        return {
+            "logits": logits,
+            "vis": {"sal": logits.sigmoid()},
+            "loss": total,
+            "loss_items": loss_items,
+            "loss_str": (
+                f"L:{total.detach().item():.4f} "
+                f"NC:{nc.item():.4f} "
+                f"WBCE:{wbce.item():.4f} "
+                f"Q:{q:.1f} "
+                f"A:{aux['alpha']:.3f}"
+            ),
+        }
+
+[basemain_continuous.py] Number of Parameters: 62882695
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] nc4k         |  0.885 |  0.851 |  0.942 |  0.032
+[basemain.py] chameleon    |  0.877 |  0.830 |  0.944 |  0.032
+[basemain_continuous.py] End training...

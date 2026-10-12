@@ -1,0 +1,686 @@
+=== log 2026-09-03 13:47:37.154379 ===
+[ant_ratio.py] base_seed = 112358
+config = 'configs/anet_ratio.py'
+data_cfg = 'dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+exp_name = 'ConvNeXtB_ZoomNeXt_ANet_BS4'
+generate = False
+load_from = None
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model = dict(
+    edge_loss_weight=4.0,
+    hmu_groups=6,
+    mid_dim=64,
+    ual_full=1.0,
+    ual_loss_weight=2.0,
+    ual_start=0.0)
+model_name = 'ConvNeXtB_ZoomNeXt_ANet'
+model_type = 'anet'
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/log_2026-09-03.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/trainer.txt'
+)
+pretrained = True
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+train = dict(
+    augment=True,
+    backbone_lr_factor=0.1,
+    batch_size=4,
+    box_format='xyxy',
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384)),
+    grad_acc_step=1,
+    lr=0.0001,
+    min_lr_ratio=0.01,
+    num_epochs=40,
+    num_workers=8,
+    optimizer='adamw',
+    sample_ratio=0.2,
+    save_interval=5,
+    soft_target=False,
+    target_key='pseudo_mask',
+    use_amp=True,
+    warmup_steps=500,
+    weight_decay=0.0001)
+use_checkpoint = False
+use_custom_worker_init = True
+val = dict(
+    batch_size=8,
+    data=dict(names=[
+        'camo_te',
+        'cod10k_te',
+    ], shape=dict(h=384, w=384)),
+    enable=True,
+    interval=5,
+    min_component_area=4,
+    num_workers=4,
+    save_vis_n=12,
+    start_epoch=5)
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[ant_ratio.py] Number of Parameters: 178.550M
+[ant_ratio.py] ANet dataset combined_tr: 4040 image/mask/box triplets
+[ant_ratio.py] ANet full-mask subset: ratio=0.2000, samples=808
+[anet_zoomnext.py] ANet Parameter Groups:{Pretrained: 680, Fixed: 0, ReTrained: 220}
+[ant_ratio.py] ANet train: samples=808, batches/epoch=202, epochs=40, total_steps=8080
+[ant_ratio.py] ANet validation enabled: start=5, interval=5, datasets=['camo_te', 'cod10k_te']
+[ant_ratio.py] ANet | ETA:1:41:07 | E001/040 B0001/0202 | LR:2.00e-08,2.00e-07 | L:6.4251 STR:3.2503 EDGE:3.1748 UAL:0.0000
+[ant_ratio.py] ANet | ETA:0:17:53 | E001/040 B0020/0202 | LR:4.00e-07,4.00e-06 | L:6.2989 STR:3.1463 EDGE:3.1526 UAL:0.0000
+[ant_ratio.py] ANet | ETA:0:15:07 | E001/040 B0040/0202 | LR:8.00e-07,8.00e-06 | L:6.4688 STR:3.2265 EDGE:3.2421 UAL:0.0001
+[ant_ratio.py] ANet | ETA:0:14:09 | E001/040 B0060/0202 | LR:1.20e-06,1.20e-05 | L:6.1574 STR:3.0670 EDGE:3.0901 UAL:0.0003
+[ant_ratio.py] ANet | ETA:0:13:38 | E001/040 B0080/0202 | LR:1.60e-06,1.60e-05 | L:5.5811 STR:2.6697 EDGE:2.9110 UAL:0.0004
+[ant_ratio.py] ANet | ETA:0:13:20 | E001/040 B0100/0202 | LR:2.00e-06,2.00e-05 | L:5.9951 STR:3.0273 EDGE:2.9671 UAL:0.0007
+[ant_ratio.py] ANet | ETA:0:13:08 | E001/040 B0120/0202 | LR:2.40e-06,2.40e-05 | L:5.7132 STR:2.7023 EDGE:3.0100 UAL:0.0009
+[ant_ratio.py] ANet | ETA:0:12:58 | E001/040 B0140/0202 | LR:2.80e-06,2.80e-05 | L:5.4923 STR:2.4264 EDGE:3.0646 UAL:0.0013
+[ant_ratio.py] ANet | ETA:0:12:54 | E001/040 B0160/0202 | LR:3.20e-06,3.20e-05 | L:5.3066 STR:2.4183 EDGE:2.8867 UAL:0.0017
+[ant_ratio.py] ANet | ETA:0:12:49 | E001/040 B0180/0202 | LR:3.60e-06,3.60e-05 | L:5.2769 STR:2.3796 EDGE:2.8952 UAL:0.0021
+[ant_ratio.py] ANet | ETA:0:12:43 | E001/040 B0200/0202 | LR:4.00e-06,4.00e-05 | L:4.9560 STR:2.4456 EDGE:2.5079 UAL:0.0025
+[ant_ratio.py] ANet | ETA:0:12:42 | E001/040 B0202/0202 | LR:4.04e-06,4.04e-05 | L:4.8881 STR:2.3682 EDGE:2.5173 UAL:0.0025
+[ant_ratio.py] ANet Epoch 001 | 19.6s | L:5.7277 STR:2.7699 EDGE:2.9569 UAL:0.0009
+[ant_ratio.py] ANet | ETA:0:13:02 | E002/040 B0001/0202 | LR:4.06e-06,4.06e-05 | L:5.0596 STR:2.1624 EDGE:2.8945 UAL:0.0026
+[ant_ratio.py] ANet | ETA:0:12:57 | E002/040 B0020/0202 | LR:4.44e-06,4.44e-05 | L:4.9211 STR:2.1905 EDGE:2.7275 UAL:0.0031
+[ant_ratio.py] ANet | ETA:0:12:51 | E002/040 B0040/0202 | LR:4.84e-06,4.84e-05 | L:4.7872 STR:2.1370 EDGE:2.6466 UAL:0.0036
+[ant_ratio.py] ANet | ETA:0:12:46 | E002/040 B0060/0202 | LR:5.24e-06,5.24e-05 | L:4.8758 STR:2.1956 EDGE:2.6759 UAL:0.0043
+[ant_ratio.py] ANet | ETA:0:12:40 | E002/040 B0080/0202 | LR:5.64e-06,5.64e-05 | L:4.6262 STR:2.1148 EDGE:2.5065 UAL:0.0049
+[ant_ratio.py] ANet | ETA:0:12:35 | E002/040 B0100/0202 | LR:6.04e-06,6.04e-05 | L:4.5161 STR:1.8194 EDGE:2.6913 UAL:0.0054
+[ant_ratio.py] ANet | ETA:0:12:31 | E002/040 B0120/0202 | LR:6.44e-06,6.44e-05 | L:4.2475 STR:1.9865 EDGE:2.2547 UAL:0.0062
+[ant_ratio.py] ANet | ETA:0:12:27 | E002/040 B0140/0202 | LR:6.84e-06,6.84e-05 | L:4.3636 STR:2.1952 EDGE:2.1613 UAL:0.0071
+[ant_ratio.py] ANet | ETA:0:12:23 | E002/040 B0160/0202 | LR:7.24e-06,7.24e-05 | L:3.6375 STR:1.7650 EDGE:1.8648 UAL:0.0076
+[ant_ratio.py] ANet | ETA:0:12:15 | E002/040 B0180/0202 | LR:7.64e-06,7.64e-05 | L:4.0259 STR:1.7748 EDGE:2.2425 UAL:0.0085
+[ant_ratio.py] ANet | ETA:0:12:12 | E002/040 B0200/0202 | LR:8.04e-06,8.04e-05 | L:3.6810 STR:1.8583 EDGE:1.8136 UAL:0.0091
+[ant_ratio.py] ANet | ETA:0:12:15 | E002/040 B0202/0202 | LR:8.08e-06,8.08e-05 | L:3.9404 STR:1.6726 EDGE:2.2588 UAL:0.0090
+[ant_ratio.py] ANet Epoch 002 | 18.9s | L:4.5611 STR:2.0754 EDGE:2.4799 UAL:0.0058
+[ant_ratio.py] ANet | ETA:0:12:28 | E003/040 B0001/0202 | LR:8.10e-06,8.10e-05 | L:4.1569 STR:1.9963 EDGE:2.1509 UAL:0.0097
+[ant_ratio.py] ANet | ETA:0:12:48 | E003/040 B0020/0202 | LR:8.48e-06,8.48e-05 | L:3.5784 STR:1.7400 EDGE:1.8283 UAL:0.0101
+[ant_ratio.py] ANet | ETA:0:13:06 | E003/040 B0040/0202 | LR:8.88e-06,8.88e-05 | L:4.0143 STR:1.8833 EDGE:2.1198 UAL:0.0112
+[ant_ratio.py] ANet | ETA:0:13:22 | E003/040 B0060/0202 | LR:9.28e-06,9.28e-05 | L:3.9969 STR:1.8595 EDGE:2.1248 UAL:0.0126
+[ant_ratio.py] ANet | ETA:0:13:37 | E003/040 B0080/0202 | LR:9.68e-06,9.68e-05 | L:3.5475 STR:1.7183 EDGE:1.8162 UAL:0.0129
+[ant_ratio.py] ANet | ETA:0:13:50 | E003/040 B0100/0202 | LR:1.00e-05,1.00e-04 | L:3.5088 STR:1.7170 EDGE:1.7778 UAL:0.0140
+[ant_ratio.py] ANet | ETA:0:14:02 | E003/040 B0120/0202 | LR:1.00e-05,1.00e-04 | L:3.6849 STR:1.6065 EDGE:2.0644 UAL:0.0140
+[ant_ratio.py] ANet | ETA:0:14:12 | E003/040 B0140/0202 | LR:1.00e-05,1.00e-04 | L:3.0953 STR:1.5364 EDGE:1.5435 UAL:0.0154
+[ant_ratio.py] ANet | ETA:0:14:22 | E003/040 B0160/0202 | LR:1.00e-05,1.00e-04 | L:3.1225 STR:1.5008 EDGE:1.6054 UAL:0.0163
+[ant_ratio.py] ANet | ETA:0:14:31 | E003/040 B0180/0202 | LR:1.00e-05,1.00e-04 | L:3.1077 STR:1.5273 EDGE:1.5634 UAL:0.0170
+[ant_ratio.py] ANet | ETA:0:14:30 | E003/040 B0200/0202 | LR:1.00e-05,1.00e-04 | L:3.4662 STR:1.5739 EDGE:1.8739 UAL:0.0184
+[ant_ratio.py] ANet | ETA:0:14:31 | E003/040 B0202/0202 | LR:1.00e-05,1.00e-04 | L:3.0585 STR:1.6105 EDGE:1.4297 UAL:0.0183
+[ant_ratio.py] ANet Epoch 003 | 31.5s | L:3.5308 STR:1.7022 EDGE:1.8147 UAL:0.0139
+[ant_ratio.py] ANet | ETA:0:14:40 | E004/040 B0001/0202 | LR:1.00e-05,1.00e-04 | L:3.1808 STR:1.4194 EDGE:1.7432 UAL:0.0183
+[ant_ratio.py] ANet | ETA:0:14:47 | E004/040 B0020/0202 | LR:9.99e-06,9.99e-05 | L:2.9457 STR:1.5977 EDGE:1.3282 UAL:0.0197
+[ant_ratio.py] ANet | ETA:0:14:54 | E004/040 B0040/0202 | LR:9.99e-06,9.99e-05 | L:2.7946 STR:1.5409 EDGE:1.2327 UAL:0.0211
+[ant_ratio.py] ANet | ETA:0:15:00 | E004/040 B0060/0202 | LR:9.99e-06,9.99e-05 | L:2.8339 STR:1.5390 EDGE:1.2728 UAL:0.0221
+[ant_ratio.py] ANet | ETA:0:15:05 | E004/040 B0080/0202 | LR:9.99e-06,9.99e-05 | L:2.9979 STR:1.5829 EDGE:1.3912 UAL:0.0238
+[ant_ratio.py] ANet | ETA:0:15:10 | E004/040 B0100/0202 | LR:9.98e-06,9.98e-05 | L:2.6721 STR:1.3567 EDGE:1.2928 UAL:0.0225
+[ant_ratio.py] ANet | ETA:0:15:14 | E004/040 B0120/0202 | LR:9.98e-06,9.98e-05 | L:2.5191 STR:1.3033 EDGE:1.1927 UAL:0.0231
+[ant_ratio.py] ANet | ETA:0:15:18 | E004/040 B0140/0202 | LR:9.97e-06,9.97e-05 | L:2.6054 STR:1.2705 EDGE:1.3109 UAL:0.0241
+[ant_ratio.py] ANet | ETA:0:15:23 | E004/040 B0160/0202 | LR:9.97e-06,9.97e-05 | L:2.7597 STR:1.4738 EDGE:1.2600 UAL:0.0259
+[ant_ratio.py] ANet | ETA:0:15:26 | E004/040 B0180/0202 | LR:9.97e-06,9.97e-05 | L:2.6658 STR:1.5554 EDGE:1.0822 UAL:0.0282
+[ant_ratio.py] ANet | ETA:0:15:23 | E004/040 B0200/0202 | LR:9.96e-06,9.96e-05 | L:2.5423 STR:1.2871 EDGE:1.2286 UAL:0.0267
+[ant_ratio.py] ANet | ETA:0:15:22 | E004/040 B0202/0202 | LR:9.96e-06,9.96e-05 | L:2.5289 STR:1.3799 EDGE:1.1208 UAL:0.0282
+[ant_ratio.py] ANet Epoch 004 | 31.3s | L:2.8812 STR:1.4822 EDGE:1.3760 UAL:0.0230
+[ant_ratio.py] ANet | ETA:0:15:31 | E005/040 B0001/0202 | LR:9.96e-06,9.96e-05 | L:3.0524 STR:1.7759 EDGE:1.2457 UAL:0.0309
+[ant_ratio.py] ANet | ETA:0:15:34 | E005/040 B0020/0202 | LR:9.95e-06,9.95e-05 | L:2.8421 STR:1.2684 EDGE:1.5484 UAL:0.0253
+[ant_ratio.py] ANet | ETA:0:15:36 | E005/040 B0040/0202 | LR:9.95e-06,9.95e-05 | L:2.7143 STR:1.4257 EDGE:1.2572 UAL:0.0314
+[ant_ratio.py] ANet | ETA:0:15:39 | E005/040 B0060/0202 | LR:9.94e-06,9.94e-05 | L:2.7157 STR:1.4831 EDGE:1.2018 UAL:0.0309
+[ant_ratio.py] ANet | ETA:0:15:41 | E005/040 B0080/0202 | LR:9.94e-06,9.94e-05 | L:2.6198 STR:1.4960 EDGE:1.0925 UAL:0.0313
+[ant_ratio.py] ANet | ETA:0:15:43 | E005/040 B0100/0202 | LR:9.93e-06,9.93e-05 | L:2.5800 STR:1.4542 EDGE:1.0925 UAL:0.0333
+[ant_ratio.py] ANet | ETA:0:15:44 | E005/040 B0120/0202 | LR:9.92e-06,9.92e-05 | L:2.3391 STR:1.3261 EDGE:0.9798 UAL:0.0331
+[ant_ratio.py] ANet | ETA:0:15:46 | E005/040 B0140/0202 | LR:9.92e-06,9.92e-05 | L:2.4783 STR:1.3789 EDGE:1.0642 UAL:0.0352
+[ant_ratio.py] ANet | ETA:0:15:47 | E005/040 B0160/0202 | LR:9.91e-06,9.91e-05 | L:1.9809 STR:1.0995 EDGE:0.8481 UAL:0.0333
+[ant_ratio.py] ANet | ETA:0:15:48 | E005/040 B0180/0202 | LR:9.90e-06,9.90e-05 | L:2.8872 STR:1.5456 EDGE:1.3046 UAL:0.0370
+[ant_ratio.py] ANet | ETA:0:15:44 | E005/040 B0200/0202 | LR:9.89e-06,9.89e-05 | L:2.1684 STR:1.1058 EDGE:1.0309 UAL:0.0316
+[ant_ratio.py] ANet | ETA:0:15:44 | E005/040 B0202/0202 | LR:9.89e-06,9.89e-05 | L:2.6843 STR:1.2835 EDGE:1.3661 UAL:0.0346
+[ant_ratio.py] ANet Epoch 005 | 31.7s | L:2.5195 STR:1.3279 EDGE:1.1605 UAL:0.0311
+[ant_ratio.py] ANet VAL | Epoch 005 | camo_te | sm:0.8110, wfm:0.5311, mae:0.1270, avgem:0.8309, adpem:0.9036, maxem:0.9481
+[ant_ratio.py] ANet VAL | Epoch 005 | cod10k_te | sm:0.7232, wfm:0.3452, mae:0.1122, avgem:0.8310, adpem:0.9150, maxem:0.9629
+[ant_ratio.py] ANet VAL | Epoch 005 | AVG_MAE: 0.119600
+[ant_ratio.py] ANet BEST AVG MAE -> 0.119600 @ epoch 5 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST camo_te MAE -> 0.127000 @ epoch 5 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_camo_te_mae.pth
+[ant_ratio.py] ANet BEST cod10k_te MAE -> 0.112200 @ epoch 5 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_cod10k_te_mae.pth
+[ant_ratio.py] ANet | ETA:0:34:51 | E006/040 B0001/0202 | LR:9.89e-06,9.89e-05 | L:2.1844 STR:1.0966 EDGE:1.0527 UAL:0.0350
+[ant_ratio.py] ANet | ETA:0:34:20 | E006/040 B0020/0202 | LR:9.88e-06,9.88e-05 | L:2.2627 STR:1.1940 EDGE:1.0319 UAL:0.0368
+[ant_ratio.py] ANet | ETA:0:33:47 | E006/040 B0040/0202 | LR:9.87e-06,9.87e-05 | L:2.1532 STR:1.2416 EDGE:0.8752 UAL:0.0364
+[ant_ratio.py] ANet | ETA:0:33:15 | E006/040 B0060/0202 | LR:9.86e-06,9.86e-05 | L:2.5247 STR:1.3584 EDGE:1.1300 UAL:0.0363
+[ant_ratio.py] ANet | ETA:0:32:45 | E006/040 B0080/0202 | LR:9.85e-06,9.85e-05 | L:2.0525 STR:0.9464 EDGE:1.0706 UAL:0.0355
+[ant_ratio.py] ANet | ETA:0:32:16 | E006/040 B0100/0202 | LR:9.84e-06,9.84e-05 | L:2.1923 STR:1.1136 EDGE:1.0436 UAL:0.0352
+[ant_ratio.py] ANet | ETA:0:31:47 | E006/040 B0120/0202 | LR:9.83e-06,9.83e-05 | L:2.1257 STR:1.0877 EDGE:1.0002 UAL:0.0379
+[ant_ratio.py] ANet | ETA:0:31:20 | E006/040 B0140/0202 | LR:9.82e-06,9.82e-05 | L:2.0861 STR:1.1248 EDGE:0.9253 UAL:0.0359
+[ant_ratio.py] ANet | ETA:0:30:53 | E006/040 B0160/0202 | LR:9.81e-06,9.81e-05 | L:2.3557 STR:1.4080 EDGE:0.9062 UAL:0.0415
+[ant_ratio.py] ANet | ETA:0:30:28 | E006/040 B0180/0202 | LR:9.80e-06,9.80e-05 | L:2.2677 STR:1.1497 EDGE:1.0791 UAL:0.0389
+[ant_ratio.py] ANet | ETA:0:30:03 | E006/040 B0200/0202 | LR:9.79e-06,9.79e-05 | L:2.8926 STR:1.3848 EDGE:1.4661 UAL:0.0417
+[ant_ratio.py] ANet | ETA:0:30:00 | E006/040 B0202/0202 | LR:9.79e-06,9.79e-05 | L:2.3264 STR:1.2264 EDGE:1.0621 UAL:0.0379
+[ant_ratio.py] ANet Epoch 006 | 18.9s | L:2.2772 STR:1.1995 EDGE:1.0408 UAL:0.0368
+[ant_ratio.py] ANet | ETA:0:30:03 | E007/040 B0001/0202 | LR:9.79e-06,9.79e-05 | L:2.4010 STR:1.1354 EDGE:1.2255 UAL:0.0401
+[ant_ratio.py] ANet | ETA:0:29:40 | E007/040 B0020/0202 | LR:9.77e-06,9.77e-05 | L:2.3157 STR:1.3554 EDGE:0.9160 UAL:0.0443
+[ant_ratio.py] ANet | ETA:0:29:17 | E007/040 B0040/0202 | LR:9.76e-06,9.76e-05 | L:1.7972 STR:0.9087 EDGE:0.8518 UAL:0.0366
+[ant_ratio.py] ANet | ETA:0:28:54 | E007/040 B0060/0202 | LR:9.75e-06,9.75e-05 | L:1.8397 STR:1.0388 EDGE:0.7613 UAL:0.0396
+[ant_ratio.py] ANet | ETA:0:28:32 | E007/040 B0080/0202 | LR:9.74e-06,9.74e-05 | L:2.3366 STR:1.2989 EDGE:0.9941 UAL:0.0436
+[ant_ratio.py] ANet | ETA:0:28:10 | E007/040 B0100/0202 | LR:9.72e-06,9.72e-05 | L:2.0591 STR:1.0154 EDGE:1.0068 UAL:0.0369
+[ant_ratio.py] ANet | ETA:0:27:50 | E007/040 B0120/0202 | LR:9.71e-06,9.71e-05 | L:1.8064 STR:1.0479 EDGE:0.7139 UAL:0.0447
+[ant_ratio.py] ANet | ETA:0:27:28 | E007/040 B0140/0202 | LR:9.70e-06,9.70e-05 | L:2.2961 STR:0.9439 EDGE:1.3155 UAL:0.0367
+[ant_ratio.py] ANet | ETA:0:27:08 | E007/040 B0160/0202 | LR:9.68e-06,9.68e-05 | L:2.1226 STR:1.1561 EDGE:0.9237 UAL:0.0428
+[ant_ratio.py] ANet | ETA:0:26:53 | E007/040 B0180/0202 | LR:9.67e-06,9.67e-05 | L:2.1781 STR:1.1027 EDGE:1.0342 UAL:0.0412
+[ant_ratio.py] ANet | ETA:0:26:40 | E007/040 B0200/0202 | LR:9.65e-06,9.65e-05 | L:2.0121 STR:0.9059 EDGE:1.0698 UAL:0.0364
+[ant_ratio.py] ANet | ETA:0:26:39 | E007/040 B0202/0202 | LR:9.65e-06,9.65e-05 | L:2.2535 STR:1.2065 EDGE:1.0031 UAL:0.0438
+[ant_ratio.py] ANet Epoch 007 | 21.0s | L:2.1072 STR:1.0935 EDGE:0.9734 UAL:0.0403
+[ant_ratio.py] ANet | ETA:0:26:43 | E008/040 B0001/0202 | LR:9.65e-06,9.65e-05 | L:1.7734 STR:0.9149 EDGE:0.8187 UAL:0.0398
+[ant_ratio.py] ANet | ETA:0:26:32 | E008/040 B0020/0202 | LR:9.63e-06,9.63e-05 | L:2.2474 STR:1.1328 EDGE:1.0746 UAL:0.0401
+[ant_ratio.py] ANet | ETA:0:26:19 | E008/040 B0040/0202 | LR:9.62e-06,9.62e-05 | L:1.9534 STR:1.0071 EDGE:0.9000 UAL:0.0463
+[ant_ratio.py] ANet | ETA:0:26:08 | E008/040 B0060/0202 | LR:9.60e-06,9.60e-05 | L:1.9165 STR:0.9861 EDGE:0.8899 UAL:0.0405
+[ant_ratio.py] ANet | ETA:0:25:56 | E008/040 B0080/0202 | LR:9.59e-06,9.59e-05 | L:1.6250 STR:0.8507 EDGE:0.7329 UAL:0.0414
+[ant_ratio.py] ANet | ETA:0:25:44 | E008/040 B0100/0202 | LR:9.57e-06,9.57e-05 | L:2.0344 STR:1.0274 EDGE:0.9645 UAL:0.0426
+[ant_ratio.py] ANet | ETA:0:25:33 | E008/040 B0120/0202 | LR:9.55e-06,9.55e-05 | L:1.8158 STR:0.9520 EDGE:0.8259 UAL:0.0378
+[ant_ratio.py] ANet | ETA:0:25:22 | E008/040 B0140/0202 | LR:9.54e-06,9.54e-05 | L:1.8957 STR:0.8530 EDGE:1.0063 UAL:0.0364
+[ant_ratio.py] ANet | ETA:0:25:09 | E008/040 B0160/0202 | LR:9.52e-06,9.52e-05 | L:2.0425 STR:1.0913 EDGE:0.9080 UAL:0.0433
+[ant_ratio.py] ANet | ETA:0:24:58 | E008/040 B0180/0202 | LR:9.50e-06,9.50e-05 | L:1.9697 STR:0.8964 EDGE:1.0330 UAL:0.0403
+[ant_ratio.py] ANet | ETA:0:24:47 | E008/040 B0200/0202 | LR:9.48e-06,9.48e-05 | L:1.8981 STR:0.9349 EDGE:0.9227 UAL:0.0405
+[ant_ratio.py] ANet | ETA:0:24:46 | E008/040 B0202/0202 | LR:9.48e-06,9.48e-05 | L:2.0925 STR:1.0631 EDGE:0.9906 UAL:0.0388
+[ant_ratio.py] ANet Epoch 008 | 31.6s | L:1.9664 STR:1.0031 EDGE:0.9218 UAL:0.0415
+[ant_ratio.py] ANet | ETA:0:24:49 | E009/040 B0001/0202 | LR:9.48e-06,9.48e-05 | L:2.1631 STR:0.9911 EDGE:1.1313 UAL:0.0407
+[ant_ratio.py] ANet | ETA:0:24:39 | E009/040 B0020/0202 | LR:9.46e-06,9.46e-05 | L:2.2103 STR:1.0422 EDGE:1.1304 UAL:0.0376
+[ant_ratio.py] ANet | ETA:0:24:29 | E009/040 B0040/0202 | LR:9.44e-06,9.44e-05 | L:1.5517 STR:0.6809 EDGE:0.8349 UAL:0.0359
+[ant_ratio.py] ANet | ETA:0:24:19 | E009/040 B0060/0202 | LR:9.42e-06,9.42e-05 | L:1.7860 STR:0.8216 EDGE:0.9265 UAL:0.0379
+[ant_ratio.py] ANet | ETA:0:24:09 | E009/040 B0080/0202 | LR:9.41e-06,9.41e-05 | L:1.8792 STR:0.7855 EDGE:1.0578 UAL:0.0359
+[ant_ratio.py] ANet | ETA:0:23:59 | E009/040 B0100/0202 | LR:9.39e-06,9.39e-05 | L:1.7906 STR:1.0837 EDGE:0.6598 UAL:0.0471
+[ant_ratio.py] ANet | ETA:0:23:50 | E009/040 B0120/0202 | LR:9.37e-06,9.37e-05 | L:1.6492 STR:0.8273 EDGE:0.7807 UAL:0.0412
+[ant_ratio.py] ANet | ETA:0:23:40 | E009/040 B0140/0202 | LR:9.35e-06,9.35e-05 | L:2.4021 STR:1.3095 EDGE:1.0431 UAL:0.0495
+[ant_ratio.py] ANet | ETA:0:23:29 | E009/040 B0160/0202 | LR:9.32e-06,9.32e-05 | L:1.8162 STR:0.9793 EDGE:0.7981 UAL:0.0389
+[ant_ratio.py] ANet | ETA:0:23:20 | E009/040 B0180/0202 | LR:9.30e-06,9.30e-05 | L:1.7615 STR:0.8564 EDGE:0.8653 UAL:0.0398
+[ant_ratio.py] ANet | ETA:0:23:11 | E009/040 B0200/0202 | LR:9.28e-06,9.28e-05 | L:1.8843 STR:0.9874 EDGE:0.8522 UAL:0.0447
+[ant_ratio.py] ANet | ETA:0:23:10 | E009/040 B0202/0202 | LR:9.28e-06,9.28e-05 | L:1.9131 STR:0.8267 EDGE:1.0497 UAL:0.0367
+[ant_ratio.py] ANet Epoch 009 | 31.5s | L:1.8431 STR:0.9255 EDGE:0.8763 UAL:0.0413
+[ant_ratio.py] ANet | ETA:0:23:12 | E010/040 B0001/0202 | LR:9.28e-06,9.28e-05 | L:1.4035 STR:0.7197 EDGE:0.6434 UAL:0.0404
+[ant_ratio.py] ANet | ETA:0:23:04 | E010/040 B0020/0202 | LR:9.26e-06,9.26e-05 | L:1.8721 STR:0.8402 EDGE:0.9954 UAL:0.0365
+[ant_ratio.py] ANet | ETA:0:22:55 | E010/040 B0040/0202 | LR:9.24e-06,9.24e-05 | L:1.8707 STR:0.9178 EDGE:0.9114 UAL:0.0415
+[ant_ratio.py] ANet | ETA:0:22:47 | E010/040 B0060/0202 | LR:9.22e-06,9.22e-05 | L:1.7918 STR:0.9106 EDGE:0.8437 UAL:0.0375
+[ant_ratio.py] ANet | ETA:0:22:38 | E010/040 B0080/0202 | LR:9.19e-06,9.19e-05 | L:1.8834 STR:0.9534 EDGE:0.8899 UAL:0.0402
+[ant_ratio.py] ANet | ETA:0:22:30 | E010/040 B0100/0202 | LR:9.17e-06,9.17e-05 | L:1.6097 STR:0.8882 EDGE:0.6771 UAL:0.0445
+[ant_ratio.py] ANet | ETA:0:22:22 | E010/040 B0120/0202 | LR:9.15e-06,9.15e-05 | L:1.9983 STR:0.8571 EDGE:1.1051 UAL:0.0361
+[ant_ratio.py] ANet | ETA:0:22:14 | E010/040 B0140/0202 | LR:9.12e-06,9.12e-05 | L:1.8576 STR:0.8829 EDGE:0.9308 UAL:0.0439
+[ant_ratio.py] ANet | ETA:0:22:04 | E010/040 B0160/0202 | LR:9.10e-06,9.10e-05 | L:1.6502 STR:0.8585 EDGE:0.7479 UAL:0.0438
+[ant_ratio.py] ANet | ETA:0:21:51 | E010/040 B0180/0202 | LR:9.08e-06,9.08e-05 | L:1.5446 STR:0.7965 EDGE:0.7070 UAL:0.0411
+[ant_ratio.py] ANet | ETA:0:21:41 | E010/040 B0200/0202 | LR:9.05e-06,9.05e-05 | L:1.8691 STR:0.9695 EDGE:0.8560 UAL:0.0435
+[ant_ratio.py] ANet | ETA:0:21:40 | E010/040 B0202/0202 | LR:9.05e-06,9.05e-05 | L:1.5475 STR:0.7835 EDGE:0.7239 UAL:0.0401
+[ant_ratio.py] ANet Epoch 010 | 29.2s | L:1.7505 STR:0.8645 EDGE:0.8457 UAL:0.0404
+[ant_ratio.py] ANet VAL | Epoch 010 | camo_te | sm:0.8763, wfm:0.7156, mae:0.0678, avgem:0.9043, adpem:0.9200, maxem:0.9517
+[ant_ratio.py] ANet VAL | Epoch 010 | cod10k_te | sm:0.8351, wfm:0.5750, mae:0.0453, avgem:0.9172, adpem:0.9265, maxem:0.9659
+[ant_ratio.py] ANet VAL | Epoch 010 | AVG_MAE: 0.056550
+[ant_ratio.py] ANet BEST AVG MAE -> 0.056550 @ epoch 10 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST camo_te MAE -> 0.067800 @ epoch 10 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_camo_te_mae.pth
+[ant_ratio.py] ANet BEST cod10k_te MAE -> 0.045300 @ epoch 10 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_cod10k_te_mae.pth
+[ant_ratio.py] ANet | ETA:0:29:49 | E011/040 B0001/0202 | LR:9.05e-06,9.05e-05 | L:1.8106 STR:0.8389 EDGE:0.9353 UAL:0.0364
+[ant_ratio.py] ANet | ETA:0:29:32 | E011/040 B0020/0202 | LR:9.03e-06,9.03e-05 | L:1.4879 STR:0.6646 EDGE:0.7863 UAL:0.0370
+[ant_ratio.py] ANet | ETA:0:29:14 | E011/040 B0040/0202 | LR:9.00e-06,9.00e-05 | L:1.7208 STR:0.8739 EDGE:0.8052 UAL:0.0417
+[ant_ratio.py] ANet | ETA:0:28:57 | E011/040 B0060/0202 | LR:8.98e-06,8.98e-05 | L:1.8182 STR:0.9064 EDGE:0.8712 UAL:0.0406
+[ant_ratio.py] ANet | ETA:0:28:40 | E011/040 B0080/0202 | LR:8.95e-06,8.95e-05 | L:1.4900 STR:0.7782 EDGE:0.6737 UAL:0.0381
+[ant_ratio.py] ANet | ETA:0:28:23 | E011/040 B0100/0202 | LR:8.93e-06,8.93e-05 | L:1.8890 STR:0.8624 EDGE:0.9886 UAL:0.0380
+[ant_ratio.py] ANet | ETA:0:28:07 | E011/040 B0120/0202 | LR:8.90e-06,8.90e-05 | L:1.5899 STR:0.7126 EDGE:0.8389 UAL:0.0384
+[ant_ratio.py] ANet | ETA:0:27:51 | E011/040 B0140/0202 | LR:8.88e-06,8.88e-05 | L:2.1043 STR:1.3102 EDGE:0.7446 UAL:0.0496
+[ant_ratio.py] ANet | ETA:0:27:35 | E011/040 B0160/0202 | LR:8.85e-06,8.85e-05 | L:1.8693 STR:0.8769 EDGE:0.9561 UAL:0.0362
+[ant_ratio.py] ANet | ETA:0:27:19 | E011/040 B0180/0202 | LR:8.82e-06,8.82e-05 | L:1.7339 STR:1.0590 EDGE:0.6291 UAL:0.0459
+[ant_ratio.py] ANet | ETA:0:27:04 | E011/040 B0200/0202 | LR:8.80e-06,8.80e-05 | L:1.6606 STR:0.9073 EDGE:0.7187 UAL:0.0346
+[ant_ratio.py] ANet | ETA:0:27:03 | E011/040 B0202/0202 | LR:8.79e-06,8.79e-05 | L:1.6081 STR:0.7314 EDGE:0.8414 UAL:0.0353
+[ant_ratio.py] ANet Epoch 011 | 19.1s | L:1.6545 STR:0.8076 EDGE:0.8078 UAL:0.0390
+[ant_ratio.py] ANet | ETA:0:27:05 | E012/040 B0001/0202 | LR:8.79e-06,8.79e-05 | L:1.4347 STR:0.6181 EDGE:0.7801 UAL:0.0366
+[ant_ratio.py] ANet | ETA:0:26:50 | E012/040 B0020/0202 | LR:8.77e-06,8.77e-05 | L:1.8298 STR:0.7784 EDGE:1.0169 UAL:0.0345
+[ant_ratio.py] ANet | ETA:0:26:35 | E012/040 B0040/0202 | LR:8.74e-06,8.74e-05 | L:1.3858 STR:0.7064 EDGE:0.6439 UAL:0.0354
+[ant_ratio.py] ANet | ETA:0:26:21 | E012/040 B0060/0202 | LR:8.71e-06,8.71e-05 | L:1.4520 STR:0.6425 EDGE:0.7756 UAL:0.0339
+[ant_ratio.py] ANet | ETA:0:26:06 | E012/040 B0080/0202 | LR:8.68e-06,8.68e-05 | L:1.3626 STR:0.7329 EDGE:0.5914 UAL:0.0383
+[ant_ratio.py] ANet | ETA:0:25:52 | E012/040 B0100/0202 | LR:8.66e-06,8.66e-05 | L:1.4483 STR:0.7172 EDGE:0.6955 UAL:0.0356
+[ant_ratio.py] ANet | ETA:0:25:38 | E012/040 B0120/0202 | LR:8.63e-06,8.63e-05 | L:1.7814 STR:0.7031 EDGE:1.0418 UAL:0.0364
+[ant_ratio.py] ANet | ETA:0:25:24 | E012/040 B0140/0202 | LR:8.60e-06,8.60e-05 | L:1.5919 STR:0.7120 EDGE:0.8443 UAL:0.0356
+[ant_ratio.py] ANet | ETA:0:25:10 | E012/040 B0160/0202 | LR:8.57e-06,8.57e-05 | L:1.5655 STR:0.7461 EDGE:0.7819 UAL:0.0376
+[ant_ratio.py] ANet | ETA:0:25:00 | E012/040 B0180/0202 | LR:8.54e-06,8.54e-05 | L:1.5154 STR:0.6029 EDGE:0.8790 UAL:0.0335
+[ant_ratio.py] ANet | ETA:0:24:49 | E012/040 B0200/0202 | LR:8.51e-06,8.51e-05 | L:2.4250 STR:1.1458 EDGE:1.2335 UAL:0.0457
+[ant_ratio.py] ANet | ETA:0:24:48 | E012/040 B0202/0202 | LR:8.51e-06,8.51e-05 | L:1.4230 STR:0.6160 EDGE:0.7742 UAL:0.0328
+[ant_ratio.py] ANet Epoch 012 | 21.6s | L:1.5801 STR:0.7585 EDGE:0.7844 UAL:0.0372
+[ant_ratio.py] ANet | ETA:0:24:50 | E013/040 B0001/0202 | LR:8.51e-06,8.51e-05 | L:1.5461 STR:0.7471 EDGE:0.7596 UAL:0.0394
+[ant_ratio.py] ANet | ETA:0:24:41 | E013/040 B0020/0202 | LR:8.48e-06,8.48e-05 | L:1.5149 STR:0.8391 EDGE:0.6333 UAL:0.0425
+[ant_ratio.py] ANet | ETA:0:24:31 | E013/040 B0040/0202 | LR:8.45e-06,8.45e-05 | L:1.3609 STR:0.6691 EDGE:0.6544 UAL:0.0373
+[ant_ratio.py] ANet | ETA:0:24:21 | E013/040 B0060/0202 | LR:8.42e-06,8.42e-05 | L:1.2977 STR:0.5982 EDGE:0.6640 UAL:0.0355
+[ant_ratio.py] ANet | ETA:0:24:11 | E013/040 B0080/0202 | LR:8.39e-06,8.39e-05 | L:1.6461 STR:0.9426 EDGE:0.6651 UAL:0.0384
+[ant_ratio.py] ANet | ETA:0:24:01 | E013/040 B0100/0202 | LR:8.36e-06,8.36e-05 | L:1.8206 STR:0.9190 EDGE:0.8659 UAL:0.0358
+[ant_ratio.py] ANet | ETA:0:23:52 | E013/040 B0120/0202 | LR:8.33e-06,8.33e-05 | L:1.4319 STR:0.6930 EDGE:0.7036 UAL:0.0353
+[ant_ratio.py] ANet | ETA:0:23:42 | E013/040 B0140/0202 | LR:8.30e-06,8.30e-05 | L:1.7160 STR:0.9152 EDGE:0.7635 UAL:0.0373
+[ant_ratio.py] ANet | ETA:0:23:31 | E013/040 B0160/0202 | LR:8.27e-06,8.27e-05 | L:1.9551 STR:1.1188 EDGE:0.7957 UAL:0.0406
+[ant_ratio.py] ANet | ETA:0:23:21 | E013/040 B0180/0202 | LR:8.24e-06,8.24e-05 | L:1.4364 STR:0.6278 EDGE:0.7751 UAL:0.0335
+[ant_ratio.py] ANet | ETA:0:23:12 | E013/040 B0200/0202 | LR:8.20e-06,8.20e-05 | L:1.8467 STR:0.9999 EDGE:0.8011 UAL:0.0456
+[ant_ratio.py] ANet | ETA:0:23:11 | E013/040 B0202/0202 | LR:8.20e-06,8.20e-05 | L:1.8536 STR:0.9721 EDGE:0.8433 UAL:0.0383
+[ant_ratio.py] ANet Epoch 013 | 31.3s | L:1.5127 STR:0.7198 EDGE:0.7565 UAL:0.0364
+[ant_ratio.py] ANet | ETA:0:23:13 | E014/040 B0001/0202 | LR:8.20e-06,8.20e-05 | L:1.4521 STR:0.7768 EDGE:0.6372 UAL:0.0381
+[ant_ratio.py] ANet | ETA:0:23:04 | E014/040 B0020/0202 | LR:8.17e-06,8.17e-05 | L:1.0762 STR:0.4667 EDGE:0.5780 UAL:0.0315
+[ant_ratio.py] ANet | ETA:0:22:55 | E014/040 B0040/0202 | LR:8.14e-06,8.14e-05 | L:1.2983 STR:0.6169 EDGE:0.6486 UAL:0.0328
+[ant_ratio.py] ANet | ETA:0:22:47 | E014/040 B0060/0202 | LR:8.11e-06,8.11e-05 | L:1.3571 STR:0.6484 EDGE:0.6713 UAL:0.0374
+[ant_ratio.py] ANet | ETA:0:22:38 | E014/040 B0080/0202 | LR:8.07e-06,8.07e-05 | L:1.5218 STR:0.7623 EDGE:0.7272 UAL:0.0323
+[ant_ratio.py] ANet | ETA:0:22:29 | E014/040 B0100/0202 | LR:8.04e-06,8.04e-05 | L:1.6999 STR:0.8005 EDGE:0.8649 UAL:0.0344
+[ant_ratio.py] ANet | ETA:0:22:20 | E014/040 B0120/0202 | LR:8.01e-06,8.01e-05 | L:1.3652 STR:0.6246 EDGE:0.7080 UAL:0.0326
+[ant_ratio.py] ANet | ETA:0:22:12 | E014/040 B0140/0202 | LR:7.97e-06,7.97e-05 | L:1.4282 STR:0.6699 EDGE:0.7278 UAL:0.0304
+[ant_ratio.py] ANet | ETA:0:22:02 | E014/040 B0160/0202 | LR:7.94e-06,7.94e-05 | L:1.5488 STR:0.6487 EDGE:0.8659 UAL:0.0342
+[ant_ratio.py] ANet | ETA:0:21:54 | E014/040 B0180/0202 | LR:7.91e-06,7.91e-05 | L:1.6133 STR:0.8141 EDGE:0.7620 UAL:0.0372
+[ant_ratio.py] ANet | ETA:0:21:45 | E014/040 B0200/0202 | LR:7.87e-06,7.87e-05 | L:1.2034 STR:0.6020 EDGE:0.5658 UAL:0.0356
+[ant_ratio.py] ANet | ETA:0:21:44 | E014/040 B0202/0202 | LR:7.87e-06,7.87e-05 | L:1.7552 STR:0.6698 EDGE:1.0469 UAL:0.0385
+[ant_ratio.py] ANet Epoch 014 | 31.7s | L:1.4654 STR:0.6898 EDGE:0.7406 UAL:0.0349
+[ant_ratio.py] ANet | ETA:0:21:45 | E015/040 B0001/0202 | LR:7.87e-06,7.87e-05 | L:1.1870 STR:0.5808 EDGE:0.5714 UAL:0.0349
+[ant_ratio.py] ANet | ETA:0:21:37 | E015/040 B0020/0202 | LR:7.84e-06,7.84e-05 | L:1.3189 STR:0.5672 EDGE:0.7213 UAL:0.0304
+[ant_ratio.py] ANet | ETA:0:21:29 | E015/040 B0040/0202 | LR:7.80e-06,7.80e-05 | L:1.2775 STR:0.5793 EDGE:0.6682 UAL:0.0300
+[ant_ratio.py] ANet | ETA:0:21:21 | E015/040 B0060/0202 | LR:7.77e-06,7.77e-05 | L:1.5158 STR:0.8140 EDGE:0.6624 UAL:0.0394
+[ant_ratio.py] ANet | ETA:0:21:13 | E015/040 B0080/0202 | LR:7.73e-06,7.73e-05 | L:1.6660 STR:0.9293 EDGE:0.6991 UAL:0.0376
+[ant_ratio.py] ANet | ETA:0:21:05 | E015/040 B0100/0202 | LR:7.70e-06,7.70e-05 | L:1.7472 STR:0.6731 EDGE:1.0402 UAL:0.0339
+[ant_ratio.py] ANet | ETA:0:20:57 | E015/040 B0120/0202 | LR:7.67e-06,7.67e-05 | L:1.2258 STR:0.6219 EDGE:0.5700 UAL:0.0339
+[ant_ratio.py] ANet | ETA:0:20:49 | E015/040 B0140/0202 | LR:7.63e-06,7.63e-05 | L:1.0922 STR:0.4848 EDGE:0.5775 UAL:0.0299
+[ant_ratio.py] ANet | ETA:0:20:40 | E015/040 B0160/0202 | LR:7.60e-06,7.60e-05 | L:1.8486 STR:0.9743 EDGE:0.8401 UAL:0.0342
+[ant_ratio.py] ANet | ETA:0:20:32 | E015/040 B0180/0202 | LR:7.56e-06,7.56e-05 | L:1.2619 STR:0.5018 EDGE:0.7305 UAL:0.0296
+[ant_ratio.py] ANet | ETA:0:20:25 | E015/040 B0200/0202 | LR:7.52e-06,7.52e-05 | L:1.5051 STR:0.7130 EDGE:0.7583 UAL:0.0338
+[ant_ratio.py] ANet | ETA:0:20:24 | E015/040 B0202/0202 | LR:7.52e-06,7.52e-05 | L:1.1028 STR:0.4708 EDGE:0.6027 UAL:0.0293
+[ant_ratio.py] ANet Epoch 015 | 31.6s | L:1.4137 STR:0.6634 EDGE:0.7166 UAL:0.0337
+[ant_ratio.py] ANet VAL | Epoch 015 | camo_te | sm:0.8891, wfm:0.8249, mae:0.0458, avgem:0.9363, adpem:0.9422, maxem:0.9545
+[ant_ratio.py] ANet VAL | Epoch 015 | cod10k_te | sm:0.8773, wfm:0.7605, mae:0.0266, avgem:0.9441, adpem:0.9297, maxem:0.9673
+[ant_ratio.py] ANet VAL | Epoch 015 | AVG_MAE: 0.036200
+[ant_ratio.py] ANet BEST AVG MAE -> 0.036200 @ epoch 15 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST camo_te MAE -> 0.045800 @ epoch 15 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_camo_te_mae.pth
+[ant_ratio.py] ANet BEST cod10k_te MAE -> 0.026600 @ epoch 15 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_cod10k_te_mae.pth
+[ant_ratio.py] ANet | ETA:0:24:54 | E016/040 B0001/0202 | LR:7.52e-06,7.52e-05 | L:1.1100 STR:0.4143 EDGE:0.6578 UAL:0.0379
+[ant_ratio.py] ANet | ETA:0:24:42 | E016/040 B0020/0202 | LR:7.49e-06,7.49e-05 | L:1.4135 STR:0.6444 EDGE:0.7348 UAL:0.0343
+[ant_ratio.py] ANet | ETA:0:24:30 | E016/040 B0040/0202 | LR:7.45e-06,7.45e-05 | L:1.1570 STR:0.4820 EDGE:0.6471 UAL:0.0279
+[ant_ratio.py] ANet | ETA:0:24:18 | E016/040 B0060/0202 | LR:7.41e-06,7.41e-05 | L:1.5984 STR:0.6889 EDGE:0.8656 UAL:0.0440
+[ant_ratio.py] ANet | ETA:0:24:05 | E016/040 B0080/0202 | LR:7.38e-06,7.38e-05 | L:1.1080 STR:0.5147 EDGE:0.5631 UAL:0.0301
+[ant_ratio.py] ANet | ETA:0:23:53 | E016/040 B0100/0202 | LR:7.34e-06,7.34e-05 | L:1.3140 STR:0.5804 EDGE:0.7056 UAL:0.0280
+[ant_ratio.py] ANet | ETA:0:23:41 | E016/040 B0120/0202 | LR:7.30e-06,7.30e-05 | L:1.1936 STR:0.5684 EDGE:0.5945 UAL:0.0307
+[ant_ratio.py] ANet | ETA:0:23:30 | E016/040 B0140/0202 | LR:7.27e-06,7.27e-05 | L:1.1368 STR:0.4906 EDGE:0.6183 UAL:0.0279
+[ant_ratio.py] ANet | ETA:0:23:18 | E016/040 B0160/0202 | LR:7.23e-06,7.23e-05 | L:1.1878 STR:0.5019 EDGE:0.6573 UAL:0.0286
+[ant_ratio.py] ANet | ETA:0:23:06 | E016/040 B0180/0202 | LR:7.19e-06,7.19e-05 | L:1.0438 STR:0.4137 EDGE:0.6030 UAL:0.0270
+[ant_ratio.py] ANet | ETA:0:22:55 | E016/040 B0200/0202 | LR:7.16e-06,7.16e-05 | L:1.3059 STR:0.5784 EDGE:0.6997 UAL:0.0277
+[ant_ratio.py] ANet | ETA:0:22:54 | E016/040 B0202/0202 | LR:7.15e-06,7.15e-05 | L:1.1542 STR:0.6284 EDGE:0.4961 UAL:0.0297
+[ant_ratio.py] ANet Epoch 016 | 19.1s | L:1.3578 STR:0.6323 EDGE:0.6929 UAL:0.0325
+[ant_ratio.py] ANet | ETA:0:22:57 | E017/040 B0001/0202 | LR:7.15e-06,7.15e-05 | L:1.1992 STR:0.4425 EDGE:0.7311 UAL:0.0256
+[ant_ratio.py] ANet | ETA:0:22:46 | E017/040 B0020/0202 | LR:7.12e-06,7.12e-05 | L:1.2273 STR:0.6363 EDGE:0.5553 UAL:0.0358
+[ant_ratio.py] ANet | ETA:0:22:35 | E017/040 B0040/0202 | LR:7.08e-06,7.08e-05 | L:1.2102 STR:0.5033 EDGE:0.6753 UAL:0.0316
+[ant_ratio.py] ANet | ETA:0:22:24 | E017/040 B0060/0202 | LR:7.04e-06,7.04e-05 | L:1.4311 STR:0.6458 EDGE:0.7513 UAL:0.0340
+[ant_ratio.py] ANet | ETA:0:22:13 | E017/040 B0080/0202 | LR:7.00e-06,7.00e-05 | L:1.3405 STR:0.5774 EDGE:0.7322 UAL:0.0310
+[ant_ratio.py] ANet | ETA:0:22:01 | E017/040 B0100/0202 | LR:6.97e-06,6.97e-05 | L:1.6335 STR:0.8696 EDGE:0.7294 UAL:0.0345
+[ant_ratio.py] ANet | ETA:0:21:50 | E017/040 B0120/0202 | LR:6.93e-06,6.93e-05 | L:1.4946 STR:0.5959 EDGE:0.8638 UAL:0.0350
+[ant_ratio.py] ANet | ETA:0:21:41 | E017/040 B0140/0202 | LR:6.89e-06,6.89e-05 | L:1.1257 STR:0.4911 EDGE:0.6047 UAL:0.0299
+[ant_ratio.py] ANet | ETA:0:21:33 | E017/040 B0160/0202 | LR:6.85e-06,6.85e-05 | L:1.1353 STR:0.4271 EDGE:0.6827 UAL:0.0255
+[ant_ratio.py] ANet | ETA:0:21:24 | E017/040 B0180/0202 | LR:6.81e-06,6.81e-05 | L:1.4252 STR:0.6067 EDGE:0.7830 UAL:0.0355
+[ant_ratio.py] ANet | ETA:0:21:15 | E017/040 B0200/0202 | LR:6.78e-06,6.78e-05 | L:1.1083 STR:0.4248 EDGE:0.6553 UAL:0.0282
+[ant_ratio.py] ANet | ETA:0:21:14 | E017/040 B0202/0202 | LR:6.77e-06,6.77e-05 | L:1.4425 STR:0.6726 EDGE:0.7377 UAL:0.0322
+[ant_ratio.py] ANet Epoch 017 | 24.0s | L:1.3377 STR:0.6198 EDGE:0.6860 UAL:0.0319
+[ant_ratio.py] ANet | ETA:0:21:15 | E018/040 B0001/0202 | LR:6.77e-06,6.77e-05 | L:1.2622 STR:0.5413 EDGE:0.6887 UAL:0.0322
+[ant_ratio.py] ANet | ETA:0:21:07 | E018/040 B0020/0202 | LR:6.73e-06,6.73e-05 | L:2.0264 STR:1.1518 EDGE:0.8261 UAL:0.0485
+[ant_ratio.py] ANet | ETA:0:20:58 | E018/040 B0040/0202 | LR:6.69e-06,6.69e-05 | L:1.0776 STR:0.3813 EDGE:0.6709 UAL:0.0254
+[ant_ratio.py] ANet | ETA:0:20:50 | E018/040 B0060/0202 | LR:6.66e-06,6.66e-05 | L:0.9420 STR:0.4587 EDGE:0.4557 UAL:0.0275
+[ant_ratio.py] ANet | ETA:0:20:41 | E018/040 B0080/0202 | LR:6.62e-06,6.62e-05 | L:1.2362 STR:0.5267 EDGE:0.6785 UAL:0.0310
+[ant_ratio.py] ANet | ETA:0:20:33 | E018/040 B0100/0202 | LR:6.58e-06,6.58e-05 | L:1.1271 STR:0.4899 EDGE:0.6089 UAL:0.0283
+[ant_ratio.py] ANet | ETA:0:20:24 | E018/040 B0120/0202 | LR:6.54e-06,6.54e-05 | L:1.0570 STR:0.5007 EDGE:0.5291 UAL:0.0272
+[ant_ratio.py] ANet | ETA:0:20:15 | E018/040 B0140/0202 | LR:6.50e-06,6.50e-05 | L:1.2600 STR:0.6050 EDGE:0.6250 UAL:0.0300
+[ant_ratio.py] ANet | ETA:0:20:07 | E018/040 B0160/0202 | LR:6.46e-06,6.46e-05 | L:1.3030 STR:0.6285 EDGE:0.6440 UAL:0.0305
+[ant_ratio.py] ANet | ETA:0:19:59 | E018/040 B0180/0202 | LR:6.42e-06,6.42e-05 | L:1.0388 STR:0.4339 EDGE:0.5774 UAL:0.0275
+[ant_ratio.py] ANet | ETA:0:19:51 | E018/040 B0200/0202 | LR:6.38e-06,6.38e-05 | L:1.1674 STR:0.4507 EDGE:0.6882 UAL:0.0286
+[ant_ratio.py] ANet | ETA:0:19:50 | E018/040 B0202/0202 | LR:6.38e-06,6.38e-05 | L:1.7388 STR:1.0199 EDGE:0.6577 UAL:0.0612
+[ant_ratio.py] ANet Epoch 018 | 31.5s | L:1.2914 STR:0.5986 EDGE:0.6616 UAL:0.0313
+[ant_ratio.py] ANet | ETA:0:19:52 | E019/040 B0001/0202 | LR:6.38e-06,6.38e-05 | L:1.2264 STR:0.6316 EDGE:0.5601 UAL:0.0346
+[ant_ratio.py] ANet | ETA:0:19:44 | E019/040 B0020/0202 | LR:6.34e-06,6.34e-05 | L:1.0271 STR:0.4698 EDGE:0.5291 UAL:0.0283
+[ant_ratio.py] ANet | ETA:0:19:36 | E019/040 B0040/0202 | LR:6.30e-06,6.30e-05 | L:1.3371 STR:0.4893 EDGE:0.8243 UAL:0.0235
+[ant_ratio.py] ANet | ETA:0:19:28 | E019/040 B0060/0202 | LR:6.26e-06,6.26e-05 | L:1.0654 STR:0.4120 EDGE:0.6282 UAL:0.0253
+[ant_ratio.py] ANet | ETA:0:19:20 | E019/040 B0080/0202 | LR:6.22e-06,6.22e-05 | L:1.1848 STR:0.5935 EDGE:0.5614 UAL:0.0299
+[ant_ratio.py] ANet | ETA:0:19:13 | E019/040 B0100/0202 | LR:6.18e-06,6.18e-05 | L:0.9802 STR:0.4497 EDGE:0.5017 UAL:0.0288
+[ant_ratio.py] ANet | ETA:0:19:04 | E019/040 B0120/0202 | LR:6.14e-06,6.14e-05 | L:1.5327 STR:0.9149 EDGE:0.5566 UAL:0.0612
+[ant_ratio.py] ANet | ETA:0:18:56 | E019/040 B0140/0202 | LR:6.10e-06,6.10e-05 | L:1.0022 STR:0.4054 EDGE:0.5707 UAL:0.0261
+[ant_ratio.py] ANet | ETA:0:18:49 | E019/040 B0160/0202 | LR:6.06e-06,6.06e-05 | L:1.2841 STR:0.5475 EDGE:0.7051 UAL:0.0315
+[ant_ratio.py] ANet | ETA:0:18:41 | E019/040 B0180/0202 | LR:6.02e-06,6.02e-05 | L:1.6351 STR:0.8436 EDGE:0.7435 UAL:0.0480
+[ant_ratio.py] ANet | ETA:0:18:33 | E019/040 B0200/0202 | LR:5.98e-06,5.98e-05 | L:1.3599 STR:0.5440 EDGE:0.7886 UAL:0.0272
+[ant_ratio.py] ANet | ETA:0:18:33 | E019/040 B0202/0202 | LR:5.97e-06,5.97e-05 | L:1.4773 STR:0.6621 EDGE:0.7850 UAL:0.0302
+[ant_ratio.py] ANet Epoch 019 | 31.6s | L:1.2727 STR:0.5901 EDGE:0.6516 UAL:0.0310
+[ant_ratio.py] ANet | ETA:0:18:33 | E020/040 B0001/0202 | LR:5.97e-06,5.97e-05 | L:1.3004 STR:0.5248 EDGE:0.7489 UAL:0.0267
+[ant_ratio.py] ANet | ETA:0:18:26 | E020/040 B0020/0202 | LR:5.93e-06,5.93e-05 | L:0.9165 STR:0.4776 EDGE:0.4080 UAL:0.0310
+[ant_ratio.py] ANet | ETA:0:18:18 | E020/040 B0040/0202 | LR:5.89e-06,5.89e-05 | L:1.0779 STR:0.5912 EDGE:0.4564 UAL:0.0303
+[ant_ratio.py] ANet | ETA:0:18:11 | E020/040 B0060/0202 | LR:5.85e-06,5.85e-05 | L:1.0599 STR:0.4640 EDGE:0.5701 UAL:0.0257
+[ant_ratio.py] ANet | ETA:0:18:04 | E020/040 B0080/0202 | LR:5.81e-06,5.81e-05 | L:1.0938 STR:0.5296 EDGE:0.5370 UAL:0.0273
+[ant_ratio.py] ANet | ETA:0:17:56 | E020/040 B0100/0202 | LR:5.77e-06,5.77e-05 | L:1.4023 STR:0.5904 EDGE:0.7808 UAL:0.0311
+[ant_ratio.py] ANet | ETA:0:17:48 | E020/040 B0120/0202 | LR:5.73e-06,5.73e-05 | L:0.9329 STR:0.4176 EDGE:0.4889 UAL:0.0265
+[ant_ratio.py] ANet | ETA:0:17:41 | E020/040 B0140/0202 | LR:5.69e-06,5.69e-05 | L:1.0519 STR:0.4318 EDGE:0.5917 UAL:0.0283
+[ant_ratio.py] ANet | ETA:0:17:34 | E020/040 B0160/0202 | LR:5.65e-06,5.65e-05 | L:1.5286 STR:0.7096 EDGE:0.7901 UAL:0.0289
+[ant_ratio.py] ANet | ETA:0:17:26 | E020/040 B0180/0202 | LR:5.61e-06,5.61e-05 | L:0.8647 STR:0.3260 EDGE:0.5153 UAL:0.0234
+[ant_ratio.py] ANet | ETA:0:17:19 | E020/040 B0200/0202 | LR:5.57e-06,5.57e-05 | L:1.1004 STR:0.4578 EDGE:0.6168 UAL:0.0258
+[ant_ratio.py] ANet | ETA:0:17:19 | E020/040 B0202/0202 | LR:5.56e-06,5.56e-05 | L:1.7941 STR:0.8453 EDGE:0.9203 UAL:0.0285
+[ant_ratio.py] ANet Epoch 020 | 31.5s | L:1.2324 STR:0.5684 EDGE:0.6340 UAL:0.0300
+[ant_ratio.py] ANet VAL | Epoch 020 | camo_te | sm:0.8956, wfm:0.8601, mae:0.0388, avgem:0.9470, adpem:0.9529, maxem:0.9579
+[ant_ratio.py] ANet VAL | Epoch 020 | cod10k_te | sm:0.8890, wfm:0.8162, mae:0.0211, avgem:0.9548, adpem:0.9458, maxem:0.9687
+[ant_ratio.py] ANet VAL | Epoch 020 | AVG_MAE: 0.029950
+[ant_ratio.py] ANet BEST AVG MAE -> 0.029950 @ epoch 20 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST camo_te MAE -> 0.038800 @ epoch 20 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_camo_te_mae.pth
+[ant_ratio.py] ANet BEST cod10k_te MAE -> 0.021100 @ epoch 20 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_cod10k_te_mae.pth
+[ant_ratio.py] ANet | ETA:0:19:59 | E021/040 B0001/0202 | LR:5.56e-06,5.56e-05 | L:1.2111 STR:0.6065 EDGE:0.5760 UAL:0.0286
+[ant_ratio.py] ANet | ETA:0:19:50 | E021/040 B0020/0202 | LR:5.52e-06,5.52e-05 | L:1.4917 STR:0.5951 EDGE:0.8654 UAL:0.0312
+[ant_ratio.py] ANet | ETA:0:19:40 | E021/040 B0040/0202 | LR:5.48e-06,5.48e-05 | L:1.4295 STR:0.5979 EDGE:0.7997 UAL:0.0319
+[ant_ratio.py] ANet | ETA:0:19:30 | E021/040 B0060/0202 | LR:5.44e-06,5.44e-05 | L:1.1526 STR:0.5377 EDGE:0.5869 UAL:0.0280
+[ant_ratio.py] ANet | ETA:0:19:20 | E021/040 B0080/0202 | LR:5.40e-06,5.40e-05 | L:1.4753 STR:0.5444 EDGE:0.9077 UAL:0.0232
+[ant_ratio.py] ANet | ETA:0:19:10 | E021/040 B0100/0202 | LR:5.36e-06,5.36e-05 | L:1.2582 STR:0.5465 EDGE:0.6825 UAL:0.0292
+[ant_ratio.py] ANet | ETA:0:19:01 | E021/040 B0120/0202 | LR:5.32e-06,5.32e-05 | L:0.8298 STR:0.3230 EDGE:0.4856 UAL:0.0212
+[ant_ratio.py] ANet | ETA:0:18:51 | E021/040 B0140/0202 | LR:5.28e-06,5.28e-05 | L:0.9436 STR:0.4394 EDGE:0.4780 UAL:0.0262
+[ant_ratio.py] ANet | ETA:0:18:42 | E021/040 B0160/0202 | LR:5.24e-06,5.24e-05 | L:0.8009 STR:0.3112 EDGE:0.4670 UAL:0.0228
+[ant_ratio.py] ANet | ETA:0:18:33 | E021/040 B0180/0202 | LR:5.20e-06,5.20e-05 | L:1.2741 STR:0.5923 EDGE:0.6564 UAL:0.0254
+[ant_ratio.py] ANet | ETA:0:18:23 | E021/040 B0200/0202 | LR:5.15e-06,5.15e-05 | L:1.2593 STR:0.5546 EDGE:0.6787 UAL:0.0260
+[ant_ratio.py] ANet | ETA:0:18:22 | E021/040 B0202/0202 | LR:5.15e-06,5.15e-05 | L:1.2855 STR:0.4681 EDGE:0.7915 UAL:0.0260
+[ant_ratio.py] ANet Epoch 021 | 19.1s | L:1.2111 STR:0.5586 EDGE:0.6229 UAL:0.0297
+[ant_ratio.py] ANet | ETA:0:18:23 | E022/040 B0001/0202 | LR:5.15e-06,5.15e-05 | L:0.9166 STR:0.3893 EDGE:0.5022 UAL:0.0251
+[ant_ratio.py] ANet | ETA:0:18:14 | E022/040 B0020/0202 | LR:5.11e-06,5.11e-05 | L:1.3292 STR:0.6293 EDGE:0.6723 UAL:0.0276
+[ant_ratio.py] ANet | ETA:0:18:05 | E022/040 B0040/0202 | LR:5.07e-06,5.07e-05 | L:1.3361 STR:0.6411 EDGE:0.6576 UAL:0.0374
+[ant_ratio.py] ANet | ETA:0:17:55 | E022/040 B0060/0202 | LR:5.03e-06,5.03e-05 | L:0.9889 STR:0.3552 EDGE:0.6098 UAL:0.0239
+[ant_ratio.py] ANet | ETA:0:17:46 | E022/040 B0080/0202 | LR:4.99e-06,4.99e-05 | L:1.2978 STR:0.6612 EDGE:0.6054 UAL:0.0311
+[ant_ratio.py] ANet | ETA:0:17:37 | E022/040 B0100/0202 | LR:4.95e-06,4.95e-05 | L:1.3383 STR:0.5543 EDGE:0.7494 UAL:0.0347
+[ant_ratio.py] ANet | ETA:0:17:29 | E022/040 B0120/0202 | LR:4.90e-06,4.90e-05 | L:1.1866 STR:0.5183 EDGE:0.6401 UAL:0.0282
+[ant_ratio.py] ANet | ETA:0:17:22 | E022/040 B0140/0202 | LR:4.86e-06,4.86e-05 | L:1.1254 STR:0.6009 EDGE:0.4929 UAL:0.0316
+[ant_ratio.py] ANet | ETA:0:17:14 | E022/040 B0160/0202 | LR:4.82e-06,4.82e-05 | L:1.8254 STR:0.9928 EDGE:0.7928 UAL:0.0398
+[ant_ratio.py] ANet | ETA:0:17:06 | E022/040 B0180/0202 | LR:4.78e-06,4.78e-05 | L:1.0214 STR:0.4173 EDGE:0.5801 UAL:0.0240
+[ant_ratio.py] ANet | ETA:0:16:59 | E022/040 B0200/0202 | LR:4.74e-06,4.74e-05 | L:1.1388 STR:0.6260 EDGE:0.4724 UAL:0.0405
+[ant_ratio.py] ANet | ETA:0:16:58 | E022/040 B0202/0202 | LR:4.74e-06,4.74e-05 | L:1.0749 STR:0.5179 EDGE:0.5266 UAL:0.0304
+[ant_ratio.py] ANet Epoch 022 | 25.5s | L:1.1853 STR:0.5464 EDGE:0.6094 UAL:0.0295
+[ant_ratio.py] ANet | ETA:0:16:58 | E023/040 B0001/0202 | LR:4.73e-06,4.73e-05 | L:1.1571 STR:0.5671 EDGE:0.5609 UAL:0.0291
+[ant_ratio.py] ANet | ETA:0:16:51 | E023/040 B0020/0202 | LR:4.70e-06,4.70e-05 | L:1.6844 STR:0.8705 EDGE:0.7526 UAL:0.0613
+[ant_ratio.py] ANet | ETA:0:16:44 | E023/040 B0040/0202 | LR:4.65e-06,4.65e-05 | L:1.1233 STR:0.4875 EDGE:0.6100 UAL:0.0258
+[ant_ratio.py] ANet | ETA:0:16:36 | E023/040 B0060/0202 | LR:4.61e-06,4.61e-05 | L:0.8305 STR:0.3079 EDGE:0.4998 UAL:0.0227
+[ant_ratio.py] ANet | ETA:0:16:29 | E023/040 B0080/0202 | LR:4.57e-06,4.57e-05 | L:0.9410 STR:0.4395 EDGE:0.4747 UAL:0.0267
+[ant_ratio.py] ANet | ETA:0:16:21 | E023/040 B0100/0202 | LR:4.53e-06,4.53e-05 | L:1.1894 STR:0.5536 EDGE:0.6082 UAL:0.0276
+[ant_ratio.py] ANet | ETA:0:16:13 | E023/040 B0120/0202 | LR:4.49e-06,4.49e-05 | L:1.1453 STR:0.5811 EDGE:0.5320 UAL:0.0322
+[ant_ratio.py] ANet | ETA:0:16:06 | E023/040 B0140/0202 | LR:4.45e-06,4.45e-05 | L:1.0255 STR:0.5235 EDGE:0.4717 UAL:0.0302
+[ant_ratio.py] ANet | ETA:0:15:59 | E023/040 B0160/0202 | LR:4.41e-06,4.41e-05 | L:1.2040 STR:0.4476 EDGE:0.7199 UAL:0.0365
+[ant_ratio.py] ANet | ETA:0:15:51 | E023/040 B0180/0202 | LR:4.37e-06,4.37e-05 | L:1.3526 STR:0.5863 EDGE:0.7380 UAL:0.0282
+[ant_ratio.py] ANet | ETA:0:15:44 | E023/040 B0200/0202 | LR:4.33e-06,4.33e-05 | L:1.3336 STR:0.5713 EDGE:0.7178 UAL:0.0444
+[ant_ratio.py] ANet | ETA:0:15:43 | E023/040 B0202/0202 | LR:4.32e-06,4.32e-05 | L:1.1321 STR:0.5116 EDGE:0.5954 UAL:0.0251
+[ant_ratio.py] ANet Epoch 023 | 31.6s | L:1.1623 STR:0.5353 EDGE:0.5979 UAL:0.0292
+[ant_ratio.py] ANet | ETA:0:15:44 | E024/040 B0001/0202 | LR:4.32e-06,4.32e-05 | L:1.0221 STR:0.4738 EDGE:0.5250 UAL:0.0233
+[ant_ratio.py] ANet | ETA:0:15:37 | E024/040 B0020/0202 | LR:4.28e-06,4.28e-05 | L:1.1979 STR:0.6116 EDGE:0.5576 UAL:0.0287
+[ant_ratio.py] ANet | ETA:0:15:30 | E024/040 B0040/0202 | LR:4.24e-06,4.24e-05 | L:1.1183 STR:0.4935 EDGE:0.6034 UAL:0.0215
+[ant_ratio.py] ANet | ETA:0:15:22 | E024/040 B0060/0202 | LR:4.20e-06,4.20e-05 | L:0.9850 STR:0.4347 EDGE:0.5251 UAL:0.0251
+[ant_ratio.py] ANet | ETA:0:15:15 | E024/040 B0080/0202 | LR:4.16e-06,4.16e-05 | L:1.0380 STR:0.5202 EDGE:0.4954 UAL:0.0224
+[ant_ratio.py] ANet | ETA:0:15:08 | E024/040 B0100/0202 | LR:4.12e-06,4.12e-05 | L:1.0825 STR:0.5370 EDGE:0.5198 UAL:0.0257
+[ant_ratio.py] ANet | ETA:0:15:01 | E024/040 B0120/0202 | LR:4.08e-06,4.08e-05 | L:0.9498 STR:0.3872 EDGE:0.5434 UAL:0.0192
+[ant_ratio.py] ANet | ETA:0:14:54 | E024/040 B0140/0202 | LR:4.04e-06,4.04e-05 | L:0.8299 STR:0.3165 EDGE:0.4926 UAL:0.0209
+[ant_ratio.py] ANet | ETA:0:14:47 | E024/040 B0160/0202 | LR:4.00e-06,4.00e-05 | L:1.2382 STR:0.5458 EDGE:0.6599 UAL:0.0325
+[ant_ratio.py] ANet | ETA:0:14:40 | E024/040 B0180/0202 | LR:3.96e-06,3.96e-05 | L:1.4474 STR:0.6932 EDGE:0.7193 UAL:0.0348
+[ant_ratio.py] ANet | ETA:0:14:33 | E024/040 B0200/0202 | LR:3.92e-06,3.92e-05 | L:1.2533 STR:0.6077 EDGE:0.6101 UAL:0.0355
+[ant_ratio.py] ANet | ETA:0:14:32 | E024/040 B0202/0202 | LR:3.92e-06,3.92e-05 | L:1.1279 STR:0.5053 EDGE:0.5962 UAL:0.0265
+[ant_ratio.py] ANet Epoch 024 | 31.7s | L:1.1387 STR:0.5232 EDGE:0.5865 UAL:0.0290
+[ant_ratio.py] ANet | ETA:0:14:32 | E025/040 B0001/0202 | LR:3.92e-06,3.92e-05 | L:1.3391 STR:0.5490 EDGE:0.7504 UAL:0.0397
+[ant_ratio.py] ANet | ETA:0:14:26 | E025/040 B0020/0202 | LR:3.88e-06,3.88e-05 | L:1.3807 STR:0.6566 EDGE:0.6947 UAL:0.0294
+[ant_ratio.py] ANet | ETA:0:14:19 | E025/040 B0040/0202 | LR:3.84e-06,3.84e-05 | L:1.3268 STR:0.6662 EDGE:0.6183 UAL:0.0423
+[ant_ratio.py] ANet | ETA:0:14:12 | E025/040 B0060/0202 | LR:3.80e-06,3.80e-05 | L:1.0281 STR:0.4891 EDGE:0.5090 UAL:0.0299
+[ant_ratio.py] ANet | ETA:0:14:06 | E025/040 B0080/0202 | LR:3.76e-06,3.76e-05 | L:1.2734 STR:0.6186 EDGE:0.6263 UAL:0.0286
+[ant_ratio.py] ANet | ETA:0:13:58 | E025/040 B0100/0202 | LR:3.72e-06,3.72e-05 | L:1.2988 STR:0.5724 EDGE:0.6932 UAL:0.0332
+[ant_ratio.py] ANet | ETA:0:13:52 | E025/040 B0120/0202 | LR:3.68e-06,3.68e-05 | L:1.2085 STR:0.5596 EDGE:0.6272 UAL:0.0217
+[ant_ratio.py] ANet | ETA:0:13:45 | E025/040 B0140/0202 | LR:3.64e-06,3.64e-05 | L:0.9716 STR:0.4435 EDGE:0.4987 UAL:0.0294
+[ant_ratio.py] ANet | ETA:0:13:38 | E025/040 B0160/0202 | LR:3.60e-06,3.60e-05 | L:0.9603 STR:0.4379 EDGE:0.4988 UAL:0.0236
+[ant_ratio.py] ANet | ETA:0:13:32 | E025/040 B0180/0202 | LR:3.56e-06,3.56e-05 | L:1.4113 STR:0.5591 EDGE:0.8253 UAL:0.0269
+[ant_ratio.py] ANet | ETA:0:13:25 | E025/040 B0200/0202 | LR:3.52e-06,3.52e-05 | L:1.1892 STR:0.5126 EDGE:0.6525 UAL:0.0241
+[ant_ratio.py] ANet | ETA:0:13:24 | E025/040 B0202/0202 | LR:3.52e-06,3.52e-05 | L:1.1915 STR:0.5976 EDGE:0.5650 UAL:0.0289
+[ant_ratio.py] ANet Epoch 025 | 31.7s | L:1.1291 STR:0.5216 EDGE:0.5785 UAL:0.0290
+[ant_ratio.py] ANet VAL | Epoch 025 | camo_te | sm:0.8925, wfm:0.8645, mae:0.0389, avgem:0.9475, adpem:0.9532, maxem:0.9566
+[ant_ratio.py] ANet VAL | Epoch 025 | cod10k_te | sm:0.8900, wfm:0.8241, mae:0.0204, avgem:0.9575, adpem:0.9504, maxem:0.9687
+[ant_ratio.py] ANet VAL | Epoch 025 | AVG_MAE: 0.029650
+[ant_ratio.py] ANet BEST AVG MAE -> 0.029650 @ epoch 25 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST cod10k_te MAE -> 0.020400 @ epoch 25 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_cod10k_te_mae.pth
+[ant_ratio.py] ANet | ETA:0:14:59 | E026/040 B0001/0202 | LR:3.52e-06,3.52e-05 | L:1.0994 STR:0.4424 EDGE:0.6277 UAL:0.0293
+[ant_ratio.py] ANet | ETA:0:14:51 | E026/040 B0020/0202 | LR:3.48e-06,3.48e-05 | L:1.0080 STR:0.4449 EDGE:0.5377 UAL:0.0254
+[ant_ratio.py] ANet | ETA:0:14:43 | E026/040 B0040/0202 | LR:3.44e-06,3.44e-05 | L:1.0397 STR:0.5001 EDGE:0.5134 UAL:0.0262
+[ant_ratio.py] ANet | ETA:0:14:35 | E026/040 B0060/0202 | LR:3.40e-06,3.40e-05 | L:1.0348 STR:0.4177 EDGE:0.5781 UAL:0.0389
+[ant_ratio.py] ANet | ETA:0:14:27 | E026/040 B0080/0202 | LR:3.36e-06,3.36e-05 | L:1.5785 STR:0.8179 EDGE:0.7196 UAL:0.0410
+[ant_ratio.py] ANet | ETA:0:14:18 | E026/040 B0100/0202 | LR:3.32e-06,3.32e-05 | L:0.9923 STR:0.3889 EDGE:0.5804 UAL:0.0230
+[ant_ratio.py] ANet | ETA:0:14:10 | E026/040 B0120/0202 | LR:3.29e-06,3.29e-05 | L:0.9153 STR:0.3953 EDGE:0.4951 UAL:0.0249
+[ant_ratio.py] ANet | ETA:0:14:02 | E026/040 B0140/0202 | LR:3.25e-06,3.25e-05 | L:0.9728 STR:0.4955 EDGE:0.4508 UAL:0.0265
+[ant_ratio.py] ANet | ETA:0:13:54 | E026/040 B0160/0202 | LR:3.21e-06,3.21e-05 | L:1.2038 STR:0.6922 EDGE:0.4812 UAL:0.0304
+[ant_ratio.py] ANet | ETA:0:13:46 | E026/040 B0180/0202 | LR:3.17e-06,3.17e-05 | L:0.9514 STR:0.4436 EDGE:0.4820 UAL:0.0258
+[ant_ratio.py] ANet | ETA:0:13:38 | E026/040 B0200/0202 | LR:3.13e-06,3.13e-05 | L:1.1713 STR:0.5316 EDGE:0.6058 UAL:0.0340
+[ant_ratio.py] ANet | ETA:0:13:38 | E026/040 B0202/0202 | LR:3.13e-06,3.13e-05 | L:1.3021 STR:0.6348 EDGE:0.6385 UAL:0.0288
+[ant_ratio.py] ANet Epoch 026 | 19.1s | L:1.1090 STR:0.5108 EDGE:0.5690 UAL:0.0292
+[ant_ratio.py] ANet | ETA:0:13:38 | E027/040 B0001/0202 | LR:3.13e-06,3.13e-05 | L:0.9302 STR:0.3913 EDGE:0.5156 UAL:0.0233
+[ant_ratio.py] ANet | ETA:0:13:30 | E027/040 B0020/0202 | LR:3.09e-06,3.09e-05 | L:1.3837 STR:0.7058 EDGE:0.6468 UAL:0.0311
+[ant_ratio.py] ANet | ETA:0:13:22 | E027/040 B0040/0202 | LR:3.05e-06,3.05e-05 | L:1.1222 STR:0.4595 EDGE:0.6285 UAL:0.0342
+[ant_ratio.py] ANet | ETA:0:13:14 | E027/040 B0060/0202 | LR:3.02e-06,3.02e-05 | L:1.0288 STR:0.5086 EDGE:0.4949 UAL:0.0253
+[ant_ratio.py] ANet | ETA:0:13:07 | E027/040 B0080/0202 | LR:2.98e-06,2.98e-05 | L:1.1237 STR:0.6264 EDGE:0.4734 UAL:0.0239
+[ant_ratio.py] ANet | ETA:0:12:59 | E027/040 B0100/0202 | LR:2.94e-06,2.94e-05 | L:1.0010 STR:0.4644 EDGE:0.5110 UAL:0.0256
+[ant_ratio.py] ANet | ETA:0:12:51 | E027/040 B0120/0202 | LR:2.91e-06,2.91e-05 | L:0.9277 STR:0.4842 EDGE:0.4158 UAL:0.0278
+[ant_ratio.py] ANet | ETA:0:12:43 | E027/040 B0140/0202 | LR:2.87e-06,2.87e-05 | L:0.8665 STR:0.4377 EDGE:0.4038 UAL:0.0250
+[ant_ratio.py] ANet | ETA:0:12:36 | E027/040 B0160/0202 | LR:2.83e-06,2.83e-05 | L:1.4022 STR:0.8148 EDGE:0.5506 UAL:0.0367
+[ant_ratio.py] ANet | ETA:0:12:28 | E027/040 B0180/0202 | LR:2.80e-06,2.80e-05 | L:1.4750 STR:0.7588 EDGE:0.6682 UAL:0.0479
+[ant_ratio.py] ANet | ETA:0:12:20 | E027/040 B0200/0202 | LR:2.76e-06,2.76e-05 | L:1.4584 STR:0.7102 EDGE:0.7132 UAL:0.0351
+[ant_ratio.py] ANet | ETA:0:12:20 | E027/040 B0202/0202 | LR:2.76e-06,2.76e-05 | L:1.4442 STR:0.7226 EDGE:0.6815 UAL:0.0401
+[ant_ratio.py] ANet Epoch 027 | 17.3s | L:1.0978 STR:0.5055 EDGE:0.5636 UAL:0.0287
+[ant_ratio.py] ANet | ETA:0:12:20 | E028/040 B0001/0202 | LR:2.75e-06,2.75e-05 | L:1.1383 STR:0.6648 EDGE:0.4437 UAL:0.0298
+[ant_ratio.py] ANet | ETA:0:12:12 | E028/040 B0020/0202 | LR:2.72e-06,2.72e-05 | L:1.0853 STR:0.5298 EDGE:0.5277 UAL:0.0279
+[ant_ratio.py] ANet | ETA:0:12:05 | E028/040 B0040/0202 | LR:2.68e-06,2.68e-05 | L:0.9612 STR:0.4445 EDGE:0.4864 UAL:0.0302
+[ant_ratio.py] ANet | ETA:0:11:57 | E028/040 B0060/0202 | LR:2.65e-06,2.65e-05 | L:0.8568 STR:0.3578 EDGE:0.4753 UAL:0.0237
+[ant_ratio.py] ANet | ETA:0:11:50 | E028/040 B0080/0202 | LR:2.61e-06,2.61e-05 | L:1.1651 STR:0.6110 EDGE:0.5266 UAL:0.0274
+[ant_ratio.py] ANet | ETA:0:11:43 | E028/040 B0100/0202 | LR:2.58e-06,2.58e-05 | L:1.2829 STR:0.5142 EDGE:0.7373 UAL:0.0314
+[ant_ratio.py] ANet | ETA:0:11:35 | E028/040 B0120/0202 | LR:2.54e-06,2.54e-05 | L:1.3621 STR:0.6684 EDGE:0.6493 UAL:0.0445
+[ant_ratio.py] ANet | ETA:0:11:28 | E028/040 B0140/0202 | LR:2.50e-06,2.50e-05 | L:0.8912 STR:0.4038 EDGE:0.4646 UAL:0.0228
+[ant_ratio.py] ANet | ETA:0:11:21 | E028/040 B0160/0202 | LR:2.47e-06,2.47e-05 | L:1.3335 STR:0.5187 EDGE:0.7906 UAL:0.0242
+[ant_ratio.py] ANet | ETA:0:11:14 | E028/040 B0180/0202 | LR:2.43e-06,2.43e-05 | L:1.2670 STR:0.5816 EDGE:0.6535 UAL:0.0319
+[ant_ratio.py] ANet | ETA:0:11:06 | E028/040 B0200/0202 | LR:2.40e-06,2.40e-05 | L:1.6803 STR:0.7900 EDGE:0.8556 UAL:0.0347
+[ant_ratio.py] ANet | ETA:0:11:06 | E028/040 B0202/0202 | LR:2.40e-06,2.40e-05 | L:1.1294 STR:0.4656 EDGE:0.6413 UAL:0.0225
+[ant_ratio.py] ANet Epoch 028 | 16.7s | L:1.0822 STR:0.4979 EDGE:0.5557 UAL:0.0286
+[ant_ratio.py] ANet | ETA:0:11:06 | E029/040 B0001/0202 | LR:2.39e-06,2.39e-05 | L:0.9967 STR:0.5134 EDGE:0.4562 UAL:0.0271
+[ant_ratio.py] ANet | ETA:0:10:59 | E029/040 B0020/0202 | LR:2.36e-06,2.36e-05 | L:1.2258 STR:0.4770 EDGE:0.7042 UAL:0.0446
+[ant_ratio.py] ANet | ETA:0:10:52 | E029/040 B0040/0202 | LR:2.33e-06,2.33e-05 | L:0.8489 STR:0.4140 EDGE:0.4091 UAL:0.0258
+[ant_ratio.py] ANet | ETA:0:10:45 | E029/040 B0060/0202 | LR:2.29e-06,2.29e-05 | L:1.0992 STR:0.4822 EDGE:0.5859 UAL:0.0311
+[ant_ratio.py] ANet | ETA:0:10:38 | E029/040 B0080/0202 | LR:2.26e-06,2.26e-05 | L:0.9555 STR:0.4598 EDGE:0.4734 UAL:0.0223
+[ant_ratio.py] ANet | ETA:0:10:31 | E029/040 B0100/0202 | LR:2.23e-06,2.23e-05 | L:1.3926 STR:0.5607 EDGE:0.8004 UAL:0.0314
+[ant_ratio.py] ANet | ETA:0:10:24 | E029/040 B0120/0202 | LR:2.19e-06,2.19e-05 | L:1.0316 STR:0.5330 EDGE:0.4762 UAL:0.0224
+[ant_ratio.py] ANet | ETA:0:10:17 | E029/040 B0140/0202 | LR:2.16e-06,2.16e-05 | L:0.9125 STR:0.3478 EDGE:0.5429 UAL:0.0219
+[ant_ratio.py] ANet | ETA:0:10:10 | E029/040 B0160/0202 | LR:2.13e-06,2.13e-05 | L:0.9019 STR:0.3621 EDGE:0.5107 UAL:0.0292
+[ant_ratio.py] ANet | ETA:0:10:03 | E029/040 B0180/0202 | LR:2.09e-06,2.09e-05 | L:0.9544 STR:0.3606 EDGE:0.5729 UAL:0.0209
+[ant_ratio.py] ANet | ETA:0:09:56 | E029/040 B0200/0202 | LR:2.06e-06,2.06e-05 | L:0.9672 STR:0.4776 EDGE:0.4640 UAL:0.0256
+[ant_ratio.py] ANet | ETA:0:09:55 | E029/040 B0202/0202 | LR:2.06e-06,2.06e-05 | L:0.9966 STR:0.4503 EDGE:0.5229 UAL:0.0235
+[ant_ratio.py] ANet Epoch 029 | 16.4s | L:1.0696 STR:0.4927 EDGE:0.5487 UAL:0.0282
+[ant_ratio.py] ANet | ETA:0:09:55 | E030/040 B0001/0202 | LR:2.05e-06,2.05e-05 | L:0.9950 STR:0.3969 EDGE:0.5752 UAL:0.0230
+[ant_ratio.py] ANet | ETA:0:09:49 | E030/040 B0020/0202 | LR:2.02e-06,2.02e-05 | L:0.9059 STR:0.3596 EDGE:0.5244 UAL:0.0219
+[ant_ratio.py] ANet | ETA:0:09:42 | E030/040 B0040/0202 | LR:1.99e-06,1.99e-05 | L:1.0333 STR:0.3856 EDGE:0.6239 UAL:0.0237
+[ant_ratio.py] ANet | ETA:0:09:36 | E030/040 B0060/0202 | LR:1.96e-06,1.96e-05 | L:1.0037 STR:0.4076 EDGE:0.5695 UAL:0.0266
+[ant_ratio.py] ANet | ETA:0:09:29 | E030/040 B0080/0202 | LR:1.93e-06,1.93e-05 | L:0.8492 STR:0.3455 EDGE:0.4805 UAL:0.0232
+[ant_ratio.py] ANet | ETA:0:09:22 | E030/040 B0100/0202 | LR:1.90e-06,1.90e-05 | L:0.9626 STR:0.3919 EDGE:0.5451 UAL:0.0256
+[ant_ratio.py] ANet | ETA:0:09:16 | E030/040 B0120/0202 | LR:1.86e-06,1.86e-05 | L:0.9754 STR:0.4006 EDGE:0.5412 UAL:0.0336
+[ant_ratio.py] ANet | ETA:0:09:09 | E030/040 B0140/0202 | LR:1.83e-06,1.83e-05 | L:0.8937 STR:0.4137 EDGE:0.4572 UAL:0.0229
+[ant_ratio.py] ANet | ETA:0:09:03 | E030/040 B0160/0202 | LR:1.80e-06,1.80e-05 | L:2.0116 STR:1.0873 EDGE:0.8816 UAL:0.0427
+[ant_ratio.py] ANet | ETA:0:08:56 | E030/040 B0180/0202 | LR:1.77e-06,1.77e-05 | L:1.5604 STR:0.7901 EDGE:0.7363 UAL:0.0340
+[ant_ratio.py] ANet | ETA:0:08:50 | E030/040 B0200/0202 | LR:1.74e-06,1.74e-05 | L:1.2059 STR:0.6113 EDGE:0.5724 UAL:0.0222
+[ant_ratio.py] ANet | ETA:0:08:49 | E030/040 B0202/0202 | LR:1.74e-06,1.74e-05 | L:1.1095 STR:0.4723 EDGE:0.6123 UAL:0.0250
+[ant_ratio.py] ANet Epoch 030 | 16.6s | L:1.0729 STR:0.4960 EDGE:0.5484 UAL:0.0285
+[ant_ratio.py] ANet VAL | Epoch 030 | camo_te | sm:0.8929, wfm:0.8679, mae:0.0376, avgem:0.9504, adpem:0.9551, maxem:0.9573
+[ant_ratio.py] ANet VAL | Epoch 030 | cod10k_te | sm:0.8917, wfm:0.8290, mae:0.0198, avgem:0.9598, adpem:0.9523, maxem:0.9697
+[ant_ratio.py] ANet VAL | Epoch 030 | AVG_MAE: 0.028700
+[ant_ratio.py] ANet BEST AVG MAE -> 0.028700 @ epoch 30 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST camo_te MAE -> 0.037600 @ epoch 30 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_camo_te_mae.pth
+[ant_ratio.py] ANet BEST cod10k_te MAE -> 0.019800 @ epoch 30 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_cod10k_te_mae.pth
+[ant_ratio.py] ANet | ETA:0:09:36 | E031/040 B0001/0202 | LR:1.74e-06,1.74e-05 | L:0.9820 STR:0.3953 EDGE:0.5658 UAL:0.0208
+[ant_ratio.py] ANet | ETA:0:09:29 | E031/040 B0020/0202 | LR:1.71e-06,1.71e-05 | L:0.9158 STR:0.3890 EDGE:0.5039 UAL:0.0230
+[ant_ratio.py] ANet | ETA:0:09:22 | E031/040 B0040/0202 | LR:1.68e-06,1.68e-05 | L:1.2684 STR:0.6024 EDGE:0.6200 UAL:0.0460
+[ant_ratio.py] ANet | ETA:0:09:15 | E031/040 B0060/0202 | LR:1.65e-06,1.65e-05 | L:0.7209 STR:0.2907 EDGE:0.4098 UAL:0.0203
+[ant_ratio.py] ANet | ETA:0:09:08 | E031/040 B0080/0202 | LR:1.62e-06,1.62e-05 | L:0.9428 STR:0.4557 EDGE:0.4610 UAL:0.0261
+[ant_ratio.py] ANet | ETA:0:09:02 | E031/040 B0100/0202 | LR:1.59e-06,1.59e-05 | L:0.8768 STR:0.3288 EDGE:0.5289 UAL:0.0191
+[ant_ratio.py] ANet | ETA:0:08:55 | E031/040 B0120/0202 | LR:1.56e-06,1.56e-05 | L:0.8697 STR:0.4478 EDGE:0.3925 UAL:0.0293
+[ant_ratio.py] ANet | ETA:0:08:48 | E031/040 B0140/0202 | LR:1.53e-06,1.53e-05 | L:0.8558 STR:0.4010 EDGE:0.4302 UAL:0.0246
+[ant_ratio.py] ANet | ETA:0:08:41 | E031/040 B0160/0202 | LR:1.50e-06,1.50e-05 | L:0.9658 STR:0.4362 EDGE:0.5080 UAL:0.0216
+[ant_ratio.py] ANet | ETA:0:08:34 | E031/040 B0180/0202 | LR:1.47e-06,1.47e-05 | L:1.0061 STR:0.4167 EDGE:0.5688 UAL:0.0206
+[ant_ratio.py] ANet | ETA:0:08:27 | E031/040 B0200/0202 | LR:1.44e-06,1.44e-05 | L:1.7039 STR:0.9314 EDGE:0.7265 UAL:0.0460
+[ant_ratio.py] ANet | ETA:0:08:27 | E031/040 B0202/0202 | LR:1.44e-06,1.44e-05 | L:1.1031 STR:0.5691 EDGE:0.5000 UAL:0.0340
+[ant_ratio.py] ANet Epoch 031 | 16.4s | L:1.0504 STR:0.4859 EDGE:0.5363 UAL:0.0281
+[ant_ratio.py] ANet | ETA:0:08:27 | E032/040 B0001/0202 | LR:1.44e-06,1.44e-05 | L:1.0591 STR:0.4743 EDGE:0.5408 UAL:0.0440
+[ant_ratio.py] ANet | ETA:0:08:20 | E032/040 B0020/0202 | LR:1.41e-06,1.41e-05 | L:1.1924 STR:0.5779 EDGE:0.5780 UAL:0.0364
+[ant_ratio.py] ANet | ETA:0:08:14 | E032/040 B0040/0202 | LR:1.39e-06,1.39e-05 | L:1.0970 STR:0.4896 EDGE:0.5821 UAL:0.0253
+[ant_ratio.py] ANet | ETA:0:08:07 | E032/040 B0060/0202 | LR:1.36e-06,1.36e-05 | L:1.0526 STR:0.4643 EDGE:0.5663 UAL:0.0220
+[ant_ratio.py] ANet | ETA:0:08:01 | E032/040 B0080/0202 | LR:1.33e-06,1.33e-05 | L:1.2201 STR:0.6370 EDGE:0.5504 UAL:0.0327
+[ant_ratio.py] ANet | ETA:0:07:54 | E032/040 B0100/0202 | LR:1.30e-06,1.30e-05 | L:1.1518 STR:0.5286 EDGE:0.5939 UAL:0.0293
+[ant_ratio.py] ANet | ETA:0:07:47 | E032/040 B0120/0202 | LR:1.28e-06,1.28e-05 | L:1.0981 STR:0.6324 EDGE:0.4376 UAL:0.0281
+[ant_ratio.py] ANet | ETA:0:07:41 | E032/040 B0140/0202 | LR:1.25e-06,1.25e-05 | L:1.0368 STR:0.5239 EDGE:0.4773 UAL:0.0356
+[ant_ratio.py] ANet | ETA:0:07:34 | E032/040 B0160/0202 | LR:1.22e-06,1.22e-05 | L:0.9480 STR:0.4092 EDGE:0.5182 UAL:0.0206
+[ant_ratio.py] ANet | ETA:0:07:28 | E032/040 B0180/0202 | LR:1.20e-06,1.20e-05 | L:0.8956 STR:0.3980 EDGE:0.4748 UAL:0.0229
+[ant_ratio.py] ANet | ETA:0:07:21 | E032/040 B0200/0202 | LR:1.17e-06,1.17e-05 | L:1.1520 STR:0.5495 EDGE:0.5764 UAL:0.0261
+[ant_ratio.py] ANet | ETA:0:07:21 | E032/040 B0202/0202 | LR:1.17e-06,1.17e-05 | L:0.9340 STR:0.4107 EDGE:0.4990 UAL:0.0243
+[ant_ratio.py] ANet Epoch 032 | 16.7s | L:1.0382 STR:0.4787 EDGE:0.5309 UAL:0.0285
+[ant_ratio.py] ANet | ETA:0:07:21 | E033/040 B0001/0202 | LR:1.17e-06,1.17e-05 | L:1.3186 STR:0.6632 EDGE:0.6023 UAL:0.0531
+[ant_ratio.py] ANet | ETA:0:07:15 | E033/040 B0020/0202 | LR:1.15e-06,1.15e-05 | L:1.1269 STR:0.4809 EDGE:0.6217 UAL:0.0242
+[ant_ratio.py] ANet | ETA:0:07:08 | E033/040 B0040/0202 | LR:1.12e-06,1.12e-05 | L:0.8147 STR:0.4001 EDGE:0.3862 UAL:0.0284
+[ant_ratio.py] ANet | ETA:0:07:02 | E033/040 B0060/0202 | LR:1.10e-06,1.10e-05 | L:1.1037 STR:0.5985 EDGE:0.4791 UAL:0.0261
+[ant_ratio.py] ANet | ETA:0:06:56 | E033/040 B0080/0202 | LR:1.07e-06,1.07e-05 | L:0.8730 STR:0.3857 EDGE:0.4623 UAL:0.0249
+[ant_ratio.py] ANet | ETA:0:06:49 | E033/040 B0100/0202 | LR:1.05e-06,1.05e-05 | L:1.0490 STR:0.5194 EDGE:0.5046 UAL:0.0251
+[ant_ratio.py] ANet | ETA:0:06:43 | E033/040 B0120/0202 | LR:1.02e-06,1.02e-05 | L:0.7918 STR:0.4239 EDGE:0.3432 UAL:0.0246
+[ant_ratio.py] ANet | ETA:0:06:37 | E033/040 B0140/0202 | LR:9.99e-07,9.99e-06 | L:0.9962 STR:0.4332 EDGE:0.5381 UAL:0.0250
+[ant_ratio.py] ANet | ETA:0:06:31 | E033/040 B0160/0202 | LR:9.75e-07,9.75e-06 | L:1.0867 STR:0.4384 EDGE:0.6235 UAL:0.0248
+[ant_ratio.py] ANet | ETA:0:06:24 | E033/040 B0180/0202 | LR:9.52e-07,9.52e-06 | L:1.2066 STR:0.5778 EDGE:0.5983 UAL:0.0305
+[ant_ratio.py] ANet | ETA:0:06:18 | E033/040 B0200/0202 | LR:9.29e-07,9.29e-06 | L:0.9547 STR:0.5758 EDGE:0.3550 UAL:0.0240
+[ant_ratio.py] ANet | ETA:0:06:18 | E033/040 B0202/0202 | LR:9.27e-07,9.27e-06 | L:0.9197 STR:0.4692 EDGE:0.4257 UAL:0.0247
+[ant_ratio.py] ANet Epoch 033 | 16.5s | L:1.0380 STR:0.4798 EDGE:0.5297 UAL:0.0285
+[ant_ratio.py] ANet | ETA:0:06:17 | E034/040 B0001/0202 | LR:9.26e-07,9.26e-06 | L:1.1951 STR:0.5053 EDGE:0.6650 UAL:0.0247
+[ant_ratio.py] ANet | ETA:0:06:12 | E034/040 B0020/0202 | LR:9.05e-07,9.05e-06 | L:0.9519 STR:0.3737 EDGE:0.5492 UAL:0.0289
+[ant_ratio.py] ANet | ETA:0:06:05 | E034/040 B0040/0202 | LR:8.82e-07,8.82e-06 | L:1.1618 STR:0.6036 EDGE:0.5177 UAL:0.0406
+[ant_ratio.py] ANet | ETA:0:05:59 | E034/040 B0060/0202 | LR:8.60e-07,8.60e-06 | L:0.7050 STR:0.3176 EDGE:0.3660 UAL:0.0214
+[ant_ratio.py] ANet | ETA:0:05:53 | E034/040 B0080/0202 | LR:8.39e-07,8.39e-06 | L:1.2442 STR:0.6411 EDGE:0.5646 UAL:0.0385
+[ant_ratio.py] ANet | ETA:0:05:47 | E034/040 B0100/0202 | LR:8.17e-07,8.17e-06 | L:1.4050 STR:0.7010 EDGE:0.6722 UAL:0.0317
+[ant_ratio.py] ANet | ETA:0:05:41 | E034/040 B0120/0202 | LR:7.96e-07,7.96e-06 | L:1.1202 STR:0.5965 EDGE:0.4869 UAL:0.0368
+[ant_ratio.py] ANet | ETA:0:05:35 | E034/040 B0140/0202 | LR:7.75e-07,7.75e-06 | L:0.8470 STR:0.3761 EDGE:0.4480 UAL:0.0229
+[ant_ratio.py] ANet | ETA:0:05:29 | E034/040 B0160/0202 | LR:7.55e-07,7.55e-06 | L:1.1632 STR:0.5474 EDGE:0.5934 UAL:0.0224
+[ant_ratio.py] ANet | ETA:0:05:24 | E034/040 B0180/0202 | LR:7.34e-07,7.34e-06 | L:0.9524 STR:0.4615 EDGE:0.4657 UAL:0.0253
+[ant_ratio.py] ANet | ETA:0:05:18 | E034/040 B0200/0202 | LR:7.14e-07,7.14e-06 | L:0.8388 STR:0.4027 EDGE:0.4133 UAL:0.0229
+[ant_ratio.py] ANet | ETA:0:05:17 | E034/040 B0202/0202 | LR:7.12e-07,7.12e-06 | L:1.0265 STR:0.5664 EDGE:0.4325 UAL:0.0276
+[ant_ratio.py] ANet Epoch 034 | 16.6s | L:1.0336 STR:0.4789 EDGE:0.5260 UAL:0.0287
+[ant_ratio.py] ANet | ETA:0:05:17 | E035/040 B0001/0202 | LR:7.11e-07,7.11e-06 | L:1.0608 STR:0.4337 EDGE:0.6059 UAL:0.0211
+[ant_ratio.py] ANet | ETA:0:05:11 | E035/040 B0020/0202 | LR:6.93e-07,6.93e-06 | L:1.4987 STR:0.6992 EDGE:0.7662 UAL:0.0332
+[ant_ratio.py] ANet | ETA:0:05:05 | E035/040 B0040/0202 | LR:6.74e-07,6.74e-06 | L:1.0522 STR:0.5475 EDGE:0.4736 UAL:0.0311
+[ant_ratio.py] ANet | ETA:0:05:00 | E035/040 B0060/0202 | LR:6.55e-07,6.55e-06 | L:0.9023 STR:0.3443 EDGE:0.5355 UAL:0.0225
+[ant_ratio.py] ANet | ETA:0:04:54 | E035/040 B0080/0202 | LR:6.36e-07,6.36e-06 | L:1.0721 STR:0.4613 EDGE:0.5890 UAL:0.0218
+[ant_ratio.py] ANet | ETA:0:04:48 | E035/040 B0100/0202 | LR:6.17e-07,6.17e-06 | L:1.2968 STR:0.5575 EDGE:0.7114 UAL:0.0279
+[ant_ratio.py] ANet | ETA:0:04:42 | E035/040 B0120/0202 | LR:5.99e-07,5.99e-06 | L:0.9748 STR:0.4542 EDGE:0.4878 UAL:0.0328
+[ant_ratio.py] ANet | ETA:0:04:37 | E035/040 B0140/0202 | LR:5.81e-07,5.81e-06 | L:1.1648 STR:0.4486 EDGE:0.6661 UAL:0.0501
+[ant_ratio.py] ANet | ETA:0:04:31 | E035/040 B0160/0202 | LR:5.64e-07,5.64e-06 | L:0.9654 STR:0.5344 EDGE:0.4062 UAL:0.0248
+[ant_ratio.py] ANet | ETA:0:04:25 | E035/040 B0180/0202 | LR:5.47e-07,5.47e-06 | L:0.8909 STR:0.3516 EDGE:0.5151 UAL:0.0242
+[ant_ratio.py] ANet | ETA:0:04:20 | E035/040 B0200/0202 | LR:5.30e-07,5.30e-06 | L:0.8561 STR:0.3226 EDGE:0.5136 UAL:0.0199
+[ant_ratio.py] ANet | ETA:0:04:19 | E035/040 B0202/0202 | LR:5.28e-07,5.28e-06 | L:1.0068 STR:0.3783 EDGE:0.6065 UAL:0.0220
+[ant_ratio.py] ANet Epoch 035 | 16.7s | L:1.0338 STR:0.4783 EDGE:0.5269 UAL:0.0286
+[ant_ratio.py] ANet VAL | Epoch 035 | camo_te | sm:0.8925, wfm:0.8686, mae:0.0374, avgem:0.9506, adpem:0.9532, maxem:0.9575
+[ant_ratio.py] ANet VAL | Epoch 035 | cod10k_te | sm:0.8915, wfm:0.8296, mae:0.0198, avgem:0.9601, adpem:0.9535, maxem:0.9698
+[ant_ratio.py] ANet VAL | Epoch 035 | AVG_MAE: 0.028600
+[ant_ratio.py] ANet BEST AVG MAE -> 0.028600 @ epoch 35 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST camo_te MAE -> 0.037400 @ epoch 35 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_camo_te_mae.pth
+[ant_ratio.py] ANet | ETA:0:04:39 | E036/040 B0001/0202 | LR:5.27e-07,5.27e-06 | L:0.8130 STR:0.3926 EDGE:0.3915 UAL:0.0288
+[ant_ratio.py] ANet | ETA:0:04:33 | E036/040 B0020/0202 | LR:5.12e-07,5.12e-06 | L:0.9365 STR:0.4983 EDGE:0.4137 UAL:0.0245
+[ant_ratio.py] ANet | ETA:0:04:27 | E036/040 B0040/0202 | LR:4.95e-07,4.95e-06 | L:1.2767 STR:0.7662 EDGE:0.4267 UAL:0.0838
+[ant_ratio.py] ANet | ETA:0:04:21 | E036/040 B0060/0202 | LR:4.80e-07,4.80e-06 | L:0.9769 STR:0.4054 EDGE:0.5467 UAL:0.0248
+[ant_ratio.py] ANet | ETA:0:04:15 | E036/040 B0080/0202 | LR:4.64e-07,4.64e-06 | L:0.9439 STR:0.4132 EDGE:0.5062 UAL:0.0245
+[ant_ratio.py] ANet | ETA:0:04:09 | E036/040 B0100/0202 | LR:4.49e-07,4.49e-06 | L:1.2369 STR:0.6177 EDGE:0.5875 UAL:0.0317
+[ant_ratio.py] ANet | ETA:0:04:03 | E036/040 B0120/0202 | LR:4.34e-07,4.34e-06 | L:0.8717 STR:0.3730 EDGE:0.4664 UAL:0.0323
+[ant_ratio.py] ANet | ETA:0:03:57 | E036/040 B0140/0202 | LR:4.19e-07,4.19e-06 | L:0.8502 STR:0.4252 EDGE:0.4032 UAL:0.0219
+[ant_ratio.py] ANet | ETA:0:03:51 | E036/040 B0160/0202 | LR:4.05e-07,4.05e-06 | L:1.4873 STR:0.7279 EDGE:0.6858 UAL:0.0736
+[ant_ratio.py] ANet | ETA:0:03:45 | E036/040 B0180/0202 | LR:3.91e-07,3.91e-06 | L:0.9163 STR:0.4312 EDGE:0.4576 UAL:0.0275
+[ant_ratio.py] ANet | ETA:0:03:40 | E036/040 B0200/0202 | LR:3.77e-07,3.77e-06 | L:1.1554 STR:0.5361 EDGE:0.5936 UAL:0.0256
+[ant_ratio.py] ANet | ETA:0:03:39 | E036/040 B0202/0202 | LR:3.76e-07,3.76e-06 | L:1.1718 STR:0.4868 EDGE:0.6483 UAL:0.0366
+[ant_ratio.py] ANet Epoch 036 | 16.6s | L:1.0292 STR:0.4757 EDGE:0.5240 UAL:0.0295
+[ant_ratio.py] ANet | ETA:0:03:39 | E037/040 B0001/0202 | LR:3.75e-07,3.75e-06 | L:1.2613 STR:0.7095 EDGE:0.5214 UAL:0.0304
+[ant_ratio.py] ANet | ETA:0:03:33 | E037/040 B0020/0202 | LR:3.62e-07,3.62e-06 | L:0.9718 STR:0.3489 EDGE:0.6012 UAL:0.0217
+[ant_ratio.py] ANet | ETA:0:03:28 | E037/040 B0040/0202 | LR:3.49e-07,3.49e-06 | L:0.8160 STR:0.3932 EDGE:0.3960 UAL:0.0268
+[ant_ratio.py] ANet | ETA:0:03:22 | E037/040 B0060/0202 | LR:3.37e-07,3.37e-06 | L:1.0596 STR:0.4931 EDGE:0.5385 UAL:0.0280
+[ant_ratio.py] ANet | ETA:0:03:16 | E037/040 B0080/0202 | LR:3.24e-07,3.24e-06 | L:0.9856 STR:0.4252 EDGE:0.5361 UAL:0.0243
+[ant_ratio.py] ANet | ETA:0:03:10 | E037/040 B0100/0202 | LR:3.12e-07,3.12e-06 | L:1.0393 STR:0.5588 EDGE:0.4498 UAL:0.0308
+[ant_ratio.py] ANet | ETA:0:03:05 | E037/040 B0120/0202 | LR:3.00e-07,3.00e-06 | L:0.8526 STR:0.4638 EDGE:0.3596 UAL:0.0292
+[ant_ratio.py] ANet | ETA:0:02:59 | E037/040 B0140/0202 | LR:2.89e-07,2.89e-06 | L:0.8062 STR:0.3787 EDGE:0.4089 UAL:0.0185
+[ant_ratio.py] ANet | ETA:0:02:53 | E037/040 B0160/0202 | LR:2.78e-07,2.78e-06 | L:1.1534 STR:0.5902 EDGE:0.5250 UAL:0.0382
+[ant_ratio.py] ANet | ETA:0:02:47 | E037/040 B0180/0202 | LR:2.67e-07,2.67e-06 | L:1.6363 STR:0.7604 EDGE:0.8418 UAL:0.0341
+[ant_ratio.py] ANet | ETA:0:02:42 | E037/040 B0200/0202 | LR:2.57e-07,2.57e-06 | L:1.1968 STR:0.5749 EDGE:0.5951 UAL:0.0268
+[ant_ratio.py] ANet | ETA:0:02:41 | E037/040 B0202/0202 | LR:2.56e-07,2.56e-06 | L:0.8341 STR:0.3822 EDGE:0.4316 UAL:0.0203
+[ant_ratio.py] ANet Epoch 037 | 16.8s | L:1.0212 STR:0.4724 EDGE:0.5194 UAL:0.0294
+[ant_ratio.py] ANet | ETA:0:02:41 | E038/040 B0001/0202 | LR:2.55e-07,2.55e-06 | L:0.8905 STR:0.3452 EDGE:0.5249 UAL:0.0204
+[ant_ratio.py] ANet | ETA:0:02:36 | E038/040 B0020/0202 | LR:2.46e-07,2.46e-06 | L:0.9519 STR:0.4753 EDGE:0.4444 UAL:0.0322
+[ant_ratio.py] ANet | ETA:0:02:30 | E038/040 B0040/0202 | LR:2.36e-07,2.36e-06 | L:1.2770 STR:0.6198 EDGE:0.6216 UAL:0.0357
+[ant_ratio.py] ANet | ETA:0:02:24 | E038/040 B0060/0202 | LR:2.27e-07,2.27e-06 | L:0.8940 STR:0.3496 EDGE:0.5032 UAL:0.0412
+[ant_ratio.py] ANet | ETA:0:02:19 | E038/040 B0080/0202 | LR:2.18e-07,2.18e-06 | L:0.8731 STR:0.3855 EDGE:0.4643 UAL:0.0233
+[ant_ratio.py] ANet | ETA:0:02:13 | E038/040 B0100/0202 | LR:2.09e-07,2.09e-06 | L:1.4810 STR:0.7687 EDGE:0.6595 UAL:0.0528
+[ant_ratio.py] ANet | ETA:0:02:08 | E038/040 B0120/0202 | LR:2.00e-07,2.00e-06 | L:0.9398 STR:0.4821 EDGE:0.4296 UAL:0.0282
+[ant_ratio.py] ANet | ETA:0:02:02 | E038/040 B0140/0202 | LR:1.92e-07,1.92e-06 | L:0.9781 STR:0.4861 EDGE:0.4668 UAL:0.0252
+[ant_ratio.py] ANet | ETA:0:01:57 | E038/040 B0160/0202 | LR:1.85e-07,1.85e-06 | L:1.2544 STR:0.7218 EDGE:0.4941 UAL:0.0385
+[ant_ratio.py] ANet | ETA:0:01:51 | E038/040 B0180/0202 | LR:1.77e-07,1.77e-06 | L:1.0898 STR:0.4954 EDGE:0.5636 UAL:0.0308
+[ant_ratio.py] ANet | ETA:0:01:46 | E038/040 B0200/0202 | LR:1.70e-07,1.70e-06 | L:1.0661 STR:0.5542 EDGE:0.4757 UAL:0.0363
+[ant_ratio.py] ANet | ETA:0:01:45 | E038/040 B0202/0202 | LR:1.70e-07,1.70e-06 | L:0.8849 STR:0.3311 EDGE:0.5341 UAL:0.0197
+[ant_ratio.py] ANet Epoch 038 | 16.5s | L:1.0251 STR:0.4747 EDGE:0.5208 UAL:0.0295
+[ant_ratio.py] ANet | ETA:0:01:45 | E039/040 B0001/0202 | LR:1.69e-07,1.69e-06 | L:1.2476 STR:0.5729 EDGE:0.6446 UAL:0.0302
+[ant_ratio.py] ANet | ETA:0:01:40 | E039/040 B0020/0202 | LR:1.63e-07,1.63e-06 | L:0.9657 STR:0.4153 EDGE:0.5204 UAL:0.0301
+[ant_ratio.py] ANet | ETA:0:01:35 | E039/040 B0040/0202 | LR:1.57e-07,1.57e-06 | L:1.0522 STR:0.4318 EDGE:0.5853 UAL:0.0351
+[ant_ratio.py] ANet | ETA:0:01:29 | E039/040 B0060/0202 | LR:1.51e-07,1.51e-06 | L:1.1464 STR:0.5795 EDGE:0.5299 UAL:0.0369
+[ant_ratio.py] ANet | ETA:0:01:24 | E039/040 B0080/0202 | LR:1.45e-07,1.45e-06 | L:1.0361 STR:0.5414 EDGE:0.4700 UAL:0.0247
+[ant_ratio.py] ANet | ETA:0:01:18 | E039/040 B0100/0202 | LR:1.39e-07,1.39e-06 | L:1.0939 STR:0.4270 EDGE:0.6467 UAL:0.0202
+[ant_ratio.py] ANet | ETA:0:01:13 | E039/040 B0120/0202 | LR:1.34e-07,1.34e-06 | L:0.8925 STR:0.4406 EDGE:0.4247 UAL:0.0272
+[ant_ratio.py] ANet | ETA:0:01:08 | E039/040 B0140/0202 | LR:1.30e-07,1.30e-06 | L:1.0838 STR:0.5706 EDGE:0.4876 UAL:0.0257
+[ant_ratio.py] ANet | ETA:0:01:03 | E039/040 B0160/0202 | LR:1.25e-07,1.25e-06 | L:1.3113 STR:0.6375 EDGE:0.6349 UAL:0.0389
+[ant_ratio.py] ANet | ETA:0:00:57 | E039/040 B0180/0202 | LR:1.22e-07,1.22e-06 | L:0.9701 STR:0.5028 EDGE:0.4367 UAL:0.0306
+[ant_ratio.py] ANet | ETA:0:00:52 | E039/040 B0200/0202 | LR:1.18e-07,1.18e-06 | L:1.1096 STR:0.4981 EDGE:0.5858 UAL:0.0257
+[ant_ratio.py] ANet | ETA:0:00:52 | E039/040 B0202/0202 | LR:1.18e-07,1.18e-06 | L:1.1465 STR:0.6116 EDGE:0.4930 UAL:0.0420
+[ant_ratio.py] ANet Epoch 039 | 16.7s | L:1.0180 STR:0.4717 EDGE:0.5169 UAL:0.0295
+[ant_ratio.py] ANet | ETA:0:00:51 | E040/040 B0001/0202 | LR:1.17e-07,1.17e-06 | L:1.4491 STR:0.7068 EDGE:0.6829 UAL:0.0595
+[ant_ratio.py] ANet | ETA:0:00:46 | E040/040 B0020/0202 | LR:1.14e-07,1.14e-06 | L:1.5213 STR:0.7763 EDGE:0.6854 UAL:0.0596
+[ant_ratio.py] ANet | ETA:0:00:41 | E040/040 B0040/0202 | LR:1.11e-07,1.11e-06 | L:0.8588 STR:0.4025 EDGE:0.4256 UAL:0.0308
+[ant_ratio.py] ANet | ETA:0:00:36 | E040/040 B0060/0202 | LR:1.09e-07,1.09e-06 | L:0.9000 STR:0.3194 EDGE:0.5522 UAL:0.0284
+[ant_ratio.py] ANet | ETA:0:00:31 | E040/040 B0080/0202 | LR:1.06e-07,1.06e-06 | L:0.8074 STR:0.3600 EDGE:0.4246 UAL:0.0228
+[ant_ratio.py] ANet | ETA:0:00:26 | E040/040 B0100/0202 | LR:1.05e-07,1.05e-06 | L:1.1646 STR:0.4949 EDGE:0.6455 UAL:0.0241
+[ant_ratio.py] ANet | ETA:0:00:20 | E040/040 B0120/0202 | LR:1.03e-07,1.03e-06 | L:0.8234 STR:0.2992 EDGE:0.4957 UAL:0.0284
+[ant_ratio.py] ANet | ETA:0:00:15 | E040/040 B0140/0202 | LR:1.02e-07,1.02e-06 | L:0.7747 STR:0.3109 EDGE:0.4441 UAL:0.0197
+[ant_ratio.py] ANet | ETA:0:00:10 | E040/040 B0160/0202 | LR:1.01e-07,1.01e-06 | L:1.2366 STR:0.6385 EDGE:0.5630 UAL:0.0352
+[ant_ratio.py] ANet | ETA:0:00:05 | E040/040 B0180/0202 | LR:1.00e-07,1.00e-06 | L:1.1126 STR:0.4298 EDGE:0.6593 UAL:0.0235
+[ant_ratio.py] ANet | ETA:0:00:00 | E040/040 B0200/0202 | LR:1.00e-07,1.00e-06 | L:1.2591 STR:0.5769 EDGE:0.6544 UAL:0.0278
+[ant_ratio.py] ANet | ETA:0:00:00 | E040/040 B0202/0202 | LR:1.00e-07,1.00e-06 | L:0.9292 STR:0.4708 EDGE:0.4329 UAL:0.0255
+[ant_ratio.py] ANet Epoch 040 | 16.7s | L:1.0193 STR:0.4720 EDGE:0.5177 UAL:0.0295
+[ant_ratio.py] ANet VAL | Epoch 040 | camo_te | sm:0.8929, wfm:0.8692, mae:0.0372, avgem:0.9510, adpem:0.9535, maxem:0.9577
+[ant_ratio.py] ANet VAL | Epoch 040 | cod10k_te | sm:0.8915, wfm:0.8299, mae:0.0197, avgem:0.9603, adpem:0.9540, maxem:0.9698
+[ant_ratio.py] ANet VAL | Epoch 040 | AVG_MAE: 0.028450
+[ant_ratio.py] ANet BEST AVG MAE -> 0.028450 @ epoch 40 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_avg_mae.pth
+[ant_ratio.py] ANet BEST camo_te MAE -> 0.037200 @ epoch 40 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_camo_te_mae.pth
+[ant_ratio.py] ANet BEST cod10k_te MAE -> 0.019700 @ epoch 40 | /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/ratio/20/ConvNeXtB_ZoomNeXt_ANet_BS4/exp_0/pth/best_cod10k_te_mae.pth
+[ant_ratio.py] ANet training finished in 0:36:28 | best_avg_mae=0.028450

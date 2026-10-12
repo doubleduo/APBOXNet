@@ -1,0 +1,469 @@
+=== log 2026-09-10 23:01:16.965961 ===
+[basemain.py] base_seed = 112358
+config = 'configs/C31/icod_c32_T3_acp_sbft.py'
+data_cfg = './dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+evaluate = False
+exp_name = 'PvtV2B4_FPN_Baseline_BS8'
+has_test = True
+info = None
+load_from = None
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model_name = 'PvtV2B4_FPN_Baseline'
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/log_2026-09-10.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T3/PvtV2B4_FPN_Baseline_BS8/exp_0/trainer.txt'
+)
+pretrained = True
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+save_results = False
+test = dict(
+    batch_size=8,
+    clip_range=None,
+    data=dict(names=[
+        'camo_te',
+        'cod10k_te',
+    ], shape=dict(h=384, w=384)),
+    num_workers=8)
+train = dict(
+    batch_size=8,
+    bn=dict(freeze_affine=True, freeze_encoder=False, freeze_status=True),
+    curriculum=dict(
+        difficulty=dict(
+            csv=None,
+            enable=False,
+            end_epoch=120,
+            gaussian_alpha=0.1,
+            gaussian_enable=False,
+            gaussian_std=0.1,
+            min_fraction=0.6,
+            pacing='log',
+            source='mask_area',
+            start_epoch=1),
+        enable=True,
+        num_samples_per_epoch=4040,
+        pools=dict(
+            clean='./data/pseudo_pool/shape/clean.txt',
+            noisy='./data/pseudo_pool/shape/noisy.txt'),
+        reliability=dict(
+            anneal_end_epoch=140,
+            broad_end_epoch=60,
+            clean_weight=1.0,
+            noisy_end_weight=0.0,
+            noisy_start_weight=1.0)),
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384)),
+    ema_kd=dict(enable=False, lambda_kd=0.0),
+    epoch_based=True,
+    grad_acc_step=1,
+    lr=0.0001,
+    num_epochs=140,
+    num_iters=None,
+    num_workers=4,
+    optimizer=dict(
+        cfg=dict(diff_factor=0.1, weight_decay=0),
+        group_mode='finetune',
+        mode='adam',
+        set_to_none=False),
+    promotion=dict(
+        enable=True,
+        epochs=30,
+        eval_batch_size=8,
+        hard_ratio=0.2,
+        lr=1e-05,
+        mode='acp_sbft',
+        sbft_kernel=11,
+        sbft_prob_end=0.5,
+        sbft_prob_start=0.1,
+        sbft_sigma=3.0,
+        val_interval=5),
+    save_val_ckpt=True,
+    sche_usebatch=True,
+    scheduler=dict(
+        cfg=dict(gamma=0.1, milestones=70701),
+        mode='step',
+        warmup=dict(initial_coef=0.01, mode='linear', num_iters=0)),
+    use_amp=True,
+    val_interval=5,
+    val_start_epoch=30)
+use_checkpoint = False
+use_custom_worker_init = True
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[basemain_c32_stage3_branch.py] class PvtV2B4_FPN_Baseline(nn.Module):
+    """Single-scale PVTv2-B4 encoder with a conventional top-down FPN."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        input_norm=True,
+        fpn_dim=64,
+        use_checkpoint=False,
+        **kwargs,
+    ):
+        super().__init__()
+        del kwargs
+
+        self.encoder = pvt_v2_eff_b4(
+            pretrained=pretrained,
+            use_checkpoint=use_checkpoint,
+        )
+        self.embed_dims = list(self.encoder.embed_dims)
+        self.normalizer = (
+            PixelNormalizer()
+            if input_norm
+            else nn.Identity()
+        )
+
+        self.lateral_2 = nn.Conv2d(
+            self.embed_dims[0],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+        self.lateral_3 = nn.Conv2d(
+            self.embed_dims[1],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+        self.lateral_4 = nn.Conv2d(
+            self.embed_dims[2],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+        self.lateral_5 = nn.Conv2d(
+            self.embed_dims[3],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+
+        self.smooth_5 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+        self.smooth_4 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+        self.smooth_3 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+        self.smooth_2 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+
+        self.predictor = nn.Sequential(
+            ConvBNReLU(fpn_dim, 32, 3, 1, 1),
+            nn.Conv2d(32, 1, kernel_size=1),
+        )
+
+    def normalize_encoder(self, image):
+        image = self.normalizer(image)
+        features = self.encoder(image)
+        return (
+            features["reduction_2"],
+            features["reduction_3"],
+            features["reduction_4"],
+            features["reduction_5"],
+        )
+
+    @staticmethod
+    def _resize_like(source, target):
+        return F.interpolate(
+            source,
+            size=target.shape[-2:],
+            mode="bilinear",
+            align_corners=False,
+        )
+
+    def body(self, data):
+        image = data["image_m"]
+        c2, c3, c4, c5 = self.normalize_encoder(image)
+
+        p5 = self.smooth_5(self.lateral_5(c5))
+        p4 = self.smooth_4(
+            self.lateral_4(c4)
+            + self._resize_like(p5, c4)
+        )
+        p3 = self.smooth_3(
+            self.lateral_3(c3)
+            + self._resize_like(p4, c3)
+        )
+        p2 = self.smooth_2(
+            self.lateral_2(c2)
+            + self._resize_like(p3, c2)
+        )
+
+        logits = self.predictor(p2)
+        return F.interpolate(
+            logits,
+            size=image.shape[-2:],
+            mode="bilinear",
+            align_corners=False,
+        )
+
+    def forward(
+        self,
+        data,
+        iter_percentage=1,
+        **kwargs,
+    ):
+        del iter_percentage, kwargs
+        logits = self.body(data=data)
+
+        if not self.training:
+            return logits
+
+        mask = data["mask"].float()
+        if mask.shape[-2:] != logits.shape[-2:]:
+            mask = F.interpolate(
+                mask,
+                size=logits.shape[-2:],
+                mode="nearest",
+            )
+
+        bce_loss = F.binary_cross_entropy_with_logits(
+            logits,
+            mask,
+            reduction="mean",
+        )
+
+        return {
+            "logits": logits,
+            "vis": {"sal": logits.sigmoid()},
+            "loss": bce_loss,
+            "loss_items": {
+                "bce": bce_loss.detach(),
+                "total": bce_loss.detach(),
+            },
+            "loss_str": (
+                f"L:{bce_loss.detach().item():.4f} "
+                f"BCE:{bce_loss.detach().item():.4f}"
+            ),
+        }
+
+    def get_grouped_params(self):
+        param_groups = {
+            "pretrained": [],
+            "fixed": [],
+            "retrained": [],
+        }
+
+        for name, param in self.named_parameters():
+            if name.startswith(
+                "encoder.patch_embed1."
+            ):
+                param.requires_grad = False
+                param_groups["fixed"].append(param)
+            elif name.startswith("encoder."):
+                param_groups["pretrained"].append(param)
+            else:
+                param_groups["retrained"].append(param)
+
+        LOGGER.info(
+            "Parameter Groups:{"
+            f"Pretrained: "
+            f"{len(param_groups['pretrained'])}, "
+            f"Fixed: {len(param_groups['fixed'])}, "
+            f"ReTrained: "
+            f"{len(param_groups['retrained'])}"
+            "}"
+        )
+        return param_groups
+
+[basemain_c32_stage3_branch.py] ========================================================================
+[basemain_c32_stage3_branch.py] [STAGE3-ONLY] Loading common branch checkpoint: /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T1/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/state_epoch_135.pth
+[basemain_c32_stage3_branch.py] ========================================================================
+[basemain_c32_stage3_branch.py] [STAGE3-ONLY] mode=acp_sbft | checkpoint=/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T1/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/state_epoch_135.pth
+[basemain_c32_stage3_branch.py] Number of Parameters: 62275105
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/clean.txt, samples=808
+[basemain.py] Length of combined_tr [stage3_clean_eval]: 808
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/clean.txt, samples=808
+[basemain.py] Length of combined_tr [stage3_clean_train]: 808
+[basemain_c32_stage3_branch.py] [ACP difficulty] clean N=808, hard_ratio=0.200, selected=162, p50=0.0357, p90=0.1144, max=0.4468
+[fpn_baseline.py] Parameter Groups:{Pretrained: 828, Fixed: 4, ReTrained: 21}
+[basemain_c32_stage3_branch.py] ======================================================================
+[basemain_c32_stage3_branch.py] Stage III START | mode=acp_sbft | global=141-170 | selected_clean=162 | lr=1.00e-05 | SBFT=True
+[basemain_c32_stage3_branch.py] ======================================================================
+[basemain_c32_stage3_branch.py] [StageIII 141] 0001/0020 | mode=acp_sbft | SBFT-p=0.100 on=0 | L=0.0046
+[basemain_c32_stage3_branch.py] [StageIII 141] 0020/0020 | mode=acp_sbft | SBFT-p=0.100 on=0 | L=0.0063
+[basemain_c32_stage3_branch.py] [StageIII 141] mode=acp_sbft | L=0.004944 BCE=0.004944 | SBFT-p=0.100
+[basemain_c32_stage3_branch.py] [StageIII 142] 0001/0020 | mode=acp_sbft | SBFT-p=0.114 on=1 | L=0.0536
+[basemain_c32_stage3_branch.py] [StageIII 142] 0020/0020 | mode=acp_sbft | SBFT-p=0.114 on=0 | L=0.0035
+[basemain_c32_stage3_branch.py] [StageIII 142] mode=acp_sbft | L=0.093394 BCE=0.093394 | SBFT-p=0.114
+[basemain_c32_stage3_branch.py] [StageIII 143] 0001/0020 | mode=acp_sbft | SBFT-p=0.128 on=0 | L=0.0056
+[basemain_c32_stage3_branch.py] [StageIII 143] 0020/0020 | mode=acp_sbft | SBFT-p=0.128 on=1 | L=0.1849
+[basemain_c32_stage3_branch.py] [StageIII 143] mode=acp_sbft | L=0.021202 BCE=0.021202 | SBFT-p=0.128
+[basemain_c32_stage3_branch.py] [StageIII 144] 0001/0020 | mode=acp_sbft | SBFT-p=0.141 on=0 | L=0.0051
+[basemain_c32_stage3_branch.py] [StageIII 144] 0020/0020 | mode=acp_sbft | SBFT-p=0.141 on=0 | L=0.0029
+[basemain_c32_stage3_branch.py] [StageIII 144] mode=acp_sbft | L=0.039924 BCE=0.039924 | SBFT-p=0.141
+[basemain_c32_stage3_branch.py] [StageIII 145] 0001/0020 | mode=acp_sbft | SBFT-p=0.155 on=0 | L=0.0044
+[basemain_c32_stage3_branch.py] [StageIII 145] 0020/0020 | mode=acp_sbft | SBFT-p=0.155 on=0 | L=0.0081
+[basemain_c32_stage3_branch.py] [StageIII 145] mode=acp_sbft | L=0.022664 BCE=0.022664 | SBFT-p=0.155
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.838 |  0.784 |  0.907 |  0.059
+[basemain.py] cod10k_te    |  0.856 |  0.767 |  0.931 |  0.026
+[basemain_c32_stage3_branch.py] [StageIII 146] 0001/0020 | mode=acp_sbft | SBFT-p=0.169 on=0 | L=0.0068
+[basemain_c32_stage3_branch.py] [StageIII 146] 0020/0020 | mode=acp_sbft | SBFT-p=0.169 on=0 | L=0.0035
+[basemain_c32_stage3_branch.py] [StageIII 146] mode=acp_sbft | L=0.042771 BCE=0.042771 | SBFT-p=0.169
+[basemain_c32_stage3_branch.py] [StageIII 147] 0001/0020 | mode=acp_sbft | SBFT-p=0.183 on=0 | L=0.0086
+[basemain_c32_stage3_branch.py] [StageIII 147] 0020/0020 | mode=acp_sbft | SBFT-p=0.183 on=1 | L=0.1709
+[basemain_c32_stage3_branch.py] [StageIII 147] mode=acp_sbft | L=0.026515 BCE=0.026515 | SBFT-p=0.183
+[basemain_c32_stage3_branch.py] [StageIII 148] 0001/0020 | mode=acp_sbft | SBFT-p=0.197 on=0 | L=0.0052
+[basemain_c32_stage3_branch.py] [StageIII 148] 0020/0020 | mode=acp_sbft | SBFT-p=0.197 on=0 | L=0.0058
+[basemain_c32_stage3_branch.py] [StageIII 148] mode=acp_sbft | L=0.040764 BCE=0.040764 | SBFT-p=0.197
+[basemain_c32_stage3_branch.py] [StageIII 149] 0001/0020 | mode=acp_sbft | SBFT-p=0.210 on=0 | L=0.0047
+[basemain_c32_stage3_branch.py] [StageIII 149] 0020/0020 | mode=acp_sbft | SBFT-p=0.210 on=0 | L=0.0064
+[basemain_c32_stage3_branch.py] [StageIII 149] mode=acp_sbft | L=0.036346 BCE=0.036346 | SBFT-p=0.210
+[basemain_c32_stage3_branch.py] [StageIII 150] 0001/0020 | mode=acp_sbft | SBFT-p=0.224 on=0 | L=0.0052
+[basemain_c32_stage3_branch.py] [StageIII 150] 0020/0020 | mode=acp_sbft | SBFT-p=0.224 on=0 | L=0.0067
+[basemain_c32_stage3_branch.py] [StageIII 150] mode=acp_sbft | L=0.018623 BCE=0.018623 | SBFT-p=0.224
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.832 |  0.771 |  0.905 |  0.063
+[basemain.py] cod10k_te    |  0.855 |  0.758 |  0.929 |  0.027
+[basemain_c32_stage3_branch.py] [StageIII 151] 0001/0020 | mode=acp_sbft | SBFT-p=0.238 on=0 | L=0.0052
+[basemain_c32_stage3_branch.py] [StageIII 151] 0020/0020 | mode=acp_sbft | SBFT-p=0.238 on=0 | L=0.0060
+[basemain_c32_stage3_branch.py] [StageIII 151] mode=acp_sbft | L=0.032540 BCE=0.032540 | SBFT-p=0.238
+[basemain_c32_stage3_branch.py] [StageIII 152] 0001/0020 | mode=acp_sbft | SBFT-p=0.252 on=0 | L=0.0045
+[basemain_c32_stage3_branch.py] [StageIII 152] 0020/0020 | mode=acp_sbft | SBFT-p=0.252 on=1 | L=0.1307
+[basemain_c32_stage3_branch.py] [StageIII 152] mode=acp_sbft | L=0.035564 BCE=0.035564 | SBFT-p=0.252
+[basemain_c32_stage3_branch.py] [StageIII 153] 0001/0020 | mode=acp_sbft | SBFT-p=0.266 on=0 | L=0.0050
+[basemain_c32_stage3_branch.py] [StageIII 153] 0020/0020 | mode=acp_sbft | SBFT-p=0.266 on=0 | L=0.0082
+[basemain_c32_stage3_branch.py] [StageIII 153] mode=acp_sbft | L=0.028178 BCE=0.028178 | SBFT-p=0.266
+[basemain_c32_stage3_branch.py] [StageIII 154] 0001/0020 | mode=acp_sbft | SBFT-p=0.279 on=0 | L=0.0062
+[basemain_c32_stage3_branch.py] [StageIII 154] 0020/0020 | mode=acp_sbft | SBFT-p=0.279 on=0 | L=0.0055
+[basemain_c32_stage3_branch.py] [StageIII 154] mode=acp_sbft | L=0.025510 BCE=0.025510 | SBFT-p=0.279
+[basemain_c32_stage3_branch.py] [StageIII 155] 0001/0020 | mode=acp_sbft | SBFT-p=0.293 on=0 | L=0.0057
+[basemain_c32_stage3_branch.py] [StageIII 155] 0020/0020 | mode=acp_sbft | SBFT-p=0.293 on=0 | L=0.0092
+[basemain_c32_stage3_branch.py] [StageIII 155] mode=acp_sbft | L=0.021343 BCE=0.021343 | SBFT-p=0.293
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.829 |  0.762 |  0.904 |  0.065
+[basemain.py] cod10k_te    |  0.854 |  0.751 |  0.928 |  0.027
+[basemain_c32_stage3_branch.py] [StageIII 156] 0001/0020 | mode=acp_sbft | SBFT-p=0.307 on=0 | L=0.0063
+[basemain_c32_stage3_branch.py] [StageIII 156] 0020/0020 | mode=acp_sbft | SBFT-p=0.307 on=0 | L=0.0058
+[basemain_c32_stage3_branch.py] [StageIII 156] mode=acp_sbft | L=0.020852 BCE=0.020852 | SBFT-p=0.307
+[basemain_c32_stage3_branch.py] [StageIII 157] 0001/0020 | mode=acp_sbft | SBFT-p=0.321 on=0 | L=0.0039
+[basemain_c32_stage3_branch.py] [StageIII 157] 0020/0020 | mode=acp_sbft | SBFT-p=0.321 on=1 | L=0.0246
+[basemain_c32_stage3_branch.py] [StageIII 157] mode=acp_sbft | L=0.018725 BCE=0.018725 | SBFT-p=0.321
+[basemain_c32_stage3_branch.py] [StageIII 158] 0001/0020 | mode=acp_sbft | SBFT-p=0.334 on=0 | L=0.0063
+[basemain_c32_stage3_branch.py] [StageIII 158] 0020/0020 | mode=acp_sbft | SBFT-p=0.334 on=1 | L=0.0666
+[basemain_c32_stage3_branch.py] [StageIII 158] mode=acp_sbft | L=0.025335 BCE=0.025335 | SBFT-p=0.334
+[basemain_c32_stage3_branch.py] [StageIII 159] 0001/0020 | mode=acp_sbft | SBFT-p=0.348 on=1 | L=0.0242
+[basemain_c32_stage3_branch.py] [StageIII 159] 0020/0020 | mode=acp_sbft | SBFT-p=0.348 on=0 | L=0.0078
+[basemain_c32_stage3_branch.py] [StageIII 159] mode=acp_sbft | L=0.008432 BCE=0.008432 | SBFT-p=0.348
+[basemain_c32_stage3_branch.py] [StageIII 160] 0001/0020 | mode=acp_sbft | SBFT-p=0.362 on=0 | L=0.0047
+[basemain_c32_stage3_branch.py] [StageIII 160] 0020/0020 | mode=acp_sbft | SBFT-p=0.362 on=0 | L=0.0046
+[basemain_c32_stage3_branch.py] [StageIII 160] mode=acp_sbft | L=0.022652 BCE=0.022652 | SBFT-p=0.362
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.830 |  0.762 |  0.904 |  0.066
+[basemain.py] cod10k_te    |  0.855 |  0.749 |  0.928 |  0.028
+[basemain_c32_stage3_branch.py] [StageIII 161] 0001/0020 | mode=acp_sbft | SBFT-p=0.376 on=1 | L=0.0928
+[basemain_c32_stage3_branch.py] [StageIII 161] 0020/0020 | mode=acp_sbft | SBFT-p=0.376 on=0 | L=0.0104
+[basemain_c32_stage3_branch.py] [StageIII 161] mode=acp_sbft | L=0.028351 BCE=0.028351 | SBFT-p=0.376
+[basemain_c32_stage3_branch.py] [StageIII 162] 0001/0020 | mode=acp_sbft | SBFT-p=0.390 on=0 | L=0.0065
+[basemain_c32_stage3_branch.py] [StageIII 162] 0020/0020 | mode=acp_sbft | SBFT-p=0.390 on=0 | L=0.0061
+[basemain_c32_stage3_branch.py] [StageIII 162] mode=acp_sbft | L=0.028374 BCE=0.028374 | SBFT-p=0.390
+[basemain_c32_stage3_branch.py] [StageIII 163] 0001/0020 | mode=acp_sbft | SBFT-p=0.403 on=0 | L=0.0035
+[basemain_c32_stage3_branch.py] [StageIII 163] 0020/0020 | mode=acp_sbft | SBFT-p=0.403 on=0 | L=0.0062
+[basemain_c32_stage3_branch.py] [StageIII 163] mode=acp_sbft | L=0.013310 BCE=0.013310 | SBFT-p=0.403
+[basemain_c32_stage3_branch.py] [StageIII 164] 0001/0020 | mode=acp_sbft | SBFT-p=0.417 on=0 | L=0.0037
+[basemain_c32_stage3_branch.py] [StageIII 164] 0020/0020 | mode=acp_sbft | SBFT-p=0.417 on=0 | L=0.0051
+[basemain_c32_stage3_branch.py] [StageIII 164] mode=acp_sbft | L=0.025382 BCE=0.025382 | SBFT-p=0.417
+[basemain_c32_stage3_branch.py] [StageIII 165] 0001/0020 | mode=acp_sbft | SBFT-p=0.431 on=1 | L=0.0677
+[basemain_c32_stage3_branch.py] [StageIII 165] 0020/0020 | mode=acp_sbft | SBFT-p=0.431 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 165] mode=acp_sbft | L=0.032724 BCE=0.032724 | SBFT-p=0.431
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.827 |  0.753 |  0.904 |  0.068
+[basemain.py] cod10k_te    |  0.853 |  0.741 |  0.927 |  0.028
+[basemain_c32_stage3_branch.py] [StageIII 166] 0001/0020 | mode=acp_sbft | SBFT-p=0.445 on=1 | L=0.0515
+[basemain_c32_stage3_branch.py] [StageIII 166] 0020/0020 | mode=acp_sbft | SBFT-p=0.445 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 166] mode=acp_sbft | L=0.027864 BCE=0.027864 | SBFT-p=0.445
+[basemain_c32_stage3_branch.py] [StageIII 167] 0001/0020 | mode=acp_sbft | SBFT-p=0.459 on=1 | L=0.0407
+[basemain_c32_stage3_branch.py] [StageIII 167] 0020/0020 | mode=acp_sbft | SBFT-p=0.459 on=1 | L=0.0552
+[basemain_c32_stage3_branch.py] [StageIII 167] mode=acp_sbft | L=0.017405 BCE=0.017405 | SBFT-p=0.459
+[basemain_c32_stage3_branch.py] [StageIII 168] 0001/0020 | mode=acp_sbft | SBFT-p=0.472 on=1 | L=0.0500
+[basemain_c32_stage3_branch.py] [StageIII 168] 0020/0020 | mode=acp_sbft | SBFT-p=0.472 on=0 | L=0.0054
+[basemain_c32_stage3_branch.py] [StageIII 168] mode=acp_sbft | L=0.033475 BCE=0.033475 | SBFT-p=0.472
+[basemain_c32_stage3_branch.py] [StageIII 169] 0001/0020 | mode=acp_sbft | SBFT-p=0.486 on=1 | L=0.0226
+[basemain_c32_stage3_branch.py] [StageIII 169] 0020/0020 | mode=acp_sbft | SBFT-p=0.486 on=0 | L=0.0061
+[basemain_c32_stage3_branch.py] [StageIII 169] mode=acp_sbft | L=0.027256 BCE=0.027256 | SBFT-p=0.486
+[basemain_c32_stage3_branch.py] [StageIII 170] 0001/0020 | mode=acp_sbft | SBFT-p=0.500 on=0 | L=0.0054
+[basemain_c32_stage3_branch.py] [StageIII 170] 0020/0020 | mode=acp_sbft | SBFT-p=0.500 on=0 | L=0.0075
+[basemain_c32_stage3_branch.py] [StageIII 170] mode=acp_sbft | L=0.025849 BCE=0.025849 | SBFT-p=0.500
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.826 |  0.750 |  0.903 |  0.069
+[basemain.py] cod10k_te    |  0.852 |  0.738 |  0.927 |  0.029
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.826 |  0.750 |  0.903 |  0.069
+[basemain.py] cod10k_te    |  0.852 |  0.738 |  0.927 |  0.029
+[basemain_c32_stage3_branch.py] End training...

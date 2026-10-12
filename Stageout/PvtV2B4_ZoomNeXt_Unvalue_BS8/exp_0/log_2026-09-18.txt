@@ -1,0 +1,298 @@
+=== log 2026-09-18 15:16:18.578557 ===
+[basemain.py] base_seed = 112358
+config = 'configs/curablation/zoomnext_unvalue.py'
+data_cfg = './dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/S2_GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/S2_GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+evaluate = False
+exp_name = 'PvtV2B4_ZoomNeXt_Unvalue_BS8'
+has_test = True
+info = None
+load_from = None
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model = dict(
+    boundary_gain=5.0,
+    boundary_kernel=31,
+    box_dilate_kernel=9,
+    consistency_weight=0.05,
+    dynamic_mix_max=0.5,
+    dynamic_weight=0.25,
+    hmu_groups=6,
+    mask_loss_mode='bce',
+    mid_dim=64,
+    min_teacher_foreground=16,
+    outside_weight=0.2,
+    q_switch_ratio=0.4,
+    siu_groups=4,
+    teacher_confidence=0.9,
+    teacher_disagreement=0.05)
+model_name = 'PvtV2B4_ZoomNeXt_Unvalue'
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/log_2026-09-18.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/Stageout/PvtV2B4_ZoomNeXt_Unvalue_BS8/exp_0/trainer.txt'
+)
+pretrained = True
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+save_results = False
+test = dict(
+    batch_size=8,
+    clip_range=None,
+    data=dict(names=[
+        'camo_te',
+        'cod10k_te',
+    ], shape=dict(h=384, w=384)),
+    num_workers=8)
+train = dict(
+    batch_size=8,
+    bn=dict(freeze_affine=True, freeze_encoder=False, freeze_status=True),
+    curriculum=dict(
+        batch_schedule=[
+            dict(
+                batch=dict(clean=4, noisy=4, unvalue=0),
+                end_epoch=40,
+                name='mask_warmup'),
+            dict(
+                batch=dict(clean=4, noisy=3, unvalue=1),
+                end_epoch=60,
+                name='box_introduction'),
+            dict(
+                batch=dict(clean=3, noisy=3, unvalue=2),
+                end_epoch=100,
+                name='teacher_recovery'),
+            dict(
+                batch=dict(clean=4, noisy=2, unvalue=2),
+                end_epoch=120,
+                name='hard_consolidation'),
+            dict(
+                batch=dict(clean=5, noisy=2, unvalue=1),
+                end_epoch=150,
+                name='reliable_finetune'),
+        ],
+        continuous_schedule=dict(enable=True),
+        enable=True,
+        num_samples_per_epoch=4040,
+        pools=dict(
+            clean='./data/pseudo_pool/sam2/sam2_clean.txt',
+            noisy='./data/pseudo_pool/sam2/sam2_noisy.txt',
+            unvalue='./data/pseudo_pool/sam2/sam2_unvalue.txt')),
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384), use_box=True),
+    epoch_based=True,
+    grad_acc_step=1,
+    lr=0.0001,
+    num_epochs=150,
+    num_iters=None,
+    num_workers=4,
+    optimizer=dict(
+        cfg=dict(diff_factor=0.1, weight_decay=0),
+        group_mode='finetune',
+        mode='adam',
+        set_to_none=False),
+    save_val_ckpt=True,
+    sche_usebatch=True,
+    scheduler=dict(
+        cfg=dict(gamma=0.1, milestones=60600),
+        mode='step',
+        warmup=dict(initial_coef=0.01, mode='linear', num_iters=0)),
+    unvalue_teacher=dict(
+        ema_decay=0.99, freeze_epoch=120, hflip=True, start_epoch=41),
+    use_amp=True,
+    val_interval=5,
+    val_start_epoch=30)
+use_checkpoint = False
+use_custom_worker_init = True
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[basemain_unvalue.py] class PvtV2B4_ZoomNeXt_Unvalue(PvtV2B4_ZoomNeXt):
+    """Dual-scale ZoomNeXt plus the unchanged three-pool Unvalue loss."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        num_frames=1,
+        input_norm=True,
+        mid_dim=64,
+        siu_groups=4,
+        hmu_groups=6,
+        use_checkpoint=False,
+        **kwargs,
+    ):
+        loss_keys = {
+            "mask_loss_mode",
+            "q_switch_ratio",
+            "boundary_kernel",
+            "boundary_gain",
+            "box_dilate_kernel",
+            "teacher_confidence",
+            "teacher_disagreement",
+            "min_teacher_foreground",
+            "outside_weight",
+            "dynamic_weight",
+            "consistency_weight",
+            "dynamic_mix_max",
+        }
+        loss_kwargs = {
+            key: kwargs.pop(key)
+            for key in list(kwargs)
+            if key in loss_keys
+        }
+        if kwargs:
+            unknown = ", ".join(sorted(kwargs))
+            raise TypeError(f"Unexpected ZoomNeXt-Unvalue arguments: {unknown}")
+
+        super().__init__(
+            pretrained=pretrained,
+            num_frames=num_frames,
+            input_norm=input_norm,
+            mid_dim=mid_dim,
+            siu_groups=siu_groups,
+            hmu_groups=hmu_groups,
+            use_checkpoint=use_checkpoint,
+        )
+        self.unvalue_loss = MaskAnchoredUnvalueLoss(**loss_kwargs)
+
+    def forward(self, data, iter_percentage=1.0, **kwargs):
+        del kwargs
+        # The repository's current ZoomNeXt body consumes image_l + image_m.
+        logits = self.body(data=data)
+
+        if not self.training:
+            return logits
+
+        if "mask" not in data:
+            raise KeyError("Training requires data['mask'].")
+
+        target = data["mask"].to(
+            device=logits.device,
+            dtype=logits.dtype,
+        )
+        target = _resize(target, logits.shape[-2:]).clamp(0.0, 1.0)
+
+        total, items = self.unvalue_loss(
+            logits=logits,
+            target=target,
+            data=data,
+            iter_percentage=iter_percentage,
+        )
+        items["total"] = total.detach()
+
+        return {
+            "logits": logits,
+            "vis": {"sal": logits.sigmoid()},
+            "loss": total,
+            "loss_items": items,
+            "loss_str": (
+                f"L:{total.detach().item():.4f} "
+                f"NC:{items['nc'].item():.4f} "
+                f"Q:{items['q'].item():.1f} "
+                f"OUT:{items['unvalue_out'].item():.4f} "
+                f"DYN:{items['unvalue_dynamic'].item():.4f} "
+                f"ACC:{items['unvalue_accepted'].item():.2f}"
+            ),
+        }
+
+[basemain_unvalue.py] Number of Parameters: 65597344
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/sam2/sam2_clean.txt, samples=1731
+[basemain.py] Length of combined_tr [clean]: 1731
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/sam2/sam2_noisy.txt, samples=1778
+[basemain.py] Length of combined_tr [noisy]: 1778
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/sam2/sam2_unvalue.txt, samples=531
+[basemain.py] Length of combined_tr [unvalue]: 531
+[basemain_unvalue.py] Mask/box curriculum pools: clean=1731, noisy=1778, unvalue=531
+[basemain_unvalue.py] ================== Epoch 001 Mask/Box Curriculum ==================
+[basemain_unvalue.py] mask_warmup | batch C:N:U=4:4:0 | probs C=50.00%, N=50.00%, U=0.00%
+[zoomnext.py] Parameter Groups:{Pretrained: 828, Fixed: 4, ReTrained: 314}
+[basemain_unvalue.py] Three-pool mask/box curriculum: ENABLED. EMA teacher decay=0.99000.
+[basemain_unvalue.py] Scheduler:
+Scheduler: (
+    num_iters: 75750
+    epoch_length: 505
+    warmup_iter: [0, 0)
+    scheduler_iter: [0, 75749]
+    mode: step
+    scheduler_cfg: {'warmup': {'num_iters': 0, 'initial_coef': 0.01, 'mode': 'linear'}, 'mode': 'step', 'cfg': {'milestones': 60600, 'gamma': 0.1}}
+    initial_lrs: [1e-05, 0.0001]
+    step_by_batch: True
+)
+Optimizer:
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 1e-05
+    maximize: False
+    weight_decay: 0
+
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0
+)
+[basemain_unvalue.py] Image Mean: tensor([0.4850, 0.4560, 0.4060], device='cuda:0'), Image Std: tensor([0.2290, 0.2240, 0.2250], device='cuda:0')
+[basemain_unvalue.py] Exp_Name: PvtV2B4_ZoomNeXt_Unvalue_BS8
+[basemain_unvalue.py] ================== Epoch 001 Mask/Box Curriculum ==================
+[basemain_unvalue.py] mask_warmup | batch C:N:U=4:4:0 | probs C=50.00%, N=50.00%, U=0.00%

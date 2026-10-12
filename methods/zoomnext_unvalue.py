@@ -92,13 +92,14 @@ class PvtV2B4_ZoomNeXt_Unvalue(PvtV2B4_ZoomNeXt):
             "loss": total,
             "loss_items": items,
             "loss_str": (
-                f"L:{total.detach().item():.4f} "
-                f"NC:{items['nc'].item():.4f} "
-                f"Q:{items['q'].item():.1f} "
-                f"OUT:{items['unvalue_out'].item():.4f} "
-                f"DYN:{items['unvalue_dynamic'].item():.4f} "
-                f"ACC:{items['unvalue_accepted'].item():.2f}"
-            ),
+                    f"L:{total.detach().item():.4f} "
+                    f"BCE:{items['bce'].item():.4f} "
+                    f"CIOU:{items['clean_iou'].item():.4f} "
+                    f"OUT:{items['unvalue_out'].item():.4f} "
+                    f"DYN:{items['unvalue_dynamic'].item():.4f} "
+                    f"CONS:{items['unvalue_consistency'].item():.4f} "
+                    f"ACC:{items['unvalue_accepted'].item():.2f}"
+                ),
         }
 
 

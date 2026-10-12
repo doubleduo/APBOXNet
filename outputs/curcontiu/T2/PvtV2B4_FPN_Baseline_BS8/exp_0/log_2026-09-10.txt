@@ -1,0 +1,618 @@
+=== log 2026-09-10 22:59:53.306636 ===
+[basemain.py] base_seed = 112358
+config = 'configs/C31/icod_c32_T2_sbft.py'
+data_cfg = './dataset.yaml'
+dataset_infos = dict(
+    camo_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CAMO-TE'),
+    chameleon=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/CHAMELEON'),
+    cod10k_te=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/COD10K-TE'),
+    combined_tr=dict(
+        box_json=dict(path='./data/Train/box_label', suffix='.json'),
+        image=dict(path='./data/Train/Imgs', suffix='.jpg'),
+        mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        pseudo_mask=dict(path='./data/Train/S1_GT', suffix='.png'),
+        root='.'),
+    nc4k=dict(
+        image=dict(path='Image', suffix='.jpg'),
+        mask=dict(path='Mask', suffix='.png'),
+        root='data/Test/NC4K'))
+deterministic = True
+device = 'cuda:0'
+evaluate = False
+exp_name = 'PvtV2B4_FPN_Baseline_BS8'
+has_test = True
+info = None
+load_from = None
+log_interval = 20
+metric_names = [
+    'sm',
+    'wfm',
+    'mae',
+    'em',
+]
+model_name = 'PvtV2B4_FPN_Baseline'
+output_dir = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2'
+path = dict(
+    cfg_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/config.py',
+    excel=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/results.xlsx',
+    final_full_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/checkpoint_final.pth',
+    final_state_net=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/state_final.pth',
+    log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/log_2026-09-10.txt',
+    output_dir=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2',
+    pth=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/pth',
+    pth_log=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0',
+    save=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/pre',
+    tb=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/tb',
+    trainer_copy=
+    '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T2/PvtV2B4_FPN_Baseline_BS8/exp_0/trainer.txt'
+)
+pretrained = True
+proj_root = '/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet'
+save_results = False
+test = dict(
+    batch_size=8,
+    clip_range=None,
+    data=dict(names=[
+        'camo_te',
+        'cod10k_te',
+    ], shape=dict(h=384, w=384)),
+    num_workers=8)
+train = dict(
+    batch_size=8,
+    bn=dict(freeze_affine=True, freeze_encoder=False, freeze_status=True),
+    curriculum=dict(
+        difficulty=dict(
+            csv=None,
+            enable=False,
+            end_epoch=120,
+            gaussian_alpha=0.1,
+            gaussian_enable=False,
+            gaussian_std=0.1,
+            min_fraction=0.6,
+            pacing='log',
+            source='mask_area',
+            start_epoch=1),
+        enable=True,
+        num_samples_per_epoch=4040,
+        pools=dict(
+            clean='./data/pseudo_pool/shape/clean.txt',
+            noisy='./data/pseudo_pool/shape/noisy.txt'),
+        reliability=dict(
+            anneal_end_epoch=140,
+            broad_end_epoch=60,
+            clean_weight=1.0,
+            noisy_end_weight=0.0,
+            noisy_start_weight=1.0)),
+    data=dict(names=[
+        'combined_tr',
+    ], shape=dict(h=384, w=384)),
+    ema_kd=dict(enable=False, lambda_kd=0.0),
+    epoch_based=True,
+    grad_acc_step=1,
+    lr=0.0001,
+    num_epochs=140,
+    num_iters=None,
+    num_workers=4,
+    optimizer=dict(
+        cfg=dict(diff_factor=0.1, weight_decay=0),
+        group_mode='finetune',
+        mode='adam',
+        set_to_none=False),
+    promotion=dict(
+        enable=True,
+        epochs=30,
+        eval_batch_size=8,
+        hard_ratio=0.2,
+        lr=1e-05,
+        mode='sbft',
+        sbft_kernel=11,
+        sbft_prob_end=0.5,
+        sbft_prob_start=0.1,
+        sbft_sigma=3.0,
+        val_interval=5),
+    save_val_ckpt=True,
+    sche_usebatch=True,
+    scheduler=dict(
+        cfg=dict(gamma=0.1, milestones=70701),
+        mode='step',
+        warmup=dict(initial_coef=0.01, mode='linear', num_iters=0)),
+    use_amp=True,
+    val_interval=5,
+    val_start_epoch=30)
+use_checkpoint = False
+use_custom_worker_init = True
+
+[pt_utils.py] We will use a fixed seed 112358
+[pt_utils.py] We will not use `torch.backends.cudnn.benchmark`
+[basemain_c32_stage3_branch.py] class PvtV2B4_FPN_Baseline(nn.Module):
+    """Single-scale PVTv2-B4 encoder with a conventional top-down FPN."""
+
+    def __init__(
+        self,
+        pretrained=True,
+        input_norm=True,
+        fpn_dim=64,
+        use_checkpoint=False,
+        **kwargs,
+    ):
+        super().__init__()
+        del kwargs
+
+        self.encoder = pvt_v2_eff_b4(
+            pretrained=pretrained,
+            use_checkpoint=use_checkpoint,
+        )
+        self.embed_dims = list(self.encoder.embed_dims)
+        self.normalizer = (
+            PixelNormalizer()
+            if input_norm
+            else nn.Identity()
+        )
+
+        self.lateral_2 = nn.Conv2d(
+            self.embed_dims[0],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+        self.lateral_3 = nn.Conv2d(
+            self.embed_dims[1],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+        self.lateral_4 = nn.Conv2d(
+            self.embed_dims[2],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+        self.lateral_5 = nn.Conv2d(
+            self.embed_dims[3],
+            fpn_dim,
+            kernel_size=1,
+            bias=False,
+        )
+
+        self.smooth_5 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+        self.smooth_4 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+        self.smooth_3 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+        self.smooth_2 = ConvBNReLU(
+            fpn_dim,
+            fpn_dim,
+            3,
+            1,
+            1,
+        )
+
+        self.predictor = nn.Sequential(
+            ConvBNReLU(fpn_dim, 32, 3, 1, 1),
+            nn.Conv2d(32, 1, kernel_size=1),
+        )
+
+    def normalize_encoder(self, image):
+        image = self.normalizer(image)
+        features = self.encoder(image)
+        return (
+            features["reduction_2"],
+            features["reduction_3"],
+            features["reduction_4"],
+            features["reduction_5"],
+        )
+
+    @staticmethod
+    def _resize_like(source, target):
+        return F.interpolate(
+            source,
+            size=target.shape[-2:],
+            mode="bilinear",
+            align_corners=False,
+        )
+
+    def body(self, data):
+        image = data["image_m"]
+        c2, c3, c4, c5 = self.normalize_encoder(image)
+
+        p5 = self.smooth_5(self.lateral_5(c5))
+        p4 = self.smooth_4(
+            self.lateral_4(c4)
+            + self._resize_like(p5, c4)
+        )
+        p3 = self.smooth_3(
+            self.lateral_3(c3)
+            + self._resize_like(p4, c3)
+        )
+        p2 = self.smooth_2(
+            self.lateral_2(c2)
+            + self._resize_like(p3, c2)
+        )
+
+        logits = self.predictor(p2)
+        return F.interpolate(
+            logits,
+            size=image.shape[-2:],
+            mode="bilinear",
+            align_corners=False,
+        )
+
+    def forward(
+        self,
+        data,
+        iter_percentage=1,
+        **kwargs,
+    ):
+        del iter_percentage, kwargs
+        logits = self.body(data=data)
+
+        if not self.training:
+            return logits
+
+        mask = data["mask"].float()
+        if mask.shape[-2:] != logits.shape[-2:]:
+            mask = F.interpolate(
+                mask,
+                size=logits.shape[-2:],
+                mode="nearest",
+            )
+
+        bce_loss = F.binary_cross_entropy_with_logits(
+            logits,
+            mask,
+            reduction="mean",
+        )
+
+        return {
+            "logits": logits,
+            "vis": {"sal": logits.sigmoid()},
+            "loss": bce_loss,
+            "loss_items": {
+                "bce": bce_loss.detach(),
+                "total": bce_loss.detach(),
+            },
+            "loss_str": (
+                f"L:{bce_loss.detach().item():.4f} "
+                f"BCE:{bce_loss.detach().item():.4f}"
+            ),
+        }
+
+    def get_grouped_params(self):
+        param_groups = {
+            "pretrained": [],
+            "fixed": [],
+            "retrained": [],
+        }
+
+        for name, param in self.named_parameters():
+            if name.startswith(
+                "encoder.patch_embed1."
+            ):
+                param.requires_grad = False
+                param_groups["fixed"].append(param)
+            elif name.startswith("encoder."):
+                param_groups["pretrained"].append(param)
+            else:
+                param_groups["retrained"].append(param)
+
+        LOGGER.info(
+            "Parameter Groups:{"
+            f"Pretrained: "
+            f"{len(param_groups['pretrained'])}, "
+            f"Fixed: {len(param_groups['fixed'])}, "
+            f"ReTrained: "
+            f"{len(param_groups['retrained'])}"
+            "}"
+        )
+        return param_groups
+
+[basemain_c32_stage3_branch.py] ========================================================================
+[basemain_c32_stage3_branch.py] [STAGE3-ONLY] Loading common branch checkpoint: /media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T1/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/state_epoch_135.pth
+[basemain_c32_stage3_branch.py] ========================================================================
+[basemain_c32_stage3_branch.py] [STAGE3-ONLY] mode=sbft | checkpoint=/media/cc/b5d7f4aa-fba2-44c6-9e72-aabbee8d6a73/AAA_base_hjw/usefulmodel/APboxnet/outputs/curcontiu/T1/PvtV2B4_FPN_Baseline_BS8/exp_0/pth/state_epoch_135.pth
+[basemain_c32_stage3_branch.py] Number of Parameters: 62275105
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/clean.txt, samples=808
+[basemain.py] Length of combined_tr [stage3_clean_eval]: 808
+[basemain.py] Loaded curriculum list: ./data/pseudo_pool/shape/clean.txt, samples=808
+[basemain.py] Length of combined_tr [stage3_clean_train]: 808
+[fpn_baseline.py] Parameter Groups:{Pretrained: 828, Fixed: 4, ReTrained: 21}
+[basemain_c32_stage3_branch.py] ======================================================================
+[basemain_c32_stage3_branch.py] Stage III START | mode=sbft | global=141-170 | selected_clean=808 | lr=1.00e-05 | SBFT=True
+[basemain_c32_stage3_branch.py] ======================================================================
+[basemain_c32_stage3_branch.py] [StageIII 141] 0001/0101 | mode=sbft | SBFT-p=0.100 on=0 | L=0.0058
+[basemain_c32_stage3_branch.py] [StageIII 141] 0020/0101 | mode=sbft | SBFT-p=0.100 on=0 | L=0.0095
+[basemain_c32_stage3_branch.py] [StageIII 141] 0040/0101 | mode=sbft | SBFT-p=0.100 on=0 | L=0.0071
+[basemain_c32_stage3_branch.py] [StageIII 141] 0060/0101 | mode=sbft | SBFT-p=0.100 on=0 | L=0.0050
+[basemain_c32_stage3_branch.py] [StageIII 141] 0080/0101 | mode=sbft | SBFT-p=0.100 on=0 | L=0.0046
+[basemain_c32_stage3_branch.py] [StageIII 141] 0100/0101 | mode=sbft | SBFT-p=0.100 on=0 | L=0.0058
+[basemain_c32_stage3_branch.py] [StageIII 141] 0101/0101 | mode=sbft | SBFT-p=0.100 on=0 | L=0.0043
+[basemain_c32_stage3_branch.py] [StageIII 141] mode=sbft | L=0.023837 BCE=0.023837 | SBFT-p=0.100
+[basemain_c32_stage3_branch.py] [StageIII 142] 0001/0101 | mode=sbft | SBFT-p=0.114 on=1 | L=0.1487
+[basemain_c32_stage3_branch.py] [StageIII 142] 0020/0101 | mode=sbft | SBFT-p=0.114 on=0 | L=0.0066
+[basemain_c32_stage3_branch.py] [StageIII 142] 0040/0101 | mode=sbft | SBFT-p=0.114 on=0 | L=0.0056
+[basemain_c32_stage3_branch.py] [StageIII 142] 0060/0101 | mode=sbft | SBFT-p=0.114 on=0 | L=0.0042
+[basemain_c32_stage3_branch.py] [StageIII 142] 0080/0101 | mode=sbft | SBFT-p=0.114 on=0 | L=0.0061
+[basemain_c32_stage3_branch.py] [StageIII 142] 0100/0101 | mode=sbft | SBFT-p=0.114 on=1 | L=0.1317
+[basemain_c32_stage3_branch.py] [StageIII 142] 0101/0101 | mode=sbft | SBFT-p=0.114 on=0 | L=0.0076
+[basemain_c32_stage3_branch.py] [StageIII 142] mode=sbft | L=0.024945 BCE=0.024945 | SBFT-p=0.114
+[basemain_c32_stage3_branch.py] [StageIII 143] 0001/0101 | mode=sbft | SBFT-p=0.128 on=0 | L=0.0045
+[basemain_c32_stage3_branch.py] [StageIII 143] 0020/0101 | mode=sbft | SBFT-p=0.128 on=1 | L=0.0965
+[basemain_c32_stage3_branch.py] [StageIII 143] 0040/0101 | mode=sbft | SBFT-p=0.128 on=0 | L=0.0050
+[basemain_c32_stage3_branch.py] [StageIII 143] 0060/0101 | mode=sbft | SBFT-p=0.128 on=0 | L=0.0070
+[basemain_c32_stage3_branch.py] [StageIII 143] 0080/0101 | mode=sbft | SBFT-p=0.128 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 143] 0100/0101 | mode=sbft | SBFT-p=0.128 on=0 | L=0.0055
+[basemain_c32_stage3_branch.py] [StageIII 143] 0101/0101 | mode=sbft | SBFT-p=0.128 on=1 | L=0.0783
+[basemain_c32_stage3_branch.py] [StageIII 143] mode=sbft | L=0.017239 BCE=0.017239 | SBFT-p=0.128
+[basemain_c32_stage3_branch.py] [StageIII 144] 0001/0101 | mode=sbft | SBFT-p=0.141 on=0 | L=0.0046
+[basemain_c32_stage3_branch.py] [StageIII 144] 0020/0101 | mode=sbft | SBFT-p=0.141 on=0 | L=0.0096
+[basemain_c32_stage3_branch.py] [StageIII 144] 0040/0101 | mode=sbft | SBFT-p=0.141 on=0 | L=0.0071
+[basemain_c32_stage3_branch.py] [StageIII 144] 0060/0101 | mode=sbft | SBFT-p=0.141 on=0 | L=0.0047
+[basemain_c32_stage3_branch.py] [StageIII 144] 0080/0101 | mode=sbft | SBFT-p=0.141 on=0 | L=0.0089
+[basemain_c32_stage3_branch.py] [StageIII 144] 0100/0101 | mode=sbft | SBFT-p=0.141 on=0 | L=0.0066
+[basemain_c32_stage3_branch.py] [StageIII 144] 0101/0101 | mode=sbft | SBFT-p=0.141 on=1 | L=0.0800
+[basemain_c32_stage3_branch.py] [StageIII 144] mode=sbft | L=0.017674 BCE=0.017674 | SBFT-p=0.141
+[basemain_c32_stage3_branch.py] [StageIII 145] 0001/0101 | mode=sbft | SBFT-p=0.155 on=0 | L=0.0074
+[basemain_c32_stage3_branch.py] [StageIII 145] 0020/0101 | mode=sbft | SBFT-p=0.155 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 145] 0040/0101 | mode=sbft | SBFT-p=0.155 on=0 | L=0.0065
+[basemain_c32_stage3_branch.py] [StageIII 145] 0060/0101 | mode=sbft | SBFT-p=0.155 on=0 | L=0.0063
+[basemain_c32_stage3_branch.py] [StageIII 145] 0080/0101 | mode=sbft | SBFT-p=0.155 on=0 | L=0.0061
+[basemain_c32_stage3_branch.py] [StageIII 145] 0100/0101 | mode=sbft | SBFT-p=0.155 on=0 | L=0.0052
+[basemain_c32_stage3_branch.py] [StageIII 145] 0101/0101 | mode=sbft | SBFT-p=0.155 on=0 | L=0.0070
+[basemain_c32_stage3_branch.py] [StageIII 145] mode=sbft | L=0.023442 BCE=0.023442 | SBFT-p=0.155
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.844 |  0.780 |  0.910 |  0.061
+[basemain.py] cod10k_te    |  0.860 |  0.757 |  0.932 |  0.026
+[basemain_c32_stage3_branch.py] [StageIII 146] 0001/0101 | mode=sbft | SBFT-p=0.169 on=0 | L=0.0053
+[basemain_c32_stage3_branch.py] [StageIII 146] 0020/0101 | mode=sbft | SBFT-p=0.169 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 146] 0040/0101 | mode=sbft | SBFT-p=0.169 on=0 | L=0.0130
+[basemain_c32_stage3_branch.py] [StageIII 146] 0060/0101 | mode=sbft | SBFT-p=0.169 on=0 | L=0.0053
+[basemain_c32_stage3_branch.py] [StageIII 146] 0080/0101 | mode=sbft | SBFT-p=0.169 on=0 | L=0.0086
+[basemain_c32_stage3_branch.py] [StageIII 146] 0100/0101 | mode=sbft | SBFT-p=0.169 on=0 | L=0.0075
+[basemain_c32_stage3_branch.py] [StageIII 146] 0101/0101 | mode=sbft | SBFT-p=0.169 on=1 | L=0.0964
+[basemain_c32_stage3_branch.py] [StageIII 146] mode=sbft | L=0.021743 BCE=0.021743 | SBFT-p=0.169
+[basemain_c32_stage3_branch.py] [StageIII 147] 0001/0101 | mode=sbft | SBFT-p=0.183 on=0 | L=0.0075
+[basemain_c32_stage3_branch.py] [StageIII 147] 0020/0101 | mode=sbft | SBFT-p=0.183 on=1 | L=0.0511
+[basemain_c32_stage3_branch.py] [StageIII 147] 0040/0101 | mode=sbft | SBFT-p=0.183 on=0 | L=0.0088
+[basemain_c32_stage3_branch.py] [StageIII 147] 0060/0101 | mode=sbft | SBFT-p=0.183 on=0 | L=0.0083
+[basemain_c32_stage3_branch.py] [StageIII 147] 0080/0101 | mode=sbft | SBFT-p=0.183 on=0 | L=0.0088
+[basemain_c32_stage3_branch.py] [StageIII 147] 0100/0101 | mode=sbft | SBFT-p=0.183 on=0 | L=0.0052
+[basemain_c32_stage3_branch.py] [StageIII 147] 0101/0101 | mode=sbft | SBFT-p=0.183 on=0 | L=0.0089
+[basemain_c32_stage3_branch.py] [StageIII 147] mode=sbft | L=0.023389 BCE=0.023389 | SBFT-p=0.183
+[basemain_c32_stage3_branch.py] [StageIII 148] 0001/0101 | mode=sbft | SBFT-p=0.197 on=0 | L=0.0106
+[basemain_c32_stage3_branch.py] [StageIII 148] 0020/0101 | mode=sbft | SBFT-p=0.197 on=0 | L=0.0066
+[basemain_c32_stage3_branch.py] [StageIII 148] 0040/0101 | mode=sbft | SBFT-p=0.197 on=0 | L=0.0078
+[basemain_c32_stage3_branch.py] [StageIII 148] 0060/0101 | mode=sbft | SBFT-p=0.197 on=0 | L=0.0082
+[basemain_c32_stage3_branch.py] [StageIII 148] 0080/0101 | mode=sbft | SBFT-p=0.197 on=0 | L=0.0085
+[basemain_c32_stage3_branch.py] [StageIII 148] 0100/0101 | mode=sbft | SBFT-p=0.197 on=0 | L=0.0062
+[basemain_c32_stage3_branch.py] [StageIII 148] 0101/0101 | mode=sbft | SBFT-p=0.197 on=0 | L=0.0084
+[basemain_c32_stage3_branch.py] [StageIII 148] mode=sbft | L=0.017623 BCE=0.017623 | SBFT-p=0.197
+[basemain_c32_stage3_branch.py] [StageIII 149] 0001/0101 | mode=sbft | SBFT-p=0.210 on=0 | L=0.0083
+[basemain_c32_stage3_branch.py] [StageIII 149] 0020/0101 | mode=sbft | SBFT-p=0.210 on=0 | L=0.0081
+[basemain_c32_stage3_branch.py] [StageIII 149] 0040/0101 | mode=sbft | SBFT-p=0.210 on=0 | L=0.0068
+[basemain_c32_stage3_branch.py] [StageIII 149] 0060/0101 | mode=sbft | SBFT-p=0.210 on=0 | L=0.0057
+[basemain_c32_stage3_branch.py] [StageIII 149] 0080/0101 | mode=sbft | SBFT-p=0.210 on=0 | L=0.0110
+[basemain_c32_stage3_branch.py] [StageIII 149] 0100/0101 | mode=sbft | SBFT-p=0.210 on=0 | L=0.0061
+[basemain_c32_stage3_branch.py] [StageIII 149] 0101/0101 | mode=sbft | SBFT-p=0.210 on=1 | L=0.0614
+[basemain_c32_stage3_branch.py] [StageIII 149] mode=sbft | L=0.024455 BCE=0.024455 | SBFT-p=0.210
+[basemain_c32_stage3_branch.py] [StageIII 150] 0001/0101 | mode=sbft | SBFT-p=0.224 on=0 | L=0.0051
+[basemain_c32_stage3_branch.py] [StageIII 150] 0020/0101 | mode=sbft | SBFT-p=0.224 on=0 | L=0.0114
+[basemain_c32_stage3_branch.py] [StageIII 150] 0040/0101 | mode=sbft | SBFT-p=0.224 on=0 | L=0.0096
+[basemain_c32_stage3_branch.py] [StageIII 150] 0060/0101 | mode=sbft | SBFT-p=0.224 on=0 | L=0.0063
+[basemain_c32_stage3_branch.py] [StageIII 150] 0080/0101 | mode=sbft | SBFT-p=0.224 on=1 | L=0.0898
+[basemain_c32_stage3_branch.py] [StageIII 150] 0100/0101 | mode=sbft | SBFT-p=0.224 on=0 | L=0.0029
+[basemain_c32_stage3_branch.py] [StageIII 150] 0101/0101 | mode=sbft | SBFT-p=0.224 on=0 | L=0.0080
+[basemain_c32_stage3_branch.py] [StageIII 150] mode=sbft | L=0.018633 BCE=0.018633 | SBFT-p=0.224
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.847 |  0.775 |  0.911 |  0.062
+[basemain.py] cod10k_te    |  0.860 |  0.747 |  0.933 |  0.027
+[basemain_c32_stage3_branch.py] [StageIII 151] 0001/0101 | mode=sbft | SBFT-p=0.238 on=0 | L=0.0068
+[basemain_c32_stage3_branch.py] [StageIII 151] 0020/0101 | mode=sbft | SBFT-p=0.238 on=0 | L=0.0082
+[basemain_c32_stage3_branch.py] [StageIII 151] 0040/0101 | mode=sbft | SBFT-p=0.238 on=0 | L=0.0069
+[basemain_c32_stage3_branch.py] [StageIII 151] 0060/0101 | mode=sbft | SBFT-p=0.238 on=1 | L=0.0279
+[basemain_c32_stage3_branch.py] [StageIII 151] 0080/0101 | mode=sbft | SBFT-p=0.238 on=0 | L=0.0113
+[basemain_c32_stage3_branch.py] [StageIII 151] 0100/0101 | mode=sbft | SBFT-p=0.238 on=0 | L=0.0067
+[basemain_c32_stage3_branch.py] [StageIII 151] 0101/0101 | mode=sbft | SBFT-p=0.238 on=1 | L=0.0531
+[basemain_c32_stage3_branch.py] [StageIII 151] mode=sbft | L=0.026218 BCE=0.026218 | SBFT-p=0.238
+[basemain_c32_stage3_branch.py] [StageIII 152] 0001/0101 | mode=sbft | SBFT-p=0.252 on=0 | L=0.0080
+[basemain_c32_stage3_branch.py] [StageIII 152] 0020/0101 | mode=sbft | SBFT-p=0.252 on=1 | L=0.0730
+[basemain_c32_stage3_branch.py] [StageIII 152] 0040/0101 | mode=sbft | SBFT-p=0.252 on=0 | L=0.0117
+[basemain_c32_stage3_branch.py] [StageIII 152] 0060/0101 | mode=sbft | SBFT-p=0.252 on=0 | L=0.0066
+[basemain_c32_stage3_branch.py] [StageIII 152] 0080/0101 | mode=sbft | SBFT-p=0.252 on=1 | L=0.1041
+[basemain_c32_stage3_branch.py] [StageIII 152] 0100/0101 | mode=sbft | SBFT-p=0.252 on=1 | L=0.0435
+[basemain_c32_stage3_branch.py] [StageIII 152] 0101/0101 | mode=sbft | SBFT-p=0.252 on=0 | L=0.0045
+[basemain_c32_stage3_branch.py] [StageIII 152] mode=sbft | L=0.019940 BCE=0.019940 | SBFT-p=0.252
+[basemain_c32_stage3_branch.py] [StageIII 153] 0001/0101 | mode=sbft | SBFT-p=0.266 on=0 | L=0.0087
+[basemain_c32_stage3_branch.py] [StageIII 153] 0020/0101 | mode=sbft | SBFT-p=0.266 on=0 | L=0.0089
+[basemain_c32_stage3_branch.py] [StageIII 153] 0040/0101 | mode=sbft | SBFT-p=0.266 on=1 | L=0.0380
+[basemain_c32_stage3_branch.py] [StageIII 153] 0060/0101 | mode=sbft | SBFT-p=0.266 on=1 | L=0.0487
+[basemain_c32_stage3_branch.py] [StageIII 153] 0080/0101 | mode=sbft | SBFT-p=0.266 on=0 | L=0.0064
+[basemain_c32_stage3_branch.py] [StageIII 153] 0100/0101 | mode=sbft | SBFT-p=0.266 on=0 | L=0.0053
+[basemain_c32_stage3_branch.py] [StageIII 153] 0101/0101 | mode=sbft | SBFT-p=0.266 on=0 | L=0.0064
+[basemain_c32_stage3_branch.py] [StageIII 153] mode=sbft | L=0.024077 BCE=0.024077 | SBFT-p=0.266
+[basemain_c32_stage3_branch.py] [StageIII 154] 0001/0101 | mode=sbft | SBFT-p=0.279 on=0 | L=0.0088
+[basemain_c32_stage3_branch.py] [StageIII 154] 0020/0101 | mode=sbft | SBFT-p=0.279 on=0 | L=0.0059
+[basemain_c32_stage3_branch.py] [StageIII 154] 0040/0101 | mode=sbft | SBFT-p=0.279 on=0 | L=0.0072
+[basemain_c32_stage3_branch.py] [StageIII 154] 0060/0101 | mode=sbft | SBFT-p=0.279 on=0 | L=0.0064
+[basemain_c32_stage3_branch.py] [StageIII 154] 0080/0101 | mode=sbft | SBFT-p=0.279 on=0 | L=0.0079
+[basemain_c32_stage3_branch.py] [StageIII 154] 0100/0101 | mode=sbft | SBFT-p=0.279 on=0 | L=0.0082
+[basemain_c32_stage3_branch.py] [StageIII 154] 0101/0101 | mode=sbft | SBFT-p=0.279 on=0 | L=0.0102
+[basemain_c32_stage3_branch.py] [StageIII 154] mode=sbft | L=0.027335 BCE=0.027335 | SBFT-p=0.279
+[basemain_c32_stage3_branch.py] [StageIII 155] 0001/0101 | mode=sbft | SBFT-p=0.293 on=0 | L=0.0103
+[basemain_c32_stage3_branch.py] [StageIII 155] 0020/0101 | mode=sbft | SBFT-p=0.293 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 155] 0040/0101 | mode=sbft | SBFT-p=0.293 on=1 | L=0.0408
+[basemain_c32_stage3_branch.py] [StageIII 155] 0060/0101 | mode=sbft | SBFT-p=0.293 on=1 | L=0.0401
+[basemain_c32_stage3_branch.py] [StageIII 155] 0080/0101 | mode=sbft | SBFT-p=0.293 on=0 | L=0.0123
+[basemain_c32_stage3_branch.py] [StageIII 155] 0100/0101 | mode=sbft | SBFT-p=0.293 on=1 | L=0.0567
+[basemain_c32_stage3_branch.py] [StageIII 155] 0101/0101 | mode=sbft | SBFT-p=0.293 on=0 | L=0.0070
+[basemain_c32_stage3_branch.py] [StageIII 155] mode=sbft | L=0.021547 BCE=0.021547 | SBFT-p=0.293
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.846 |  0.779 |  0.913 |  0.061
+[basemain.py] cod10k_te    |  0.859 |  0.755 |  0.934 |  0.026
+[basemain_c32_stage3_branch.py] [StageIII 156] 0001/0101 | mode=sbft | SBFT-p=0.307 on=0 | L=0.0103
+[basemain_c32_stage3_branch.py] [StageIII 156] 0020/0101 | mode=sbft | SBFT-p=0.307 on=0 | L=0.0066
+[basemain_c32_stage3_branch.py] [StageIII 156] 0040/0101 | mode=sbft | SBFT-p=0.307 on=0 | L=0.0064
+[basemain_c32_stage3_branch.py] [StageIII 156] 0060/0101 | mode=sbft | SBFT-p=0.307 on=1 | L=0.0362
+[basemain_c32_stage3_branch.py] [StageIII 156] 0080/0101 | mode=sbft | SBFT-p=0.307 on=0 | L=0.0088
+[basemain_c32_stage3_branch.py] [StageIII 156] 0100/0101 | mode=sbft | SBFT-p=0.307 on=0 | L=0.0060
+[basemain_c32_stage3_branch.py] [StageIII 156] 0101/0101 | mode=sbft | SBFT-p=0.307 on=0 | L=0.0111
+[basemain_c32_stage3_branch.py] [StageIII 156] mode=sbft | L=0.022529 BCE=0.022529 | SBFT-p=0.307
+[basemain_c32_stage3_branch.py] [StageIII 157] 0001/0101 | mode=sbft | SBFT-p=0.321 on=0 | L=0.0088
+[basemain_c32_stage3_branch.py] [StageIII 157] 0020/0101 | mode=sbft | SBFT-p=0.321 on=1 | L=0.0310
+[basemain_c32_stage3_branch.py] [StageIII 157] 0040/0101 | mode=sbft | SBFT-p=0.321 on=1 | L=0.0443
+[basemain_c32_stage3_branch.py] [StageIII 157] 0060/0101 | mode=sbft | SBFT-p=0.321 on=0 | L=0.0074
+[basemain_c32_stage3_branch.py] [StageIII 157] 0080/0101 | mode=sbft | SBFT-p=0.321 on=1 | L=0.0856
+[basemain_c32_stage3_branch.py] [StageIII 157] 0100/0101 | mode=sbft | SBFT-p=0.321 on=0 | L=0.0041
+[basemain_c32_stage3_branch.py] [StageIII 157] 0101/0101 | mode=sbft | SBFT-p=0.321 on=0 | L=0.0068
+[basemain_c32_stage3_branch.py] [StageIII 157] mode=sbft | L=0.022842 BCE=0.022842 | SBFT-p=0.321
+[basemain_c32_stage3_branch.py] [StageIII 158] 0001/0101 | mode=sbft | SBFT-p=0.334 on=0 | L=0.0079
+[basemain_c32_stage3_branch.py] [StageIII 158] 0020/0101 | mode=sbft | SBFT-p=0.334 on=1 | L=0.0350
+[basemain_c32_stage3_branch.py] [StageIII 158] 0040/0101 | mode=sbft | SBFT-p=0.334 on=1 | L=0.0355
+[basemain_c32_stage3_branch.py] [StageIII 158] 0060/0101 | mode=sbft | SBFT-p=0.334 on=1 | L=0.0368
+[basemain_c32_stage3_branch.py] [StageIII 158] 0080/0101 | mode=sbft | SBFT-p=0.334 on=0 | L=0.0078
+[basemain_c32_stage3_branch.py] [StageIII 158] 0100/0101 | mode=sbft | SBFT-p=0.334 on=0 | L=0.0061
+[basemain_c32_stage3_branch.py] [StageIII 158] 0101/0101 | mode=sbft | SBFT-p=0.334 on=1 | L=0.0414
+[basemain_c32_stage3_branch.py] [StageIII 158] mode=sbft | L=0.018977 BCE=0.018977 | SBFT-p=0.334
+[basemain_c32_stage3_branch.py] [StageIII 159] 0001/0101 | mode=sbft | SBFT-p=0.348 on=1 | L=0.0263
+[basemain_c32_stage3_branch.py] [StageIII 159] 0020/0101 | mode=sbft | SBFT-p=0.348 on=0 | L=0.0055
+[basemain_c32_stage3_branch.py] [StageIII 159] 0040/0101 | mode=sbft | SBFT-p=0.348 on=1 | L=0.0281
+[basemain_c32_stage3_branch.py] [StageIII 159] 0060/0101 | mode=sbft | SBFT-p=0.348 on=0 | L=0.0074
+[basemain_c32_stage3_branch.py] [StageIII 159] 0080/0101 | mode=sbft | SBFT-p=0.348 on=0 | L=0.0111
+[basemain_c32_stage3_branch.py] [StageIII 159] 0100/0101 | mode=sbft | SBFT-p=0.348 on=0 | L=0.0052
+[basemain_c32_stage3_branch.py] [StageIII 159] 0101/0101 | mode=sbft | SBFT-p=0.348 on=0 | L=0.0101
+[basemain_c32_stage3_branch.py] [StageIII 159] mode=sbft | L=0.020138 BCE=0.020138 | SBFT-p=0.348
+[basemain_c32_stage3_branch.py] [StageIII 160] 0001/0101 | mode=sbft | SBFT-p=0.362 on=0 | L=0.0064
+[basemain_c32_stage3_branch.py] [StageIII 160] 0020/0101 | mode=sbft | SBFT-p=0.362 on=0 | L=0.0076
+[basemain_c32_stage3_branch.py] [StageIII 160] 0040/0101 | mode=sbft | SBFT-p=0.362 on=0 | L=0.0079
+[basemain_c32_stage3_branch.py] [StageIII 160] 0060/0101 | mode=sbft | SBFT-p=0.362 on=0 | L=0.0102
+[basemain_c32_stage3_branch.py] [StageIII 160] 0080/0101 | mode=sbft | SBFT-p=0.362 on=1 | L=0.0517
+[basemain_c32_stage3_branch.py] [StageIII 160] 0100/0101 | mode=sbft | SBFT-p=0.362 on=1 | L=0.0332
+[basemain_c32_stage3_branch.py] [StageIII 160] 0101/0101 | mode=sbft | SBFT-p=0.362 on=0 | L=0.0043
+[basemain_c32_stage3_branch.py] [StageIII 160] mode=sbft | L=0.021877 BCE=0.021877 | SBFT-p=0.362
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.848 |  0.780 |  0.913 |  0.060
+[basemain.py] cod10k_te    |  0.860 |  0.755 |  0.934 |  0.026
+[basemain_c32_stage3_branch.py] [StageIII 161] 0001/0101 | mode=sbft | SBFT-p=0.376 on=1 | L=0.0546
+[basemain_c32_stage3_branch.py] [StageIII 161] 0020/0101 | mode=sbft | SBFT-p=0.376 on=0 | L=0.0069
+[basemain_c32_stage3_branch.py] [StageIII 161] 0040/0101 | mode=sbft | SBFT-p=0.376 on=0 | L=0.0090
+[basemain_c32_stage3_branch.py] [StageIII 161] 0060/0101 | mode=sbft | SBFT-p=0.376 on=1 | L=0.0541
+[basemain_c32_stage3_branch.py] [StageIII 161] 0080/0101 | mode=sbft | SBFT-p=0.376 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 161] 0100/0101 | mode=sbft | SBFT-p=0.376 on=1 | L=0.0841
+[basemain_c32_stage3_branch.py] [StageIII 161] 0101/0101 | mode=sbft | SBFT-p=0.376 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 161] mode=sbft | L=0.024391 BCE=0.024391 | SBFT-p=0.376
+[basemain_c32_stage3_branch.py] [StageIII 162] 0001/0101 | mode=sbft | SBFT-p=0.390 on=0 | L=0.0081
+[basemain_c32_stage3_branch.py] [StageIII 162] 0020/0101 | mode=sbft | SBFT-p=0.390 on=0 | L=0.0089
+[basemain_c32_stage3_branch.py] [StageIII 162] 0040/0101 | mode=sbft | SBFT-p=0.390 on=1 | L=0.0314
+[basemain_c32_stage3_branch.py] [StageIII 162] 0060/0101 | mode=sbft | SBFT-p=0.390 on=0 | L=0.0045
+[basemain_c32_stage3_branch.py] [StageIII 162] 0080/0101 | mode=sbft | SBFT-p=0.390 on=0 | L=0.0092
+[basemain_c32_stage3_branch.py] [StageIII 162] 0100/0101 | mode=sbft | SBFT-p=0.390 on=0 | L=0.0071
+[basemain_c32_stage3_branch.py] [StageIII 162] 0101/0101 | mode=sbft | SBFT-p=0.390 on=1 | L=0.0350
+[basemain_c32_stage3_branch.py] [StageIII 162] mode=sbft | L=0.022778 BCE=0.022778 | SBFT-p=0.390
+[basemain_c32_stage3_branch.py] [StageIII 163] 0001/0101 | mode=sbft | SBFT-p=0.403 on=0 | L=0.0063
+[basemain_c32_stage3_branch.py] [StageIII 163] 0020/0101 | mode=sbft | SBFT-p=0.403 on=0 | L=0.0098
+[basemain_c32_stage3_branch.py] [StageIII 163] 0040/0101 | mode=sbft | SBFT-p=0.403 on=0 | L=0.0107
+[basemain_c32_stage3_branch.py] [StageIII 163] 0060/0101 | mode=sbft | SBFT-p=0.403 on=0 | L=0.0040
+[basemain_c32_stage3_branch.py] [StageIII 163] 0080/0101 | mode=sbft | SBFT-p=0.403 on=1 | L=0.0394
+[basemain_c32_stage3_branch.py] [StageIII 163] 0100/0101 | mode=sbft | SBFT-p=0.403 on=0 | L=0.0054
+[basemain_c32_stage3_branch.py] [StageIII 163] 0101/0101 | mode=sbft | SBFT-p=0.403 on=0 | L=0.0067
+[basemain_c32_stage3_branch.py] [StageIII 163] mode=sbft | L=0.023383 BCE=0.023383 | SBFT-p=0.403
+[basemain_c32_stage3_branch.py] [StageIII 164] 0001/0101 | mode=sbft | SBFT-p=0.417 on=0 | L=0.0055
+[basemain_c32_stage3_branch.py] [StageIII 164] 0020/0101 | mode=sbft | SBFT-p=0.417 on=0 | L=0.0089
+[basemain_c32_stage3_branch.py] [StageIII 164] 0040/0101 | mode=sbft | SBFT-p=0.417 on=1 | L=0.0571
+[basemain_c32_stage3_branch.py] [StageIII 164] 0060/0101 | mode=sbft | SBFT-p=0.417 on=0 | L=0.0052
+[basemain_c32_stage3_branch.py] [StageIII 164] 0080/0101 | mode=sbft | SBFT-p=0.417 on=0 | L=0.0053
+[basemain_c32_stage3_branch.py] [StageIII 164] 0100/0101 | mode=sbft | SBFT-p=0.417 on=1 | L=0.0296
+[basemain_c32_stage3_branch.py] [StageIII 164] 0101/0101 | mode=sbft | SBFT-p=0.417 on=0 | L=0.0086
+[basemain_c32_stage3_branch.py] [StageIII 164] mode=sbft | L=0.026519 BCE=0.026519 | SBFT-p=0.417
+[basemain_c32_stage3_branch.py] [StageIII 165] 0001/0101 | mode=sbft | SBFT-p=0.431 on=1 | L=0.0295
+[basemain_c32_stage3_branch.py] [StageIII 165] 0020/0101 | mode=sbft | SBFT-p=0.431 on=0 | L=0.0067
+[basemain_c32_stage3_branch.py] [StageIII 165] 0040/0101 | mode=sbft | SBFT-p=0.431 on=0 | L=0.0074
+[basemain_c32_stage3_branch.py] [StageIII 165] 0060/0101 | mode=sbft | SBFT-p=0.431 on=0 | L=0.0091
+[basemain_c32_stage3_branch.py] [StageIII 165] 0080/0101 | mode=sbft | SBFT-p=0.431 on=1 | L=0.0756
+[basemain_c32_stage3_branch.py] [StageIII 165] 0100/0101 | mode=sbft | SBFT-p=0.431 on=0 | L=0.0067
+[basemain_c32_stage3_branch.py] [StageIII 165] 0101/0101 | mode=sbft | SBFT-p=0.431 on=0 | L=0.0063
+[basemain_c32_stage3_branch.py] [StageIII 165] mode=sbft | L=0.022764 BCE=0.022764 | SBFT-p=0.431
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.850 |  0.780 |  0.914 |  0.060
+[basemain.py] cod10k_te    |  0.861 |  0.752 |  0.934 |  0.026
+[basemain_c32_stage3_branch.py] [StageIII 166] 0001/0101 | mode=sbft | SBFT-p=0.445 on=1 | L=0.0694
+[basemain_c32_stage3_branch.py] [StageIII 166] 0020/0101 | mode=sbft | SBFT-p=0.445 on=0 | L=0.0079
+[basemain_c32_stage3_branch.py] [StageIII 166] 0040/0101 | mode=sbft | SBFT-p=0.445 on=0 | L=0.0081
+[basemain_c32_stage3_branch.py] [StageIII 166] 0060/0101 | mode=sbft | SBFT-p=0.445 on=0 | L=0.0050
+[basemain_c32_stage3_branch.py] [StageIII 166] 0080/0101 | mode=sbft | SBFT-p=0.445 on=1 | L=0.0565
+[basemain_c32_stage3_branch.py] [StageIII 166] 0100/0101 | mode=sbft | SBFT-p=0.445 on=0 | L=0.0083
+[basemain_c32_stage3_branch.py] [StageIII 166] 0101/0101 | mode=sbft | SBFT-p=0.445 on=0 | L=0.0118
+[basemain_c32_stage3_branch.py] [StageIII 166] mode=sbft | L=0.023956 BCE=0.023956 | SBFT-p=0.445
+[basemain_c32_stage3_branch.py] [StageIII 167] 0001/0101 | mode=sbft | SBFT-p=0.459 on=1 | L=0.0366
+[basemain_c32_stage3_branch.py] [StageIII 167] 0020/0101 | mode=sbft | SBFT-p=0.459 on=1 | L=0.0731
+[basemain_c32_stage3_branch.py] [StageIII 167] 0040/0101 | mode=sbft | SBFT-p=0.459 on=0 | L=0.0098
+[basemain_c32_stage3_branch.py] [StageIII 167] 0060/0101 | mode=sbft | SBFT-p=0.459 on=1 | L=0.0402
+[basemain_c32_stage3_branch.py] [StageIII 167] 0080/0101 | mode=sbft | SBFT-p=0.459 on=1 | L=0.0343
+[basemain_c32_stage3_branch.py] [StageIII 167] 0100/0101 | mode=sbft | SBFT-p=0.459 on=0 | L=0.0046
+[basemain_c32_stage3_branch.py] [StageIII 167] 0101/0101 | mode=sbft | SBFT-p=0.459 on=1 | L=0.0875
+[basemain_c32_stage3_branch.py] [StageIII 167] mode=sbft | L=0.025555 BCE=0.025555 | SBFT-p=0.459
+[basemain_c32_stage3_branch.py] [StageIII 168] 0001/0101 | mode=sbft | SBFT-p=0.472 on=1 | L=0.0276
+[basemain_c32_stage3_branch.py] [StageIII 168] 0020/0101 | mode=sbft | SBFT-p=0.472 on=0 | L=0.0073
+[basemain_c32_stage3_branch.py] [StageIII 168] 0040/0101 | mode=sbft | SBFT-p=0.472 on=0 | L=0.0072
+[basemain_c32_stage3_branch.py] [StageIII 168] 0060/0101 | mode=sbft | SBFT-p=0.472 on=0 | L=0.0056
+[basemain_c32_stage3_branch.py] [StageIII 168] 0080/0101 | mode=sbft | SBFT-p=0.472 on=1 | L=0.0472
+[basemain_c32_stage3_branch.py] [StageIII 168] 0100/0101 | mode=sbft | SBFT-p=0.472 on=1 | L=0.0421
+[basemain_c32_stage3_branch.py] [StageIII 168] 0101/0101 | mode=sbft | SBFT-p=0.472 on=1 | L=0.0374
+[basemain_c32_stage3_branch.py] [StageIII 168] mode=sbft | L=0.022963 BCE=0.022963 | SBFT-p=0.472
+[basemain_c32_stage3_branch.py] [StageIII 169] 0001/0101 | mode=sbft | SBFT-p=0.486 on=1 | L=0.0362
+[basemain_c32_stage3_branch.py] [StageIII 169] 0020/0101 | mode=sbft | SBFT-p=0.486 on=0 | L=0.0065
+[basemain_c32_stage3_branch.py] [StageIII 169] 0040/0101 | mode=sbft | SBFT-p=0.486 on=0 | L=0.0064
+[basemain_c32_stage3_branch.py] [StageIII 169] 0060/0101 | mode=sbft | SBFT-p=0.486 on=0 | L=0.0100
+[basemain_c32_stage3_branch.py] [StageIII 169] 0080/0101 | mode=sbft | SBFT-p=0.486 on=0 | L=0.0118
+[basemain_c32_stage3_branch.py] [StageIII 169] 0100/0101 | mode=sbft | SBFT-p=0.486 on=1 | L=0.0358
+[basemain_c32_stage3_branch.py] [StageIII 169] 0101/0101 | mode=sbft | SBFT-p=0.486 on=0 | L=0.0089
+[basemain_c32_stage3_branch.py] [StageIII 169] mode=sbft | L=0.020607 BCE=0.020607 | SBFT-p=0.486
+[basemain_c32_stage3_branch.py] [StageIII 170] 0001/0101 | mode=sbft | SBFT-p=0.500 on=0 | L=0.0054
+[basemain_c32_stage3_branch.py] [StageIII 170] 0020/0101 | mode=sbft | SBFT-p=0.500 on=0 | L=0.0069
+[basemain_c32_stage3_branch.py] [StageIII 170] 0040/0101 | mode=sbft | SBFT-p=0.500 on=1 | L=0.0638
+[basemain_c32_stage3_branch.py] [StageIII 170] 0060/0101 | mode=sbft | SBFT-p=0.500 on=0 | L=0.0104
+[basemain_c32_stage3_branch.py] [StageIII 170] 0080/0101 | mode=sbft | SBFT-p=0.500 on=0 | L=0.0100
+[basemain_c32_stage3_branch.py] [StageIII 170] 0100/0101 | mode=sbft | SBFT-p=0.500 on=1 | L=0.0352
+[basemain_c32_stage3_branch.py] [StageIII 170] 0101/0101 | mode=sbft | SBFT-p=0.500 on=1 | L=0.0218
+[basemain_c32_stage3_branch.py] [StageIII 170] mode=sbft | L=0.025876 BCE=0.025876 | SBFT-p=0.500
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.851 |  0.790 |  0.916 |  0.058
+[basemain.py] cod10k_te    |  0.861 |  0.763 |  0.935 |  0.025
+[basemain.py] dataset      |      S |     Fw |      E |    MAE
+[basemain.py] camo_te      |  0.851 |  0.790 |  0.916 |  0.058
+[basemain.py] cod10k_te    |  0.861 |  0.763 |  0.935 |  0.025
+[basemain_c32_stage3_branch.py] End training...
